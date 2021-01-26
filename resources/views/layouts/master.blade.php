@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Ice-Gentong @yield('title')</title>
+    <title>Mega Cool @yield('title')</title>
     <!-- Favicon-->
-    <link rel="icon" href="{{ asset('assets/image/logo-gentong-nav.png')}}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png')}}" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link href="{{asset('bsb/googleapis.css?family=Roboto:400,700&subset=latin,cyrillic-ext')}}" rel="stylesheet" type="text/css">
@@ -83,7 +83,7 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="#">ICE GENTONG</a>
+                <a class="navbar-brand" href="#">MEGA COOL</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <!--
@@ -237,7 +237,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2020 <a href="javascript:void(0);"> Ice Gentong</a>
+                    &copy; 2021 <a href="javascript:void(0);">Mega Cool</a>
                 </div>
                 
             </div>
