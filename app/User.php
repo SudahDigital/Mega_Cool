@@ -31,6 +31,10 @@ class User extends Authenticatable
     public function orders(){
         return $this->hasMany('App\Order');
     }
+
+    public function cities(){
+        return $this->hasMany('App\City');
+    }
     /**
      * The attributes that should be cast to native types.
      *

@@ -15,7 +15,7 @@ class AddIdCityProvinceOnTableUser extends Migration
     {
         Schema::table('users', function($table) {
             $table->integer('city_id')->nullable()->after('address');
-            $table->integer('province_id')->nullable('city_id');
+            //$table->integer('province_id')->nullable('city_id');
             $table->text('profile_desc')->nullable()->after('city_id');
         });
     }
@@ -29,7 +29,7 @@ class AddIdCityProvinceOnTableUser extends Migration
     {
         Schema::table('users', function($table) {
             $table->dropColumn('city_id');
-            $table->dropColumn('province_id');
+            //$table->dropColumn('province_id');
             $table->text('profile_desc');
         });
     }

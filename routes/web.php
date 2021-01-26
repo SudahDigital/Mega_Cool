@@ -52,6 +52,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/users/change_password', 'changePasswordController@index')->name('changepass');
 Route::post('/users/post/change_password', 'changePasswordController@changepassword')->name('post.changepass');
 Route::resource('users','UserController');
+Route::get('/ajax/cities/search', 'SalesController@ajaxSearch');
+Route::resource('sales','SalesController');
 Route::get('/banner/trash', 'BannerController@trash')->name('banner.trash');
 Route::get('/banner/{id}/restore', 'BannerController@restore')->name('banner.restore');
 Route::delete('/banner/{banner}/delete-permanent','BannerController@deletePermanent')->name('banner.delete-permanent');

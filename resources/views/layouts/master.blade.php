@@ -157,20 +157,27 @@
                         </a>
                     </li>
                     
-                    @can('isSuperadmin')
-                    <li class="{{request()->routeIs('users.index') ? 'active' : '' }}">
+                    
+                    <li class="{{request()->routeIs(('users.index')||('sales.index')) ? 'active' : '' }}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">people</i>
                             <span>Manage Users</span>
                         </a>
+                       
                         <ul class="ml-menu">
+                        @can('isSuperadmin')
                             <li class="{{request()->routeIs('users.index') ? 'active' : '' }}">
-                                <a href="{{route('users.index')}}">List User</a>
+                                <a href="{{route('users.index')}}">List Admin</a>
+                            </li>
+                        @endcan
+                            <li class="{{request()->routeIs('sales.index') ? 'active' : '' }}">
+                                <a href="{{route('sales.index')}}">List Sales</a>
                             </li>
                         </ul>
                     </li>
-                    @endcan
+                    
 
+                    <!--
                     <li class="{{request()->routeIs('banner.index') ? 'active' : '' }}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">insert_photo</i>
@@ -182,6 +189,7 @@
                             </li>
                         </ul>
                     </li>
+                    -->
 
                     <li class="{{request()->routeIs('categories.index') ? 'active' : ''}}">
                         <a href="javascript:void(0);" class="menu-toggle">
