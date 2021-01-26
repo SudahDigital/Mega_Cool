@@ -14,10 +14,9 @@ class AddIdCityProvinceOnTableUser extends Migration
     public function up()
     {
         Schema::table('users', function($table) {
-            $table->integer('sales_id')->nullable()->after('stock');
-            $table->integer('city_id')->nullable()->after('stock');
-            $table->integer('province_id')->nullable();
-            $table->integer('low_stock_treshold')->default(0)->unsigned()->after('stock');
+            $table->integer('city_id')->nullable()->after('address');
+            $table->integer('province_id')->nullable('city_id');
+            $table->text('profile_desc')->nullable()->after('city_id');
         });
     }
 
@@ -28,6 +27,10 @@ class AddIdCityProvinceOnTableUser extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('users', function($table) {
+            $table->dropColumn('city_id');
+            $table->dropColumn('province_id');
+            $table->text('profile_desc');
+        });
     }
 }
