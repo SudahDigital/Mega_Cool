@@ -50,7 +50,22 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $new_user = new \App\User;
+        $new_user->name = $request->get('name');
+        $new_user->email = $request->get('email');
+        $new_user->password = \Hash::make($request->get('password'));
+        //$new_user->username = $request->get('username');
+        $new_user->roles = json_encode($request->get('roles'));
+        $new_user->address = $request->get('address');
+        $new_user->phone = $request->get('phone');
+        $new_user->city_id = $request->get('city_id');
+        
+        $new_user->save();
+        if ( $new_user->save()){
+            return redirect()->route('sales.create')->with('status','Sales Succsessfully Created');
+        }else{
+            return redirect()->route('sales.create')->with('error','Sales Not Succsessfully Created');
+        }
     }
 
     /**

@@ -33,7 +33,7 @@ class User extends Authenticatable
     }
 
     public function cities(){
-        return $this->hasMany('App\City');
+        return $this->belongsTo('App\City');
     }
     /**
      * The attributes that should be cast to native types.

@@ -187,7 +187,7 @@
 					<th>No</th>
 					<th>Name</th>
 					<th>Email</th>
-					<th>Image</th>
+					<th>Image Profile</th>
 					<th>Sales Area</th>
 					<th>Status</th>
 					<th width="20%">Action</th>
@@ -205,11 +205,11 @@
 					<td>@if($u->avatar)
 						<img src="{{asset('storage/'.$u->avatar)}}" width="50px" height="50px" />
 						@else
-						N/A
+						<img src="{{asset('storage/image/image-noprofile.png')}}" width="50px" height="50px" />
 						@endif
 					</td>
 					<td>
-						{{$u->cities->city_name}}
+						{{$u->cities['city_name']}}
 					</td>
 					<td>
 						@if(($u->status)=='ACTIVE')
