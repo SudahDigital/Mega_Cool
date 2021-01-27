@@ -12,7 +12,4 @@ class City extends Model
         return $this->belongsToMany('App\Province');
     }
 
-    public function users(){
-        return $this->belongsToMany('App\User');
-    }
 }

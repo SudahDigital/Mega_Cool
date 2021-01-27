@@ -205,7 +205,7 @@
 					<td>@if($u->avatar)
 						<img src="{{asset('storage/'.$u->avatar)}}" width="50px" height="50px" />
 						@else
-						<img src="{{asset('storage/image/image-noprofile.png')}}" width="50px" height="50px" />
+						<img src="{{asset('assets/image/image-noprofile.png')}}" width="50px" height="50px" />
 						@endif
 					</td>
 					<td>
@@ -247,43 +247,56 @@
 
 						<!-- Modal Detail -->
 						<div class="modal fade" id="detailModal{{$u->id}}" tabindex="-1" role="dialog">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content modal-col-indigo">
+							<div class="modal-dialog modal-lg" role="document">
+								<div class="modal-content  modal-col-cyan">
 									<div class="modal-header">
-										<h4 class="modal-title" id="detailModalLabel">Detail Sales</h4>
+										<h5 class="modal-title">Detail Sales</h5>
 									</div>
 									<div class="modal-body">
-									<b>Name:</b>
-									<br/>
-									{{$u->name}}
-									<br/>
-									<br/>
-									@if($u->avatar)
-									<img src="{{asset('storage/'.$u->avatar)}}" width="128px"/>
-									@else
-									No Avatar
-									@endif
-									<br/>
-									<br/>
-									<b>UserName:</b>
-									<br/>
-									{{$u->email}}
-									<br/>
-									<br/>
-									<b>Phone Number:</b>
-									<br/>
-									{{$u->phone}}
-									<br/>
-									<br/>
-									<b>Address:</b>
-									<br/>
-									{{$u->address}}
-									<br/>
-									<br/>
-									<b>Roles:</b>
-									<br/>
-									{{$u->roles}}
+										<div class="col-md-4" style="margin-top: 20px;">
+											@if($u->avatar)
+												<img src="{{asset('storage/'.$u->avatar)}}" width="128px"/>
+											@else
+												<img src="{{asset('assets/image/image-noprofile.png')}}" width="200px" height="200px" />
+											@endif
+										</div>
+										
+										<div class="col-md-8" style="margin-top: 30px;">
+											<b><small>Name:</small></b>
+											<br>
+											{{$u->name}}
+											<br/>
+											<br/>
+											<b><small>Email:</small></b>
+											<br/>
+											{{$u->email}}
+											<br/>
+											<br/>
+											<b><small>Phone Number:</small></b>
+											<br/>
+											{{$u->phone}}
+											<br/>
+											<br/>
+											<b><small>Address:</small></b>
+											<br/>
+											{{$u->address}}
+											<br/>
+											<br/>
+											<b><small>Sales Area:</small></b>
+											<br/>
+											{{$u->cities['city_name']}}
+											<br/>
+											<br/>
+											<b><small>Profil Description:</small></b>
+											<br/>
+											@if($u->profil_desc)
+												{{$u->profil_desc}}
+											@else
+											N/A
+											@endif
+										</div>
 									</div>
+									
 									<div class="modal-footer">
 										<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Close</button>
 									</div>
