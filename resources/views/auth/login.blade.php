@@ -1,31 +1,20 @@
 @extends('auth.template-auth')
+@section('title') Login @endsection
 @section('content')
-    <style>
-        ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-        font-weight:600;
-        font-family: Montserrat;
-        }
-        ::-moz-placeholder { /* Firefox 19+ */
-            font-weight:600;
-            font-family: Montserrat;
-        }
-        :-ms-input-placeholder { /* IE 10+ */
-            font-weight:600;
-            font-family: Montserrat;
-        }
-        :-moz-placeholder { /* Firefox 18- */
-            font-weight:600;
-            font-family: Montserrat;
-        }
-    </style>
     <div class="container">
+        <div class="d-flex justify-content-center mx-auto">
+            <div class="col-md-2">
+               <img src="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png') }}" class="img-thumbnail" style="background-color:transparent; border:none;" alt="LOGO MEGACOOLS_DEFAULT">  
+            </div>
+            
+        </div>
         <div class="col-md-12 login-label">
             <h1>Masuk</h1>
             <p> Gunakan Akun Anda</p>
         </div>
             
         <div class="row justify-content-center">
-            <div class="col-sm-8">
+            <div class="col-sm-7">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="card mx-auto contact_card" 
@@ -59,7 +48,7 @@
                     <div class="col-md-12 login-label" style="margin-top:20px;">
                         @if (Route::has('password.request'))
                             <a  href="{{ route('password.request') }}">
-                              <p>{{ __('Forgot Your Password?') }}</p>
+                              <p>{{ __('Lupa Password?') }}</p>
                             </a>
                         @endif
                     </div>
@@ -69,7 +58,7 @@
                     </div>
                     -->
                     <div class="col-md-12 mx-auto text-center">
-                        <button type="submit" class="btn btn_login_form" >{{ __('Sign In') }}
+                        <button type="submit" class="btn btn_login_form" >{{ __('Masuk') }}
                         </button>
                     </div>
                 </form>

@@ -1,26 +1,26 @@
-@extends('auth.passwords.template')
-
+@extends('auth.template-auth')
+@section('title') Reset Password @endsection
 @section('content')
 
-<div class="container" style="margin-top: 70px;">
-    <div class="row align-middle">
-        <div class="col-sm-12 col-md-12">
-            <nav aria-label="breadcrumb" class="">
-                <ol class="breadcrumb px-0 button_breadcrumb">
-                    <li class="breadcrumb-item" style="color: #174C7C !important;margin-top:30px; font-size:20px;"><a href="{{ url('/') }}"><i class="fa fa-home"></i></a></li>
-                    <li class="breadcrumb-item active" aria-current="page" style="margin-top:30px;">Reset Password</li>
-                </ol>
-            </nav>
+<div class="container" >
+    <div class="d-flex justify-content-center mx-auto">
+        <div class="col-md-2">
+           <img src="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png') }}" class="img-thumbnail" style="background-color:transparent; border:none;" alt="LOGO MEGACOOLS_DEFAULT">  
         </div>
+        
     </div>
     
     <div class="col-md-12 login-label">
         <h1>Reset</h1>
-        <p> Your Password</p>
+        <p> Password</p>
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card mx-auto contact_card" style="border-radius:15px;">
+        <div class="col-md-7">
+            <div class="card mx-auto contact_card" 
+                style="border-top-left-radius:25px;
+                border-top-right-radius:25px;
+                border-bottom-right-radius:0;
+                border-bottom-left-radius:0;">
 
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -47,7 +47,7 @@
                 </div>
             </div>    
                         <div class="col-md-12 mx-auto text-center">
-                            <button type="submit" class="btn btn_login_form reset" >{{ __('Send Password Reset Link') }}
+                            <button type="submit" class="btn btn_login_form reset" >{{ __('Kirim') }}
                             </button>
                         </div>
                               

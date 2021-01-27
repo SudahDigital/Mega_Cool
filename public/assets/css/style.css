@@ -1,6 +1,4 @@
 
-@import url(//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro);
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 @import "https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,900";
 
 @-webkit-keyframes GerakanKeKanan {
@@ -109,16 +107,15 @@
 }*/
 
 @font-face {
-  font-family: 'Capriola';
-  src: url("//themes.googleusercontent.com/static/fonts/capriola/v1/pYZraWNYRjc_hHo5LnobfPesZW2xOQ-xsNqO47m55DA.ttf") format("truetype");
+  font-family: 'Montserrat', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
   background: #e5f1d9;
 }
 
 body {
-    font-family: open Sans;
-    src: url("//themes.googleusercontent.com/static/fonts/capriola/v1/pYZraWNYRjc_hHo5LnobfPesZW2xOQ-xsNqO47m55DA.ttf") format("truetype");
+    font-family: 'Montserrat', sans-serif;
+    src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
     background:#1A4066;
-    
 }
 
 .breadcrumb-item {
@@ -531,14 +528,15 @@ button.search-sidebar:hover {
 
 .btn_login_form{
  
-  background: #174C7C !important;
+  background: #FF0000 !important;
   color: #ffff!important;
-  font-size: 30px;
-  font-weight: 800;
-  font-family: Open Sans;
-  padding-left:2rem;
-  padding-right:2rem;
-  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: montserrat;
+  padding-left:3rem;
+  padding-right:3rem;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
   margin-top:20px;
 
 }
@@ -658,15 +656,35 @@ a.register:hover {
   height: 30rem;
 }
 
-.shape-1 {
-      z-index: ;
-      width: 50%;
-      height: 30rem;
-      bottom:0;
-      border-top-right-radius: 100%;
-      background:#5D2B30;
-      position: absolute;
+.dot-top-right {
+    width: 200px;
+    height: auto;
+    background:transparent;
+    position:absolute;
+    top:0;
+    right:0;
+    border:none;
  }
+
+ .dot-bottom-left {
+  width: 300px;
+  height: auto;
+  background:transparent;
+  position:absolute;
+  bottom:0;
+  left:0;
+  border:none;
+}
+
+.shape-bottom-right {
+  width: 300px;
+  height: auto;
+  background:transparent;
+  position:absolute;
+  bottom:0;
+  right:0;
+  border:none;
+}
 
  .shape-2 {
   right:-7rem;
@@ -1027,13 +1045,14 @@ height: 150px;
 }
 
 .contact_input {
-  font-family: Open Sans;
+  font-family: 'Montserrat';
   background: transparent !important;
   color: #777;
   width: 100%;
   display: block;
   text-align: center;
   font-size:20px ;
+  font-weight: 600;
   border: none;
   border-radius:0;
   transition: .3s all; 

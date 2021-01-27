@@ -1,4 +1,4 @@
-@extends('customer.layouts.template-nobanner')
+@extends('auth.template-auth')
 
 @section('content')
 
