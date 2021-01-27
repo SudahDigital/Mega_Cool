@@ -1,27 +1,38 @@
-@extends('customer.layouts.template-nobanner')
+@extends('auth.template-auth')
 @section('content')
-    <div class="container" style="margin-top: 70px;">
-        <div class="row align-middle">
-            <div class="col-sm-12 col-md-12">
-                <nav aria-label="breadcrumb" class="">
-                    <ol class="breadcrumb px-0 button_breadcrumb">
-                        <li class="breadcrumb-item" style="color: #174C7C !important;margin-top:30px; font-size:20px;"><a href="{{ url('/') }}"><i class="fa fa-home"></i></a></li>
-                        <li class="breadcrumb-item active" aria-current="page" style="margin-top:30px;">Sign In</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-        
+    <style>
+        ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        font-weight:600;
+        font-family: Montserrat;
+        }
+        ::-moz-placeholder { /* Firefox 19+ */
+            font-weight:600;
+            font-family: Montserrat;
+        }
+        :-ms-input-placeholder { /* IE 10+ */
+            font-weight:600;
+            font-family: Montserrat;
+        }
+        :-moz-placeholder { /* Firefox 18- */
+            font-weight:600;
+            font-family: Montserrat;
+        }
+    </style>
+    <div class="container">
         <div class="col-md-12 login-label">
-            <h1>Sign In</h1>
-            <p> Your Account</p>
+            <h1>Masuk</h1>
+            <p> Gunakan Akun Anda</p>
         </div>
             
         <div class="row justify-content-center">
             <div class="col-sm-8">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-                    <div class="card mx-auto contact_card" style="border-radius:15px;">
+                    <div class="card mx-auto contact_card" 
+                        style=" border-top-left-radius:25px;
+                                border-top-right-radius:25px;
+                                border-bottom-right-radius:0;
+                                border-bottom-left-radius:0;">
                         <div class="card-body">
                             <div class="form-group">
                                 <input type="email" name="email" class="form-control contact_input @error('email') is-invalid @enderror" placeholder="Email" id="email" required autocomplete="off" autofocus value="{{ old('email') }}">

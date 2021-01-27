@@ -231,7 +231,7 @@
 										<h4 class="modal-title" id="deleteModalLabel">Delete Sales</h4>
 									</div>
 									<div class="modal-body">
-									Delete this user permananetly..? 
+									Delete this sales permananetly..? 
 									</div>
 									<div class="modal-footer">
 										<form action="{{route('sales.destroy',[$u->id])}}" method="POST">

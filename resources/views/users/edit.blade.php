@@ -134,7 +134,8 @@
 
             <div class="form-group">
                 <div class="form-line">
-                    <textarea name="address" rows="4" class="form-control no-resize" placeholder="Address" autocomplete="off" required>{{$user->address}}</textarea>
+                    <address><small><b>Address</b></small></address>
+                    <textarea name="address" rows="2" class="form-control no-resize" placeholder="Address" id="address" autocomplete="off" required>{{$user->address}}</textarea>
                 </div>
             </div>
 
@@ -145,7 +146,7 @@
                 </div>
             </div>
 
-            <h2 class="card-inside-title">Sales Area</h2>
+            <small><b>Sales Area</b></small>
             <select name="city_id"  id="city_id" class="form-control"></select>
             <br>
             <br>

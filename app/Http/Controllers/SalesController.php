@@ -100,7 +100,14 @@ class SalesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user =\App\User::findOrFail($id);
+        $user->name = $request->get('name');
+        $user->phone = $request->get('phone');
+        $user->address = $request->get('address');
+        $user->city_id = $request->get('city_id');
+        $user->status = $request->get('status');
+        $user->save();
+        return redirect()->route('sales.edit',[$id])->with('status','Sales Succsessfully Update');
     }
 
     /**
@@ -111,7 +118,9 @@ class SalesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = \App\User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('sales.index')->with('status','Sales Succsessfully Delete');
     }
 
     public function ajaxSearch(Request $request){

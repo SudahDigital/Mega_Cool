@@ -12,7 +12,6 @@ class WelcomeController extends Controller
     public function index()
     {   
         
-        return redirect('/home_customer');
-        
-     }
+        return redirect('home');
+    }
 }

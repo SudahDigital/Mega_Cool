@@ -1,7 +1,7 @@
 
 @import url(//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro);
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-@import "https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700";
+@import "https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,900";
 
 @-webkit-keyframes GerakanKeKanan {
     0% {
@@ -117,7 +117,7 @@
 body {
     font-family: open Sans;
     src: url("//themes.googleusercontent.com/static/fonts/capriola/v1/pYZraWNYRjc_hHo5LnobfPesZW2xOQ-xsNqO47m55DA.ttf") format("truetype");
-    background:#FFFFFF;
+    background:#1A4066;
     
 }
 
@@ -544,20 +544,20 @@ button.search-sidebar:hover {
 }
 
 .login-label h1{
-  font-family: Open Sans;
+  font-family: Montserrat;
   font-size: 40px;
-  font-weight: 1000;
+  font-weight: 900;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.36;
   letter-spacing: normal;
   text-align: center;
-  color: #174C7C;
+  color: #ffffff;
 }
 
 .login-label p{
   
-  font-family: Open Sans;
+  font-family: Montserrat;
   font-size: 15px;
   font-weight: 600;
   font-stretch: normal;
@@ -565,7 +565,7 @@ button.search-sidebar:hover {
   line-height: 1.36;
   letter-spacing: normal;
   text-align: center;
-  color: #000000;
+  color: #ffffff;
 }
 
 a.login {
