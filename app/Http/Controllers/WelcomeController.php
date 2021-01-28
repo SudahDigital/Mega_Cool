@@ -8,10 +8,11 @@ use App\order_product;
 use App\Order;
 
 class WelcomeController extends Controller
-{
+{   
+    
+
     public function index()
     {   
-        
-        return redirect('home');
+       return redirect('/login');
     }
 }

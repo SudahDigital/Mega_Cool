@@ -6,7 +6,7 @@
             <div class="col-sm-12 col-md-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb px-0 button_breadcrumb">
-                        <li class="breadcrumb-item" style="color: #174C7C !important;margin-top:30px; margin-left:30px;"><a href="{{Auth::user() ? url('/home_customer') : url('/') }}"><i class="fa fa-home"></i></a></li>
+                        <li class="breadcrumb-item" style="color: #6a3137 !important;margin-top:30px; margin-left:30px;"><a href="{{Auth::user() ? url('/home_customer') : url('/') }}"><i class="fa fa-home"></i></a></li>
                         <li class="breadcrumb-item active" aria-current="page" style="margin-top:30px;">Detail Produk</li>
                     </ol>
                 </nav>
@@ -26,8 +26,8 @@
                 <div class="card mx-auto item_product">
                     <div class="card-body m-0 p-4">
                         <div class="float-left py-2" style="width: 100%;">
-                            <h4 class="" style="color:#174C7C !important; font-weight:900;">{{$product->Product_name}}</h4>
-                            <hr style="border-top:1px solid #174C7C;">
+                            <h4 class="" style="color:#6a3137 !important; font-weight:900;">{{$product->Product_name}}</h4>
+                            <hr style="border-top:1px solid #6a3137;">
                             <p class="product-price-header mb-0" style="">
                                 {{$product->description}}
                             </p>
@@ -63,9 +63,9 @@
                                         <input type="hidden" id="harga{{$product->id}}" name="price" value="{{$product->price}}">
                                         @endif
                                         @if($product->stock > 0)
-                                        <button class="btn button_minus" onclick="button_minus('{{$product->id}}')" style="background:none; border:none; color:#174C7C;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                        <button class="btn button_minus" onclick="button_minus('{{$product->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                         @else
-                                        <button disabled class="btn button_minus" onclick="" style="background:none; border:none; color:#174C7C;outline:none;cursor:no-drop;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                        <button disabled class="btn button_minus" onclick="" style="background:none; border:none; color:#693234;outline:none;cursor:no-drop;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                         @endif
                                     </td>
                                     <td width="1%" align="center" valign="middle">
@@ -97,9 +97,9 @@
                                     </td>
                                     <td width="10%" align="left" valign="middle">
                                         @if($product->stock > 0)
-                                        <button class="btn button_plus" onclick="button_plus('{{$product->id}}')" style="background:none; border:none; color:#174C7C;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                        <button class="btn button_plus" onclick="button_plus('{{$product->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                         @else
-                                        <button disabled class="btn button_plus" onclick="" style="background:none; border:none; color:#174C7C;outline:none;cursor: no-drop;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                        <button disabled class="btn button_plus" onclick="" style="background:none; border:none; color:#693234;outline:none;cursor: no-drop;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                         @endif
                                     </td>
                                 </tr>
@@ -176,7 +176,7 @@
                                             $total=$detil->price * $detil->quantity;
                                         } 
                                         ?>
-                                        <h1 id="productPrice_kr{{$detil->product_id}}" style="color:#174C7C; !important; font-family: Open Sans;">Rp {{ number_format($total, 0, ',', '.') }}</h1>
+                                        <h1 id="productPrice_kr{{$detil->product_id}}" style="color:#6a3137; !important; font-family: Open Sans;">Rp {{ number_format($total, 0, ',', '.') }}</h1>
                                         <table width="10%">
                                             <tbody>
                                                 <tr>
@@ -190,14 +190,14 @@
                                                             @endif
                                                             <input type="hidden" id="id_detil{{$detil->product_id}}" value="{{$detil->id}}">
                                                             <input type="hidden" id="jmlkr_{{$detil->product_id}}" name="quantity" value="{{$detil->quantity}}">    
-                                                            <button class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#174C7C;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                            <button class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                                         
                                                     </td>
                                                     <td width="10px" align="middle" valign="middle">
                                                         <p id="show_kr_{{$detil->product_id}}" class="d-inline" style="">{{$detil->quantity}}</p>
                                                     </td>
                                                     <td width="10px" align="right" valign="middle">
-                                                        <button class="button_plus" onclick="button_plus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#174C7C;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                        <button class="button_plus" onclick="button_plus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                                     </td>
                                                     
                                                 </tr>
@@ -239,9 +239,9 @@
                         @if($total_item > 0)
                         <div class="input-group mb-2 mt-2">
                             <input type="text" class="form-control" id="voucher_code" 
-                            placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#ffffff;outline:none;">
+                            placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#ffcc94;outline:none;">
                             <div class="input-group-append" required>
-                                <button class="btn " type="submit" onclick="btn_code('')" style="background:#174C7C;outline:none;color:white;">Terapkan</button>
+                                <button class="btn " type="submit" onclick="btn_code('')" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
                             </div>
                         </div>
                         @if($item!==null)
@@ -260,11 +260,11 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade ml-1" id="my_modal_content" role="dialog">
+    <div class="modal fade ml-1" id="my_modal_content-detil" role="dialog">
         <div class="modal-dialog">
         
         <!-- Modal content-->
-        <div class="modal-content" style="background: #ffffff">
+        <div class="modal-content" style="background: #FDD8AF">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             
@@ -277,11 +277,15 @@
                         
                             <div class="card mx-auto contact_card" style="border-radius:15px;">
                                 <div class="card-body">
-                                        @if($item!==null)
-                                        <input type="hidden" name="total_pesanan" id="total_pesan_val" value="{{$item->total_price}}">
-                                            @else
-                                        <input type="hidden" name="total_pesanan" id="total_pesan_val" value="0">
-                                         @endif
+                                    @if($item!==null)
+                                    <input type="hidden" name ="voucher_code_hide_modal" id="voucher_code_hide_modal">
+                                    <input type="hidden" name="total_novoucher" id="total_novoucher_val">
+                                    <input type="hidden" name="total_pesanan" id="total_pesan_val" value="{{$item->total_price}}">
+                                        @else
+                                        <input type="hidden" name ="voucher_code_hide_modal"  id="voucher_code_hide_modal">
+                                        <input type="hidden" name="total_novoucher" id="total_novoucher_val">
+                                        <input type="hidden" name="total_pesanan" id="total_pesan_val" >
+                                    @endif
                                     <div class="form-group">
                                     <input type="text" value="{{$item_name !== null ? $item_name->username : ''}}" name="username" class="form-control contact_input @error('name') is-invalid @enderror" placeholder="Name" id="name" required autocomplete="off" autofocus value="{{ old('name') }}">
                                         @error('name')
@@ -310,7 +314,7 @@
                                     </div>
                                     <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
                                     <div class="form-group">
-                                        <input type="text" minlength="10" maxlength="13" value="{{$item_name !== null ? $item_name->phone : ''}}" name="phone" class="form-control contact_input" placeholder="Phone" id="phone" required autocomplete="off" onkeypress="return hanyaAngka(event)">
+                                        <input type="tel" minlength="10" maxlength="13" value="{{$item_name !== null ? $item_name->phone : ''}}" name="phone" class="form-control contact_input" placeholder="Phone" id="phone" required autocomplete="off" onkeypress="return hanyaAngka(event)">
                                     </div>
                                 </div>
                             </div>
@@ -323,7 +327,7 @@
             </div>
             <div class="modal-footer">
             <input type="hidden" id="order_id_pesan" name="id" value="{{$item !==null ? $item->id : ''}}"/>
-                <button type="submit" class="btn btn-block bt-wa" onclick="pesan_wa()" style="color:#fff;background-color: #174C7C;"><i class="fab fa-whatsapp" style="font-weight: bold;"></i>&nbsp; {{__('Pesan') }}</button>
+                <button type="submit" class="btn btn-block bt-wa" onclick="pesan_wa()" style="color:#fff;background-color: #6a3137;"><i class="fab fa-whatsapp" style="font-weight: bold;"></i>&nbsp; {{__('Pesan') }}</button>
             </div>
             </form>
         </div>
@@ -335,7 +339,7 @@
     <div class="modal fade ml-1" id="modal_validasi" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
-            <div class="modal-content" style="background: #ffffff">
+            <div class="modal-content" style="background: #FDD8AF">
                 <div class="modal-body">
                     <div class="row justify-content-center">
                         <div class="col-sm-12">

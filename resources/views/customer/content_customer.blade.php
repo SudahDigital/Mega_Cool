@@ -2,7 +2,7 @@
 @section('content')
 
     <!--menu categories-->
-    <div style="{{$top_count > 0 ? 'background:#2779B2;' : 'background:#FFFFFF'}}">
+    <div style="{{$top_count > 0 ? 'background:#693234;' : 'background:#FDD8AF'}}">
         <div class="container">
             <div class="row align-middle mt-0" style="">  
                 <div class="col-sm-12 mt-4" style="">
@@ -13,7 +13,7 @@
                             <tr>
                                 <td class="menu-filter" valign="middle">
                                     @if($count_data <= 3)
-                                    <h3 class="cat_fil" id="cat_fil" style="color: #174C7C;">
+                                    <h3 class="cat_fil" id="cat_fil" style="color: #693234;">
                                         Filter Category 
                                     </h3>
                                     @else
@@ -24,12 +24,12 @@
                                 </td>
                                 <td width="60%" align="left" valign="middle" class="menu-logo-filter">
                                     @if($count_data <=3)
-                                        <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color:#FFFFFF; border:none;">
-                                            <i class="fas fa-sliders-h tombol" style="color:#174C7C"></i>
+                                        <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color:#FDD8AF; border:none;">
+                                            <i class="fas fa-sliders-h tombol" style="color:#693234"></i>
                                         </button>
                                     @else
-                                    <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color:#174C7C; border:none;">
-                                        <i class="fas fa-sliders-h tombol" style="color:#174C7C;"></i>
+                                    <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color:#693234; border:none;">
+                                        <i class="fas fa-sliders-h tombol" style="color:#fff;"></i>
                                     </button>
                                     @endif
                                 </td>
@@ -49,7 +49,7 @@
                     </div>
                     <div id="demo" class="collapse" style="">
                         <div class="col-md-12" style="margin-bottom: 20px;">
-                        <a href="{{url('/home_customer')}}" type="button" class="btn button_add_to_cart button-collapse mb-3">Semua Produk</a>
+                        <a href="{{url('/home_customer')}}" type="button" class="btn button_add_to_cart button-collapse mb=3">Semua Produk</a>
                         @foreach($categories as $key => $value)
                             <a href="{{route('category.index', ['id'=>$value->id] )}}" type="button" class="btn button_add_to_cart button-collapse mb-3">{{$value->name}}</a>
                         @endforeach
@@ -70,7 +70,7 @@
 
     <!--top produk -->
     @if($top_count > 0 )
-    <div id="top_product" style="background:#2779B2;margin-top:-2px;">
+    <div id="top_product" style="background:#693234;margin-top:-2px;">
         <div class="container ">
             <div class="row">
                 <div class="col-md-12 mt-1 menu-wrapper">
@@ -92,7 +92,7 @@
                                 @if($value_top->discount > 0)
                                 <div class="d-inline-block">
                                     <div class="text-left">
-                                        <p class="product-price-header mt-0 mb-0 ml-1" style="color:#174C7C;"><del><b><i>Rp. {{ number_format($value_top->price, 0, ',', '.') }}</i></b> </del></p>
+                                        <p class="product-price-header mt-0 mb-0 ml-1" style="color:#6a3137;"><del><b><i>Rp. {{ number_format($value_top->price, 0, ',', '.') }}</i></b> </del></p>
                                     </div>
                                 </div>
                                 <div class="float-left px-1 py-2" style="">
@@ -118,9 +118,9 @@
                                                     <input type="hidden" id="harga{{$value_top->id}}" name="price" value="{{$value_top->price}}">
                                                     @endif
                                                     @if($value_top->stock > 0)
-                                                    <button class="btn button_minus" onclick="button_minus('{{$value_top->id}}')" style="background:none; border:none; color:#174C7C;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                    <button class="btn button_minus" onclick="button_minus('{{$value_top->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                                     @else
-                                                    <button disabled class="btn button_minus" onclick="" style="background:none; border:none; color:#174C7C;outline:none;cursor: no-drop;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                    <button disabled class="btn button_minus" onclick="" style="background:none; border:none; color:#693234;outline:none;cursor: no-drop;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                                     @endif
                                             </td>
                                             <td width="10%" align="center" valign="middle">
@@ -152,9 +152,9 @@
                                             </td>
                                             <td width="10%" align="left" valign="middle">
                                                 @if($value_top->stock > 0)
-                                                <button class="btn button_plus" onclick="button_plus('{{$value_top->id}}')" style="background:none; border:none; color:#174C7C;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                <button class="btn button_plus" onclick="button_plus('{{$value_top->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                                 @else
-                                                <button disabled class="btn button_plus" onclick="" style="background:none; border:none; color:#174C7C;outline:none;cursor: no-drop;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                <button disabled class="btn button_plus" onclick="" style="background:none; border:none; color:#693234;outline:none;cursor: no-drop;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                                 @endif
                                             </td>
                                         </tr>
@@ -200,7 +200,7 @@
     @endif
     
     <!--not top product-->
-    <div style="background:#FFFFFF">
+    <div style="background:#FDD8AF">
         <div class="container" style="">
             <div class="row mt-0">
                 <div class="col-md-12 mt-4">
@@ -222,7 +222,7 @@
                             @if($value->discount > 0)
                             <div class="d-inline-block">
                                 <div class="text-left">
-                                    <p class="product-price-header mt-0 mb-0 ml-1" style="color:#174C7C;"><del><b><i>Rp. {{ number_format($value->price, 0, ',', '.') }}</i></b> </del></p>
+                                    <p class="product-price-header mt-0 mb-0 ml-1" style="color:#6a3137;"><del><b><i>Rp. {{ number_format($value->price, 0, ',', '.') }}</i></b> </del></p>
                                 </div>
                             </div>
                             <div class="float-left px-1 py-2" style="">
@@ -248,9 +248,9 @@
                                             <input type="hidden" id="harga{{$value->id}}" name="price" value="{{$value->price}}">
                                             @endif
                                             @if($value->stock > 0)
-                                            <button class="btn button_minus" onclick="button_minus('{{$value->id}}')" style="background:none; border:none; color:#174C7C;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                            <button class="btn button_minus" onclick="button_minus('{{$value->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                             @else
-                                            <button disabled class="btn button_minus" onclick="" style="background:none; border:none; color:#174C7C;outline:none;cursor: no-drop;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                            <button disabled class="btn button_minus" onclick="" style="background:none; border:none; color:#693234;outline:none;cursor: no-drop;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                             @endif
                                         </td>
                                         <td width="10%" align="center" valign="middle">
@@ -282,9 +282,9 @@
                                         </td>
                                         <td width="10%" align="left" valign="middle">
                                             @if($value->stock > 0)
-                                            <button class="btn button_plus" onclick="button_plus('{{$value->id}}')" style="background:none; border:none; color:#174C7C;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                            <button class="btn button_plus" onclick="button_plus('{{$value->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                             @else
-                                            <button disabled class="btn button_plus" onclick="" style="background:none; border:none; color:#174C7C;outline:none;cursor: no-drop;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                            <button disabled class="btn button_plus" onclick="" style="background:none; border:none; color:#693234;outline:none;cursor: no-drop;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                             @endif
                                         </td>
                                     </tr>
@@ -364,7 +364,7 @@
                                             $total=$detil->price * $detil->quantity;
                                         }
                                         ?>
-                                        <h1 id="productPrice_kr{{$detil->product_id}}" style="color:#174C7C; !important; font-family: Open Sans;">Rp. {{ number_format($total, 0, ',', '.') }}</h1>
+                                        <h1 id="productPrice_kr{{$detil->product_id}}" style="color:#6a3137; !important; font-family: Open Sans;">Rp. {{ number_format($total, 0, ',', '.') }}</h1>
                                         <table width="10%">
                                             <tbody>
                                                 <tr>
@@ -377,13 +377,13 @@
                                                         @endif
                                                         <input type="hidden" id="id_detil{{$detil->product_id}}" value="{{$detil->id}}">
                                                         <input type="hidden" id="jmlkr_{{$detil->product_id}}" name="quantity" value="{{$detil->quantity}}">    
-                                                        <button class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#174C7C;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                        <button class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                                     </td>
                                                     <td width="10px" align="middle" valign="middle">
                                                         <p id="show_kr_{{$detil->product_id}}" class="d-inline" style="">{{$detil->quantity}}</p>
                                                     </td>
                                                     <td width="10px" align="right" valign="middle">
-                                                        <button class="button_plus" onclick="button_plus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#174C7C;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                        <button class="button_plus" onclick="button_plus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -425,9 +425,9 @@
                         @if($total_item > 0)
                             <div class="input-group mb-2 mt-2">
                                 <input type="text" class="form-control" id="voucher_code" 
-                                placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#FFFFFF;outline:none;">
+                                placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#ffcc94;outline:none;">
                                 <div class="input-group-append" required>
-                                    <button class="btn " type="submit" onclick="btn_code('')" style="background:#174C7C;outline:none;color:white;">Terapkan</button>
+                                    <button class="btn " type="submit" onclick="btn_code('')" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
                                 </div>
                             </div>
                             @if($item!==null)
@@ -448,12 +448,13 @@
     <div class="modal fade ml-1" id="my_modal_content" role="dialog" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <!-- Modal content-->
-            <div class="modal-content" style="background: #FFFFFF">
+            <div class="modal-content" style="background: #FDD8AF">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <form method="POST" target="_BLANK" action="{{ route('customer.keranjang.pesan') }}">
                     @csrf
+                    
                 <div class="modal-body">
                     <div class="row justify-content-center">
                         <div class="col-sm-12">
@@ -461,9 +462,13 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         @if($item!==null)
+                                        <input type="hidden" name ="voucher_code_hide_modal" id="voucher_code_hide_modal">
+                                        <input type="hidden" name="total_novoucher" id="total_novoucher_val">
                                         <input type="hidden" name="total_pesanan" id="total_pesan_val" value="{{$item->total_price}}">
                                             @else
-                                        <input type="hidden" name="total_pesanan" id="total_pesan_val" value="0">
+                                            <input type="hidden" name ="voucher_code_hide_modal"  id="voucher_code_hide_modal">
+                                            <input type="hidden" name="total_novoucher" id="total_novoucher_val">
+                                            <input type="hidden" name="total_pesanan" id="total_pesan_val" >
                                         @endif
                                         
                                     <input type="text" value="{{$item_name !== null ? $item_name->username : ''}}" name="username" class="form-control contact_input @error('name') is-invalid @enderror" placeholder="Name" id="name" required autocomplete="off" autofocus value="{{ old('name') }}">
@@ -493,7 +498,7 @@
                                     </div>
                                     <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
                                     <div class="form-group">
-                                        <input type="text" value="{{$item_name !== null ? $item_name->phone : ''}}" name="phone"  minlength="10" maxlength="13" class="form-control contact_input" placeholder="Phone" id="phone" required autocomplete="off" onkeypress="return hanyaAngka(event)">
+                                        <input type="tel" value="{{$item_name !== null ? $item_name->phone : ''}}" name="phone"  minlength="10" maxlength="13" class="form-control contact_input" placeholder="Phone" id="phone" required autocomplete="off" onkeypress="return hanyaAngka(event)">
                                         <!--<label for="password-confirm" class="contact_label">{{ __('Konfirmasi Kata Sandi') }}</label>-->
                                     </div>
                                 </div>
@@ -503,7 +508,7 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" id="order_id_pesan" name="id" value="{{$item !==null ? $item->id : ''}}"/>
-                    <button type="submit" class="btn btn-block bt-wa" onclick="pesan_wa()"  style="color:#fff; background-color:#174C7C; "><i class="fab fa-whatsapp" style="font-weight: bold;"></i> &nbsp;{{__('Pesan') }}</button>
+                    <button type="submit" class="btn btn-block bt-wa" onclick="pesan_wa()"  style="color:#fff; background-color:#6a3137; "><i class="fab fa-whatsapp" style="font-weight: bold;"></i> &nbsp;{{__('Pesan') }}</button>
                 </div>
                 </form>
             </div>
@@ -514,7 +519,7 @@
     <div class="modal fade ml-1" id="modal_validasi" role="dialog" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <!-- Modal content-->
-            <div class="modal-content" style="background: #ffffff">
+            <div class="modal-content" style="background: #FDD8AF">
                 <div class="modal-body">
                     <div class="row justify-content-center">
                         <div class="col-sm-12">
@@ -526,7 +531,7 @@
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <button type="button" class="btn " data-dismiss="modal" style="color:#fff; background-color:#174C7C; ">Tutup</button>
+                    <button type="button" class="btn " data-dismiss="modal" style="color:#fff; background-color:#6a3137; ">Tutup</button>
                 </div>
             </div>
         </div>

@@ -15,10 +15,29 @@ class CheckRole
      */
     public function handle($request, Closure $next,$roles)
     {
-        //return $next($request);
+        /*return $next($request);
         if($request->user()->roles == $roles){
             return $next($request);
         }
-        return redirect('/');
-    }
+        */
+
+        $role = $request->user()->roles ;
+        $allowed_roles = array_slice(func_get_args(), 2);
+
+        if( in_array($role, $allowed_roles) ) {
+            return $next($request);
+        }
+
+        return redirect('/'); 
+    } 
+        /*
+        $user = \App\User::where('email', $request->email)->first();
+        if (in_array($request->user()->roles, ['SALES']))
+         {
+            return redirect('/home_customer');
+        } 
+        else if(in_array($request->user()->roles, ['SUPERADMIN','ADMIN'])) {
+            return redirect('/home');
+        }*/
+    
 }

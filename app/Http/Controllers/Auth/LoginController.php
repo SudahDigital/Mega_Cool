@@ -26,21 +26,41 @@ class LoginController extends Controller
      *
      * @var string
      */
-    /*
-    protected $redirectTo = RouteServiceProvider::HOME;
     
+   protected $redirectTo = RouteServiceProvider::HOME;
+    //protected $redirectTo = '/home';
     protected function redirectTo()
     {
-        if (auth()->user()->roles == 'ADMIN') {
+        /*
+        if ((in_array("SUPERADMIN", json_decode(auth()->user()->roles))) || (in_array("ADMIN", json_decode(auth()->user()->roles)))) {
             return '/home';
-        }else if (auth()->user()->roles == 'CUSTOMER') {
+        }else if (in_array("SALES", json_decode(auth()->user()->roles))) {
             return '/home_customer';
         }
-        return '/home';
+        return '/';
+        */
+        /*
+        if (in_array(auth()->user()->roles, ['SUPERADMIN']))
+        {
+            return '/home';
+        }
+        else if (in_array(auth()->user()->roles, ['SALES'])) 
+        {
+            return '/home_customer';
+        }
+        return '/';
+        */
         
-    }*/
+        if ((auth()->user()->roles == 'SUPERADMIN') || (auth()->user()->roles == 'ADMIN')) {
+            return '/home';
+        }else if (auth()->user()->roles == 'SALES') {
+            return '/home_customer';
+        }
+        return '/';
+        
+    }
 
-    protected $redirectTo = '/home';
+    
 
     /**
      * Create a new controller instance.

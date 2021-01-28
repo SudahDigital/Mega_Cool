@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>Demo</title>
+    <title>Ice-Gentong</title>
 
-    <link rel="icon" href="" type="image/png" sizes="16x16">
+    <link rel="icon" href="{{ asset('assets/image/logo-gentong-nav.png')}}" type="image/png" sizes="16x16">
     <!-- Bootstrap CSS CDN -->
     <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -136,7 +136,7 @@
     <div class="preloader" id="preloader">
         <div class="loading">
           <img src="{{ asset('assets/image/preloader.gif') }}" width="80" alt="preloader">
-          <p style="font-weight:900;line-height:2;color:#174C7C;margin-left: -10%;">Harap Tunggu</p>
+          <p style="font-weight:900;line-height:2;color:#6a3137;margin-left: -10%;">Harap Tunggu</p>
         </div>
     </div>
 
@@ -155,8 +155,7 @@
            
             <div class="sidebar-header mx-auto">
                 <a href="{{url('/') }}">
-                    <i class='fab fa-bootstrap fa-border fa-2x'></i>&nbsp;<b>Logo</b>
-                    <!--<img src="{{ asset('assets/image/logo-gentong.png') }}" width="70%" height="auto" class="d-inline-block align-top" alt="logo-gentong" loading="lazy">-->
+                    <img src="{{ asset('assets/image/logo-gentong.png') }}" width="70%" height="auto" class="d-inline-block align-top" alt="logo-gentong" loading="lazy">
                 </a>
             </div>
             <ul class="list-unstyled components">
@@ -228,12 +227,12 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1.5;">
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="btn button-burger-menu">
-                        <i class="fas fa-bars fa-2x" style="color:#ffffff;"></i>
+                        <i class="fas fa-bars fa-2x" style="color:#693234;"></i>
                     </button>
                    
                     <a class="navbar-brand nav-center" href="{{ url('/') }}">
-                        <p><i class='fab fa-bootstrap fa-border fa-2x'></i>&nbsp;<b>Logo</b></p>
-                        <!--<img src="{{ asset('assets/image/logo-gentong.png') }}" class="p-0 m-0 d-inline-block align-top" alt="logo-gentong" loading="lazy">-->
+                    
+                        <img src="{{ asset('assets/image/logo-gentong.png') }}" class="p-0 m-0 d-inline-block align-top" alt="logo-gentong" loading="lazy">
                     </a>
                     <form action="{{route('search.index')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
                         <div class="input-group">
@@ -244,7 +243,7 @@
                               
                         </div>
                     </form>
-                    <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="border-radius: 50%; background:#174C7C; border:none;"><i class="fa fa-search" style=""></i></a>
+                    <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="border-radius: 50%; background:#693234;; border:none;"><i class="fa fa-search" style=""></i></a>
                 </div>
                 
             </nav>
@@ -264,7 +263,7 @@
         <div class="modal-dialog">
         
             <!-- Modal content-->
-            <div class="modal-content" style="background: #2779B2">
+            <div class="modal-content" style="background: #FDD8AF">
                 <div class="modal-body">
                     <div class="row justify-content-center">
                         <form action="{{route('search.index')}}">
@@ -292,7 +291,7 @@
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <!--<script src="{{ asset('assets/js/main.js')}}"></script>-->
+    <script src="{{ asset('assets/js/main.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>-->
     <script type="text/javascript">
@@ -322,9 +321,9 @@
                 icon: 'error',
                 showCancelButton: false,
                 confirmButtonText: "Tutup",
-                confirmButtonColor: '#174C7C'
+                confirmButtonColor: '#6a3137'
                 });
-                $(".swal2-modal").css('background-color', ' #ffffff')
+                $(".swal2-modal").css('background-color', ' #FDD8AF')
             }
             else
             {
@@ -353,8 +352,12 @@
                                 success: function (response){
                                 $( '#accordion' ).html(response);
                                 $('#collapse-4').addClass('show');
+                                var totpesan_val_code = document.getElementById("total_pesan_val_code").value;
+                                var voucher_no = document.getElementById("total_novoucher_val_code").value;
                                 $( '#voucher_code_hide' ).val(voucher_code);
                                 $( '#voucher_code_hide_modal' ).val(voucher_code);
+                                $( '#total_pesan_val' ).val(totpesan_val_code);
+                                $( '#total_novoucher_val' ).val(voucher_no);
                                 //x.style.display = "block";
                                 var objDiv = document.getElementById("collapse-4");
                                 objDiv.scrollTop = objDiv.scrollHeight;
@@ -372,9 +375,9 @@
                                 icon: 'error',
                                 showCancelButton: false,
                                 confirmButtonText: "Tutup",
-                                confirmButtonColor: '#174C7C'
+                                confirmButtonColor: '#6a3137'
                                 });
-                            $(".swal2-modal").css('background-color', ' #ffffff')
+                            $(".swal2-modal").css('background-color', ' #FDD8AF')
                         }
                         else if(response == 'not_taken'){
                             $('#loader').addClass('hidden'),
@@ -384,9 +387,9 @@
                                 icon: 'error',
                                 showCancelButton: false,
                                 confirmButtonText: "Tutup",
-                                confirmButtonColor: '#174C7C'
+                                confirmButtonColor: '#6a3137'
                                 });
-                            $(".swal2-modal").css('background-color', ' #ffffff')
+                            $(".swal2-modal").css('background-color', ' #FDD8AF')
                         }
                     },
                     error: function (response) {
@@ -406,6 +409,7 @@
                 // We get the element having id of display_info and put the response inside it
                 $( '#accordion' ).html(response);
                 $('#collapse-4').addClass('show');
+                document.getElementById("voucher_code_hide_modal").value=null;
                 x.style.display = "none";
                 var objDiv = document.getElementById("collapse-4");
                 objDiv.scrollTop = objDiv.scrollHeight;
@@ -552,6 +556,8 @@
                                         $( '#accordion' ).html(response);
                                         //$('#collapse-4').addClass('show');
                                         //$( '#total_kr_' ).html(response);
+                                        var total_novoucher_val = $('#total_novoucher_val_code').val();
+                                        $('#total_novoucher_val').val(total_novoucher_val);
                                         $('#voucher_code_hide').val(voucher_code_hide);
                                         $('#voucher_code_hide_modal').val(voucher_code_hide);
                                         },
@@ -658,6 +664,8 @@
                                 $( '#accordion' ).html(response);
                                 //$('#collapse-4').addClass('show');
                                 //$( '#total_kr_' ).html(response);
+                                var total_novoucher_val = $('#total_novoucher_val_code').val();
+                                $('#total_novoucher_val').val(total_novoucher_val);
                                 $('#voucher_code_hide').val(voucher_code_hide);
                                 $('#voucher_code_hide_modal').val(voucher_code_hide);
                                 },
@@ -774,6 +782,8 @@
                                         $( '#accordion' ).html(response);
                                         $('#collapse-4').addClass('show');
                                         //$( '#total_kr_' ).html(response);
+                                        var total_novoucher_val = $('#total_novoucher_val_code').val();
+                                        $('#total_novoucher_val').val(total_novoucher_val);
                                         $('#voucher_code_hide').val(voucher_code_hide);
                                         $('#voucher_code_hide_modal').val(voucher_code_hide);
                                         },
@@ -839,9 +849,9 @@
                 icon: 'info',
                 showCancelButton: false,
                 confirmButtonText: "Tutup",
-                confirmButtonColor: '#174C7C'
+                confirmButtonColor: '#6a3137'
                 });
-                $(".swal2-modal").css('background-color', ' #ffffff')
+                $(".swal2-modal").css('background-color', ' #FDD8AF')
             } 
             else 
             {
@@ -861,6 +871,7 @@
                 var rupiah 	= number_string.substr(0, sisa);
                 var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
                 var voucher_code_hide = document.getElementById("voucher_code_hide").value;
+                //var total_pesan_val_hide = document.getElementById("total_pesan_val_hide").value;
                 if (ribuan) {
                 separator = sisa ? '.' : '';
                 rupiah += separator + ribuan.join('.');
@@ -888,6 +899,7 @@
                                 $('#total_kr_').html(tot);
                                 $('#total_kr_val').val(tot_val);
                                 $('#total_pesan_val').val(tot_val);
+                                //$('#total_novoucher_val').val(total_pesan_val_hide);
                                 $('#total_pesan_val_hide').val(tot_val);
                                 if(voucher_code_hide !=""){
                                     $.ajax({
@@ -899,7 +911,9 @@
                                         success: function (response){
                                         $( '#accordion' ).html(response);
                                         $('#collapse-4').addClass('show');
+                                        var total_novoucher_val = $('#total_novoucher_val_code').val();
                                         //$( '#total_kr_' ).html(response);
+                                        $('#total_novoucher_val').val(total_novoucher_val);
                                         $('#voucher_code_hide').val(voucher_code_hide);
                                         $('#voucher_code_hide_modal').val(voucher_code_hide);
                                         },
@@ -979,6 +993,8 @@
                             $( '#accordion' ).html(response);
                             $('#collapse-4').addClass('show');
                             //$( '#total_kr_' ).html(response);
+                            var total_novoucher_val = $('#total_novoucher_val_code').val();
+                            $('#total_novoucher_val').val(total_novoucher_val);
                             $('#voucher_code_hide').val(voucher_code_hide);
                             $('#voucher_code_hide_modal').val(voucher_code_hide);
                             },
@@ -1067,7 +1083,12 @@
           });
         }, 4000);
     </script>
-    
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-183852861-1');
+    </script>
 </body>
 
 </html>

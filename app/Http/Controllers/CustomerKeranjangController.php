@@ -285,7 +285,7 @@ class CustomerKeranjangController extends Controller
             $orders->email = $email;
             $orders->address = $address;
             $orders->phone = $phone;
-            if($request->has('voucher_code_hide_modal')){
+            if($request->get('voucher_code_hide_modal') != ""){
                 $keyword = $request->get('voucher_code_hide_modal');
                 $vouchers_cek = \App\Voucher::where('code','=',"$keyword")->first();
                 $orders->id_voucher = $vouchers_cek->id;
@@ -296,7 +296,7 @@ class CustomerKeranjangController extends Controller
             }
             $orders->save();
             $total_pesanan = $request->get('total_pesanan');
-            if($request->has('voucher_code_hide_modal')){
+            if($request->get('voucher_code_hide_modal')!= ""){
                 $sum_novoucher = $request->get('total_novoucher');
                 $keyword = $request->get('voucher_code_hide_modal');
                 $vouchers_cek = \App\Voucher::where('code','=',"$keyword")->first();
@@ -310,7 +310,7 @@ class CustomerKeranjangController extends Controller
             $total_ongkir  = 15000;
             $total_bayar  = $total_pesanan + $total_ongkir;
             $href='Hello Admin Gentong,  %0ANama %3A '.$username.', %0AEmail %3A '.$email.', %0ANo. Hp %3A' .$phone.', %0AAlamat %3A' .$address.',%0AIngin membeli %3A%0A';
-            if($request->has('voucher_code_hide_modal')){
+            if($request->get('voucher_code_hide_modal')!= ""){
                 if ($type == 1){
                     $info_harga = 'Total Pesanan %3A Rp.'.number_format(($sum_novoucher), 0, ',', '.').'%0AOngkos Kirim %3A Rp.'.number_format(($total_ongkir), 0, ',', '.').'%0ADiskon %3A '.number_format(($disc_amount), 0, ',', '.').'% %0AJenis Diskon %3A '.$code_name.' %0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
                 }else{
@@ -487,7 +487,7 @@ class CustomerKeranjangController extends Controller
                 </div>
                 <div id="collapse-4" class="collapse" data-parent="#accordion" style="" >
                     <div class="card-body" id="card-detail">
-                        <div class="col-md-12" style="padding-bottom:6rem;">
+                        <div class="col-md-12" style="padding-bottom:7rem;">
                             <table width="100%">
                                 <tbody>';
                                     foreach($keranjang as $order){
@@ -505,7 +505,7 @@ class CustomerKeranjangController extends Controller
                                                 else{
                                                     $total=$detil->price * $detil->pivot->quantity;
                                                 }
-                                                echo'<h1 id="productPrice_kr'.$detil->id.'" style="color:#174C7C; !important; font-family: Open Sans;">Rp.&nbsp;'.number_format($total, 0, ',', '.').'</h1>
+                                                echo'<h1 id="productPrice_kr'.$detil->id.'" style="color:#6a3137; !important; font-family: Open Sans;">Rp.&nbsp;'.number_format($total, 0, ',', '.').'</h1>
                                                 <table width="10%">
                                                     <tbody>
                                                         <tr id="response-id'.$detil->id.'">
@@ -521,14 +521,14 @@ class CustomerKeranjangController extends Controller
                                                             }
                                                             echo'<input type="hidden" id="id_detil'.$detil->id.'" value="'.$detil->pivot->id.'">
                                                             <input type="hidden" id="jmlkr_'.$detil->id.'" name="quantity" value="'.$detil->pivot->quantity.'">    
-                                                            <button class="button_minus" onclick="button_minus_kr('.$detil->id.')" style="background:none; border:none; color:#174C7C;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                            <button class="button_minus" onclick="button_minus_kr('.$detil->id.')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                                                 
                                                             </td>
                                                             <td width="10px" align="middle" valign="middle">
                                                                 <p id="show_kr_'.$detil->id.'" class="d-inline" style="">'.$detil->pivot->quantity.'</p>
                                                             </td>
                                                             <td width="10px" align="right" valign="middle">
-                                                                <button class="button_plus" onclick="button_plus_kr('.$detil->id.')" style="background:none; border:none; color:#174C7C;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                                <button class="button_plus" onclick="button_plus_kr('.$detil->id.')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                                             </td>
                                                         
                                                         </tr>
@@ -583,7 +583,9 @@ class CustomerKeranjangController extends Controller
                         <div class="p-3" style="background-color:#e9eff5;border-bottom-right-radius:18px;border-bottom-left-radius:18px;">
                         <input type="hidden" id="order_id_cek" name="id" value="';if($item !== null){echo $item->id;}else{echo '';} echo'"/>';
                             if($item!==null){
-                                echo '<input type="hidden" name="total_pesanan" id="total_pesan_val_hide" value="'.$item_price.'">';
+                                echo '<input type="hidden" name="total_pesanan" id="total_pesan_val_hide" value="'.$item_price.'">
+                                <input type="hidden" name="total_pesanan" id="total_pesan_val_code" value="'.$item_price.'">
+                                <input type="hidden" name="total_novoucher" id="total_novoucher_val_code" value="'.$sum_novoucher.'">';
                             }
                             else{
                                 echo'<input type="hidden" name="total_pesanan" id="total_pesan_val_hide" value="0">';
@@ -591,9 +593,9 @@ class CustomerKeranjangController extends Controller
                             if($total_item > 0){
                             echo'<div class="input-group mb-2 mt-2">
                                     <input type="text" class="form-control" id="voucher_code" 
-                                    placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#ffffff;outline:none;">
+                                    placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#ffcc94;outline:none;">
                                     <div class="input-group-append" required>
-                                        <button class="btn " type="submit" onclick="btn_code()" style="background:#174C7C;outline:none;color:white;">Terapkan</button>
+                                        <button class="btn " type="submit" onclick="btn_code()" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
                                     </div>
                                 </div>';
                             echo '<input type="hidden" class="form-control" id="voucher_code_hide">';    
@@ -738,7 +740,7 @@ class CustomerKeranjangController extends Controller
                                                 else{
                                                     $total=$detil->price * $detil->pivot->quantity;
                                                 }
-                                                echo'<h1 id="productPrice_kr'.$detil->id.'" style="color:#174C7C; !important; font-family: Open Sans;">Rp.&nbsp;'.number_format($total, 0, ',', '.').'</h1>
+                                                echo'<h1 id="productPrice_kr'.$detil->id.'" style="color:#6a3137; !important; font-family: Open Sans;">Rp.&nbsp;'.number_format($total, 0, ',', '.').'</h1>
                                                 <table width="10%">
                                                     <tbody>
                                                         <tr id="response-id'.$detil->id.'">
@@ -754,14 +756,14 @@ class CustomerKeranjangController extends Controller
                                                             }
                                                             echo'<input type="hidden" id="id_detil'.$detil->id.'" value="'.$detil->pivot->id.'">
                                                             <input type="hidden" id="jmlkr_'.$detil->id.'" name="quantity" value="'.$detil->pivot->quantity.'">    
-                                                            <button class="button_minus" onclick="button_minus_kr('.$detil->id.')" style="background:none; border:none; color:#174C7C;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                            <button class="button_minus" onclick="button_minus_kr('.$detil->id.')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                                                 
                                                             </td>
                                                             <td width="10px" align="middle" valign="middle">
                                                                 <p id="show_kr_'.$detil->id.'" class="d-inline" style="">'.$detil->pivot->quantity.'</p>
                                                             </td>
                                                             <td width="10px" align="right" valign="middle">
-                                                                <button class="button_plus" onclick="button_plus_kr('.$detil->id.')" style="background:none; border:none; color:#174C7C;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                                <button class="button_plus" onclick="button_plus_kr('.$detil->id.')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                                             </td>
                                                         
                                                         </tr>
@@ -813,9 +815,9 @@ class CustomerKeranjangController extends Controller
                             if($total_item > 0){
                             echo'<div class="input-group mb-2 mt-2">
                                     <input type="text" class="form-control" id="voucher_code" 
-                                    placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#ffffff;outline:none;">
+                                    placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#ffcc94;outline:none;">
                                     <div class="input-group-append" required>
-                                        <button class="btn " type="submit" onclick="btn_code()" style="background:#174C7C;outline:none;color:white;">Terapkan</button>
+                                        <button class="btn " type="submit" onclick="btn_code()" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
                                     </div>
                                 </div>';
                             echo '<input type="hidden" class="form-control" id="voucher_code_hide">';    

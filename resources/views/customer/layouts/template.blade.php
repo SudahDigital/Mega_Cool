@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>Demo</title>
+    <title>Mega Cools | @yield('title')</title>
 
-    <link rel="icon" href="" type="image/png" sizes="16x16">
+    <link rel="icon" href="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png')}}" type="image/x-icon">
     <!-- Bootstrap CSS CDN -->
     <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" >
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css')}}">
@@ -55,7 +55,7 @@
         }
         
         .paddle:hover {
-            background: #174C7C;
+            background: #6a3137;
             color: #fff;
         }
         
@@ -85,12 +85,12 @@
         .row::-webkit-scrollbar-thumb {
             -webkit-border-radius: 10px;
             border-radius: 10px;
-            background: #2779B2;
+            background: #6a3137;
             -webkit-box-shadow: inset 0 0 6px #FDD8AF;
         }
         /* line 30, sass/page/_home.scss */
         .row::-webkit-scrollbar-thumb:window-inactive {
-            background: rgba(101, 178, 241, 0.877);
+            background: rgba(255, 0, 0, 0.4);
         }
         /*Hidden class for adding and removing*/
         .lds-dual-ring.hidden {
@@ -164,7 +164,7 @@
 
         .button_welcome {
             font-family: Open Sans;
-            background: linear-gradient(to bottom, #174C7C, #2779B2); 
+            background: linear-gradient(to bottom, #6a3137, #6a3137); 
             color:white; 
             padding: 5px 15px; 
             border:none; 
@@ -188,9 +188,9 @@
         @media (max-width: 2560px){
             .button_welcome {
                 font-size: 34px;
-                padding: 10px 26px;
-                top: 37rem;
-                right: 62%;
+                padding: 12px 26px;
+                top: 42rem;
+                right: 12%;
                 font-weight: 600;
                 border-radius: 20px;
             }
@@ -205,9 +205,9 @@
         @media (max-width: 1920px){
             .button_welcome {
                 font-size: 25px;
-                padding: 5px 25px;
-                top: 28rem;
-                right: 61%;
+                padding: 10px 25px;
+                top: 32rem;
+                right: 12%;
                 font-weight: 600;
                 border-radius: 17px;
             }
@@ -222,9 +222,9 @@
         @media (max-width: 1440px){
             .button_welcome {
                 font-size: 21px;
-                padding: 5px 17px;
-                top: 21rem;
-                right: 59.5%;
+                padding: 10px 17px;
+                top: 24rem;
+                right: 10%;
                 font-weight: 600;
                 border-radius: 15px;
             }
@@ -239,9 +239,9 @@
         @media (max-width: 1366px){
             .button_welcome {
                 font-size: 19px;
-                padding: 5px 17px;
-                top: 20rem;
-                right: 60%;
+                padding: 10px 17px;
+                top: 22.4rem;
+                right: 10%;
                 font-weight: 600;
             }
 
@@ -255,9 +255,9 @@
         @media (max-width: 1024px){
             .button_welcome {
                 font-size: 15px;
-                padding: 5px 17px;
-                top: 15rem;
-                right: 57%;
+                padding: 10px 17px;
+                top: 17rem;
+                right: 9%;
                 font-weight: 600;
             }
 
@@ -271,9 +271,9 @@
         @media (max-width: 768px){
             .button_welcome {
                 font-size: 15px;
-                padding: 5px 17px;
-                top: 16rem;
-                right: 59%;
+                padding: 10px 17px;
+                top: 18.2rem;
+                right: 9.5%;
                 font-weight: 600;
                 border-radius: 14px;
             }
@@ -287,10 +287,10 @@
 
         @media (max-width: 600px){
             .button_welcome {
-                font-size: 26px;
-                padding: 7px 25px;
+                font-size: 15px;
+                padding: 7px 18px;
                 top: 27rem;
-                right: 43%;
+                right: 13%;
                 font-weight: 600;
             }
 
@@ -304,10 +304,10 @@
 
         @media (max-width: 480px){
             .button_welcome {
-                font-size: 20px;
-                padding: 5px 20px;
-                top: 22rem;
-                right: 45%;
+                font-size: 12px;
+                padding: 7px 15px;
+                top: 21.5rem;
+                right: 13%;
                 font-weight: 600;
             }
 
@@ -318,10 +318,10 @@
 
         @media (max-width: 425px){
             .button_welcome {
-                font-size: 17.5px;
-                padding: 5px 20px;
+                font-size: 11px;
+                padding: 7px 15px;
                 top: 19rem;
-                right: 43%;
+                right: 12%;
                 font-weight: 600;
             }
 
@@ -334,57 +334,61 @@
 
         @media (max-width: 411px){
             .button_welcome {
-                font-size: 17.5px;
-                padding: 5px 20px;
-                top: 18rem;
-                right: 42%;
+                font-size: 11px;
+                padding: 7px 14px;
+                top: 18.5rem;
+                right: 12%;
                 font-weight: 600;
             }
         }
 
         @media (max-width: 384px){
             .button_welcome {
-                font-size: 17px;
-                padding: 5px 18px;
-                top: 17.5rem;
-                right: 42%;
+                font-size: 10px;
+                padding: 7px 13px;
+                top: 17.2rem;
+                right: 12%;
                 font-weight: 600;
             }
         }
 
         @media (max-width: 375px){
             .button_welcome {
-                font-size: 16px;
-                padding: 5px 18px;
-                top: 17rem;
-                right: 43%;
+                font-size: 10px;
+                padding: 7px 13px;
+                top: 16.8rem;
+                right: 12%;
+                font-weight: 600;
             }
         }
 
         @media (max-width: 364px){
             .button_welcome {
-                font-size: 16px;
-                padding: 5px 18px;
-                top: 16rem;
-                right: 42%;
+                font-size: 10px;
+                padding: 7px 12px;
+                top: 16.4rem;
+                right: 12%;
+                font-weight: 600;
             }
         }
 
         @media (max-width: 338px){
             .button_welcome {
-                font-size: 15px;
-                padding: 5px 18px;
-                top: 15.5rem;
-                right: 40%;
+                font-size: 9px;
+                padding: 7px 12px;
+                top: 15.4rem;
+                right: 12%;
+                font-weight: 600;
             }
         }
 
         @media (max-width: 320px){
             .button_welcome {
-                font-size: 14px;
-                padding: 5px 18px;
+                font-size: 8px;
+                padding: 7px 12px;
                 top: 14.5rem;
-                right: 39%;
+                right: 12%;
+                font-weight: 600;
             }
         }
     
@@ -493,15 +497,15 @@
     <div class="preloader" id="preloader">
         <div class="loading">
           <img src="{{ asset('assets/image/preloader.gif') }}" width="80" alt="preloader">
-          <p style="font-weight:900;line-height:2;color:#174C7C;margin-left: -10%;">Harap Tunggu</p>
+          <p style="font-weight:900;line-height:2;color:#6a3137;margin-left: -10%;">Harap Tunggu</p>
         </div>
     </div>
 
     <div id="loader" class="lds-dual-ring hidden overlay_ajax"><img class="hidden" src="{{ asset('assets/image/preloader.gif') }}" width="80" alt="preloader"></div>
     
     <div id="my-welcome-message" class="">
-        <img src="{{ asset('assets/image/popup-cara-belanja-lg-web-demo.jpg') }}" class="d-none d-md-block d-md-none w-100" alt="popup-cara-belanja-lg-web-demo" style="">
-        <img src="{{ asset('assets/image/popup-cara-belanja-web-demo.jpg') }}" class="d-md-none w-100 h-100" alt="popup-cara-belanja-web-demo" style="">
+        <img src="{{ asset('assets/image/popup-cara-belanja-lg.jpg') }}" class="d-none d-md-block d-md-none w-100" alt="popup-cara-belanja-lg" style="">
+        <img src="{{ asset('assets/image/popup-cara-belanja.jpg') }}" class="d-md-none w-100 h-100" alt="popup-cara-belanja" style="">
     </div>
     
     <div class="wrapper">
@@ -509,8 +513,7 @@
         <nav id="sidebar">
             <div class="sidebar-header mx-auto">
                 <a href="{{url('/') }}">
-                    <i class='fab fa-bootstrap fa-border fa-2x'></i>&nbsp;<b>Logo</b>
-                    <!--<img src="{{ asset('assets/image/logo-gentong.png') }}" width="70%" height="auto" class="d-inline-block align-top" alt="logo-gentong" loading="lazy">-->
+                    <img src="{{ asset('assets/image/logo-gentong.png') }}" width="70%" height="auto" class="d-inline-block align-top" alt="logo-gentong" loading="lazy">
                 </a>
             </div>
             <ul class="list-unstyled components">
@@ -536,10 +539,10 @@
             </ul>
             <div class="mx-auto text-center" style="margin-top: 35px;">
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/"  target="_blank"><i class="fab fa-facebook" ></i></a>
-                    <a href="https://instagram.com/"  target="_blank"><i class="fab fa-instagram "></i></a>
+                    <a href="https://www.facebook.com/Gentongicecream/"  target="_blank"><i class="fab fa-facebook" ></i></a>
+                    <a href="https://instagram.com/gentongicecream?igshid=10b120fidnx58"  target="_blank"><i class="fab fa-instagram "></i></a>
                     <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://twitter.com/kedaigentong?s=08" target="_blank"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
         </nav>
@@ -548,12 +551,11 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1.5;">
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="btn button-burger-menu">
-                        <i class="fas fa-bars fa-2x" style="color:#ffffff;"></i>
+                        <i class="fas fa-bars fa-2x" style="color:#693234;"></i>
                     </button>
                    
                     <a class="navbar-brand nav-center" href="{{ url('/') }}">
-                        <p><i class='fab fa-bootstrap fa-border fa-2x'></i>&nbsp;<b>Logo</b></p>
-                        <!--<img src="{{ asset('assets/image/logo.svg') }}" class="p-0 m-0 d-inline-block align-top" alt="logo" loading="lazy" >-->
+                        <img src="{{ asset('assets/image/logo-gentong.png') }}" class="p-0 m-0 d-inline-block align-top" alt="logo-gentong" loading="lazy">
                     </a>
                     <form action="{{route('search.index')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
                         <div class="input-group">
@@ -564,7 +566,7 @@
                               
                         </div>
                     </form>
-                    <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="border-radius: 50%; background:#174C7C; border:none;"><i class="fa fa-search" style=""></i></a>
+                    <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="border-radius: 50%; background:#693234;; border:none;"><i class="fa fa-search" style=""></i></a>
                 </div>
             </nav>
             
@@ -595,19 +597,18 @@
 
         <!-- Footer section -->
         <footer id="footer">
-            <div class="d-flex justify-content-center mx-auto">
-                
-                    <i class='fab fa-bootstrap fa-border fa-7x img-thumbnail' style="background-color:transparent; color:#ffffff"></i>
-                    <!--<img src="{{ asset('assets/image/logo-gentong.png') }}" class="img-thumbnail" style="background-color:transparent; border:none;" alt="logo-gentong">--> 
-                
+            <div class="d-flex justify-content-center">
+                <div class="col-md-6">
+                    <img src="{{ asset('assets/image/logo-gentong.png') }}" class="img-thumbnail" style="background-color:transparent; border:none;" alt="logo-gentong"> 
+                </div>
             </div>
             <br><br>
             <div class="row justify-content-center mx-auto" >    
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/"  target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://instagram.com/"  target="_blank"><i class="fab fa-instagram "></i></a>
+                    <a href="https://www.facebook.com/Gentongicecream/"  target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com/gentongicecream?igshid=10b120fidnx58"  target="_blank"><i class="fab fa-instagram "></i></a>
                     <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter "></i></a>
+                    <a href="https://twitter.com/kedaigentong?s=08" target="_blank"><i class="fab fa-twitter "></i></a>
                 </div>
             </div>
             <div class="copyright text-center">
@@ -622,7 +623,7 @@
     <div class="modal fade" id="searchModal" role="dialog">
         <div class="modal-dialog">
         <!-- Modal content-->
-            <div class="modal-content" style="background: #2779B2">
+            <div class="modal-content" style="background: #FDD8AF">
                 <div class="modal-body">
                     <div class="row justify-content-center">
                         <form action="{{route('search.index')}}">
@@ -646,7 +647,7 @@
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -761,9 +762,9 @@
                 icon: 'error',
                 showCancelButton: false,
                 confirmButtonText: "Tutup",
-                confirmButtonColor: '#174C7C'
+                confirmButtonColor: '#6a3137'
                 });
-                $(".swal2-modal").css('background-color', ' #ffffff')
+                $(".swal2-modal").css('background-color', ' #FDD8AF')
             }
             else
             {
@@ -792,8 +793,12 @@
                                 success: function (response){
                                 $( '#accordion' ).html(response);
                                 $('#collapse-4').addClass('show');
+                                var totpesan_val_code = $("#total_pesan_val_code").val();
+                                var voucher_no = $("#total_novoucher_val_code").val();
                                 $( '#voucher_code_hide' ).val(voucher_code);
                                 $( '#voucher_code_hide_modal' ).val(voucher_code);
+                                $( '#total_pesan_val' ).val(totpesan_val_code);
+                                $( '#total_novoucher_val' ).val(voucher_no);
                                 //x.style.display = "block";
                                 var objDiv = document.getElementById("collapse-4");
                                 objDiv.scrollTop = objDiv.scrollHeight;
@@ -811,9 +816,9 @@
                                 icon: 'error',
                                 showCancelButton: false,
                                 confirmButtonText: "Tutup",
-                                confirmButtonColor: '#174C7C'
+                                confirmButtonColor: '#6a3137'
                                 });
-                            $(".swal2-modal").css('background-color', ' #ffffff')
+                            $(".swal2-modal").css('background-color', ' #FDD8AF')
                         }
                         else if(response == 'not_taken'){
                             $('#loader').addClass('hidden'),
@@ -823,9 +828,9 @@
                                 icon: 'error',
                                 showCancelButton: false,
                                 confirmButtonText: "Tutup",
-                                confirmButtonColor: '#174C7C'
+                                confirmButtonColor: '#6a3137'
                                 });
-                            $(".swal2-modal").css('background-color', ' #ffffff')
+                            $(".swal2-modal").css('background-color', ' #FDD8AF')
                         }
                     },
                     error: function (response) {
@@ -845,6 +850,7 @@
                 // We get the element having id of display_info and put the response inside it
                 $( '#accordion' ).html(response);
                 $('#collapse-4').addClass('show');
+                document.getElementById("voucher_code_hide_modal").value=null;
                 x.style.display = "none";
                 var objDiv = document.getElementById("collapse-4");
                 objDiv.scrollTop = objDiv.scrollHeight;
@@ -991,6 +997,8 @@
                                         $( '#accordion' ).html(response);
                                         //$('#collapse-4').addClass('show');
                                         //$( '#total_kr_' ).html(response);
+                                        var total_novoucher_val = $('#total_novoucher_val_code').val();
+                                        $('#total_novoucher_val').val(total_novoucher_val);
                                         $('#voucher_code_hide').val(voucher_code_hide);
                                         $('#voucher_code_hide_modal').val(voucher_code_hide);
                                         },
@@ -1053,9 +1061,9 @@
                 icon: 'info',
                 showCancelButton: false,
                 confirmButtonText: "Tutup",
-                confirmButtonColor: '#174C7C'
+                confirmButtonColor: '#6a3137'
                 });
-                $(".swal2-modal").css('background-color', ' #ffffff')
+                $(".swal2-modal").css('background-color', ' #FDD8AF')
             }
             else
             {
@@ -1097,6 +1105,8 @@
                                 $( '#accordion' ).html(response);
                                 //$('#collapse-4').addClass('show');
                                 //$( '#total_kr_' ).html(response);
+                                var total_novoucher_val = $('#total_novoucher_val_code').val();
+                                $('#total_novoucher_val').val(total_novoucher_val);
                                 $('#voucher_code_hide').val(voucher_code_hide);
                                 $('#voucher_code_hide_modal').val(voucher_code_hide);
                                 },
@@ -1213,6 +1223,8 @@
                                         $( '#accordion' ).html(response);
                                         $('#collapse-4').addClass('show');
                                         //$( '#total_kr_' ).html(response);
+                                        var total_novoucher_val = $('#total_novoucher_val_code').val();
+                                        $('#total_novoucher_val').val(total_novoucher_val);
                                         $('#voucher_code_hide').val(voucher_code_hide);
                                         $('#voucher_code_hide_modal').val(voucher_code_hide);
                                         },
@@ -1278,9 +1290,9 @@
                 icon: 'info',
                 showCancelButton: false,
                 confirmButtonText: "Tutup",
-                confirmButtonColor: '#174C7C'
+                confirmButtonColor: '#6a3137'
                 });
-                $(".swal2-modal").css('background-color', ' #ffffff')
+                $(".swal2-modal").css('background-color', ' #FDD8AF')
             } 
             else 
             {
@@ -1300,6 +1312,7 @@
                 var rupiah 	= number_string.substr(0, sisa);
                 var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
                 var voucher_code_hide = document.getElementById("voucher_code_hide").value;
+                //var total_pesan_val_hide = document.getElementById("total_pesan_val_hide").value;
                 if (ribuan) {
                 separator = sisa ? '.' : '';
                 rupiah += separator + ribuan.join('.');
@@ -1327,6 +1340,7 @@
                                 $('#total_kr_').html(tot);
                                 $('#total_kr_val').val(tot_val);
                                 $('#total_pesan_val').val(tot_val);
+                                //$('#total_novoucher_val').val(total_pesan_val_hide);
                                 $('#total_pesan_val_hide').val(tot_val);
                                 if(voucher_code_hide !=""){
                                     $.ajax({
@@ -1338,7 +1352,9 @@
                                         success: function (response){
                                         $( '#accordion' ).html(response);
                                         $('#collapse-4').addClass('show');
+                                        var total_novoucher_val = $('#total_novoucher_val_code').val();
                                         //$( '#total_kr_' ).html(response);
+                                        $('#total_novoucher_val').val(total_novoucher_val);
                                         $('#voucher_code_hide').val(voucher_code_hide);
                                         $('#voucher_code_hide_modal').val(voucher_code_hide);
                                         },
@@ -1418,6 +1434,8 @@
                             $( '#accordion' ).html(response);
                             $('#collapse-4').addClass('show');
                             //$( '#total_kr_' ).html(response);
+                            var total_novoucher_val = $('#total_novoucher_val_code').val();
+                            $('#total_novoucher_val').val(total_novoucher_val);
                             $('#voucher_code_hide').val(voucher_code_hide);
                             $('#voucher_code_hide_modal').val(voucher_code_hide);
                             },
@@ -1492,7 +1510,6 @@
                 }
             });
         }
-        
 
         $(document).ready(function() {  
             $('#btn-yes').on('click', function(){
@@ -1507,7 +1524,12 @@
         });
         }, 4000);
     </script>
-    
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-183852861-1');
+    </script>
 </body>
 
 </html>
