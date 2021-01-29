@@ -30,6 +30,24 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183852861-1"></script>
     <style type="text/css">
+    
+        #LocationForm .modal-dialog-full-width {
+            position:absolute;
+            right:0;
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            max-width:none !important;
+        }
+
+        #LocationForm .modal-content-full-width  {
+            height: auto !important;
+            min-height: 100% !important;
+            border-radius: 0 !important;
+            background-color: #1A4066 !important 
+        }
+    
         .paddles {
         }
 
@@ -494,6 +512,22 @@
     </script>
 </head>
 <body>
+    <!-- Modal firstpage-->
+    <div class="modal fade right" id="LocationForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+        <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+            <div class="modal-content-full-width modal-content ">
+                <div class="modal-body">
+                    <img src="{{ asset('assets/image/dot-top-right.png') }}" class="dot-top-right"  
+                    style="" alt="dot-top-right">
+                    <img src="{{ asset('assets/image/dot-bottom-left.png') }}" class="dot-bottom-left"  
+                    style="" alt="dot-bottom-left">
+                    <img src="{{ asset('assets/image/shape-bottom-right.png') }}" class="shape-bottom-right"  
+                    style="" alt="shape-bottom-right">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="preloader" id="preloader">
         <div class="loading">
           <img src="{{ asset('assets/image/preloader.gif') }}" width="80" alt="preloader">
@@ -503,11 +537,12 @@
 
     <div id="loader" class="lds-dual-ring hidden overlay_ajax"><img class="hidden" src="{{ asset('assets/image/preloader.gif') }}" width="80" alt="preloader"></div>
     
+    <!--
     <div id="my-welcome-message" class="">
         <img src="{{ asset('assets/image/popup-cara-belanja-lg.jpg') }}" class="d-none d-md-block d-md-none w-100" alt="popup-cara-belanja-lg" style="">
         <img src="{{ asset('assets/image/popup-cara-belanja.jpg') }}" class="d-md-none w-100 h-100" alt="popup-cara-belanja" style="">
     </div>
-    
+    -->
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -640,7 +675,6 @@
             </div>
         </div>
     </div>
-    
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -652,7 +686,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="{{ asset('assets/js/jquery.firstVisitPopup.js')}}"></script>
+    <!--<script src="{{ asset('assets/js/jquery.firstVisitPopup.js')}}"></script>-->
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>-->
     <script type="text/javascript">
         //$('#accordion').collapse('show').height('auto');
@@ -728,13 +762,18 @@
         });
 
         //popup first page
+        $(document).ready(function(){
+            $("#LocationForm").modal('show');
+        });
+        /*
         $(function () {
 				$('#my-welcome-message').firstVisitPopup({
 					cookieName : 'homepage',
 					showAgainSelector: '#show-message'
 				});
             });
-            
+        */ 
+
         //sidebar
         $("#sidebar").mCustomScrollbar({
             theme: "minimal"
