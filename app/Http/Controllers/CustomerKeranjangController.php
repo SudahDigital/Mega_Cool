@@ -12,12 +12,17 @@ use App\Order;
 
 class CustomerKeranjangController extends Controller
 {
-    
+    public function __construct(){
+        $this->middleware('auth');
+        
+    }
+
     public function index(Request $request)
     {   
-        $ses_id = $request->header('User-Agent');
-        $clientIP = \Request::getClientIp(true);
-        $session_id = $ses_id.$clientIP;
+        //$ses_id = $request->header('User-Agent');
+        $id_user = \Auth::user()->id;
+        //$clientIP = \Request::getClientIp(true);
+        //$session_id = $ses_id.$clientIP;
         $banner_active = \App\Banner::orderBy('id', 'DESC')->first();
         $banner = \App\Banner::orderBy('id', 'DESC')->get();
         $categories = \App\Category::all();//paginate(10);
@@ -26,29 +31,29 @@ class CustomerKeranjangController extends Controller
         $product = product::with('categories')->where('top_product','=','0')->get();//->paginate(6);
         $top_count = $top_product->count();
         $count_data = $product->count();
-        $keranjang = DB::select("SELECT orders.session_id, orders.status, orders.username, 
+        $keranjang = DB::select("SELECT orders.user_id, orders.status,orders.customer_id, 
                     products.description, products.image, products.price, products.discount,
                     products.price_promo, order_product.id, order_product.order_id,
                     order_product.product_id,order_product.quantity
                     FROM order_product, products, orders WHERE 
                     orders.id = order_product.order_id AND 
                     order_product.product_id = products.id AND orders.status = 'SUBMIT' 
-                    AND orders.session_id = '$session_id' AND orders.username IS NULL ");
+                    AND orders.user_id = '$id_user' AND orders.customer_id IS NULL ");
         $item = DB::table('orders')
-                    ->where('session_id','=',"$session_id")
+                    ->where('user_id','=',"$id_user")
                     ->where('orders.status','=','SUBMIT')
-                    ->whereNull('orders.username')
+                    ->whereNull('orders.customer_id')
                     ->first();
         $item_name = DB::table('orders')
                     ->join('order_product','order_product.order_id','=','orders.id')
-                    ->where('session_id','=',"$session_id")
-                    ->whereNotNull('orders.username')
+                    ->where('user_id','=',"$id_user")
+                    ->whereNotNull('orders.customer_id')
                     ->first();
         
         $total_item = DB::table('orders')
                     ->join('order_product','order_product.order_id','=','orders.id')
-                    ->where('session_id','=',"$session_id")
-                    ->whereNull('orders.username')
+                    ->where('user_id','=',"$id_user")
+                    ->whereNull('orders.customer_id')
                     ->count();
         $data=['total_item'=> $total_item, 
                 'keranjang'=>$keranjang,

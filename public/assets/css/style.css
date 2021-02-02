@@ -119,7 +119,7 @@ body {
 }
 
 .breadcrumb-item {
-    font-size:20px;"
+    font-size:30px;"
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
@@ -155,7 +155,8 @@ a:focus {
 .navbar {
     padding-top: 30px;
     padding-bottom: 30px;
-    background-color: #2779B2 !important;
+    background-color: transparent;
+    /*background-color: #2779B2 !important;*/
     border: none;
     border-radius: 0;
     margin-bottom: 40px;
@@ -227,15 +228,18 @@ a:focus {
 }
 
 .button-burger-menu {
-  background-color: #2779B2;
-  color: #2779B2;
-  border-color: #2779B2;
+  position: absolute;
+  background-color:transparent;
+  /*background-color: #2779B2;
+  color: #2779B2;*/
+  border-color:none;
+  outline: none;
 }
 
 .button-burger-menu:hover, .button-burger-menu:active, .button-burger-menu:focus {
-  background-color: #2779B2;
-  color: #4db849;
-  border-color:  #2779B2;
+  background-color: none;
+  /*color: #4db849;
+  border-color:  #2779B2;*/
 }
 
 .line {
@@ -553,6 +557,29 @@ button.search-sidebar:hover {
   color: #ffffff;
 }
 
+.login-label h3{
+  font-family: Montserrat;
+  font-size: 26px;
+  font-weight: 700;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.36;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}
+
+.login-label h6{
+  font-family: Montserrat;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.36;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff;
+}
+
 .login-label p{
   
   font-family: Montserrat;
@@ -664,6 +691,7 @@ a.register:hover {
     top:0;
     right:0;
     border:none;
+    z-index: 1;
  }
 
  .dot-bottom-left {
@@ -674,6 +702,7 @@ a.register:hover {
   bottom:0;
   left:0;
   border:none;
+  z-index: 1;
 }
 
 .shape-bottom-right {
@@ -684,6 +713,7 @@ a.register:hover {
   bottom:0;
   right:0;
   border:none;
+  z-index: 1;
 }
 
  .shape-2 {
@@ -707,8 +737,10 @@ a.register:hover {
     position: absolute;
     top: 0;
     right: 0;
-    
+    background-color: #ffffff; 
 }
+
+
 
 #product_list{
   margin-bottom: -5rem;
@@ -745,7 +777,8 @@ a.register:hover {
   animation-name: GerakanKeKanan;
   -webkit-animation-duration: 2s;
   animation-duration: 2s;
-  background-color: transparent !important;
+  /*background-color: transparent !important;*/
+  background-color: #ffffff;
 }
 
 #content .button_breadcrumb a:hover {

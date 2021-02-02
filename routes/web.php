@@ -24,7 +24,10 @@ Route::get('/contact', function(){
         return view('customer.contact',['categories'=>$categories]);
         })->name('contact');
 Route::group(['middleware' => ['auth','checkRole:SALES']],function(){        
-    Route::get('/home_customer', 'CustomerKeranjangController@index')->name('home_customer');
+    Route::get('/sales_home', 'CustomerKeranjangController@index')->name('home_customer');
+    Route::get('/ajax/city', 'AjaxCitySearch@ajax_city');
+    Route::get('/ajax/store', 'AjaxCitySearch@ajax_store');
+    Route::post('/session/store','SessionStore@index')->name('session.store');
     Route::get('/home_cart', 'CustomerKeranjangController@ajax_cart');
     Route::post('/keranjang/apply_code', 'CustomerKeranjangController@apply_code');
     Route::post('/keranjang/simpan','CustomerKeranjangController@simpan')->name('customer.keranjang.simpan');

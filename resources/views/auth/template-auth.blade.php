@@ -175,7 +175,7 @@
     @endif
 
     <div class="wrapper">
-        <div id="content">
+        <div id="content" style="background-color:#174C7C;">
             <!-- Page Content  -->
             @yield('content')
         </div>

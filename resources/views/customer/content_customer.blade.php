@@ -1,6 +1,18 @@
 @extends('customer.layouts.template')
 @section('content')
 
+    <div class="container" style="">
+        <div class="row align-middle">
+            <div class="col-sm-12 col-md-12">
+                <nav aria-label="breadcrumb" class="" >
+                    <ol class="breadcrumb py-5" style="background-color:#ffffff">
+                        <p class="breadcrumb-item active" aria-current="page" style="">Our Product</p>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div> 
+
     <!--menu categories-->
     <div style="{{$top_count > 0 ? 'background:#693234;' : 'background:#FDD8AF'}}">
         <div class="container">

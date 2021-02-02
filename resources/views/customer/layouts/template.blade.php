@@ -14,9 +14,9 @@
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css')}}">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-
     <!-- Font Awesome JS -->
     <script src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -30,7 +30,40 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183852861-1"></script>
     <style type="text/css">
-    
+        /*[class^='select2'] {
+            border-top-left-radius: 15px !important;
+            border-top-right-radius: 15px !important;
+        }*/
+
+       
+        .select2-container--default .select2-selection--single{
+            padding:4px;
+            outline: none;
+            height: 37px;
+            font-weight: 500;
+            font-size: 1em; 
+            border-top-left-radius: 15px !important;
+            border-top-right-radius: 15px !important;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            top: 4px;
+            right: 4px;
+            width: 25px;
+        }
+
+        .select2-search__field{
+            outline:none;
+        }
+
+        .select2-results { 
+            background:transparent;
+            font-weight: 600;
+        }
+
+       
+        
+
         #LocationForm .modal-dialog-full-width {
             position:absolute;
             right:0;
@@ -46,6 +79,10 @@
             min-height: 100% !important;
             border-radius: 0 !important;
             background-color: #1A4066 !important 
+        }
+
+        .borderless td, .borderless th {
+            border: none;
         }
     
         .paddles {
@@ -512,7 +549,9 @@
     </script>
 </head>
 <body>
+   
     <!-- Modal firstpage-->
+    @if (!session()->has('ses_order'))
     <div class="modal fade right" id="LocationForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
             <div class="modal-content-full-width modal-content ">
@@ -523,15 +562,62 @@
                     style="" alt="dot-bottom-left">
                     <img src="{{ asset('assets/image/shape-bottom-right.png') }}" class="shape-bottom-right"  
                     style="" alt="shape-bottom-right">
-                    
+                    <div class="d-flex justify-content-center mx-auto">
+                        <div class="col-md-2">
+                           <img src="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png') }}" class="img-thumbnail pt-4" style="background-color:transparent; border:none;" alt="LOGO MEGACOOLS_DEFAULT">  
+                        </div>
+                    </div>
+                    <div class="col-md-12 login-label pt-4">
+                        <h3 >Lokasi Anda</h3>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-5 login-label">
+                            <form method="POST" action="{{route('session.store')}}">
+                                @csrf
+                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                <table class="table borderless">
+                                    <tbody width="100%">
+                                        <tr>
+                                            <td width="20%" align="left" class="mx-auto">
+                                                <h6>Kota</h6>
+                                            </td>
+                                            <td class="px-2" width="80%">
+                                                <div class="form-group">
+                                                    <select name="city_id"  id="city_id" class="form-control" style="width:100%;" required></select>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" class="mx-auto">
+                                                <h6>Pilih Toko</h6>
+                                            </td>
+                                            <td class="px-2">
+                                                <div class="form-group">
+                                                    <select name="customer_id"  id="customer_id" class="form-control" style="width:100%;" required></select>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="hidden" id="lat" name="lat">
+                                <input type="hidden" id="lng" name="lng">
+                                <div class="mx-auto text-center">
+                                    <button type="submit" class="btn btn_login_form" >{{ __('Check In') }}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    @endif
+
+    <!--preloader-->
     <div class="preloader" id="preloader">
         <div class="loading">
           <img src="{{ asset('assets/image/preloader.gif') }}" width="80" alt="preloader">
-          <p style="font-weight:900;line-height:2;color:#6a3137;margin-left: -10%;">Harap Tunggu</p>
+          <p style="font-weight:900;line-height:2;color:#1A4066;margin-left: -10%;">Harap Tunggu</p>
         </div>
     </div>
 
@@ -583,10 +669,11 @@
         </nav>
         <!--content-->
         <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1.5;">
+            <!--
+            <nav class="navbar navbar-expand-lg fixed-top" style="z-index: 1.5;">
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="btn button-burger-menu">
-                        <i class="fas fa-bars fa-2x" style="color:#693234;"></i>
+                        <i class="fas fa-bars fa-2x" style="color:#ffffff;"></i>
                     </button>
                    
                     <a class="navbar-brand nav-center" href="{{ url('/') }}">
@@ -602,13 +689,21 @@
                         </div>
                     </form>
                     <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="border-radius: 50%; background:#693234;; border:none;"><i class="fa fa-search" style=""></i></a>
+                    
                 </div>
             </nav>
-            
+            -->
             <!-- BANNER -->
-            <div role="main" style="margin-top: 5.5rem;">
-                <div id="bannerSlide" class="carousel slide" data-ride="carousel"><!--data-interval="5000"-->
-                    <!-- The slideshow -->
+            <div role="main" style="background-color:#ffffff">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn button-burger-menu">
+                        <i class="fas fa-bars fa-2x" style="color:#ffffff;"></i>
+                    </button>
+                </div>
+                <img src="{{ asset('assets/image/main-banner.png') }}" class="w-100 h-90" alt="main-banner" style="margin-top:-1.5rem;">
+                <!--
+                <div id="bannerSlide" class="carousel slide" data-ride="carousel">--//data-interval="5000"//--
+                    -- The slideshow //--
                     <div class="carousel-inner">
                         @foreach($banner as $k => $v)
                             <div class="carousel-item {{$v->id == $banner_active->id ? 'active' : ''}}">
@@ -617,7 +712,7 @@
                         @endforeach
                     </div>
 
-                    <!-- Left and right controls -->
+                    --// Left and right controls //--
                     <a class="carousel-control-prev" href="#bannerSlide" data-slide="prev">
                         <span class="carousel-control-prev-icon"></span>
                     </a>
@@ -625,6 +720,7 @@
                         <span class="carousel-control-next-icon"></span>
                     </a>
                 </div>
+                -->
             </div>  
                
             @yield('content')
@@ -686,9 +782,54 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <!--<script src="{{ asset('assets/js/jquery.firstVisitPopup.js')}}"></script>-->
+    
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>-->
+    
     <script type="text/javascript">
+
+        //Select2
+        $('#city_id').select2({
+        placeholder: 'Pilih Kota',
+        ajax: {
+            url: '{{URL::to('/ajax/city')}}',
+            processResults: function (data) {
+            return {
+                results:  $.map(data, function (item) {
+                    return {
+                            id: item.id,
+                            text: item.city_name
+                        
+                    }
+                })
+            };
+            }
+            
+        }
+        });
+
+        $('#customer_id').select2({
+        placeholder: 'Pilih Toko',
+        ajax: {
+            url: '{{URL::to('/ajax/store')}}',
+            processResults: function (data) {
+            return {
+                results:  $.map(data, function (item) {
+                    return {
+                            id: item.id,
+                            text: item.store_name
+                        
+                    }
+                })
+            };
+            }
+            
+        }
+        });
+
+        
+
         //$('#accordion').collapse('show').height('auto');
 
         // duration of scroll animation
@@ -765,6 +906,32 @@
         $(document).ready(function(){
             $("#LocationForm").modal('show');
         });
+
+        $('#LocationForm').on('show.bs.modal', function () {
+        //geolocation
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(savePosition, positionError, {timeout:10000});
+        } else {
+            //Geolocation is not supported by this browser
+        }
+            
+
+            // handle the error here
+            function positionError(error) {
+                var errorCode = error.code;
+                var message = error.message;
+
+                alert(message);
+            }
+
+            function savePosition(position) {
+                        //$.post("geocoordinates.php", {lat: position.coords.latitude, lng: position.coords.longitude});
+                $('#lat').val(position.coords.latitude);
+                $('#lng').val(position.coords.longitude);
+                //$("#LocationForm").modal('hide');    
+            }
+        })
+
         /*
         $(function () {
 				$('#my-welcome-message').firstVisitPopup({
@@ -790,6 +957,8 @@
             $('.collapse.in').toggleClass('in');
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
         });
+
+        //
 
         function btn_code(){
             var voucher_code = document.getElementById("voucher_code").value;
