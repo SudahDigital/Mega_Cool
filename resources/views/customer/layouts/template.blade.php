@@ -660,39 +660,17 @@
             </ul>
             <div class="mx-auto text-center" style="margin-top: 35px;">
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/Gentongicecream/"  target="_blank"><i class="fab fa-facebook" ></i></a>
-                    <a href="https://instagram.com/gentongicecream?igshid=10b120fidnx58"  target="_blank"><i class="fab fa-instagram "></i></a>
+                    <a href="#"  target="_blank"><i class="fab fa-facebook" ></i></a>
+                    <a href="#"  target="_blank"><i class="fab fa-instagram "></i></a>
                     <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="https://twitter.com/kedaigentong?s=08" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
         </nav>
-        <!--content-->
-        <div id="content">
-            <!--
-            <nav class="navbar navbar-expand-lg fixed-top" style="z-index: 1.5;">
-                <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="btn button-burger-menu">
-                        <i class="fas fa-bars fa-2x" style="color:#ffffff;"></i>
-                    </button>
-                   
-                    <a class="navbar-brand nav-center" href="{{ url('/') }}">
-                        <img src="{{ asset('assets/image/logo-gentong.png') }}" class="p-0 m-0 d-inline-block align-top" alt="logo-gentong" loading="lazy">
-                    </a>
-                    <form action="{{route('search.index')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
-                        <div class="input-group">
-                            <div class="input-group-append">
-                                <button class="btn  my-2 my-sm-0 search_botton_navbar" type="submit" id="button-search-addon" style="border-radius: 50%;"><i class="fa fa-search"></i></button>&nbsp;&nbsp;&nbsp;
-                            </div>
-                            <input class="form-control d-inline-block m-100 search_input_navbar" name="keyword" type="text" value="{{Request::get('keyword')}}" placeholder="Search" aria-label="Search" aria-describedby="button-search-addon">
-                              
-                        </div>
-                    </form>
-                    <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="border-radius: 50%; background:#693234;; border:none;"><i class="fa fa-search" style=""></i></a>
-                    
-                </div>
-            </nav>
-            -->
+        <div class="overlay"></div>
+        
+        <!--hero-->
+        <div id="hero_cools">
             <!-- BANNER -->
             <div role="main" style="background-color:#ffffff">
                 <div class="container-fluid">
@@ -721,34 +699,63 @@
                     </a>
                 </div>
                 -->
-            </div>  
+            </div>
+        </div>
+
+        <!--content-->
+        <div id="content">
+            <!--
+            <nav class="navbar navbar-expand-lg fixed-top" style="z-index: 1.5;">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn button-burger-menu">
+                        <i class="fas fa-bars fa-2x" style="color:#ffffff;"></i>
+                    </button>
+                   
+                    <a class="navbar-brand nav-center" href="{{ url('/') }}">
+                        <img src="{{ asset('assets/image/logo-gentong.png') }}" class="p-0 m-0 d-inline-block align-top" alt="logo-gentong" loading="lazy">
+                    </a>
+                    <form action="{{route('search.index')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <button class="btn  my-2 my-sm-0 search_botton_navbar" type="submit" id="button-search-addon" style="border-radius: 50%;"><i class="fa fa-search"></i></button>&nbsp;&nbsp;&nbsp;
+                            </div>
+                            <input class="form-control d-inline-block m-100 search_input_navbar" name="keyword" type="text" value="{{Request::get('keyword')}}" placeholder="Search" aria-label="Search" aria-describedby="button-search-addon">
+                              
+                        </div>
+                    </form>
+                    <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="border-radius: 50%; background:#693234;; border:none;"><i class="fa fa-search" style=""></i></a>
+                    
+                </div>
+            </nav>
+            -->
+              
                
             @yield('content')
         </div>
 
         <!-- Footer section -->
-        <footer id="footer">
+        <div id="footer">
             <div class="d-flex justify-content-center">
-                <div class="col-md-6">
-                    <img src="{{ asset('assets/image/logo-gentong.png') }}" class="img-thumbnail" style="background-color:transparent; border:none;" alt="logo-gentong"> 
+                <div class="col-md-3">
+                    <img src="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png') }}" class="img-thumbnail" style="background-color:transparent; border:none;" alt="logo-gentong"> 
                 </div>
             </div>
             <br><br>
             <div class="row justify-content-center mx-auto" >    
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/Gentongicecream/"  target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://instagram.com/gentongicecream?igshid=10b120fidnx58"  target="_blank"><i class="fab fa-instagram "></i></a>
+                    <a href="#"  target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="#"  target="_blank"><i class="fab fa-instagram "></i></a>
                     <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="https://twitter.com/kedaigentong?s=08" target="_blank"><i class="fab fa-twitter "></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter "></i></a>
                 </div>
             </div>
             <div class="copyright text-center">
-                <p>@Copyright 2020</p>
+                <p>&copy;Copyright 2021</p>
             </div>
-        </footer>
+        </div>
     </div>
     
-    <div class="overlay"></div>
+    
 
     <!-- Modal search -->
     <div class="modal fade" id="searchModal" role="dialog">
@@ -827,8 +834,6 @@
             
         }
         });
-
-        
 
         //$('#accordion').collapse('show').height('auto');
 

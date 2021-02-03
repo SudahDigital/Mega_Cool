@@ -1,11 +1,14 @@
 @extends('customer.layouts.template')
+@section('title')
+Home    
+@endsection
 @section('content')
-
+    
     <div class="container" style="">
         <div class="row ">
             <div class="col-md-12">
                 <nav aria-label="breadcrumb" class="" >
-                    <ol class="breadcrumb pt-5 pb-0" style="background-color:#ffffff">
+                    <ol class="breadcrumb pt-3 pb-0" style="background-color:#ffffff">
                         <h2 class="breadcrumb-item">Our</h2>
                         <h2 class="breadcrumb-item active" aria-current="page">Product</h2>
                     </ol>
@@ -84,6 +87,9 @@
     -->
     <!--product-->
     <div style="background:#ffff">
+        <img src="{{ asset('assets/image/dot-top-right-content.jpg') }}" class="dot-content-top-right" style="" alt="dot-top-right-content">
+        <img src="{{ asset('assets/image/shape-content.jpg') }}" class="shape-content-bottom-right" style="" alt="shape-content">
+        <img src="{{ asset('assets/image/dot-bottom-left-content.jpg') }}" class="dot-content-bottom-left" style="" alt="dot-bottom-left-content">
         <div class="container" style="">
             <div class="row mt-0">
                 <div class="col-md-12 mt-4">
@@ -217,9 +223,24 @@
         </div>
     </div>
     
-    <div id="accordion" class="fixed-bottom">
-        <div class="card" style="border-radius:16px;">
-            <div id="card-cart" class="card-header">
+    <div id="accordion" class="fixed-bottom" style="border-radius:0;">
+        <div class="card" style="border-radius:0;">
+            <a role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
+                <div id="card-cart" class="card-header pt-1" style="border-radius:0;">
+                    <table class="table borderless">
+                        <tr>
+                            <td align="left" width="50%">
+                                <h5 style="color:#000">{{$total_item}} Item</h5>
+                            </td>
+                            <td align="right" width="50%">
+                                <h5 class="pull-right" style="color: #000">Pesan Sekarang <i class="fa fa-paper-plane" aria-hidden="true" style="color: #FF0000 !important"></i></h5>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </a>
+               
+                <!--
                 <table  width="100%" style="margin-bottom: 40px;">
                     <tbody>
                         <tr>
@@ -228,7 +249,7 @@
                                
                                     <span class="p1 fa-stack fa-2x has-badge" data-count="{{$total_item}}">
                                 
-                                        <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
+                                        //--<i class="p2 fa fa-circle fa-stack-2x"></i>--//
                                         <i class="p3 fa fa-shopping-cart " data-count="4b" style=""></i>
                                     </span>
                                 </div> 
@@ -255,7 +276,7 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
+                -->
             <div id="{{$total_item > 0 ? 'collapse-4' : '' }}" class="collapse" data-parent="#accordion">
                 <div class="card-body" id="card-detail" style="">
                     <div class="col-md-12" style="padding-bottom:6rem;">
