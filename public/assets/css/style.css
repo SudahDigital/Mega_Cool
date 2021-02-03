@@ -123,13 +123,14 @@ body {
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
-  content: "|";
+  content: " ";
+  /*content: "|";
   font-size: 20px;
-  color:#174C7C ; 
+  color:#174C7C ; */
 }
 .breadcrumb-item.active {
   color: #000000;
-  font-size: 15px;
+  font-size: 30px;
   font-weight: bold; 
 }
 
@@ -801,14 +802,17 @@ a.register:hover {
 }
 
 #content .item_product{
-  width:90%; 
-  padding:20px; 
-  border-radius:15px;
+  width:100%; 
+  padding:0;
+  border:4px solid #1A4066 !important; 
+  border-top-right-radius:20px;
+  border-top-left-radius:20px;
   margin-bottom:8rem;
 }
 
 #content .item_product img{
-  border-radius:15px; 
+  border-top-right-radius:20px;
+  border-top-left-radius:20px; 
   height:250px;
 }
 
@@ -922,30 +926,29 @@ height: 150px;
 
 #content .product-price {
   float: left;
-  color:#174C7C !important; 
-  font-family: Open Sans;
+  color:#ffff !important; 
   width: 100%; 
-  font-size: 45px; 
-  font-weight: 800;
+  font-size: 27px; 
+  font-weight: bold;
 }
 
 #content .product-price-header {
   float: left;
-  color:#174C7C !important; 
+  color:#ffff !important; 
   line-height: 1.36;
-  font-size:22px;
+  font-size:18px;
   font-weight: bold;
 }
 
-#content .button-plus-minus {
+/*#content .button-plus-minus {
   float: right;
-}
+}*/
 
 #content .button_plus, #content .button_minus {
   /*width: 25px; 
-  height: 25px;*/
-  color:#6a3137;
-  font-size: 20px;
+  height: 25px;
+  color:#6a3137;*/
+  font-size: 16px;
   font-weight: 800; 
   cursor:pointer;
 }
@@ -953,7 +956,7 @@ height: 150px;
 #content .show {
   /*width: 25px; 
   height: 25px;*/
-  color:#174C7C;
+  color:#ffffff;
   font-size: 20px;
   font-weight: 800; 
 }
@@ -981,19 +984,19 @@ height: 150px;
 }
 
 #content .button_add_to_cart {
-    font-family: Open Sans;
     text-decoration: none;
     display: inline-block;
     transition: .2s all;
     position: relative;
     z-index: 0;
     border: none;
-    border-radius: 10px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
     color: #ffffff;
-    background-color: #174C7C !important;
+    background-color: #FF0000 !important;
     font-size: 16px;
-    font-weight: 800; 
-    padding:15px;
+    font-weight: 700; 
+    padding:5px;
 }
 
 #content .button_add_to_cart:hover {
@@ -1059,10 +1062,11 @@ height: 150px;
     z-index: -1;
     transition: .2s all;
     opacity: 1;
-    padding:15px;
-    border-radius: 10px;
+    padding:5px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
     color: #ffffff; 
-    background-color:  #174C7C !important;
+    background-color:  #FF0000  !important;
 }
   
 #content .button_add_to_cart:hover::after {

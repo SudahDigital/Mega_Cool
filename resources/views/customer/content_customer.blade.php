@@ -2,11 +2,12 @@
 @section('content')
 
     <div class="container" style="">
-        <div class="row align-middle">
-            <div class="col-sm-12 col-md-12">
+        <div class="row ">
+            <div class="col-md-12">
                 <nav aria-label="breadcrumb" class="" >
-                    <ol class="breadcrumb py-5" style="background-color:#ffffff">
-                        <p class="breadcrumb-item active" aria-current="page" style="">Our Product</p>
+                    <ol class="breadcrumb pt-5 pb-0" style="background-color:#ffffff">
+                        <h2 class="breadcrumb-item">Our</h2>
+                        <h2 class="breadcrumb-item active" aria-current="page">Product</h2>
                     </ol>
                 </nav>
             </div>
@@ -14,6 +15,7 @@
     </div> 
 
     <!--menu categories-->
+    <!--
     <div style="{{$top_count > 0 ? 'background:#693234;' : 'background:#FDD8AF'}}">
         <div class="container">
             <div class="row align-middle mt-0" style="">  
@@ -45,7 +47,7 @@
                                     </button>
                                     @endif
                                 </td>
-                                <!--
+                                //--
                                 <td width="25%" align="right">
                                     
                                         <nav aria-label="breadcrumb">
@@ -54,7 +56,7 @@
                                             </ol>
                                         </nav>
                                 </td>
-                            -->
+                            
                             </tr>
                         </tbody>
                         </table>
@@ -79,146 +81,15 @@
             </div>
         </div>
     </div>
-
-    <!--top produk -->
-    @if($top_count > 0 )
-    <div id="top_product" style="background:#693234;margin-top:-2px;">
-        <div class="container ">
-            <div class="row">
-                <div class="col-md-12 mt-1 menu-wrapper">
-                    <div class="row section_content flex-row flex-nowrap menu" style="overflow-x:auto;overflow-y:hidden;z-index:2222; ">
-                        @foreach($top_product as $key => $value_top)
-                        <div id="product_list" class="col-6 col-md-4 d-flex item" style="z-index: 1">
-                            <div class="card mx-auto d-flex item_product">
-                                @if($value_top->discount > 0)
-                                <div class="ribbon"><span class="span-ribbon">{{$value_top->discount}}% OFF</span></div>
-                                @endif
-                                <a href="{{URL::route('product_detail', ['id'=>$value_top->id])}}">
-                                    <img style="" src="{{ asset('storage/'.(($value_top->image!='') ? $value_top->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-150 w-100 img-responsive" alt="...">
-                                </a>
-                                <div class="float-left px-1 py-2" style="width: 100%;">
-                                    <p class="product-price-header mb-0" style="">
-                                        {{$value_top->description}}
-                                    </p>
-                                </div>
-                                @if($value_top->discount > 0)
-                                <div class="d-inline-block">
-                                    <div class="text-left">
-                                        <p class="product-price-header mt-0 mb-0 ml-1" style="color:#6a3137;"><del><b><i>Rp. {{ number_format($value_top->price, 0, ',', '.') }}</i></b> </del></p>
-                                    </div>
-                                </div>
-                                <div class="float-left px-1 py-2" style="">
-                                    <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value_top->id}}" style="">Rp. {{ number_format($value_top->price_promo, 0, ',', '.') }}</p>
-                                </div>
-                                @else
-                                <div class="float-left px-1 py-2" style="">
-                                    <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value_top->id}}" style="">Rp. {{ number_format($value_top->price, 0, ',', '.') }}</p>
-                                </div>
-                                @endif
-                                @if($value_top->stock == 0)
-                                    <div class="p-1 mb-0 text-dark text-center" style="border-radius:7px;background-color:#e9eff5;"><small><b>Sisa Stok {{$value_top->stock}}</b></small></div>
-                                @endif
-                                <table width="100%" class="hdr_tbl_cart mt-auto" style="bottom: 0">
-                                    <tbody>
-                                        <tr>
-                                            <td width="10%" align="right" valign="middle">
-                                                    <input type="hidden" id="Product_id{{$value_top->id}}" name="Product_id" value="{{$value_top->id}}">
-                                                    <input type="hidden" id="quantity_add{{$value_top->id}}" name="quantity" value="1">
-                                                    @if($value_top->discount > 0)
-                                                    <input type="hidden" id="harga{{$value_top->id}}" name="price" value="{{$value_top->price_promo}}">
-                                                    @else
-                                                    <input type="hidden" id="harga{{$value_top->id}}" name="price" value="{{$value_top->price}}">
-                                                    @endif
-                                                    @if($value_top->stock > 0)
-                                                    <button class="btn button_minus" onclick="button_minus('{{$value_top->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                                    @else
-                                                    <button disabled class="btn button_minus" onclick="" style="background:none; border:none; color:#693234;outline:none;cursor: no-drop;"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                                    @endif
-                                            </td>
-                                            <td width="10%" align="center" valign="middle">
-                                                <?php
-                                                $ses_id = \Request::header('User-Agent');
-                                                $clientIP = \Request::getClientIp(true);
-                                                $user = $ses_id.$clientIP; 
-                                                //$user = \Request::header('User-Agent'); 
-                                                $view_pesan = \DB::select("SELECT orders.session_id, orders.status, orders.username, 
-                                                            products.description, products.image, products.price, order_product.id,
-                                                            order_product.order_id,order_product.product_id,order_product.quantity
-                                                            FROM order_product, products, orders WHERE 
-                                                            orders.id = order_product.order_id AND order_product.product_id = $value_top->id AND 
-                                                            order_product.product_id = products.id AND orders.status = 'SUBMIT' 
-                                                            AND orders.session_id = '$user' AND orders.username IS NULL ");
-                                                $hitung = count($view_pesan);
-                                                    if($hitung > 0){
-                                                        foreach ($view_pesan as $key => $k_top) {
-                                                        echo '<p id="show_'.$value_top->id.'" class="d-inline show" style="">'.$k_top->quantity.'</p>';
-                                                        echo '<input type="hidden" id="jmlbrg_'.$value_top->id.'" name="quantity" value="'.$k_top->quantity.'">';
-                                                        }
-                                                    }
-                                                    else{
-                                                        echo '<input type="hidden" id="jmlbrg_'.$value_top->id.'" name="quantity" value="0">';
-                                                        echo '<p id="show_'.$value_top->id.'" class="d-inline show" style="">0</p>';
-                                                    }
-                                                ?>
-                                                <input type="hidden" id="stock{{$value_top->id}}" name="stock" value="{{$value_top->stock}}">
-                                            </td>
-                                            <td width="10%" align="left" valign="middle">
-                                                @if($value_top->stock > 0)
-                                                <button class="btn button_plus" onclick="button_plus('{{$value_top->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                                @else
-                                                <button disabled class="btn button_plus" onclick="" style="background:none; border:none; color:#693234;outline:none;cursor: no-drop;"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        @endforeach
-                        <!--
-                        <div class="col-md-12">
-                            <div class="row justify-content-center" >
-                            <div class="page paging" style="margin-top:0; margin-bottom:1rem;">/*$product->appends(Request::all())->onEachSide(5)->links('vendor.pagination.bootstrap-4') */</div>
-                            </div>
-                        </div>
-                        --> 
-                    </div>
-                    <div class="paddles d-none d-md-block d-md-none">
-                        @if($top_count > 3)
-                        <button class="left-paddle paddle paddles_hide">
-                            <i class="fa fa-angle-double-left" style=""></i>
-                        </button>
-                        <button class="right-paddle paddle" style="text-decoration: none;">
-                            <i class="fa fa-angle-double-right" style=""></i>
-                        </button>
-                        @endif
-                    </div>
-
-                    <div class="paddles d-md-none">
-                        @if($top_count > 2)
-                        <button class="left-paddle paddle paddles_hide">
-                            <i class="fa fa-angle-double-left" style=""></i>
-                        </button>
-                        <button class="right-paddle paddle" style="text-decoration: none;">
-                            <i class="fa fa-angle-double-right" style=""></i>
-                        </button>
-                        @endif
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    @endif
-    
-    <!--not top product-->
-    <div style="background:#FDD8AF">
+    -->
+    <!--product-->
+    <div style="background:#ffff">
         <div class="container" style="">
             <div class="row mt-0">
                 <div class="col-md-12 mt-4">
                     <div class="row section_content">
                     @foreach($product as $key => $value)
-                    <div id="product_list"  class="col-6 col-md-4 d-flex mx-0" style="z-index: 1">
+                    <div id="product_list"  class="col-6 col-md-3 d-flex mx-0" style="z-index: 1">
                         <div class="card mx-auto d-flex item_product">
                             @if($value->discount > 0)
                             <div class="ribbon"><span class="span-ribbon">{{$value->discount}}% OFF</span></div>
@@ -226,82 +97,111 @@
                             <a href="{{URL::route('product_detail', ['id'=>$value->id])}}">
                                 <img style="" src="{{ asset('storage/'.(($value->image!='') ? $value->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-150 w-100 img-responsive" alt="...">
                             </a>
-                            <div class="float-left px-1 py-2" style="width: 100%;">
-                                <p class="product-price-header mb-0" style="">
-                                    {{$value->description}}
-                                </p>
-                            </div>
-                            @if($value->discount > 0)
-                            <div class="d-inline-block">
-                                <div class="text-left">
-                                    <p class="product-price-header mt-0 mb-0 ml-1" style="color:#6a3137;"><del><b><i>Rp. {{ number_format($value->price, 0, ',', '.') }}</i></b> </del></p>
+                            <div class="card-body" style="background-color:#1A4066;">
+                                <div class="float-left px-1 py-2" style="width: 100%;">
+                                    <p class="product-price-header mb-0" style="">
+                                        {{$value->Product_name}}
+                                    </p>
                                 </div>
-                            </div>
-                            <div class="float-left px-1 py-2" style="">
-                                <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp. {{ number_format($value->price_promo, 0, ',', '.') }}</p>
-                            </div>
-                            @else
-                            <div class="float-left px-1 py-2" style="">
-                                <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp. {{ number_format($value->price, 0, ',', '.') }}</p>
-                            </div>
-                            @endif
-                            @if($value->stock == 0)
-                                <div class="p-1 mb-0 text-dark text-center" style="border-radius:7px;background-color:#e9eff5;"><small><b>Sisa Stok {{$value->stock}}</b></small></div>
-                            @endif
-                            <table width="100%" class="hdr_tbl_cart mt-auto" style="bottom: 0">
-                                <tbody>
+                                @if($value->discount > 0)
+                                <div class="d-inline-block">
+                                    <div class="text-left">
+                                        <p class="product-price mt-0 mb-0 ml-1" style="color:#ffff;"><del><b><i>Rp. {{ number_format($value->price, 0, ',', '.') }}</i></b> </del></p>
+                                    </div>
+                                </div>
+                                <div class="float-left px-1 py-2" style="">
+                                    <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp. {{ number_format($value->price_promo, 0, ',', '.') }}</p>
+                                </div>
+                                @else
+                                <div class="float-left px-1 py-2" style="">
+                                    <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp. {{ number_format($value->price, 0, ',', '.') }},-</p>
+                                </div>
+                                @endif
+                                @if($value->stock == 0)
+                                    <div class="p-1 mb-0 text-dark text-center" style="border-radius:7px;background-color:#e9eff5;"><small><b>Sisa Stok {{$value->stock}}</b></small></div>
+                                @endif
+                                <table width="100%" class="hdr_tbl_cart">
+                                    <tbody>
                                     <tr>
-                                        <td width="10%" align="right" valign="middle">
-                                            <input type="hidden" id="Product_id{{$value->id}}" name="Product_id" value="{{$value->id}}">
-                                            <input type="hidden" id="quantity_add{{$value->id}}" name="quantity" value="1">
-                                            @if($value->discount > 0)
-                                            <input type="hidden" id="harga{{$value->id}}" name="price" value="{{$value->price_promo}}">
-                                            @else
-                                            <input type="hidden" id="harga{{$value->id}}" name="price" value="{{$value->price}}">
-                                            @endif
-                                            @if($value->stock > 0)
-                                            <button class="btn button_minus" onclick="button_minus('{{$value->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                            @else
-                                            <button disabled class="btn button_minus" onclick="" style="background:none; border:none; color:#693234;outline:none;cursor: no-drop;"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                            @endif
+                                        <td class="tbl_cart" valign="middle" style="" rowspan="2">
+                                            
+                                            <input type="hidden" id="{{$value->id}}" name="quantity" value="1">
+                                            <input type="hidden" id="harga{{$value->id}}" name="price" value="{{ $value->price }}">
+                                            <input type="hidden" name="Product_id" value="{{$value->id}}">
+                                            <button class="btn btn-block button_add_to_cart respon" style="">Tambah</button>
+                                            
                                         </td>
-                                        <td width="10%" align="center" valign="middle">
-                                            <?php
-                                            $ses_id = \Request::header('User-Agent');
-                                            $clientIP = \Request::getClientIp(true);
-                                            $user = $ses_id.$clientIP; 
-                                            //$user = \Request::header('User-Agent'); 
-                                            $view_pesan = \DB::select("SELECT orders.session_id, orders.status, orders.username, 
-                                                        products.description, products.image, products.price, order_product.id,
-                                                        order_product.order_id,order_product.product_id,order_product.quantity
-                                                        FROM order_product, products, orders WHERE 
-                                                        orders.id = order_product.order_id AND order_product.product_id = $value->id AND 
-                                                        order_product.product_id = products.id AND orders.status = 'SUBMIT' 
-                                                        AND orders.session_id = '$user' AND orders.username IS NULL ");
-                                            $hitung = count($view_pesan);
-                                                if($hitung > 0){
-                                                    foreach ($view_pesan as $key => $k) {
-                                                    echo '<p id="show_'.$value->id.'" class="d-inline show" style="">'.$k->quantity.'</p>';
-                                                    echo '<input type="hidden" id="jmlbrg_'.$value->id.'" name="quantity" value="'.$k->quantity.'">';
-                                                    }
-                                                }
-                                                else{
-                                                    echo '<input type="hidden" id="jmlbrg_'.$value->id.'" name="quantity" value="0">';
-                                                    echo '<p id="show_'.$value->id.'" class="d-inline show" style="">0</p>';
-                                                }
-                                            ?>
-                                            <input type="hidden" id="stock{{$value->id}}" name="stock" value="{{$value->stock}}">
+                                        <td width="10%" align="left" valign="middle" rowspan="2">
+                                            <p id="show_{{$value->id}}" class="d-inline show" style="">1</p>
                                         </td>
-                                        <td width="10%" align="left" valign="middle">
-                                            @if($value->stock > 0)
-                                            <button class="btn button_plus" onclick="button_plus('{{$value->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                            @else
-                                            <button disabled class="btn button_plus" onclick="" style="background:none; border:none; color:#693234;outline:none;cursor: no-drop;"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                            @endif
+                                        <td width="10%" align="center" valign="middle" bgcolor="#ffffff">
+                                            <a class="button_plus" onclick="button_plus('{{$value->id}}')" style=""><i class="fa fa-plus" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
-                                </tbody>
-                            </table>
+                                    <tr>
+                                        <td width="10%" align="center" valign="middle" bgcolor="#ffffff">
+                                            <a class="button_minus" onclick="button_minus('{{$value->id}}')" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!--
+                                <table width="100%" class="hdr_tbl_cart mt-auto" style="bottom: 0">
+                                    <tbody>
+                                        <tr>
+                                            <td width="10%" align="right" valign="middle">
+                                                <input type="hidden" id="Product_id{{$value->id}}" name="Product_id" value="{{$value->id}}">
+                                                <input type="hidden" id="quantity_add{{$value->id}}" name="quantity" value="1">
+                                                @if($value->discount > 0)
+                                                <input type="hidden" id="harga{{$value->id}}" name="price" value="{{$value->price_promo}}">
+                                                @else
+                                                <input type="hidden" id="harga{{$value->id}}" name="price" value="{{$value->price}}">
+                                                @endif
+                                                @if($value->stock > 0)
+                                                <button class="btn button_minus" onclick="button_minus('{{$value->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                @else
+                                                <button disabled class="btn button_minus" onclick="" style="background:none; border:none; color:#693234;outline:none;cursor: no-drop;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                @endif
+                                            </td>
+                                            <td width="10%" align="center" valign="middle">
+                                                <?php
+                                                //$ses_id = \Request::header('User-Agent');
+                                                //$clientIP = \Request::getClientIp(true);
+                                                $user =  \Auth::user()->id; 
+                                                //$user = \Request::header('User-Agent'); 
+                                                $view_pesan = \DB::select("SELECT orders.user_id, orders.status, orders.customer_id, 
+                                                            products.description, products.image, products.price, order_product.id,
+                                                            order_product.order_id,order_product.product_id,order_product.quantity
+                                                            FROM order_product, products, orders WHERE 
+                                                            orders.id = order_product.order_id AND order_product.product_id = $value->id AND 
+                                                            order_product.product_id = products.id AND orders.status = 'SUBMIT' 
+                                                            AND orders.user_id = '$user' AND orders.customer_id IS NULL ");
+                                                $hitung = count($view_pesan);
+                                                    if($hitung > 0){
+                                                        foreach ($view_pesan as $key => $k) {
+                                                        echo '<p id="show_'.$value->id.'" class="d-inline show" style="">'.$k->quantity.'</p>';
+                                                        echo '<input type="hidden" id="jmlbrg_'.$value->id.'" name="quantity" value="'.$k->quantity.'">';
+                                                        }
+                                                    }
+                                                    else{
+                                                        echo '<input type="hidden" id="jmlbrg_'.$value->id.'" name="quantity" value="0">';
+                                                        echo '<p id="show_'.$value->id.'" class="d-inline show" style="">0</p>';
+                                                    }
+                                                ?>
+                                                <input type="hidden" id="stock{{$value->id}}" name="stock" value="{{$value->stock}}">
+                                            </td>
+                                            <td width="10%" align="left" valign="middle">
+                                                @if($value->stock > 0)
+                                                <button class="btn button_plus" onclick="button_plus('{{$value->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                @else
+                                                <button disabled class="btn button_plus" onclick="" style="background:none; border:none; color:#693234;outline:none;cursor: no-drop;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                -->
+                            </div>
                         </div>
                     </div>
                     @endforeach
