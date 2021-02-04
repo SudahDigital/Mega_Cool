@@ -1020,7 +1020,7 @@ height: 150px;
   float: left;
   color:#ffff !important; 
   width: 100%; 
-  font-size: 27px; 
+  font-size: 22px; 
   font-weight: bold;
 }
 
@@ -1028,8 +1028,8 @@ height: 150px;
   float: left;
   color:#ffff !important; 
   line-height: 1.36;
-  font-size:18px;
-  font-weight: bold;
+  font-size:16px;
+  font-weight: 600;
 }
 
 /*#content .button-plus-minus {

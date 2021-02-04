@@ -50,7 +50,7 @@
         <div class="form-group form-float">
             <div class="form-line">
                 <input type="number" class="form-control" name="price" autocomplete="off" value="{{$product->price}}" required/>
-                <label class="form-label">Product Price (IDR)</label>
+                <label class="form-label">Product Price /Box (IDR)</label>
             </div>
         </div>
         @if($product->discount > 0)
@@ -71,7 +71,7 @@
         <div class="form-group form-float">
             <div class="form-line">
                 <input type="number" class="form-control" name="stock" min="0" autocomplete="off" value="{{$product->stock}}" required>
-                <label class="form-label">Product Stock</label>
+                <label class="form-label">Product Stock (Box)</label>
             </div>
         </div>
 
