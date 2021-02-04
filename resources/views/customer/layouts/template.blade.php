@@ -632,40 +632,43 @@
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
-            <div class="sidebar-header mx-auto">
-                <a href="{{url('/') }}">
-                    <img src="{{ asset('assets/image/logo-gentong.png') }}" width="70%" height="auto" class="d-inline-block align-top" alt="logo-gentong" loading="lazy">
+            <img src="{{ asset('assets/image/sp-sidebar.png') }}" class="sidebar-dot-top-right"  
+            style="" alt="sp-sidebar">
+            <div class="sidebar-header">
+                <a href="{{url('/') }}" >
+                    @if(\Auth::user())
+                        @if(\Auth::user()->avatar)
+                            <img src="{{asset('storage/'.Auth::user()->avatar)}}" alt="user" />
+                        @else
+                        <img src="{{asset('assets/image/image-noprofile.png')}}" alt="user"/>
+                        @endif
+                    @endif
                 </a>
+                <p>{{\Auth::user()->name}}</p>
             </div>
             <ul class="list-unstyled components">
                 <li class="">
                    <a href="{{ url('/') }}">Beranda</a>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Produk</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        @foreach($categories as $key => $value)
-                            <li>
-                                <a href="{{route('category.index', ['id'=>$value->id] )}}" style="font-size: 1.1em !important;">{{$value->name}}</a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </li>
-                <li>
-                   <a href="{{URL::route('cara_belanja')}}">Cara Berbelanja</a>
+                   <a href="{{URL::route('cara_belanja')}}">Profile</a>
                 </li>
                 <li>
                     <a href="{{URL::route('contact')}}">Kontak Kami</a>
                 </li>
             </ul>
-            <div class="mx-auto text-center" style="margin-top: 35px;">
-                <div class="social-icons">
-                    <a href="#"  target="_blank"><i class="fab fa-facebook" ></i></a>
-                    <a href="#"  target="_blank"><i class="fab fa-instagram "></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
+            @if(\Auth::user())
+                <form action="{{route('logout')}}" method="POST">
+                    @csrf
+                    <div id="log">   
+                        <button class="btn logout">
+                            Keluar
+                        </button>
+                    </div>
+                </form>
+             @endif
+             <img src="{{ asset('assets/image/sp-sidebar-bottom.jpg') }}" class="sidebar-dot-bottom"  
+             style="" alt="sp-sidebar-bottom"> 
         </nav>
         <div class="overlay"></div>
         
@@ -673,7 +676,7 @@
         <div id="hero_cools">
             <!-- BANNER -->
             <div role="main" style="background-color:#ffffff">
-                <div class="container-fluid">
+                <div class="container">
                     <button type="button" id="sidebarCollapse" class="btn button-burger-menu">
                         <i class="fas fa-bars fa-2x" style="color:#ffffff;"></i>
                     </button>
@@ -736,13 +739,17 @@
         <!-- Footer section -->
         <div id="footer">
             <div class="d-flex justify-content-center">
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <img src="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png') }}" class="img-thumbnail" style="background-color:transparent; border:none;" alt="logo-gentong"> 
                 </div>
             </div>
             <br><br>
-            <div class="row justify-content-center mx-auto" >    
+            <div class="row justify-content-center mx-auto" > 
+                   <div class="col-md-12 text-center">
+                       <p>Follow Us</p>
+                   </div>
                 <div class="social-icons">
+                    
                     <a href="#"  target="_blank"><i class="fab fa-facebook"></i></a>
                     <a href="#"  target="_blank"><i class="fab fa-instagram "></i></a>
                     <a href="#"><i class="fab fa-youtube"></i></a>
@@ -755,8 +762,6 @@
         </div>
     </div>
     
-    
-
     <!-- Modal search -->
     <div class="modal fade" id="searchModal" role="dialog">
         <div class="modal-dialog">

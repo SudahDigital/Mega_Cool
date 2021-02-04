@@ -321,10 +321,10 @@ a:focus {
 ----------------------------------------------------- */
 
 #sidebar {
-    width: 40%;
+    width: 35%;
     position: fixed;
     top: 0;
-    left: -40%;
+    left: -35%;
     height: 100vh;
     z-index: 9999;
     background-color: #1A4066;
@@ -333,10 +333,11 @@ a:focus {
     transition: all 0.3s;
     overflow-y: scroll;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
-    padding-left:7%;
+    padding: 0;
+    /*padding-left:7%;
     padding-right:7%;
     padding-top: 40px;
-    padding-bottom: 35px;
+    padding-bottom: 35px;*/
     font-size: 18px;
     font-weight: 800;
     line-height: 1.38;
@@ -384,13 +385,23 @@ a:focus {
 
 #sidebar .sidebar-header {
   /*padding: 30px 0px 10px;
-  /*background: #fff;*/
-  color: #ffffff;
   text-align: center !important;
+  
+  /*background: #fff;*/
+  text-align: left !important;
+  color: #ffffff;
+  margin-top:3rem;
+  margin-left: 9rem;
+}
+
+#sidebar .sidebar-header img {
+  width: 150px;
+  height: auto;
 }
 
 #sidebar .sidebar-header p {
   color: #ffffff !important;
+  font-weight: 600;
 }
 
 #sidebar ul.components {
@@ -398,10 +409,13 @@ a:focus {
 }
 
 #sidebar ul li a {
-    padding: 5px;
+    z-index:1;
+    margin-left: 9rem;
+    margin-right: 9rem;
     margin-bottom: 15px;
     border-radius: 5px;
-    font-size: 1.1em;
+    font-size: 23px;
+    font-weight: 700;
     display: block;
 }
 
@@ -413,7 +427,7 @@ a:focus {
 
 #sidebar ul li a:hover {
     color: white;
-    background: #174C7C;
+    background: #153651;
 }
 
 #sidebar ul li.active>a,
@@ -635,24 +649,46 @@ a.register:hover {
  }
 
  #log .logout {
-  background: #fff !important;
-  color: #174C7C!important;
-  /*border: 2px solid #4db849 !important;*/
-  border:none;
-  font-size: 30px;
-  font-weight: 800;
-  font-family: Open Sans;
-  padding-left:2rem;
-  padding-right:2rem;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  margin-top: -10px;
+  text-decoration: none;
+  display: inline-block;
+  transition: .2s all;
+  position: relative;
+  z-index: 0;
+  margin-left: 9rem;
+  border: none;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  color: #ffffff;
+  background-color: #FF0000 !important;
+  font-size: 16px;
+  font-weight: 700; 
+  padding:8px 54px;
 }
 
 #log .logout:hover {
-  background: #174C7C  !important;
-  color: #fff !important;
+  outline:0px !important;
+  -webkit-appearance:none;
+  -webkit-transform: translateY(-3px);
+  transform: translateY(-3px);
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3); 
 }
+
+#log .logout:focus {
+  outline:0px !important;
+  -webkit-appearance:none;
+  -webkit-transform: translateY(-1px);
+  transform: translateY(-1px);
+  box-shadow: 0px 0.5rem 1rem rgba(0, 0, 0, 0.3); 
+}
+
+#log .logout:active {
+  outline:0px !important;
+  -webkit-appearance:none;
+  -webkit-transform: translateY(-3px);
+  transform: translateY(-3px);
+  box-shadow: 0px 0.3rem 1rem rgba(0, 0, 0, 0.3); 
+}
+
 
 /* ---------------------------------------------------
     TOP PRODUCT STYLE
@@ -694,6 +730,27 @@ a.register:hover {
     z-index: 1;
  }
 
+ .sidebar-dot-top-right {
+  width: 250px;
+  height: auto;
+  background:transparent;
+  position: absolute;
+  margin-top:0;
+  right:0;
+  border:none;
+  z-index: -1;
+}
+
+.sidebar-dot-bottom {
+  width: 450px;
+  height: auto;
+  background:transparent;
+  position: relative;
+  margin-top:-18.5rem;
+  border:none;
+  z-index: -2;
+}
+
  #content .dot-content-top-right {
   width: 220px;
   height: auto;
@@ -709,7 +766,7 @@ a.register:hover {
   height: auto;
   background:transparent;
   position: absolute;
-  bottom:33.5%;
+  bottom:30%;
   right:0;
   border:none;
 }
@@ -719,7 +776,7 @@ a.register:hover {
   height: auto;
   background:transparent;
   position:absolute;
-  bottom:33.5%;
+  bottom:30%;
   left:0;
   border:none;
 }
@@ -1485,7 +1542,7 @@ height: 150px;
 /* ============ Footer =============== */
 #footer {
     background-color:#1A4066;
-    padding-top: 10rem;
+    padding-top: 7rem;
     padding-bottom: 2rem;
     position: relative;
 }
@@ -1496,11 +1553,17 @@ height: 150px;
     font-size: 2rem;
 }
 
+#footer p {
+  color:#ffff;
+  font-weight: 600;
+  font-size: 16px;
+}
+
 #footer .social-icons a {
-    margin-top: 5rem;
-    margin-right: 25px;
-    margin-left: 25px;
-    font-size:47px;
+    margin-top: 3rem;
+    margin-right: 15px;
+    margin-left: 15px;
+    font-size:30px;
     color: #fff;
 }
 
