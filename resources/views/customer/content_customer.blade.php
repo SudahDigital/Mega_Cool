@@ -100,7 +100,9 @@ Home
                             @if($value->discount > 0)
                             <div class="ribbon"><span class="span-ribbon">{{$value->discount}}% OFF</span></div>
                             @endif
-                            <a href="{{URL::route('product_detail', ['id'=>$value->id])}}">
+                            
+                            <!--<a href="{{URL::route('product_detail', ['id'=>$value->id])}}">-->
+                            <a href="#">
                                 <img style="" src="{{ asset('storage/'.(($value->image!='') ? $value->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-150 w-100 img-responsive" alt="...">
                             </a>
                             <div class="card-body" style="background-color:#1A4066;">
@@ -131,22 +133,22 @@ Home
                                     <tr>
                                         <td class="tbl_cart" valign="middle" style="" rowspan="2">
                                             
-                                            <input type="hidden" id="{{$value->id}}" name="quantity" value="1">
+                                            <input type="hidden" id="jumlah{{$value->id}}" name="quantity" value="1">
                                             <input type="hidden" id="harga{{$value->id}}" name="price" value="{{ $value->price }}">
-                                            <input type="hidden" name="Product_id" value="{{$value->id}}">
-                                            <button class="btn btn-block button_add_to_cart respon" style="">Tambah</button>
+                                            <input type="hidden" id="{{$value->id}}" name="Product_id" value="{{$value->id}}">
+                                            <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart('{{$value->id}}')" style="">Tambah</button>
                                             
                                         </td>
                                         <td width="10%" align="left" valign="middle" rowspan="2">
                                             <p id="show_{{$value->id}}" class="d-inline show" style="">1</p>
                                         </td>
-                                        <td width="10%" align="center" valign="middle" bgcolor="#ffffff">
+                                        <td width="10%" align="center" valign="middle" bgcolor="#ffffff" style="border-top-left-radius:5px;border-top-right-radius:5px;">
                                             <a class="button_plus" onclick="button_plus('{{$value->id}}')" style=""><i class="fa fa-plus" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td width="10%" align="center" valign="middle" bgcolor="#ffffff">
-                                            <a class="button_minus" onclick="button_minus('{{$value->id}}')" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                        <td width="10%" align="center" valign="middle" bgcolor="#ffffff" style="border-bottom-left-radius:5px;border-bottom-right-radius:5px;">
+                                            <a class="button_minus" onclick="button_minus('{{$value->id}}')" id="btn_min" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                     </tbody>

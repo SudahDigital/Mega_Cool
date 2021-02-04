@@ -1149,7 +1149,70 @@
                 alert('Anda harus mengisi data dengan lengkap  & benar !');
             }
         }
+
+        function button_plus(id)
+        {
+            var jumlah = $('#jumlah'+id).val();
+            var jumlah = parseInt(jumlah) + 1;
+
+            // AMBIL NILAI HARGA
+            var harga = $('#harga'+id).val();;
+            var harga = parseInt(harga) * jumlah;
+
+            // UBAH FORMAT UANG INDONESIA
+            var	number_string = harga.toString();
+            var sisa 	= number_string.length % 3;
+            var rupiah 	= number_string.substr(0, sisa);
+            var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+            }
+
+            harga = "Rp. " + rupiah +",-";
+            
+            // alert(jumlah)
+            if (jumlah<1) {
+            alert('Jumlah Tidak Boleh Kosong')
+            } else {
+            $('#jumlah'+id).val(jumlah)
+            $('#show_'+id).html(jumlah)
+            $('#productPrice'+id).text(harga);
+            }
+        }
         
+        function button_minus(id)
+        {
+            var jumlah = $('#jumlah'+id).val();
+            var jumlah = parseInt(jumlah) - 1;
+
+            // AMBIL NILAI HARGA
+            var harga = $('#harga'+id).val();;
+            var harga = parseInt(harga) * jumlah;
+
+            // UBAH FORMAT UANG INDONESIA
+            var	number_string = harga.toString();
+            var sisa 	= number_string.length % 3;
+            var rupiah 	= number_string.substr(0, sisa);
+            var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+            }
+
+            harga = "Rp " + rupiah;
+
+            if (jumlah<1) {
+            alert('Jumlah Tidak Boleh Kurang dari 1')
+            } else {
+            $('#jumlah'+id).val(jumlah);
+            $('#show_'+id).html(jumlah);
+            $('#productPrice'+id).text(harga);
+            }
+        }
+        /*
         function button_minus(id)
         {   
             var jumlah = $('#jmlbrg_'+id).val();
@@ -1246,56 +1309,19 @@
                         });
             }
         }
+        */
 
-        function button_plus(id)
+        function add_tocart(id)
         {
-            var jumlah = $('#jmlbrg_'+id).val();
-            var jumlah = parseInt(jumlah) + 1;
-
-            var stock = $('#stock'+id).val();
-            // AMBIL NILAI HARGA
-            var harga = $('#harga'+id).val();
-            var harga = parseInt(harga) * jumlah;
-
-            // UBAH FORMAT UANG INDONESIA
-            var	number_string = harga.toString();
-            var sisa 	= number_string.length % 3;
-            var rupiah 	= number_string.substr(0, sisa);
-            var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
-
-            if (ribuan) {
-            separator = sisa ? '.' : '';
-            rupiah += separator + ribuan.join('.');
-            }
-
-            harga = "Rp. " + rupiah;
-            // alert(jumlah)
-            if (jumlah < 0) {
-            alert('Jumlah Tidak Boleh kurang dari nol')
-            } 
-            else if (jumlah > stock){
-                Swal.fire({
-                text: "Maaf, stok produk tidak mencukupi",
-                icon: 'info',
-                showCancelButton: false,
-                confirmButtonText: "Tutup",
-                confirmButtonColor: '#6a3137'
-                });
-                $(".swal2-modal").css('background-color', ' #FDD8AF')
-            }
-            else
-            {
-                $('#jmlbrg_'+id).val(jumlah);
-                $('#show_'+id).html(jumlah);
-                var Product_id = $('#Product_id'+id).val();
-                var quantity = $('#quantity_add'+id).val();
-                var price = $('#harga'+id).val();
-                var voucher_code_hide = document.getElementById("voucher_code_hide").value;
-                $.ajaxSetup({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            }
-                        });
+            var Product_id = $('#'+id).val();
+            var quantity = $('#jumlah'+id).val();
+            var price = $('#harga'+id).val();
+            var voucher_code_hide = document.getElementById("voucher_code_hide").value;
+            $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
                 $.ajax({
                     url : '{{URL::to('/keranjang/simpan')}}',
                     type:'POST',
@@ -1352,9 +1378,9 @@
                     console.log('Error:', data);
                     }
                 });
-            }
+            
         }
-
+        
         function button_minus_kr(id)
         {   
             var jumlah = $('#jmlkr_'+id).val();

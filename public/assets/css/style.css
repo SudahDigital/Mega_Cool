@@ -766,7 +766,7 @@ a.register:hover {
   height: auto;
   background:transparent;
   position: absolute;
-  bottom:30%;
+  bottom:16%;
   right:0;
   border:none;
 }
@@ -776,7 +776,7 @@ a.register:hover {
   height: auto;
   background:transparent;
   position:absolute;
-  bottom:30%;
+  bottom:16%;
   left:0;
   border:none;
 }
@@ -1020,7 +1020,7 @@ height: 150px;
   float: left;
   color:#ffff !important; 
   width: 100%; 
-  font-size: 22px; 
+  font-size: 23px; 
   font-weight: bold;
 }
 

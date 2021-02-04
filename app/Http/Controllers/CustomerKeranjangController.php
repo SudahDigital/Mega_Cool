@@ -71,16 +71,17 @@ class CustomerKeranjangController extends Controller
     }
     
     public function simpan(Request $request){ 
-        $ses_id = $request->header('User-Agent');
+        /*$ses_id = $request->header('User-Agent');
         $clientIP = \Request::getClientIp(true);
-        $id = $ses_id.$clientIP; 
+        $id = $ses_id.$clientIP;*/
+        $id_user = \Auth::user()->id; 
         //$id = $request->header('User-Agent'); 
         $id_product = $request->get('Product_id');
         $quantity=$request->get('quantity');
         $price=$request->get('price');
         $cek_promo = product::findOrFail($id_product);
-        $cek_order = Order::where('session_id','=',"$id")
-        ->where('status','=','SUBMIT')->whereNull('username')->first();
+        $cek_order = Order::where('user_id','=',"$id_user")
+        ->where('status','=','SUBMIT')->whereNull('customer_id')->first();
         if($cek_order !== null){
             $order_product = order_product::where('order_id','=',$cek_order->id)
             ->where('product_id','=',$id_product)->first();
@@ -108,7 +109,7 @@ class CustomerKeranjangController extends Controller
         else{
 
             $order = new \App\Order;
-            $order->session_id = $id;
+            $order->user_id = $id_user;
             //$order->quantity = $quantity;
             $order->invoice_number = date('YmdHis');
             $order->total_price = $price * $quantity;
@@ -616,16 +617,17 @@ class CustomerKeranjangController extends Controller
 
     public function ajax_cart(Request $request)
     {   
-        $ses_id = $request->header('User-Agent');
+        /*$ses_id = $request->header('User-Agent');
         $clientIP = \Request::getClientIp(true);
-        $session_id = $ses_id.$clientIP;
+        $session_id = $ses_id.$clientIP;*/
+        $id_user = \Auth::user()->id;
         $total_item = DB::table('orders')
                     ->join('order_product','order_product.order_id','=','orders.id')
-                    ->where('session_id','=',"$session_id")
-                    ->whereNull('orders.username')
+                    ->where('user_id','=',"$id_user")
+                    ->whereNull('orders.customer_id')
                     ->count();
         if ($total_item < 1){
-            echo '<div id="accordion">
+            echo '<div id="accordion" class="fixed-bottom" style="border-radius:0;">
                     <div class="card fixed-bottom" style="">
                         <div id="card-cart" class="card-header" >
                             <table width="100%" style="margin-bottom: 40px;">
