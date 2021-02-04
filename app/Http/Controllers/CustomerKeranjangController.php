@@ -628,38 +628,21 @@ class CustomerKeranjangController extends Controller
                     ->count();
         if ($total_item < 1){
             echo '<div id="accordion" class="fixed-bottom" style="border-radius:0;">
-                    <div class="card fixed-bottom" style="">
-                        <div id="card-cart" class="card-header" >
-                            <table width="100%" style="margin-bottom: 40px;">
-                                <tbody>
+                    <div class="card" style="border-radius:0;">
+                        <a role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
+                            <div id="card-cart" class="card-header pt-1" style="border-radius:0;">
+                                <table class="table borderless">
                                     <tr>
-                                        <td width="5%" valign="middle">
-                                            <div id="ex4">
-                                        
-                                                <span class="p1 fa-stack fa-2x has-badge" data-count="0">
-                                            
-                                                    <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
-                                                    <i class="p3 fa fa-shopping-cart " data-count="4b" style=""></i>
-                                                </span>
-                                            </div> 
+                                        <td align="left" width="50%">
+                                            <h5 style="color:#000">0 Item</h5>
                                         </td>
-                                        <td width="25%" align="left" valign="middle">
-                                            <h5 id="total_kr_">Rp.0</h5>
-                                        </td>
-                                        <td width="5%" valign="middle" >
-                                        <a id="cv" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
-                                                <i class="fas fa-chevron-up" style=""></i>
-                                            </a>
-                                        </td>
-                                        <td width="33%" align="right" valign="middle">
-                                        
-                                        <h5>(0 Item)</h5>
-                                        
+                                        <td align="right" width="50%">
+                                            <h5 class="pull-right" style="color: #000">Pesan Sekarang <i class="fa fa-paper-plane" aria-hidden="true" style="color: #FF0000 !important"></i></h5>
                                         </td>
                                     </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                </table>
+                            </div>
+                        </a>
                         <div  class="collapse" data-parent="#accordion" style="" >
                             <div class="card-body" id="card-detail">
                                 <div class="col-md-12">
@@ -677,56 +660,36 @@ class CustomerKeranjangController extends Controller
             //$session_id = $request->header('User-Agent');
             $keranjang = \App\Order::with('products')
                         ->where('status','=','SUBMIT')
-                        ->where('session_id','=',"$session_id")
-                        ->whereNull('username')->get();
+                        ->where('user_id','=',"$id_user")
+                        ->whereNull('customer_id')->get();
             $item = DB::table('orders')
-                        ->where('session_id','=',"$session_id")
+                        ->where('uaser_id','=',"$id_user")
                         ->where('orders.status','=','SUBMIT')
-                        ->whereNull('orders.username')
+                        ->whereNull('orders.customer_id')
                         ->first();
             $item_name = DB::table('orders')
                         ->join('order_product','order_product.order_id','=','orders.id')
-                        ->where('session_id','=',"$session_id")
-                        ->whereNotNull('orders.username')
+                        ->where('user_id','=',"$id_user")
+                        ->whereNotNull('orders.customer_id')
                         ->first();
             $item_price = $item->total_price;
         echo 
-        '<div id="accordion" class="fixed-bottom">
-            <div class="card" style="border-radius:16px;">
-                <div id="card-cart" class="card-header" >
-                    <table width="100%" style="margin-bottom: 40px;">
-                        <tbody>
+        '<div id="accordion" class="fixed-bottom" style="border-radius:0;">
+            <div class="card" style="border-radius:0;">
+                <a role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
+                    <div id="card-cart" class="card-header pt-1" style="border-radius:0;">
+                        <table class="table borderless">
                             <tr>
-                                <td width="5%" valign="middle">
-                                    <div id="ex4">
-                                
-                                        <span id="" class="p1 fa-stack fa-2x has-badge" data-count="'.$total_item.'">
-                                    
-                                            <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
-                                            <i class="p3 fa fa-shopping-cart " data-count="4b" style=""></i>
-                                        </span>
-                                    </div> 
+                                <td align="left" width="50%">
+                                    <h5 style="color:#000">'.$total_item.'&nbsp;Item</h5>
                                 </td>
-                                <td width="25%" align="left" valign="middle">';
-                                    
-                                        echo'<h5 id="total_kr_">Rp.&nbsp;'.number_format(($item_price) , 0, ',', '.').'</h5>
-                                        <input type="hidden" id="total_kr_val" value="'.$item_price.'">';
-                                echo'    
-                                </td>
-                                <td width="5%" valign="middle" >
-                                <a id="cv" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
-                                        <i class="fas fa-chevron-up" style=""></i>
-                                    </a>
-                                </td>
-                                <td width="33%" align="right" valign="middle">
-                                
-                                <h5>('.$total_item.'&nbsp;Item)</h5>
-                                
+                                <td align="right" width="50%">
+                                    <h5 class="pull-right" style="color: #000">Pesan Sekarang <i class="fa fa-paper-plane" aria-hidden="true" style="color: #FF0000 !important"></i></h5>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        </table>
+                    </div>
+                </a>
                 <div id="collapse-4" class="collapse" data-parent="#accordion" style="" >
                     <div class="card-body" id="card-detail">
                         <div class="col-md-12" style="padding-bottom:6rem;">
