@@ -291,7 +291,7 @@ Home
                                         class="image-detail"  alt="...">   
                                     </td>
                                     <td width="60%" align="left" valign="top">
-                                        <p class="name-detail">{{ $detil->description}}</p>
+                                        <p class="name-detail">{{ $detil->Product_name}}</p>
                                         <?php 
                                         if($detil->discount > 0){
                                             $total = $detil->price_promo * $detil->quantity;
@@ -299,7 +299,7 @@ Home
                                             $total=$detil->price * $detil->quantity;
                                         }
                                         ?>
-                                        <h1 id="productPrice_kr{{$detil->product_id}}" style="color:#6a3137; !important; font-family: Open Sans;">Rp. {{ number_format($total, 0, ',', '.') }}</h1>
+                                        <h2 id="productPrice_kr{{$detil->product_id}}" style="font-weight:700;color: #153651;font-family: Montserrat;">Rp. {{ number_format($total, 0, ',', '.') }},-</h2>
                                         <table width="10%">
                                             <tbody>
                                                 <tr>
@@ -312,13 +312,13 @@ Home
                                                         @endif
                                                         <input type="hidden" id="id_detil{{$detil->product_id}}" value="{{$detil->id}}">
                                                         <input type="hidden" id="jmlkr_{{$detil->product_id}}" name="quantity" value="{{$detil->quantity}}">    
-                                                        <button class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                        <button class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#153651;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                                     </td>
                                                     <td width="10px" align="middle" valign="middle">
                                                         <p id="show_kr_{{$detil->product_id}}" class="d-inline" style="">{{$detil->quantity}}</p>
                                                     </td>
                                                     <td width="10px" align="right" valign="middle">
-                                                        <button class="button_plus" onclick="button_plus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                        <button class="button_plus" onclick="button_plus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#153651;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -358,6 +358,7 @@ Home
                     <div class="p-3" style="background-color:#e9eff5;border-bottom-right-radius:18px;border-bottom-left-radius:18px;">
                         <input type="hidden" class="form-control" id="voucher_code_hide">
                         @if($total_item > 0)
+                            <!--
                             <div class="input-group mb-2 mt-2">
                                 <input type="text" class="form-control" id="voucher_code" 
                                 placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#ffcc94;outline:none;">
@@ -365,6 +366,7 @@ Home
                                     <button class="btn " type="submit" onclick="btn_code('')" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
                                 </div>
                             </div>
+                            -->
                             @if($item!==null)
                                 <input type="hidden" name="total_pesanan" id="total_pesan_val_hide" value="{{$item->total_price}}">
                             @else
@@ -379,10 +381,10 @@ Home
         </div>
     </div>
 
-    <!-- Modal pesan -->
+    <!-- Modal pesan 
     <div class="modal fade ml-1" id="my_modal_content" role="dialog" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <!-- Modal content-->
+            //-- Modal content--//
             <div class="modal-content" style="background: #FDD8AF">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -434,7 +436,7 @@ Home
                                     <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
                                     <div class="form-group">
                                         <input type="tel" value="{{$item_name !== null ? $item_name->phone : ''}}" name="phone"  minlength="10" maxlength="13" class="form-control contact_input" placeholder="Phone" id="phone" required autocomplete="off" onkeypress="return hanyaAngka(event)">
-                                        <!--<label for="password-confirm" class="contact_label">{{ __('Konfirmasi Kata Sandi') }}</label>-->
+                                        //--<label for="password-confirm" class="contact_label">{{ __('Konfirmasi Kata Sandi') }}</label>--//
                                     </div>
                                 </div>
                             </div>
@@ -449,7 +451,7 @@ Home
             </div>
         </div>
     </div>
-
+    -->
     <!-- Modal validasi stok -->
     <div class="modal fade ml-1" id="modal_validasi" role="dialog" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">

@@ -32,7 +32,7 @@ class CustomerKeranjangController extends Controller
         $top_count = $top_product->count();
         $count_data = $product->count();
         $keranjang = DB::select("SELECT orders.user_id, orders.status,orders.customer_id, 
-                    products.description, products.image, products.price, products.discount,
+                    products.Product_name, products.image, products.price, products.discount,
                     products.price_promo, order_product.id, order_product.order_id,
                     order_product.product_id,order_product.quantity
                     FROM order_product, products, orders WHERE 
@@ -663,7 +663,7 @@ class CustomerKeranjangController extends Controller
                         ->where('user_id','=',"$id_user")
                         ->whereNull('customer_id')->get();
             $item = DB::table('orders')
-                        ->where('uaser_id','=',"$id_user")
+                        ->where('user_id','=',"$id_user")
                         ->where('orders.status','=','SUBMIT')
                         ->whereNull('orders.customer_id')
                         ->first();
@@ -703,14 +703,14 @@ class CustomerKeranjangController extends Controller
                                                 class="image-detail"  alt="...">   
                                             </td>
                                             <td width="60%" align="left" valign="top">
-                                                <p class="name-detail">'.$detil->description.'</p>';
+                                                <p class="name-detail">'.$detil->Product_name.'</p>';
                                                 if($detil->discount > 0){
                                                     $total=$detil->price_promo * $detil->pivot->quantity;
                                                 }
                                                 else{
                                                     $total=$detil->price * $detil->pivot->quantity;
                                                 }
-                                                echo'<h1 id="productPrice_kr'.$detil->id.'" style="color:#6a3137; !important; font-family: Open Sans;">Rp.&nbsp;'.number_format($total, 0, ',', '.').'</h1>
+                                                echo'<h1 id="productPrice_kr'.$detil->id.'" style="font-weight:700;color: #153651;font-family: Montserrat;">Rp.&nbsp;'.number_format($total, 0, ',', '.').'</h1>
                                                 <table width="10%">
                                                     <tbody>
                                                         <tr id="response-id'.$detil->id.'">
@@ -726,14 +726,14 @@ class CustomerKeranjangController extends Controller
                                                             }
                                                             echo'<input type="hidden" id="id_detil'.$detil->id.'" value="'.$detil->pivot->id.'">
                                                             <input type="hidden" id="jmlkr_'.$detil->id.'" name="quantity" value="'.$detil->pivot->quantity.'">    
-                                                            <button class="button_minus" onclick="button_minus_kr('.$detil->id.')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                            <button class="button_minus" onclick="button_minus_kr('.$detil->id.')" style="background:none; border:none; color:#153651;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                                                 
                                                             </td>
                                                             <td width="10px" align="middle" valign="middle">
                                                                 <p id="show_kr_'.$detil->id.'" class="d-inline" style="">'.$detil->pivot->quantity.'</p>
                                                             </td>
                                                             <td width="10px" align="right" valign="middle">
-                                                                <button class="button_plus" onclick="button_plus_kr('.$detil->id.')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                                <button class="button_plus" onclick="button_plus_kr('.$detil->id.')" style="background:none; border:none; color:#153651;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                                             </td>
                                                         
                                                         </tr>
@@ -783,13 +783,13 @@ class CustomerKeranjangController extends Controller
                                 echo'<input type="hidden" name="total_pesanan" id="total_pesan_val_hide" value="0">';
                             }
                             if($total_item > 0){
-                            echo'<div class="input-group mb-2 mt-2">
+                            echo'<!--<div class="input-group mb-2 mt-2">
                                     <input type="text" class="form-control" id="voucher_code" 
                                     placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#ffcc94;outline:none;">
                                     <div class="input-group-append" required>
                                         <button class="btn " type="submit" onclick="btn_code()" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
                                     </div>
-                                </div>';
+                                </div>-->';
                             echo '<input type="hidden" class="form-control" id="voucher_code_hide">';    
                             echo '<a type="button" id="beli_sekarang" class="btn btn-block button_add_to_pesan" onclick="show_modal()">Beli Sekarang</a>';
                             }

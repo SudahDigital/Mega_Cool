@@ -1804,6 +1804,7 @@ footer.footer .cart .count-cart-three {
 }
 
 #card-detail .image-detail{
+  border:1px solid black;
   border-radius:10px; 
   width:200px; 
   height:auto;
@@ -1811,16 +1812,17 @@ footer.footer .cart .count-cart-three {
 }
 
 #card-detail p{
-  color: #174C7C;
+  color: #0000;
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 2px;
 }
 
-#card-detail h1{
+/*
+#card-detail h2{
   color: #174C7C;
-  font-weight: 900;
-}
+  font-weig 
+}*/
 
 
 #card-detail .button_minus .button_plus .d-inline{
