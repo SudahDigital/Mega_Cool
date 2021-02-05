@@ -795,6 +795,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+     
     <!--<script src="{{ asset('assets/js/jquery.firstVisitPopup.js')}}"></script>-->
     
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>-->
@@ -919,10 +920,10 @@
 
         $('#LocationForm').on('show.bs.modal', function () {
         //geolocation
-        if (navigator.geolocation) {
+        /*if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(savePosition, positionError, {timeout:10000});
         } else {
-            //Geolocation is not supported by this browser
+            alert ('Geolocation is not supported by this browser')
         }
             
 
@@ -939,8 +940,8 @@
                 $('#lat').val(position.coords.latitude);
                 $('#lng').val(position.coords.longitude);
                 //$("#LocationForm").modal('hide');    
-            }
-        })
+            }*/
+        });
 
         /*
         $(function () {
