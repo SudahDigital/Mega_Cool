@@ -27,7 +27,7 @@ class LoginController extends Controller
      * @var string
      */
     
-   protected $redirectTo = RouteServiceProvider::HOME;
+  // protected $redirectTo = RouteServiceProvider::HOME;
     //protected $redirectTo = '/home';
     protected function redirectTo()
     {
@@ -50,14 +50,30 @@ class LoginController extends Controller
         }
         return '/';
         */
-        
+        /*
         if ((auth()->user()->roles == 'SUPERADMIN') || (auth()->user()->roles == 'ADMIN')) {
             return '/home';
         }else if (auth()->user()->roles == 'SALES') {
             return '/sales_home';
         }
-        return '/';
+        return '/';*/
         
+        $roles = \Auth::user()->roles; 
+        switch ($roles) {
+            case 'ADMIN':
+                return '/home';
+            break;
+            case 'SUPERADMIN':
+                return '/home';
+            break;
+            case 'SUPERADMIN':
+                return '/sales_home';
+            break;  
+
+            default:
+                return '/login'; 
+            break;
+        }
     }
 
     

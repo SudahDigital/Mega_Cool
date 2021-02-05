@@ -51,7 +51,7 @@ Route::get('/admin', function () {
     $categories = \App\Category::get();
     return view('auth.login',['categories'=>$categories]);
     });
-Route::group(['middleware' => ['auth','checkRole:ADMIN,SUPERADMIN']],function(){
+Route::group(['middleware' => ['auth','checkRole:SUPERADMIN,ADMIN']],function(){
 //Admin
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/users/change_password', 'changePasswordController@index')->name('changepass');
