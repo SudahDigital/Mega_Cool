@@ -15,12 +15,12 @@ class CheckRole
      */
     public function handle($request, Closure $next,$roles)
     {
-        /*return $next($request);
+        //return $next($request);
         if($request->user()->roles == $roles){
             return $next($request);
         }
         
-
+        /*
         $role = $request->user()->roles ;
         $allowed_roles = array_slice(func_get_args(), 2);
 
@@ -29,13 +29,14 @@ class CheckRole
         }
         */
 
+        /*
         if (!Auth::check()) // This isnt necessary, it should be part of your 'auth' middleware
          return redirect('/');
 
         $users = Auth::user();
         if($users->roles== $roles)
         return $next($request);
-
+        */
     
   
         return redirect('/login'); 

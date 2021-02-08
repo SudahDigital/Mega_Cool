@@ -22,7 +22,12 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        return view('home');
+    {   
+        if ((auth()->user()->roles == 'SUPERADMIN') || (auth()->user()->roles == 'ADMIN')) {
+            return view('home');
+        }else if (auth()->user()->roles == 'SALES') {
+            return redirect('/sales_home');
+        }
+        //return view('home');
     }
 }
