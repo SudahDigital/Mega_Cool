@@ -1106,9 +1106,10 @@ height: 150px;
   position: relative;
   z-index: 0;
   border: none;
-  border-radius: 8px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
   color: #ffffff;
-  background-color: #174C7C !important;
+  background-color: #FF0000 !important;
   font-size: 20px;
   font-weight: 600; 
   padding:10px;
@@ -1799,12 +1800,12 @@ footer.footer .cart .count-cart-three {
 }
 
 #card-cart h5{
-  color: white;
+  color: #153651;
   font-weight: 600;
 }
 
 #card-detail .image-detail{
-  border:1px solid black;
+  border:1px solid #ddd;
   border-radius:10px; 
   width:200px; 
   height:auto;
@@ -1845,12 +1846,14 @@ footer.footer .cart .count-cart-three {
 }
 
 #card-detail .btn-default{
-  color:#fff;
-  background-color:#174C7C;
+  color:#424141;
+  background-color:transparent;
   font-size:20px;
-  font-weight: 800; 
+  font-weight: 600; 
   padding-top:7px; 
   padding-bottom:7px;
+  outline: none;
+  border: none;
 }
 
 .bt-wa{

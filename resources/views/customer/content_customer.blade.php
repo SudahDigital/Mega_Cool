@@ -282,16 +282,16 @@ Home
             <div id="{{$total_item > 0 ? 'collapse-4' : '' }}" class="collapse" data-parent="#accordion">
                 <div class="card-body" id="card-detail" style="">
                     <div class="col-md-12" style="padding-bottom:6rem;">
-                        <table class="table-detail" width="100%">
+                        <table class="table-detail" width="100%" >
                             <tbody>
                                 @foreach($keranjang as $detil)
                                 <tr>
-                                    <td width="25%" valign="middle">
+                                    <td width="25%" valign="middle" style="border-bottom: 1px solid #ddd;padding-top:3%;">
                                         <img src="{{ asset('storage/'.$detil->image)}}" 
                                         class="image-detail"  alt="...">   
                                     </td>
-                                    <td width="60%" align="left" valign="top">
-                                        <p class="name-detail">{{ $detil->Product_name}}</p>
+                                    <td width="60%" align="left" valign="top" style="border-bottom: 1px solid #ddd;padding-top:3%;">
+                                        <p style="color: #000">{{ $detil->Product_name}}</p>
                                         <?php 
                                         if($detil->discount > 0){
                                             $total = $detil->price_promo * $detil->quantity;
@@ -300,10 +300,11 @@ Home
                                         }
                                         ?>
                                         <h2 id="productPrice_kr{{$detil->product_id}}" style="font-weight:700;color: #153651;font-family: Montserrat;">Rp. {{ number_format($total, 0, ',', '.') }},-</h2>
-                                        <table width="10%">
+                                        <table width="20%">
                                             <tbody>
                                                 <tr>
-                                                    <td width="10px" align="left" valign="middle">
+                                                    <td width="3%" align="left" valign="middle" rowspan="2">
+                                                        <p style="color: #000">Qty</p>
                                                         <input type="hidden" id="order_id{{$detil->product_id}}" name="order_id" value="{{$detil->order_id}}">
                                                         @if($detil->discount > 0)
                                                         <input type="hidden" id="harga_kr{{$detil->product_id}}" name="price" value="{{$detil->price_promo}}">
@@ -312,19 +313,24 @@ Home
                                                         @endif
                                                         <input type="hidden" id="id_detil{{$detil->product_id}}" value="{{$detil->id}}">
                                                         <input type="hidden" id="jmlkr_{{$detil->product_id}}" name="quantity" value="{{$detil->quantity}}">    
-                                                        <button class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#153651;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                        
                                                     </td>
-                                                    <td width="10px" align="middle" valign="middle">
+                                                    <td width="5%" align="left" valign="middle" rowspan="2">
                                                         <p id="show_kr_{{$detil->product_id}}" class="d-inline" style="">{{$detil->quantity}}</p>
                                                     </td>
-                                                    <td width="10px" align="right" valign="middle">
-                                                        <button class="button_plus" onclick="button_plus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#153651;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                    <td width="1%" align="center" valign="middle" bgcolor="#1A4066" style="border-top-left-radius:5px;border-top-right-radius:5px;">
+                                                        <button class="button_plus" onclick="button_plus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#ffffff;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="1%" align="middle" valign="middle" bgcolor="#1A4066" style="border-bottom-left-radius:5px;border-bottom-right-radius:5px;">
+                                                        <button class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#ffffff;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </td>
-                                    <td width="15%" align="right" valign="top" style="padding-top: 5%;">
+                                    <td width="15%" align="right" valign="top" style="border-bottom: 1px solid #ddd;padding-top: 10%;">
                                         <button class="btn btn-default" onclick="delete_kr('{{$detil->product_id}}')" style="">X</button>
                                         <input type="hidden"  id="order_id_delete{{$detil->product_id}}" name="order_id" value="{{$detil->order_id}}">
                                         <input type="hidden"  id="quantity_delete{{$detil->product_id}}" name="quantity" value="{{$detil->quantity}}">
@@ -345,7 +351,7 @@ Home
                                 </tr>
                             </tbody>
                         </table>
-                        <hr>
+                        
                         <div id="desc_code" style="display: none;">
                             <div class="jumbotron jumbotron-fluid ml-2 py-4 mb-3">
                                 <p class="lead"></p>
@@ -354,8 +360,9 @@ Home
                     </div>
                         
                 </div>
-                <div class="fixed-bottom">
-                    <div class="p-3" style="background-color:#e9eff5;border-bottom-right-radius:18px;border-bottom-left-radius:18px;">
+                <div class="fixed-bottom" style="background-color:#e9eff5;">
+
+                    <div class="col-md-12 py-3" style="padding-left:9%;padding-right:9%;">
                         <input type="hidden" class="form-control" id="voucher_code_hide">
                         @if($total_item > 0)
                             <!--
@@ -367,13 +374,25 @@ Home
                                 </div>
                             </div>
                             -->
+                            <div class="float-left mt-2">
+                            <h3 style="color: #000">Total Harga</h3>
+                            @if($item!==null)
+                            <h2 id="total_kr_" style="font-weight:700;color: #153651;font-family: Montserrat;">Rp. {{number_format($item->total_price , 0, ',', '.')}}</h2>
+                            <input type="hidden" id="total_kr_val" value="{{$item->total_price}}">
+                                @else
+                            <h2 id="total_kr_" style="font-weight:700;color: #153651;font-family: Montserrat;">Rp. 0</h2>
+                            <input type="hidden" id="total_kr_val" value="0">
+                                @endif
+                            </div>
+                            
+
                             @if($item!==null)
                                 <input type="hidden" name="total_pesanan" id="total_pesan_val_hide" value="{{$item->total_price}}">
                             @else
                                 <input type="hidden" name="total_pesanan" id="total_pesan_val_hide" value="0">
                             @endif
                             <input type="hidden" id="order_id_cek" name="id" value="{{$item !==null ? $item->id : ''}}"/> 
-                            <a type="button" id="beli_sekarang" class="btn button_add_to_pesan btn-block" onclick="show_modal()" style="padding: 10px 40px; ">Beli Sekarang</a>
+                            <a type="button" id="beli_sekarang" class="btn button_add_to_pesan float-right mb-3" onclick="show_modal()" style="padding: 10px 20px; ">Pesan Sekarang <i class="fa fa-paper-plane" aria-hidden="true" style="color: #ffffff !important"></i></a>
                         @endif
                     </div>
                 </div>
