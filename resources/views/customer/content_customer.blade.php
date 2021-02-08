@@ -313,7 +313,6 @@ Home
                                                         @endif
                                                         <input type="hidden" id="id_detil{{$detil->product_id}}" value="{{$detil->id}}">
                                                         <input type="hidden" id="jmlkr_{{$detil->product_id}}" name="quantity" value="{{$detil->quantity}}">    
-                                                        
                                                     </td>
                                                     <td width="5%" align="left" valign="middle" rowspan="2">
                                                         <p id="show_kr_{{$detil->product_id}}" class="d-inline" style="">{{$detil->quantity}}</p>
@@ -374,13 +373,13 @@ Home
                                 </div>
                             </div>
                             -->
-                            <div class="float-left mt-2">
-                            <h3 style="color: #000">Total Harga</h3>
+                            <div class="row float-left mt-2">
+                            <p class="mt-1" style="color: #000;font-weight:bold; ">Total Harga</p>&nbsp;
                             @if($item!==null)
-                            <h2 id="total_kr_" style="font-weight:700;color: #153651;font-family: Montserrat;">Rp. {{number_format($item->total_price , 0, ',', '.')}}</h2>
+                            <h2 id="total_kr_" style="font-weight:700;color: #153651;font-family: Montserrat;">Rp. {{number_format($item->total_price , 0, ',', '.')}},-</h2>
                             <input type="hidden" id="total_kr_val" value="{{$item->total_price}}">
                                 @else
-                            <h2 id="total_kr_" style="font-weight:700;color: #153651;font-family: Montserrat;">Rp. 0</h2>
+                            <h2 id="total_kr_" style="font-weight:700;color: #153651;font-family: Montserrat;">Rp. 0,-</h2>
                             <input type="hidden" id="total_kr_val" value="0">
                                 @endif
                             </div>
