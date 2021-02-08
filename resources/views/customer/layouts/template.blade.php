@@ -1157,7 +1157,7 @@
             var jumlah = parseInt(jumlah) + 1;
 
             // AMBIL NILAI HARGA
-            var harga = $('#harga'+id).val();;
+            var harga = $('#harga'+id).val();
             var harga = parseInt(harga) * jumlah;
 
             // UBAH FORMAT UANG INDONESIA
@@ -1203,7 +1203,7 @@
             rupiah += separator + ribuan.join('.');
             }
 
-            harga = "Rp " + rupiah;
+            harga = "Rp " + rupiah+ ",-";
 
             if (jumlah<1) {
             alert('Jumlah Tidak Boleh Kurang dari 1')
@@ -1318,6 +1318,7 @@
             var quantity = $('#jumlah'+id).val();
             var price = $('#harga'+id).val();
             var voucher_code_hide = document.getElementById("voucher_code_hide").value;
+            
             $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1338,7 +1339,21 @@
                         //console.log(data);
                         //$('#'+id).val(jumlah);
                         //$('#show_'+id).html(jumlah);
-                        //$('#productPrice'+id).text(harga);
+                        // UBAH FORMAT UANG INDONESIA
+                        var	number_string = price.toString();
+                        var sisa 	= number_string.length % 3;
+                        var rupiah 	= number_string.substr(0, sisa);
+                        var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+                        if (ribuan) {
+                        separator = sisa ? '.' : '';
+                        rupiah += separator + ribuan.join('.');
+                        }
+
+                        price = "Rp. " + rupiah +",-";
+                        $('#jumlah'+id).val(1);
+                        $('#show_'+id).html(1);
+                        $('#productPrice'+id).text(price);
                         if(voucher_code_hide !=""){
                             $.ajax({
                                 url : '{{URL::to('/keranjang/apply_code')}}',
@@ -1367,6 +1382,7 @@
                                 success: function (response) {
                                 // We get the element having id of display_info and put the response inside it
                                 $('#accordion' ).html(response);
+
                                 },
                                 complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
                                     $('#loader').addClass('hidden')
@@ -1405,13 +1421,13 @@
             rupiah += separator + ribuan.join('.');
             }
 
-            harga = "Rp. " + rupiah;
+            harga = "Rp. " + rupiah +",-";
 
             if (jumlah<1) {
             alert('Jumlah order minimal 1')
             } else {
                 $('#jmlbrg_'+id).val(jumlah);
-                $('#show_'+id).html(jumlah);
+                //$('#show_'+id).html(jumlah);
                 $('#jmlkr_'+id).val(jumlah);
                 $('#show_kr_'+id).html(jumlah);
                 $('#productPrice_kr'+id).text(harga);
@@ -1434,7 +1450,7 @@
                 rupiah += separator + ribuan.join('.');
                 }
 
-                tot = "Rp. " + rupiah;
+                tot = "Rp. " + rupiah+",-";
                 $.ajaxSetup({
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1523,7 +1539,7 @@
             rupiah += separator + ribuan.join('.');
             }
 
-            harga = "Rp. " + rupiah;
+            harga = "Rp. " + rupiah+",-";
             
             // alert(jumlah)
             if (jumlah < 1) {
@@ -1542,7 +1558,7 @@
             else 
             {
                 $('#jmlbrg_'+id).val(jumlah);
-                $('#show_'+id).html(jumlah);
+                //$('#show_'+id).html(jumlah);
                 $('#jmlkr_'+id).val(jumlah);
                 $('#show_kr_'+id).html(jumlah);
                 $('#productPrice_kr'+id).text(harga);
@@ -1563,7 +1579,7 @@
                 rupiah += separator + ribuan.join('.');
                 }
 
-                tot = "Rp. " + rupiah;
+                tot = "Rp. " + rupiah+",-";
                 $.ajaxSetup({
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1665,8 +1681,8 @@
                     success: function (data) {
                     //console.log(data);
                     //$('#'+id).val(jumlah);
-                    $('#jmlbrg_'+id).val(jumlah);
-                    $('#show_'+id).html(jumlah);
+                    //$('#jmlbrg_'+id).val(jumlah);
+                    //$('#show_'+id).html(jumlah);
                     //$('#productPrice'+id).text(harga);
                     if(voucher_code_hide !=""){
                         $.ajax({

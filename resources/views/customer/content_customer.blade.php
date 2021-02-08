@@ -114,11 +114,11 @@ Home
                                 @if($value->discount > 0)
                                 <div class="d-inline-block">
                                     <div class="text-left">
-                                        <p class="product-price mt-0 mb-0 ml-1" style="color:#ffff;"><del><b><i>Rp. {{ number_format($value->price, 0, ',', '.') }}</i></b> </del></p>
+                                        <p class="product-price mt-0 mb-0 ml-1" style="color:#ffff;"><del><b><i>Rp. {{ number_format($value->price, 0, ',', '.') }}'-</i></b> </del></p>
                                     </div>
                                 </div>
                                 <div class="float-left px-1 py-2" style="">
-                                    <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp. {{ number_format($value->price_promo, 0, ',', '.') }}</p>
+                                    <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp. {{ number_format($value->price_promo, 0, ',', '.') }}'-</p>
                                 </div>
                                 @else
                                 <div class="float-left px-1 py-2" style="">
@@ -132,7 +132,6 @@ Home
                                     <tbody>
                                     <tr>
                                         <td class="tbl_cart" valign="middle" style="" rowspan="2">
-                                            
                                             <input type="hidden" id="jumlah{{$value->id}}" name="quantity" value="1">
                                             <input type="hidden" id="harga{{$value->id}}" name="price" value="{{ $value->price }}">
                                             <input type="hidden" id="{{$value->id}}" name="Product_id" value="{{$value->id}}">

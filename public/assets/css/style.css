@@ -1786,10 +1786,10 @@ footer.footer .cart .count-cart-three {
 }
 
 #card-cart{
-  background-color:#e9ecef;
+  background-color:#DADADA;
   border-radius:0; 
-  padding-left:100px;
-  padding-right: 100px; 
+  padding-left:9%;
+  padding-right: 9%; 
   height:60px;
 }
 
