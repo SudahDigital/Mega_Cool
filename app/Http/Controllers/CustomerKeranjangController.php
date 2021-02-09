@@ -742,7 +742,7 @@ class CustomerKeranjangController extends Controller
                                                     </tbody>
                                                 </table>
                                             </td>
-                                            <td width="15%" align="right" valign="top" style="padding-top: 5%;">
+                                            <td width="15%" align="right" valign="top" style="border-bottom: 1px solid #ddd;padding-top: 10%;">
                                                 <button class="btn btn-default" onclick="delete_kr('.$detil->id.')" style="">X</button>
                                                 <input type="hidden"  id="order_id_delete'.$detil->id.'" name="order_id" value="'.$order->id.'">
                                                 <input type="hidden"  id="quantity_delete'.$detil->id.'" name="quantity" value="'.$detil->pivot->quantity.'">';

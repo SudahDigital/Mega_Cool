@@ -118,8 +118,24 @@ body {
     background:#1A4066;
 }
 
+.breadcrumb-profil-item {
+  font-size:16px;
+}
+
+.breadcrumb-profil-item + .breadcrumb-profil-item::before {
+  content: "|  ";
+  font-size: 20px;
+  color:#000 ;
+}
+
+.breadcrumb-profil-item.active {
+  color: #000000;
+  font-size: 16px;
+  font-weight: bold; 
+}
+
 .breadcrumb-item {
-    font-size:30px;"
+    font-size:30px;
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
@@ -1867,6 +1883,7 @@ footer.footer .cart .count-cart-three {
   transform: translateY(-3px);
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3); 
 }
+
 
 
 

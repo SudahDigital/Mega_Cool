@@ -35,7 +35,18 @@
             border-top-right-radius: 15px !important;
         }*/
 
-       
+        .alert{
+            position:fixed;
+            top:5%; 
+            width:50%; 
+            z-index:9999; 
+            margin: 0 auto; 
+            background: rgba(0, 0, 0, 0.7); 
+            border:none; 
+            color:#ffffff; 
+            font-weight:bold;
+        }
+        
         .select2-container--default .select2-selection--single{
             padding:4px;
             outline: none;
@@ -549,7 +560,7 @@
     </script>
 </head>
 <body>
-   
+    <div id="message" class="row justify-content-center"></div>
     <!-- Modal firstpage-->
     @if (!session()->has('ses_order'))
     <div class="modal fade right" id="LocationForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
@@ -629,6 +640,7 @@
         <img src="{{ asset('assets/image/popup-cara-belanja.jpg') }}" class="d-md-none w-100 h-100" alt="popup-cara-belanja" style="">
     </div>
     -->
+
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -651,7 +663,7 @@
                    <a href="{{ url('/') }}">Beranda</a>
                 </li>
                 <li>
-                   <a href="{{URL::route('cara_belanja')}}">Profile</a>
+                   <a href="{{URL::route('profil_user')}}">Profile</a>
                 </li>
                 <li>
                     <a href="{{URL::route('contact')}}">Kontak Kami</a>
@@ -762,6 +774,8 @@
         </div>
     </div>
     
+
+
     <!-- Modal search -->
     <div class="modal fade" id="searchModal" role="dialog">
         <div class="modal-dialog">
@@ -1340,6 +1354,10 @@
                         //$('#'+id).val(jumlah);
                         //$('#show_'+id).html(jumlah);
                         // UBAH FORMAT UANG INDONESIA
+                       $('#message').html("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert'>×</button>Product berhasil dimasukkan ke keranjang</div>").fadeIn('slow');
+                       $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+                            $(".alert").slideUp(500); 
+                        });
                         var	number_string = price.toString();
                         var sisa 	= number_string.length % 3;
                         var rupiah 	= number_string.substr(0, sisa);
@@ -1779,11 +1797,12 @@
             });
         });
     
+    /*
         window.setTimeout(function() {
         $(".alert").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove(); 
+            $(".alert").slideUp(500); 
         });
-        }, 4000);
+        }, 6000);*/
     </script>
     <script>
         /*

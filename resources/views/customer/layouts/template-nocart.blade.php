@@ -1,23 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>Ice-Gentong</title>
+    <title>Mega Cools | @yield('title')</title>
 
-    <link rel="icon" href="{{ asset('assets/image/logo-gentong-nav.png')}}" type="image/png" sizes="16x16">
+    <link rel="icon" href="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png')}}" type="image/x-icon">
     <!-- Bootstrap CSS CDN -->
     <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" >
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css')}}">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-
     <!-- Font Awesome JS -->
     <script src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -31,6 +30,134 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183852861-1"></script>
     <style type="text/css">
+        /*[class^='select2'] {
+            border-top-left-radius: 15px !important;
+            border-top-right-radius: 15px !important;
+        }*/
+
+        .alert{
+            position:fixed;
+            top:5%; 
+            width:50%; 
+            z-index:9999; 
+            margin: 0 auto; 
+            background: rgba(0, 0, 0, 0.7); 
+            border:none; 
+            color:#ffffff; 
+            font-weight:bold;
+        }
+        
+        .select2-container--default .select2-selection--single{
+            padding:4px;
+            outline: none;
+            height: 37px;
+            font-weight: 500;
+            font-size: 1em; 
+            border-top-left-radius: 15px !important;
+            border-top-right-radius: 15px !important;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            top: 4px;
+            right: 4px;
+            width: 25px;
+        }
+
+        .select2-search__field{
+            outline:none;
+        }
+
+        .select2-results { 
+            background:transparent;
+            font-weight: 600;
+        }
+
+       
+        
+
+        #LocationForm .modal-dialog-full-width {
+            position:absolute;
+            right:0;
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            max-width:none !important;
+        }
+
+        #LocationForm .modal-content-full-width  {
+            height: auto !important;
+            min-height: 100% !important;
+            border-radius: 0 !important;
+            background-color: #1A4066 !important 
+        }
+
+        .borderless td, .borderless th {
+            border: none;
+        }
+    
+        .paddles {
+        }
+
+        .paddle {
+            position: absolute;
+            right: 0;
+            top:35%;
+            color: #fff;
+            transition: all 0.4s;
+            background: #000000;
+            opacity: 0.4;
+            border-radius: 50px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            z-index: 1;
+            outline: none;
+            border:none;
+            cursor: pointer;
+        }
+        
+        .paddle:hover {
+            background: #6a3137;
+            color: #fff;
+        }
+        
+        .left-paddle {
+            left: 0;
+        }
+        .right-paddle {
+            right: 0;
+        }
+        
+        .paddles_hide {
+            display: none;
+        }
+
+        
+
+        .row::-webkit-scrollbar {
+            height: 12px;
+        }
+        /* line 17, sass/page/_home.scss */
+        .row::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+        }
+        /* line 24, sass/page/_home.scss */
+        .row::-webkit-scrollbar-thumb {
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            background: #6a3137;
+            -webkit-box-shadow: inset 0 0 6px #FDD8AF;
+        }
+        /* line 30, sass/page/_home.scss */
+        .row::-webkit-scrollbar-thumb:window-inactive {
+            background: rgba(255, 0, 0, 0.4);
+        }
         /*Hidden class for adding and removing*/
         .lds-dual-ring.hidden {
             display: none;
@@ -47,7 +174,6 @@
             z-index: 9999;
             transition: all 0.5s;
         }
-
         @media(min-width:1366px){
             .overlay_ajax {
             left: 47%;
@@ -57,7 +183,7 @@
             top: 40%;
             }  
         }
-
+        
         .preloader{
             position: fixed;
             top: 0;
@@ -66,16 +192,273 @@
             height: 100%;
             z-index: 9999;
             background-color: #fff;
+            opacity : 0.9;
         }
 
         .preloader .loading {
             position: absolute;
-            left: 50%;
+            left: 53%;
             top: 50%;
             transform: translate(-50%,-50%);
             font: 14px arial;
         }
-         .ribbon {
+
+        #fvpp-blackout {
+            display: none;
+            z-index: 9997;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: #000;
+            opacity: 0.8;
+        }
+
+        #my-welcome-message {
+            display: none;
+            z-index: 9998;
+            position: fixed;
+            border-radius: 10px;
+            width: 42%;
+            left: 29%;
+            top: 5%;
+            padding: 0;
+            background: #FDD8AF;
+            box-shadow: 5px 10px 18px #0000;
+        }
+
+        .button_welcome {
+            font-family: Open Sans;
+            background: linear-gradient(to bottom, #6a3137, #6a3137); 
+            color:white; 
+            padding: 5px 15px; 
+            border:none; 
+            box-shadow: 2px 2px 2px grey; 
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 800; 
+            position: absolute;
+            top: 70px;
+            right: 20px;
+        }
+
+        .button_welcome:hover {
+            outline:0px !important;
+            -webkit-appearance:none;
+            -webkit-transform: translateY(-3px);
+            transform: translateY(-3px);
+            box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3); 
+        }
+
+        @media (max-width: 2560px){
+            .button_welcome {
+                font-size: 34px;
+                padding: 12px 26px;
+                top: 42rem;
+                right: 12%;
+                font-weight: 600;
+                border-radius: 20px;
+            }
+
+            #my-welcome-message {
+                width: 42%;
+                left: 29%;
+                top: 5%;
+            }
+        }
+
+        @media (max-width: 1920px){
+            .button_welcome {
+                font-size: 25px;
+                padding: 10px 25px;
+                top: 32rem;
+                right: 12%;
+                font-weight: 600;
+                border-radius: 17px;
+            }
+
+            #my-welcome-message {
+                width: 42%;
+                left: 29%;
+                top: 5%;
+            }
+        }
+
+        @media (max-width: 1440px){
+            .button_welcome {
+                font-size: 21px;
+                padding: 10px 17px;
+                top: 24rem;
+                right: 10%;
+                font-weight: 600;
+                border-radius: 15px;
+            }
+
+            #my-welcome-message {
+                width: 42%;
+                left: 29%;
+                top: 5%;
+            }
+        }
+
+        @media (max-width: 1366px){
+            .button_welcome {
+                font-size: 19px;
+                padding: 10px 17px;
+                top: 22.4rem;
+                right: 10%;
+                font-weight: 600;
+            }
+
+            #my-welcome-message {
+                width: 42%;
+                left: 29%;
+                top: 5%;
+            }
+        }
+
+        @media (max-width: 1024px){
+            .button_welcome {
+                font-size: 15px;
+                padding: 10px 17px;
+                top: 17rem;
+                right: 9%;
+                font-weight: 600;
+            }
+
+            #my-welcome-message {
+                width: 42%;
+                left: 29%;
+                top: 10%;
+            }
+        }
+
+        @media (max-width: 768px){
+            .button_welcome {
+                font-size: 15px;
+                padding: 10px 17px;
+                top: 18.2rem;
+                right: 9.5%;
+                font-weight: 600;
+                border-radius: 14px;
+            }
+
+            #my-welcome-message {
+                width: 60%;
+                left: 20%;
+                top: 20%;
+            }
+        }
+
+        @media (max-width: 600px){
+            .button_welcome {
+                font-size: 15px;
+                padding: 7px 18px;
+                top: 27rem;
+                right: 13%;
+                font-weight: 600;
+            }
+
+            #my-welcome-message {
+                width: 90%;
+                left: 5%;
+                top: 5%;
+            }
+            
+        }
+
+        @media (max-width: 480px){
+            .button_welcome {
+                font-size: 12px;
+                padding: 7px 15px;
+                top: 21.5rem;
+                right: 13%;
+                font-weight: 600;
+            }
+
+            #my-welcome-message {
+                top: 2%;
+            }
+        }
+
+        @media (max-width: 425px){
+            .button_welcome {
+                font-size: 11px;
+                padding: 7px 15px;
+                top: 19rem;
+                right: 12%;
+                font-weight: 600;
+            }
+
+            #my-welcome-message {
+                width: 90%;
+                left: 5%;
+                top: 5%;
+            }
+        }
+
+        @media (max-width: 411px){
+            .button_welcome {
+                font-size: 11px;
+                padding: 7px 14px;
+                top: 18.5rem;
+                right: 12%;
+                font-weight: 600;
+            }
+        }
+
+        @media (max-width: 384px){
+            .button_welcome {
+                font-size: 10px;
+                padding: 7px 13px;
+                top: 17.2rem;
+                right: 12%;
+                font-weight: 600;
+            }
+        }
+
+        @media (max-width: 375px){
+            .button_welcome {
+                font-size: 10px;
+                padding: 7px 13px;
+                top: 16.8rem;
+                right: 12%;
+                font-weight: 600;
+            }
+        }
+
+        @media (max-width: 364px){
+            .button_welcome {
+                font-size: 10px;
+                padding: 7px 12px;
+                top: 16.4rem;
+                right: 12%;
+                font-weight: 600;
+            }
+        }
+
+        @media (max-width: 338px){
+            .button_welcome {
+                font-size: 9px;
+                padding: 7px 12px;
+                top: 15.4rem;
+                right: 12%;
+                font-weight: 600;
+            }
+        }
+
+        @media (max-width: 320px){
+            .button_welcome {
+                font-size: 8px;
+                padding: 7px 12px;
+                top: 14.5rem;
+                right: 12%;
+                font-weight: 600;
+            }
+        }
+    
+        #product_list .ribbon {
         position: absolute;
         left: -5px; top: -5px;
         z-index: 1;
@@ -84,7 +467,7 @@
         text-align: right;
         }
 
-        .span-ribbon {
+        #product_list .span-ribbon {
         font-size: 20px;
         font-weight: bold;
         color: #FFF;
@@ -102,7 +485,7 @@
         top: 40px; left: -52px;
         }
 
-        .span-ribbon::before {
+        #product_list .span-ribbon::before {
         content: "";
         position: absolute; left: 0px; top: 100%;
         z-index: -1;
@@ -113,7 +496,7 @@
         
         }
         
-        .span-ribbon::after {
+        #product_list .span-ribbon::after {
         content: "";
         position: absolute; right: 0px; top: 100%;
         z-index: -1;
@@ -124,7 +507,51 @@
         
         }
 
-        
+        @media(max-width: 768px){
+            #product_list .ribbon {
+            position: absolute;
+            left: -5px; top: -5px;
+            z-index: 1;
+            overflow: hidden;
+            width: 75px; height: 75px;
+            text-align: right;
+            }
+            #product_list .span-ribbon {
+            font-size: 10px;
+            font-weight: bold;
+            color: #FFF;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 20px;
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+            width: 100px;
+            display: block;
+            background: #79A70A;
+            background: linear-gradient(#F79E05 0%, #8F5408 100%);
+            box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 19px; left: -21px;
+            }
+            #product_list .span-ribbon::before {
+            content: "";
+            position: absolute; left: 0px; top: 100%;
+            z-index: -1;
+            border-left: 3px solid #8F5408;
+            border-right: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            border-top: 3px solid #8F5408;
+            }
+            #product_list .span-ribbon::after {
+            content: "";
+            position: absolute; right: 0px; top: 100%;
+            z-index: -1;
+            border-left: 3px solid transparent;
+            border-right: 3px solid #8F5408;
+            border-bottom: 3px solid transparent;
+            border-top: 3px solid #8F5408;
+            }
+        }
     </style>
     <script>
         $(document).ready(function(){
@@ -133,168 +560,246 @@
     </script>
 </head>
 <body>
+    <div id="message" class="row justify-content-center"></div>
+    
+
+    <!--preloader-->
     <div class="preloader" id="preloader">
         <div class="loading">
           <img src="{{ asset('assets/image/preloader.gif') }}" width="80" alt="preloader">
-          <p style="font-weight:900;line-height:2;color:#6a3137;margin-left: -10%;">Harap Tunggu</p>
+          <p style="font-weight:900;line-height:2;color:#1A4066;margin-left: -10%;">Harap Tunggu</p>
         </div>
     </div>
 
     <div id="loader" class="lds-dual-ring hidden overlay_ajax"><img class="hidden" src="{{ asset('assets/image/preloader.gif') }}" width="80" alt="preloader"></div>
     
-    @if ($message = Session::get('success'))
-      <div class="alert alert-success alert-block">
-        <button type="button" class="close" data-dismiss="alert">×</button> 
-          <strong>{{ $message }}</strong>
-      </div>
-    @endif
 
     <div class="wrapper">
-         <!-- Sidebar  -->
-         <nav id="sidebar">
-           
-            <div class="sidebar-header mx-auto">
-                <a href="{{url('/') }}">
-                    <img src="{{ asset('assets/image/logo-gentong.png') }}" width="70%" height="auto" class="d-inline-block align-top" alt="logo-gentong" loading="lazy">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <img src="{{ asset('assets/image/sp-sidebar.png') }}" class="sidebar-dot-top-right"  
+            style="" alt="sp-sidebar">
+            <div class="sidebar-header">
+                <a href="{{url('/') }}" >
+                    @if(\Auth::user())
+                        @if(\Auth::user()->avatar)
+                            <img src="{{asset('storage/'.Auth::user()->avatar)}}" alt="user" />
+                        @else
+                        <img src="{{asset('assets/image/image-noprofile.png')}}" alt="user"/>
+                        @endif
+                    @endif
                 </a>
+                <p>{{\Auth::user()->name}}</p>
             </div>
             <ul class="list-unstyled components">
-                
                 <li class="">
-                    <a href="{{ url('/') }}">Beranda</a>
+                   <a href="{{ url('/') }}">Beranda</a>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Produk</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                            @foreach($categories as $key => $value)
-                                <li>
-                                    <a href="{{route('category.index', ['id'=>$value->id] )}}" style="font-size: 1.1em !important;">{{$value->name}}</a>
-                                </li>
-                            @endforeach
-                    </ul>
-                </li>
-                <li>
-                    <a href="{{URL::route('cara_belanja')}}">Cara Berbelanja</a>
+                   <a href="{{URL::route('cara_belanja')}}">Profile</a>
                 </li>
                 <li>
                     <a href="{{URL::route('contact')}}">Kontak Kami</a>
                 </li>
-                <!--
-                <li>
-                    <a href="{{URL::route('riwayat_pemesanan')}}">Riwayat Pesanan</a>
-                </li>
-                -->
             </ul>
-
-             @if(\Auth::user())
-                <div class="mx-auto text-center">
-                    <form action="{{route('logout')}}" method="POST">
-                        @csrf   
-                        <div id="log">   
-                            <button class="btn logout">
-                                    Sign Out
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            @else    
-                    <!--    
-                    <div class="mx-auto text-center">
-                        <a href="{{route('login')}}" class="btn login">Sign In</a>
+            @if(\Auth::user())
+                <form action="{{route('logout')}}" method="POST">
+                    @csrf
+                    <div id="log">   
+                        <button class="btn logout">
+                            Keluar
+                        </button>
                     </div>
-                            
-                    <div class="mx-auto text-center">  
-                            <a href="{{route('register')}}" class="register">Sign Up</a>
-                    </div> 
-                    -->
-            @endif
-            
-            
-            <div class="mx-auto text-center" style="margin-top: 35px;">
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/Gentongicecream/"  target="_blank"><i class="fab fa-facebook" ></i></a>
-                    <a href="https://instagram.com/gentongicecream?igshid=10b120fidnx58"  target="_blank"><i class="fab fa-instagram "></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="https://twitter.com/kedaigentong?s=08" target="_blank"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
-
-         </nav>
-
+                </form>
+             @endif
+             <img src="{{ asset('assets/image/sp-sidebar-bottom.jpg') }}" class="sidebar-dot-bottom"  
+             style="" alt="sp-sidebar-bottom"> 
+        </nav>
+        <div class="overlay"></div>
+        
+        <!--content-->
         <div id="content">
-
-            
-            <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1.5;">
-                <div class="container-fluid">
+            <div role="main">
+                <div class="container">
                     <button type="button" id="sidebarCollapse" class="btn button-burger-menu">
-                        <i class="fas fa-bars fa-2x" style="color:#693234;"></i>
+                        <i class="fas fa-bars fa-2x" style="color:#1A4066;"></i>
                     </button>
-                   
-                    <a class="navbar-brand nav-center" href="{{ url('/') }}">
-                    
-                        <img src="{{ asset('assets/image/logo-gentong.png') }}" class="p-0 m-0 d-inline-block align-top" alt="logo-gentong" loading="lazy">
-                    </a>
-                    <form action="{{route('search.index')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
-                        <div class="input-group">
-                            <div class="input-group-append">
-                                <button class="btn  my-2 my-sm-0 search_botton_navbar" type="submit" id="button-search-addon" style="border-radius: 50%;"><i class="fa fa-search"></i></button>&nbsp;&nbsp;&nbsp;
-                            </div>
-                            <input class="form-control d-inline-block m-100 search_input_navbar" name="keyword" type="text" value="{{Request::get('keyword')}}" placeholder="Search" aria-label="Search" aria-describedby="button-search-addon">
-                              
-                        </div>
-                    </form>
-                    <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="border-radius: 50%; background:#693234;; border:none;"><i class="fa fa-search" style=""></i></a>
                 </div>
-                
-            </nav>
-
-            <!-- Page Content  -->
-            @yield('content')
-
-           
-
-        </div>
-    </div>
-
-    <div class="overlay"></div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="searchModal" role="dialog">
-        <div class="modal-dialog">
-        
-            <!-- Modal content-->
-            <div class="modal-content" style="background: #FDD8AF">
-                <div class="modal-body">
-                    <div class="row justify-content-center">
-                        <form action="{{route('search.index')}}">
-                            <div class="input-group">
-                                <div class="input-group-append">
-                                        <button class="btn search_botton_navbar" type="submit" id="button-search-addon" style="border-radius: 50%;"><i class="fa fa-search"></i></button>
-                                        <input class="form-control d-block search_input_navbar" name="keyword" type="text" value="{{Request::get('keyword')}}" placeholder="Search" aria-label="Search" aria-describedby="button-search-addon">
-                                </div>
-                                    
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                @yield('content')
             </div>
-        
         </div>
-    </div>
 
+    </div>
+    
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="{{ asset('assets/js/main.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+     
+    <!--<script src="{{ asset('assets/js/jquery.firstVisitPopup.js')}}"></script>-->
+    
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>-->
+    
     <script type="text/javascript">
+
+        //Select2
+        $('#city_id').select2({
+        placeholder: 'Pilih Kota',
+        ajax: {
+            url: '{{URL::to('/ajax/city')}}',
+            processResults: function (data) {
+            return {
+                results:  $.map(data, function (item) {
+                    return {
+                            id: item.id,
+                            text: item.city_name
+                        
+                    }
+                })
+            };
+            }
+            
+        }
+        });
+
+        $('#customer_id').select2({
+        placeholder: 'Pilih Toko',
+        ajax: {
+            url: '{{URL::to('/ajax/store')}}',
+            processResults: function (data) {
+            return {
+                results:  $.map(data, function (item) {
+                    return {
+                            id: item.id,
+                            text: item.store_name
+                        
+                    }
+                })
+            };
+            }
+            
+        }
+        });
+
+        //$('#accordion').collapse('show').height('auto');
+
+        // duration of scroll animation
+        var scrollDuration = 300;
+        // paddles
+        var leftPaddle = document.getElementsByClassName("left-paddle");
+        var rightPaddle = document.getElementsByClassName("right-paddle");
+        // get items dimensions
+        var itemsLength = $(".item").length;
+        var itemSize = $(".item").outerWidth(true);
+        // get some relevant size for the paddle triggering point
+        var paddleMargin = 10;
+
+        // get wrapper width
+        var getMenuWrapperSize = function () {
+            return $(".menu-wrapper").outerWidth();
+        };
+        var menuWrapperSize = getMenuWrapperSize();
+        // the wrapper is responsive
+        $(window).on("resize", function () {
+            menuWrapperSize = getMenuWrapperSize();
+        });
+        // size of the visible part of the menu is equal as the wrapper size
+        var menuVisibleSize = menuWrapperSize;
+
+        // get total width of all menu items
+        var getMenuSize = function () {
+            return itemsLength * itemSize;
+        };
+        var menuSize = getMenuSize();
+        // get how much of menu is invisible
+        var menuInvisibleSize = menuSize - menuWrapperSize;
+
+        // get how much have we scrolled to the left
+        var getMenuPosition = function () {
+            return $(".menu").scrollLeft();
+        };
+
+        // finally, what happens when we are actually scrolling the menu
+        $(".menu").on("scroll", function () {
+            // get how much of menu is invisible
+            menuInvisibleSize = menuSize - menuWrapperSize;
+            // get how much have we scrolled so far
+            var menuPosition = getMenuPosition();
+
+            var menuEndOffset = menuInvisibleSize - paddleMargin;
+
+            // show & hide the paddles
+            // depending on scroll position
+            if (menuPosition <= paddleMargin) {
+                $(leftPaddle).addClass("paddles_hide");
+                $(rightPaddle).removeClass("paddles_hide");
+            } else if (menuPosition < menuEndOffset) {
+                // show both paddles in the middle
+                $(leftPaddle).removeClass("paddles_hide");
+                $(rightPaddle).removeClass("paddles_hide");
+            } else if (menuPosition >= menuEndOffset) {
+                $(leftPaddle).removeClass("paddles_hide");
+                $(rightPaddle).addClass("paddles_hide");
+            }
+        });
+
+        // scroll to left
+        $(rightPaddle).on("click", function () {
+            $(".menu").animate({ scrollLeft: menuInvisibleSize }, scrollDuration);
+        });
+
+        // scroll to right
+        $(leftPaddle).on("click", function () {
+            $(".menu").animate({ scrollLeft: "0" }, scrollDuration);
+        });
+
+        //popup first page
+        $(document).ready(function(){
+            $("#LocationForm").modal('show');
+        });
+
+        $('#LocationForm').on('show.bs.modal', function () {
+        //geolocation
+        /*if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(savePosition, positionError, {timeout:10000});
+        } else {
+            alert ('Geolocation is not supported by this browser')
+        }
+            
+
+            // handle the error here
+            function positionError(error) {
+                var errorCode = error.code;
+                var message = error.message;
+
+                alert(message);
+            }
+
+            function savePosition(position) {
+                        //$.post("geocoordinates.php", {lat: position.coords.latitude, lng: position.coords.longitude});
+                $('#lat').val(position.coords.latitude);
+                $('#lng').val(position.coords.longitude);
+                //$("#LocationForm").modal('hide');    
+            }*/
+        });
+
+        /*
+        $(function () {
+				$('#my-welcome-message').firstVisitPopup({
+					cookieName : 'homepage',
+					showAgainSelector: '#show-message'
+				});
+            });
+        */ 
+
+        //sidebar
         $("#sidebar").mCustomScrollbar({
             theme: "minimal"
         });
@@ -310,6 +815,8 @@
             $('.collapse.in').toggleClass('in');
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
         });
+
+        //
 
         function btn_code(){
             var voucher_code = document.getElementById("voucher_code").value;
@@ -352,8 +859,8 @@
                                 success: function (response){
                                 $( '#accordion' ).html(response);
                                 $('#collapse-4').addClass('show');
-                                var totpesan_val_code = document.getElementById("total_pesan_val_code").value;
-                                var voucher_no = document.getElementById("total_novoucher_val_code").value;
+                                var totpesan_val_code = $("#total_pesan_val_code").val();
+                                var voucher_no = $("#total_novoucher_val_code").val();
                                 $( '#voucher_code_hide' ).val(voucher_code);
                                 $( '#voucher_code_hide_modal' ).val(voucher_code);
                                 $( '#total_pesan_val' ).val(totpesan_val_code);
@@ -490,7 +997,70 @@
                 alert('Anda harus mengisi data dengan lengkap  & benar !');
             }
         }
+
+        function button_plus(id)
+        {
+            var jumlah = $('#jumlah'+id).val();
+            var jumlah = parseInt(jumlah) + 1;
+
+            // AMBIL NILAI HARGA
+            var harga = $('#harga'+id).val();
+            var harga = parseInt(harga) * jumlah;
+
+            // UBAH FORMAT UANG INDONESIA
+            var	number_string = harga.toString();
+            var sisa 	= number_string.length % 3;
+            var rupiah 	= number_string.substr(0, sisa);
+            var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+            }
+
+            harga = "Rp. " + rupiah +",-";
+            
+            // alert(jumlah)
+            if (jumlah<1) {
+            alert('Jumlah Tidak Boleh Kosong')
+            } else {
+            $('#jumlah'+id).val(jumlah)
+            $('#show_'+id).html(jumlah)
+            $('#productPrice'+id).text(harga);
+            }
+        }
         
+        function button_minus(id)
+        {
+            var jumlah = $('#jumlah'+id).val();
+            var jumlah = parseInt(jumlah) - 1;
+
+            // AMBIL NILAI HARGA
+            var harga = $('#harga'+id).val();;
+            var harga = parseInt(harga) * jumlah;
+
+            // UBAH FORMAT UANG INDONESIA
+            var	number_string = harga.toString();
+            var sisa 	= number_string.length % 3;
+            var rupiah 	= number_string.substr(0, sisa);
+            var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+            }
+
+            harga = "Rp " + rupiah+ ",-";
+
+            if (jumlah<1) {
+            alert('Jumlah Tidak Boleh Kurang dari 1')
+            } else {
+            $('#jumlah'+id).val(jumlah);
+            $('#show_'+id).html(jumlah);
+            $('#productPrice'+id).text(harga);
+            }
+        }
+        /*
         function button_minus(id)
         {   
             var jumlah = $('#jmlbrg_'+id).val();
@@ -587,56 +1157,20 @@
                         });
             }
         }
+        */
 
-        function button_plus(id)
+        function add_tocart(id)
         {
-            var jumlah = $('#jmlbrg_'+id).val();
-            var jumlah = parseInt(jumlah) + 1;
-
-            var stock = $('#stock'+id).val();
-            // AMBIL NILAI HARGA
-            var harga = $('#harga'+id).val();
-            var harga = parseInt(harga) * jumlah;
-
-            // UBAH FORMAT UANG INDONESIA
-            var	number_string = harga.toString();
-            var sisa 	= number_string.length % 3;
-            var rupiah 	= number_string.substr(0, sisa);
-            var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
-
-            if (ribuan) {
-            separator = sisa ? '.' : '';
-            rupiah += separator + ribuan.join('.');
-            }
-
-            harga = "Rp. " + rupiah;
-            // alert(jumlah)
-            if (jumlah < 0) {
-            alert('Jumlah Tidak Boleh kurang dari nol')
-            } 
-            else if (jumlah > stock){
-                Swal.fire({
-                text: "Maaf, stok produk tidak mencukupi",
-                icon: 'info',
-                showCancelButton: false,
-                confirmButtonText: "Tutup",
-                confirmButtonColor: '#6a3137'
-                });
-                $(".swal2-modal").css('background-color', ' #FDD8AF')
-            }
-            else
-            {
-                $('#jmlbrg_'+id).val(jumlah);
-                $('#show_'+id).html(jumlah);
-                var Product_id = $('#Product_id'+id).val();
-                var quantity = $('#quantity_add'+id).val();
-                var price = $('#harga'+id).val();
-                var voucher_code_hide = document.getElementById("voucher_code_hide").value;
-                $.ajaxSetup({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            }
-                        });
+            var Product_id = $('#'+id).val();
+            var quantity = $('#jumlah'+id).val();
+            var price = $('#harga'+id).val();
+            var voucher_code_hide = document.getElementById("voucher_code_hide").value;
+            
+            $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
                 $.ajax({
                     url : '{{URL::to('/keranjang/simpan')}}',
                     type:'POST',
@@ -652,7 +1186,25 @@
                         //console.log(data);
                         //$('#'+id).val(jumlah);
                         //$('#show_'+id).html(jumlah);
-                        //$('#productPrice'+id).text(harga);
+                        // UBAH FORMAT UANG INDONESIA
+                       $('#message').html("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert'>×</button>Product berhasil dimasukkan ke keranjang</div>").fadeIn('slow');
+                       $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+                            $(".alert").slideUp(500); 
+                        });
+                        var	number_string = price.toString();
+                        var sisa 	= number_string.length % 3;
+                        var rupiah 	= number_string.substr(0, sisa);
+                        var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+                        if (ribuan) {
+                        separator = sisa ? '.' : '';
+                        rupiah += separator + ribuan.join('.');
+                        }
+
+                        price = "Rp. " + rupiah +",-";
+                        $('#jumlah'+id).val(1);
+                        $('#show_'+id).html(1);
+                        $('#productPrice'+id).text(price);
                         if(voucher_code_hide !=""){
                             $.ajax({
                                 url : '{{URL::to('/keranjang/apply_code')}}',
@@ -681,6 +1233,7 @@
                                 success: function (response) {
                                 // We get the element having id of display_info and put the response inside it
                                 $('#accordion' ).html(response);
+
                                 },
                                 complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
                                     $('#loader').addClass('hidden')
@@ -693,9 +1246,9 @@
                     console.log('Error:', data);
                     }
                 });
-            }
+            
         }
-
+        
         function button_minus_kr(id)
         {   
             var jumlah = $('#jmlkr_'+id).val();
@@ -719,13 +1272,13 @@
             rupiah += separator + ribuan.join('.');
             }
 
-            harga = "Rp. " + rupiah;
+            harga = "Rp. " + rupiah +",-";
 
             if (jumlah<1) {
             alert('Jumlah order minimal 1')
             } else {
                 $('#jmlbrg_'+id).val(jumlah);
-                $('#show_'+id).html(jumlah);
+                //$('#show_'+id).html(jumlah);
                 $('#jmlkr_'+id).val(jumlah);
                 $('#show_kr_'+id).html(jumlah);
                 $('#productPrice_kr'+id).text(harga);
@@ -748,7 +1301,7 @@
                 rupiah += separator + ribuan.join('.');
                 }
 
-                tot = "Rp. " + rupiah;
+                tot = "Rp. " + rupiah+",-";
                 $.ajaxSetup({
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -837,7 +1390,7 @@
             rupiah += separator + ribuan.join('.');
             }
 
-            harga = "Rp. " + rupiah;
+            harga = "Rp. " + rupiah+",-";
             
             // alert(jumlah)
             if (jumlah < 1) {
@@ -856,7 +1409,7 @@
             else 
             {
                 $('#jmlbrg_'+id).val(jumlah);
-                $('#show_'+id).html(jumlah);
+                //$('#show_'+id).html(jumlah);
                 $('#jmlkr_'+id).val(jumlah);
                 $('#show_kr_'+id).html(jumlah);
                 $('#productPrice_kr'+id).text(harga);
@@ -877,7 +1430,7 @@
                 rupiah += separator + ribuan.join('.');
                 }
 
-                tot = "Rp. " + rupiah;
+                tot = "Rp. " + rupiah+",-";
                 $.ajaxSetup({
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -979,8 +1532,8 @@
                     success: function (data) {
                     //console.log(data);
                     //$('#'+id).val(jumlah);
-                    $('#jmlbrg_'+id).val(jumlah);
-                    $('#show_'+id).html(jumlah);
+                    //$('#jmlbrg_'+id).val(jumlah);
+                    //$('#show_'+id).html(jumlah);
                     //$('#productPrice'+id).text(harga);
                     if(voucher_code_hide !=""){
                         $.ajax({
@@ -1076,18 +1629,21 @@
                 Swal.fire('Yes!');
             });
         });
-        
+    
+    /*
         window.setTimeout(function() {
-          $(".alert").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove(); 
-          });
-        }, 4000);
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(".alert").slideUp(500); 
+        });
+        }, 6000);*/
     </script>
     <script>
+        /*
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'UA-183852861-1');
+        */
     </script>
 </body>
 
