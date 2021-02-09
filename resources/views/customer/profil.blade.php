@@ -72,18 +72,20 @@
             </button>
             </div>
             <div class="modal-body">
-                <form id="form_validation" method="POST" enctype="multipart/form-data" action="{{route('update.profil',[$user->id])}}">
+                <form id="form_validation" method="POST" enctype="multipart/form-data" action="{{route('profil.update',[$user->id])}}">
+                    @csrf
+                    <input type="hidden" name="_method" value="PUT">
                     @if($user->avatar)
                     <img src="{{asset('storage/'.$user->avatar)}}" width="120px"/>
                     @else
                     <img  src="{{asset('assets/image/image-noprofile.png')}}" alt="user" width="120px"/>
                     @endif
                     <input type="file" name="avatar" class="form-control input-avatar" id="avatar" autocomplete="off" style="">
-                </form>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn button_profil">Simpan</button>
+            <button type="submit" class="btn button_profil">Simpan</button>
             </div>
+                </form>
         </div>
         </div>
     </div>
@@ -99,13 +101,15 @@
             </button>
             </div>
             <div class="modal-body">
-                <form id="form_validation" method="POST" enctype="multipart/form-data" action="">
+                <form id="form_validation" method="POST" enctype="multipart/form-data" action="{{route('profil.update',[$user->id])}}">
+                    @csrf
+                    <input type="hidden" name="_method" value="PUT">    
                     <textarea name="profil_desc" rows="4" class="form-control no-resize" placeholder="Bio" autocomplete="off" required></textarea> 
-                </form>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn button_profil">Simpan</button>
+            <button type="submit" class="btn button_profil">Simpan</button>
             </div>
+            </form>
         </div>
         </div>
     </div>

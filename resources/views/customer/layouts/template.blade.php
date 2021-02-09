@@ -663,7 +663,7 @@
                    <a href="{{ url('/') }}">Beranda</a>
                 </li>
                 <li>
-                   <a href="{{URL::route('profil_user')}}">Profile</a>
+                   <a href="{{URL::route('profil.index')}}">Profile</a>
                 </li>
                 <li>
                     <a href="{{URL::route('contact')}}">Kontak Kami</a>
