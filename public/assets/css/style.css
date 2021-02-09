@@ -244,6 +244,21 @@ a:focus {
   color: #174C7C !important;
 }
 
+.button-burger-menu-nocart {
+  position: relative;
+  background-color:transparent;
+  /*background-color: #2779B2;
+  color: #2779B2;*/
+  border-color:none;
+  outline: none;
+}
+
+.button-burger-menu-nocart:hover, .button-burger-menu-nocart:active, .button-burger-menu-nocart:focus {
+  background-color: none;
+  /*color: #4db849;
+  border-color:  #2779B2;*/
+}
+
 .button-burger-menu {
   position: absolute;
   background-color:transparent;
@@ -1884,6 +1899,18 @@ footer.footer .cart .count-cart-three {
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3); 
 }
 
+.heading-profil{
+  font-size: 40px;
+  font-weight:bold;
+  color:#FF0000;
+  line-height: 1;
+}
+
+.name-profil{
+  font-size:25px;
+  font-weight:bold;
+  color:#1A4066;
+}
 
 
 

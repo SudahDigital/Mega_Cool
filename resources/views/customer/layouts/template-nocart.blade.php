@@ -621,7 +621,7 @@
         <div id="content">
             <div role="main">
                 <div class="container">
-                    <button type="button" id="sidebarCollapse" class="btn button-burger-menu">
+                    <button type="button" id="sidebarCollapse" class="btn button-burger-menu-nocart">
                         <i class="fas fa-bars fa-2x" style="color:#1A4066;"></i>
                     </button>
                 </div>
