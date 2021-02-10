@@ -33,7 +33,6 @@
                     <img class="image-profil-user" src="{{asset('assets/image/image-noprofile.png')}}" alt="user"/>
                 @endif
             </a>
-            
             <div class="col-sm-7">
                 <div class="col-6 col-md-12">
                     <p class="heading-profil">Hello!</p>
@@ -47,7 +46,7 @@
                 </div>
                 <div class="col-12 col-md-10">
                     <p class="detail-profil">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. 
+                        {{$user->profile_desc}} 
                         <span data-toggle="modal" data-target="#modal-bio">
                             <a class="red-tooltip" data-toggle="tooltip" data-placement="top" title="Ubah bio anda">
                                 <i class="fas fa-pencil-alt"></i>

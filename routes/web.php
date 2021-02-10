@@ -15,15 +15,11 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/', 'WelcomeController@index');
 Route::get('/product/detail/', 'ProductDetailController@detail')->name('product_detail');
-Route::get('/cara-belanja', function(){
-        $categories = \App\Category::get();	
-    	return view('customer.carabelanja',['categories'=>$categories]);
-        })->name('cara_belanja');
-Route::get('/contact', function(){
+Route::group(['middleware' => ['auth','checkRole:SALES']],function(){
+    Route::get('/contact', function(){
         $categories = \App\Category::get();	
         return view('customer.contact',['categories'=>$categories]);
-        })->name('contact');
-Route::group(['middleware' => ['auth','checkRole:SALES']],function(){        
+        })->name('contact');        
     Route::get('/sales_home', 'CustomerKeranjangController@index')->name('home_customer');
     Route::get('/ajax/city', 'AjaxCitySearch@ajax_city');
     Route::get('/ajax/store', 'AjaxCitySearch@ajax_store');

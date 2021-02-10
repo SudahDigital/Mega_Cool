@@ -1,50 +1,52 @@
-@extends('customer.layouts.template-nobanner')
+@extends('customer.layouts.template-nocart')
+@section('title') Profil @endsection
 @section('content')
-    <div class="container" style="margin-top:80px;">
+    <div class="container" style="">
         <div class="row align-middle">
             <div class="col-sm-12 col-md-12">
-                <nav aria-label="breadcrumb" class="">
-                    <ol class="breadcrumb px-0 button_breadcrumb kontak">
-                        <li class="breadcrumb-item" style="color: #6a3137 !important;margin-top:30px; font-size:20px;"><a href="{{ url('/') }}"><i class="fa fa-home"></i></a></li>
-                        <li class="breadcrumb-item active" aria-current="page" style="margin-top:30px;">Kontak Kami</li>
+                <nav aria-label="breadcrumb" class="float-right mt-0">
+                    <ol class="breadcrumb px-0 button_breadcrumb">
+                        <li class="breadcrumb-profil-item active mt-1" aria-current="page">Kontak Kami</li>&nbsp;
+                        <li class="breadcrumb-profil-item" style="color: #000!important;"><a href="{{ url('/') }}"><i class="fa fa-home"></i></a></li>
                     </ol>
                 </nav>
             </div>
         </div>
-        <div class="row section_content">
-            <div class="col-sm-12 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-sm-8 mb-5" style="z-index:2">
                 <div class="row section_content" style="margin-top: 3.8rem;">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="card mx-auto item_product contact_kami">
-                            <div class="row card-body">
-
-                                <div class="col col-md-3">
-                                    <i class="fa fa-phone" id="i-kontak"></i>
-                                </div>
-                                <div class="col col-md-9">
-                                    <p class="card-title telp">Telepon</p>
-                                    <h5 class="card-title no_telp">‭082311988000‬</h5>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-3 col-md-4">
+                                <div class="card contact-card">
+                                    <div class="card-body text-center">
+                                        <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="card mx-auto item_product contact_kami">
-                            <div class="row card-body">
-
-                                <div class="col col-md-3">
-                                    <i class="fa fa-envelope" id="i-envelop"></i>
-                                </div>
-                                <div class="col col-md-9">
-                                    <p class="card-title" id="env">Email</p>
-                                    <h5 class="card-title" id="e_env">yardizhen@gmail.com</h5>
-                                </div>
+                            <div class="col-8 col-md-8">
+                                <p class="contact-tele-name mb-0 mt-2">Telepon</p>
+                                <h5 class="contact-tele-number">‭082311988000‬</h5>
                             </div>
                         </div>
-                    </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-3 col-md-4">
+                                <div class="card contact-card">
+                                    <div class="card-body text-center">
+                                        <i class="fa fa-envelope"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-8 col-md-8">
+                                <p class="contact-email-name mb-0 mt-2">Email</p>
+                                <h5 class="contact-email">megacools@gmail.com</h5>
+                            </div>
+                        </div>
+                     </div>
                 </div>
             </div>
         </div>
-        <br><br><br>
     </div>
 @endsection

@@ -19,13 +19,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
     <!-- Font Awesome JS -->
     <script src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
-      integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
-      crossorigin="anonymous"
-    />
+    
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183852861-1"></script>
@@ -560,14 +555,6 @@
     </script>
 </head>
 <body>
-    <div id="message" class="row justify-content-center"></div>
-    <img src="{{ asset('assets/image/dot-top-right-profil.jpg') }}" class="dot-top-right"  
-    style="" alt="ot-top-right-profil">
-    <img src="{{ asset('assets/image/dot-bottom-left-profil.jpg') }}" class="dot-bottom-left"  
-    style="" alt="dot-bottom-left-profil">
-    <img src="{{ asset('assets/image/shape-profil-bottom.jpg') }}" class="shape-bottom-right"  
-    style="" alt="shape-profil-bottom">
-
     <!--preloader-->
     <div class="preloader" id="preloader">
         <div class="loading">
@@ -588,20 +575,20 @@
                 <a href="{{url('/') }}" >
                     @if(\Auth::user())
                         @if(\Auth::user()->avatar)
-                            <img src="{{asset('storage/'.Auth::user()->avatar)}}" alt="user" />
+                            <img style="border-radius: 50%;" src="{{asset('storage/'.Auth::user()->avatar)}}" alt="user" />
                         @else
                         <img src="{{asset('assets/image/image-noprofile.png')}}" alt="user"/>
                         @endif
                     @endif
                 </a>
-                <p>{{\Auth::user()->name}}</p>
+                <p class="mt-2">{{\Auth::user()->name}}</p>
             </div>
             <ul class="list-unstyled components">
                 <li class="">
                    <a href="{{ url('/') }}">Beranda</a>
                 </li>
                 <li>
-                   <a href="{{URL::route('cara_belanja')}}">Profile</a>
+                   <a href="{{URL::route('profil.index')}}">Profile</a>
                 </li>
                 <li>
                     <a href="{{URL::route('contact')}}">Kontak Kami</a>
@@ -635,6 +622,14 @@
         </div>
 
     </div>
+
+    <div id="message" class="row justify-content-center"></div>
+    <img src="{{ asset('assets/image/dot-top-right-profil.jpg') }}" class="dot-top-right"  
+    style="" alt="ot-top-right-profil">
+    <img src="{{ asset('assets/image/dot-bottom-left-profil.jpg') }}" class="dot-bottom-left"  
+    style="" alt="dot-bottom-left-profil">
+    <img src="{{ asset('assets/image/shape-profil-bottom.jpg') }}" class="shape-bottom-right"  
+    style="" alt="shape-profil-bottom">
     
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>

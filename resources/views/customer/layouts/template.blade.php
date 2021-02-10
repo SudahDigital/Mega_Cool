@@ -650,13 +650,13 @@
                 <a href="{{url('/') }}" >
                     @if(\Auth::user())
                         @if(\Auth::user()->avatar)
-                            <img src="{{asset('storage/'.Auth::user()->avatar)}}" alt="user" />
+                            <img style="border-radius: 50%;" src="{{asset('storage/'.Auth::user()->avatar)}}" alt="user" />
                         @else
                         <img src="{{asset('assets/image/image-noprofile.png')}}" alt="user"/>
                         @endif
                     @endif
                 </a>
-                <p>{{\Auth::user()->name}}</p>
+                <p class="mt-2">{{\Auth::user()->name}}</p>
             </div>
             <ul class="list-unstyled components">
                 <li class="">

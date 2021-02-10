@@ -81,7 +81,7 @@ class ProfilController extends Controller
                 $user->avatar =$file;
             }
         }else if($request->has('profil_desc')){
-            $user->profil_desc = $request->get('profil_desc');
+            $user->profile_desc = $request->get('profil_desc');
         }
         
         $user->save();
