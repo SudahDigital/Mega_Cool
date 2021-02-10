@@ -229,7 +229,6 @@
         }
 
         .button_welcome {
-            font-family: Open Sans;
             background: linear-gradient(to bottom, #6a3137, #6a3137); 
             color:white; 
             padding: 5px 15px; 
@@ -592,7 +591,7 @@
                                 <table class="table borderless">
                                     <tbody width="100%">
                                         <tr>
-                                            <td width="20%" align="left" class="mx-auto">
+                                            <td align="left" class="mx-auto td-label-loc">
                                                 <h6>Kota</h6>
                                             </td>
                                             <td class="px-2" width="80%">
@@ -602,7 +601,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td align="left" class="mx-auto">
+                                            <td align="left" class="my-auto td-label-loc">
                                                 <h6>Pilih Toko</h6>
                                             </td>
                                             <td class="px-2">
@@ -653,13 +652,13 @@
                 <a href="{{url('/') }}" >
                     @if(\Auth::user())
                         @if(\Auth::user()->avatar)
-                            <img style="border-radius: 50%;" src="{{asset('storage/'.Auth::user()->avatar)}}" alt="user" />
+                            <img class="rounded-circle" src="{{asset('storage/'.Auth::user()->avatar)}}" alt="user" />
                         @else
                         <img src="{{asset('assets/image/image-noprofile.png')}}" alt="user"/>
                         @endif
                     @endif
                 </a>
-                <p class="mt-2">{{\Auth::user()->name}}</p>
+                <p class="mt-4">{{\Auth::user()->name}}</p>
             </div>
             <ul class="list-unstyled components">
                 <li class="">
@@ -699,7 +698,7 @@
                 <div class="text-hero">
                     <h1><span class="the">The</span>&nbsp;<span class="power">Power</span></h1>
                     <h1><span class="the">Of</span>&nbsp;<span class="power">Innovation</span></h1>
-                    <hr class="hr-text-hero" />
+                    <hr/>
                 </div>
                 
                 <img src="{{ asset('assets/image/main-banner.png') }}" class="w-100 h-90" alt="main-banner" style="margin-top:-1.5rem;">

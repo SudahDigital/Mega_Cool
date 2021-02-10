@@ -224,7 +224,6 @@
         }
 
         .button_welcome {
-            font-family: Open Sans;
             background: linear-gradient(to bottom, #6a3137, #6a3137); 
             color:white; 
             padding: 5px 15px; 
@@ -581,7 +580,7 @@
                         @endif
                     @endif
                 </a>
-                <p class="mt-2">{{\Auth::user()->name}}</p>
+                <p class="mt-4">{{\Auth::user()->name}}</p>
             </div>
             <ul class="list-unstyled components">
                 <li class="">

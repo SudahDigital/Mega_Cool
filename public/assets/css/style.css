@@ -449,7 +449,7 @@ a:focus {
 
 #sidebar .sidebar-header img {
   width: 150px;
-  height: auto;
+  height: 150px;
   border-radius: 50%;
 }
 
@@ -1852,8 +1852,6 @@ footer.footer .cart .count-cart-three {
 #card-cart{
   background-color:#DADADA;
   border-radius:0; 
-  padding-left:9%;
-  padding-right: 9%; 
   height:60px;
 }
 
@@ -1947,11 +1945,11 @@ footer.footer .cart .count-cart-three {
 
 .image-profil-user{
   position: absolute;
-  width:280px;
-  height:auto;
+  width:230px;
+  height:230px;
   left:23%;
   top:27%;
-  border-radius: 50%;
+  
 }
 
 .input-avatar{
@@ -1979,7 +1977,24 @@ footer.footer .cart .count-cart-three {
  font-weight: 800;
 }
 
+.text-hero hr{
+  width:650px;
+  border-top: 1.5px solid #ffffff;
+}
 
+.profil-row{
+  margin-top:2rem;
+  -webkit-animation-name: GerakanKeKanan;
+  animation-name: GerakanKeKanan;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  /*background-color: transparent !important;*/
+  background-color: #ffffff;
+}
+
+.contact-row{
+  margin-top:0;
+}
   
 
 

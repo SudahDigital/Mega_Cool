@@ -13,11 +13,11 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-sm-8 mb-5" style="z-index:2">
+            <div class="col-md-8 mb-5 contact-row" style="z-index:2">
                 <div class="row section_content" style="margin-top: 3.8rem;">
                     <div class="col-md-6">
                         <div class="row">
-                            <div class="col-3 col-md-4">
+                            <div class="col-4 col-md-4">
                                 <div class="card contact-card">
                                     <div class="card-body text-center">
                                         <i class="fas fa-phone-alt" aria-hidden="true"></i>

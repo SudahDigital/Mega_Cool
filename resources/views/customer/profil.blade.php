@@ -25,15 +25,15 @@
         </div>
         
             
-        <div class="row justify-content-end mt-5">
+        <div class="row justify-content-end mt-5 ">
             <a class="red-tooltip" data-toggle="modal" data-target="#modal-avatar">
                 @if(\Auth::user()->avatar)
-                    <img class="image-profil-user" src="{{asset('storage/'.Auth::user()->avatar)}}" alt="user" />
+                    <img class="image-profil-user rounded-circle" src="{{asset('storage/'.Auth::user()->avatar)}}" alt="user" />
                 @else
-                    <img class="image-profil-user" src="{{asset('assets/image/image-noprofile.png')}}" alt="user"/>
+                    <img class="image-profil-user " src="{{asset('assets/image/image-noprofile.png')}}" alt="user"/>
                 @endif
             </a>
-            <div class="col-sm-7">
+            <div class="col-sm-7 profil-row" style="background: transparent;">
                 <div class="col-6 col-md-12">
                     <p class="heading-profil">Hello!</p>
                     <p class="name-profil">{{Auth::user()->name}}</p>
