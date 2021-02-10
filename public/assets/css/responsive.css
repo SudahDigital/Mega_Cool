@@ -1,52 +1,44 @@
 @media (max-width: 2560px){
 
-    #shape-1 {
-        width:30%;
-        height: 38.8rem;
-        top:0;
-        
+   .image-logo-login{
+        margin-top:10rem;
    }
-  
-   #shape-2 {
-    width:30%;
-    height: 38.8rem;
-    top:38.8rem;
+
+   .text-hero{
+        right:13rem;
+        top:17rem;
+    }
     
-  }
-
-   .navbar-brand {
-        position: absolute;
-        left: 46%;
+    .text-hero h1{
+        font-size: 120px;
+    }
+    
+    #sidebar {
+        width: 20%;
+        left: -20%;
     }
 
-    .warna{
-        height:38.8rem;
-    }
-   
-
-    #i-kontak, #i-envelop {
-        font-size: 5em;
+    .sidebar-dot-bottom {
+        margin-top:5rem;
     }
 
-    #content .cara_belanja h5{
-        font-weight: 900;
-        font-size: 30px;
-        margin-left:-10px;
-        margin-right:0;
-        
+    #content .dot-content-top-right {
+        width: 500px;
     }
 
-    #content .cara_belanja p{
-        margin-left:-10px;
-        font-size: 25px;
-        
+    .shape-content-bottom-right {
+        width: 600px;
+        bottom:20%;
     }
 
-    #cv .fa-chevron-up{
-        margin-left: 7rem;
-        font-size: 25px;
-        margin-top:-20px;
-        position: absolute;
+    .dot-content-bottom-left {
+        width: 500px;
+        bottom:20%;
+    }
+
+    #card-cart{
+        padding-left:28%;
+        padding-right: 28%; 
     }
 }
 
@@ -105,7 +97,7 @@
        }
       
       #content .cara_belanja h5{
-        font-family: Open Sans;
+        
         font-size: 26px;
         font-weight: 800;
         margin-left:-50px;

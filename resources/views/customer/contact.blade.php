@@ -26,7 +26,7 @@
                             </div>
                             <div class="col-8 col-md-8">
                                 <p class="contact-tele-name mb-0 mt-2">Telepon</p>
-                                <h5 class="contact-tele-number">‭082311988000‬</h5>
+                                <h5 class="contact-tele-number">‭021-777-000‬</h5>
                             </div>
                         </div>
                      </div>

@@ -2,19 +2,19 @@
 @section('title') Login @endsection
 @section('content')
     <div class="container">
-        <div class="d-flex justify-content-center mx-auto">
-            <div class="col-md-2">
+        <div class="d-flex justify-content-center mx-auto" >
+            <div class="col-md-2 image-logo-login" style="z-index: 2">
                <img src="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png') }}" class="img-thumbnail" style="background-color:transparent; border:none;" alt="LOGO MEGACOOLS_DEFAULT">  
             </div>
             
         </div>
-        <div class="col-md-12 login-label">
+        <div class="col-md-12 login-label" style="z-index: 2">
             <h1>Masuk</h1>
             <p> Gunakan Akun Anda</p>
         </div>
             
         <div class="row justify-content-center">
-            <div class="col-sm-7">
+            <div class="col-sm-7" style="z-index: 2">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="card mx-auto contact_card" 

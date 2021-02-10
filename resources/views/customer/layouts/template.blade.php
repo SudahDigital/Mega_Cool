@@ -573,16 +573,19 @@
                     style="" alt="dot-bottom-left">
                     <img src="{{ asset('assets/image/shape-bottom-right.png') }}" class="shape-bottom-right"  
                     style="" alt="shape-bottom-right">
-                    <div class="d-flex justify-content-center mx-auto">
-                        <div class="col-md-2">
-                           <img src="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png') }}" class="img-thumbnail pt-4" style="background-color:transparent; border:none;" alt="LOGO MEGACOOLS_DEFAULT">  
+                    <div class="container">
+                        <div class="d-flex justify-content-center mx-auto">
+                            <div class="col-md-2 image-logo-login" style="z-index: 2">
+                            <img src="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png') }}" class="img-thumbnail pt-4" style="background-color:transparent; border:none;" alt="LOGO MEGACOOLS_DEFAULT">  
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-12 login-label pt-4">
+                    <div class="col-md-12 login-label pt-4" style="z-index: 2">
                         <h3 >Lokasi Anda</h3>
                     </div>
+                    
                     <div class="row justify-content-center">
-                        <div class="col-md-5 login-label">
+                        <div class="col-md-5 login-label" style="z-index: 2">
                             <form method="POST" action="{{route('session.store')}}">
                                 @csrf
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
@@ -693,6 +696,12 @@
                         <i class="fas fa-bars fa-2x" style="color:#ffffff;"></i>
                     </button>
                 </div>
+                <div class="text-hero">
+                    <h1><span class="the">The</span>&nbsp;<span class="power">Power</span></h1>
+                    <h1><span class="the">Of</span>&nbsp;<span class="power">Innovation</span></h1>
+                    <hr class="hr-text-hero" />
+                </div>
+                
                 <img src="{{ asset('assets/image/main-banner.png') }}" class="w-100 h-90" alt="main-banner" style="margin-top:-1.5rem;">
                 <!--
                 <div id="bannerSlide" class="carousel slide" data-ride="carousel">--//data-interval="5000"//--
