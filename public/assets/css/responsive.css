@@ -263,7 +263,7 @@
 
 @media (max-width: 1366px){
     .dot-top-right {
-        width: 300px;
+        width: 200px;
     }
 
     .dot-bottom-left {
@@ -271,11 +271,11 @@
     }
 
     .shape-bottom-right {
-        width: 340px;
+        width: 300px;
     }
 
     .image-logo-login{
-        margin-top:5rem;
+        margin-top:0;
     }
 
    .text-hero{
