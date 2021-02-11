@@ -288,7 +288,7 @@ Home
                                 <tbody>
                                     @foreach($keranjang as $detil)
                                     <tr>
-                                        <td width="25%" valign="middle" style="border-bottom: 1px solid #ddd;padding-top:3%;">
+                                        <td width="30%" class="img-detail-cart" valign="middle" style="border-bottom: 1px solid #ddd;padding-top:3%;">
                                             <img src="{{ asset('storage/'.$detil->image)}}" 
                                             class="image-detail"  alt="...">   
                                         </td>

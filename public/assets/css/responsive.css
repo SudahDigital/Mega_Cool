@@ -265,6 +265,10 @@
     .dot-top-right {
         width: 200px;
     }
+    
+    .td-label-loc{
+        width: 20%;
+    }
 
     .dot-bottom-left {
         width: 300px;
@@ -373,7 +377,7 @@
 
 @media (max-width: 1024px){
     .dot-top-right {
-        width: 250px;
+        width: 200px;
     }
 
     .td-label-loc{
@@ -393,56 +397,104 @@
     }
 
    .text-hero{
-        right:7rem;
-        top:10rem;
+        right:5rem;
+        top:8rem;
     }
     
     .text-hero h1{
-        font-size: 70px;
+        font-size: 52px;
     }
 
     .text-hero hr{
-        width:510px;
+        width:380px;
         border-top: 1.5px solid #ffffff;
     }
     
     #sidebar {
-        width: 30%;
-        left: -30%;
+        width: 33%;
+        left: -33%;
     }
 
     #sidebar .sidebar-header {
-        margin-left: 7rem;
+        margin-left: 6rem;
+    }
+
+    #sidebar .sidebar-header img{
+        width: 120px;
+        height: 120px;
+    }
+
+    #sidebar .sidebar-header p {
+        font-size:17px;
     }
 
     #sidebar ul li a {
-        margin-left: 7rem;
-        margin-right: 7rem;
+        font-size: 20px;
+        margin-left: 6rem;
+        margin-right: 6rem;
     }
 
     #log .logout {
-        margin-left: 7rem;
+        padding:8px 40px;
+        margin-left: 6rem;
+    }
+
+    .sidebar-dot-top-right {
+        width: 190px;
     }
 
     .sidebar-dot-bottom {
-        width:400px;
-        margin-top:-8.5rem;
+        width:300px;
+        margin-top:-11rem;
     }
 
     #content .dot-content-top-right {
-        width: 300px;
+        width: 200px;
     }
 
     .shape-content-bottom-right {
-        width: 350px;
-        bottom:16%;
+        width: 250px;
+        bottom:15%;
     }
 
     .dot-content-bottom-left {
-        width: 300px;
-        bottom:16%;
+        width: 200px;
+        bottom:15%;
     }
 
+    #content .product-price-header {
+        font-size:15px;
+    }
+
+    #content .product-price {
+        font-size: 19px; 
+    }
+
+    #card-detail .image-detail{
+        width:160px; 
+        height:auto;
+    }
+
+    #card-cart h5{
+        font-size: 18px;
+    }
+
+    .table-detail h2{
+        font-size: 25px;
+    }
+
+    #card-detail p{
+        font-size: 20px;
+    }
+
+    .fixed-bottom h2{
+        font-size: 25px;
+    }
+
+    #card-detail .button_minus .button_plus .d-inline{
+        font-size: 18px;
+    }
+      
     .image-profil-user{
         width:250px;
         height:250px;
@@ -452,7 +504,7 @@
     }
 
     #hero_cools{
-        margin-bottom: 0;
+        margin-bottom: -2.5rem;
     }
 
     .profil-row{
