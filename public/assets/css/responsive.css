@@ -8,6 +8,10 @@
        width: 10%;
    }
 
+   #hero_cools{
+    margin-bottom: -20.5rem;
+    }
+
    .text-hero{
         right:13rem;
         top:17rem;
@@ -70,6 +74,10 @@
 
     .image-logo-login{
         margin-top:10rem;
+    }
+
+    #hero_cools{
+        margin-bottom: 0;
     }
 
    .text-hero{
@@ -168,6 +176,10 @@
         margin-top:5rem;
     }
 
+    #hero_cools{
+        margin-bottom:0;
+    }
+
    .text-hero{
         right:7rem;
         top:10rem;
@@ -225,10 +237,6 @@
         left:25%;
         top:32.5%;
         
-    }
-
-    #hero_cools{
-        margin-bottom: -2rem;
     }
 
     .profil-row{
@@ -496,884 +504,426 @@
     }
       
     .image-profil-user{
-        width:250px;
-        height:250px;
+        width:180px;
+        height:180px;
         left:25%;
         top:31%;
         
     }
 
     #hero_cools{
-        margin-bottom: -2.5rem;
+        margin-bottom: 0;
     }
 
     .profil-row{
-        margin-top:3rem;
+        margin-top:0;
     }
 
     .heading-profil{
-        font-size: 40px;
-        line-height: 1;
+        font-size: 33px;
+        line-height: 0.8;
     }
 
     .name-profil{
-        font-size:30px;
+        font-size:25px;
+        line-height: 0.8;
     }
 
     .breadcrumb-profil-name {
-        font-size:23px;
+        font-size:20px;
+        line-height: 0.8;
     }
       
     .breadcrumb-profil-name + .breadcrumb-profil-name::before {
-        font-size: 29px;
+        font-size: 28px;
+        line-height: 0.8;
     }
       
     .breadcrumb-profil-name.active {
-    font-size: 23px;
+    font-size: 20px;
+    line-height: 0.8;
+    margin-top:2px;
     }
 
     .contact-row{
-        margin-top:8rem;
+        margin-top:2rem;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px){
+    .dot-top-right {
+        width: 200px;
+    }
 
-    #shape-1 {
-        float: left;
-        width: 40%;
-        height: 18rem;
-        top:11.4rem;
-        border-top-right-radius: 100%;
-        /*background:#fff;*/
-        background:#174C7C;
-        position: absolute;
-   }
-  
-   #shape-2 {
-    right:0;
-    width: 40%;
-    height: 18rem;
-    top:29.4rem;
-    border-bottom-left-radius: 100%;
-    background:#ffcc94;
-    /*background:#5D2B30;*/
-    position: absolute;
-    z-index: ;
-  }
+    .td-label-loc{
+        width: 20%;
+    }
 
+    .dot-bottom-left {
+        width: 300px;
+    }
 
+    .shape-bottom-right {
+        width: 300px;
+    }
+
+    .image-logo-login{
+        margin-top:0;
+    }
+
+    #hero_cools{
+        margin-bottom: 0;
+    }
+
+   .text-hero{
+        right:3rem;
+        top:8rem;
+    }
+    
+    .text-hero h1{
+        font-size: 40px;
+    }
+
+    .text-hero hr{
+        width:290px;
+        border-top: 1.5px solid #ffffff;
+    }
+    
     #sidebar {
-        width: 70%;
-        left: -70%;
+        width: 40%;
+        left: -40%;
     }
 
-    .warna{
-        height:29.4rem;
-    }
-    
-    #sidebar ul.components {
-    padding: 20px 0;
-    }
-    
-    #sidebar ul li a {
-        margin-bottom: 5px;
-        font-size: 15px;
+    #sidebar .sidebar-header {
+        margin-left: 5rem;
     }
 
-    #pageSubmenu{
-        font-size: 14px;
-    }
-    #sidebar ul li.active>a,
-    a[aria-expanded="true"] {
-        color: white;
-        /*background: #5D2B30;*/
-    
+    #sidebar .sidebar-header img{
+        width: 120px;
+        height: 120px;
     }
 
-    .nav-center img{
-        left:-4rem;
-        position:absolute;
-        top:-2.4rem;
-    }
-
-    .navbar .navbar-brand img {
-        width:200px;
-        height:auto;
-    }
-
-    
-    a.login{
-        border:none;
-        font-size: 15px;
-        font-weight: 900;
-        padding-left:2rem;
-        padding-right:2rem;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        margin-top: -15px;
-        color: #174C7C;
-        background-color: #fff;
-      }
-
-    #log .logout {
-        
-        font-size: 15px;
-    }
-      
-
-    a.register {
-        font-size: 15px;
-    }
-
-    .reset{
-        font-size: 17px;
-    }
-
-    #sidebar .social-icons a {
-        margin-right: 5px;
-        margin-left: 5px;
-        font-size:14px;
-        color: #fff;
-    }
-
-    .cat_fil{
-        margin-left: -10px;
-        font-size: 18px;
-        font-weight: bold;
-        font-style:normal;
-        line-height: 1;
-        font-family: Open Sans;
-      }
-
-      .tombol{
-        font-size: 20px;
-    }
-
-      .menu-filter{
-        width:20%;
-        height: auto;
-    }
-
-   
-
-    #content .cr_bl{
-    
-        margin-left: 1.8rem;
-    }
-
-    #content .cara_belanja img{
-      width:90px;
-      height:auto;
-      margin-left:-30px;
-    }
-
-    #content .cara_belanja h5{
-        font-weight: 900;
-        font-size: 18px;
-        margin-left:-10px;
-        margin-right:0;
-        
-    }
-
-    #content .cara_belanja p{
-        margin-left:-10px;
-        font-size: 14px;
-        
-    }
-
-    #content .kontak{
-        
-        margin-left: 0.5rem;
-        margin-bottom : -2rem;
-
-    }
-
-    #i-kontak, #i-envelop {
-        font-size: 3.9em;
-        margin-top:1.3rem;
-        margin-left:0;
-    }
-
-    #content .contact_kami h5.no_telp{
-        margin-left:0;
-        font-size: 25px;
-       
-    }
-
-    #content .contact_kami p.telp{
-        margin-left:0;
-        margin-top: 1rem;
-        font-size: 23px;
-       
-   }
-
-   #content .contact_kami p{
-    margin-top:1.2rem;
-    margin-left:0;
-    font-size: 23px;
-    font-weight: 600;
-    
-   }
-
-  #content .contact_kami h5{
-    margin-left:0;
-    font-family: Open Sans;
-    font-size: 15px;
-    
-  }
-
-    #content .button_add_to_cart {
-        
-        border-radius: 5px;
-        padding:10px;
-        color: #ffffff;
-        
-        font-size: 11px;
-        font-weight: 600; 
-    }
-
-    #content .button_add_to_cart::after {
-        padding:10px;
-    }
-
-    .button-collapse{
-        margin-left:-10px;
-        margin-right: 10px;
-        margin-bottom:20px;
-        font-size: 16px;
-        left:0;
-        right:-1rem;
-        top:0;
-        padding-top:2px;
-    }
-
-     .collapse{
-        margin-bottom:10px;
-      }
-
-    #content .item_product{
-        width:100%; 
-        padding:5px;
-        padding-bottom: 10px; 
-        border-radius:15px;
-        margin-bottom:4rem;
-    }
-
-    #content .item_product img{
-        border-radius:15px;
-        height: auto;
-    }
-
-    #content .product-price-header {
-        line-height: 1.36;
+    #sidebar .sidebar-header p {
         font-size:17px;
     }
 
-    #content .product-price {
-        font-size: 28px; 
-        font-weight: 900;
-    }
-
-    /*
-    #content .hdr_tbl_cart {
-       margin-top:-2px;
-    }*/
-
-    #content .tbl_cart {
-        width: 50%;
-        padding-right:0;
-    }
-
-    #content .button_plus{
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 15px;
-        margin-top:1px;
-        margin-right:8px;
-        margin-left:-12px;
-    }
-
-    #content .button_minus {
-        font-size: 15px;
-        margin-left:8px;
-    }
-      
-      #content .show {
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 15px;
-        font-weight: 900;
-        margin-left:-10px;
-    }
-
-
-    #footer {
-        
-        padding-top: 7rem;
-        padding-bottom: 2rem;
-    }
-
-    #footer .social-icons a {
-        margin-top: 0;
-        margin-right: 10px;
-        margin-left: 10px;
-        font-size:20px;
-    }
-
-    .copyright p {
-        margin-top: 20px;
-        margin-bottom: 10rem;
-        font-size: 13px;
-     }
-
-      .fixed-bottom{
-        margin-left:15px;
-        margin-right:15px;
-     }
-
-     #ex4 .p1[data-count]:after{
-        
-        right:50%;
-        top:10%;
-        line-height:0.5em;
-        color: white;
-        min-width: 1.3em;
-        
-      }
-
-    #card-cart{
-    background-color:#2779B2;
-    border-radius:14px; 
-    padding-left:10px; 
-    height:50px;
-    padding-bottom:4px;
-    }
-    
-    #ex4 .fa-shopping-cart{
-        font-size: 25px;
-        color: #ffffff;
-        top:2px;
-        position: absolute;
-      }
-    
-    #card-cart h5{
-    font-size:13px;
-    margin-left:-2.5rem;
-    margin-top:-10px;
-    }
-    
-    #card-detail .image-detail{
-    border-radius:10px; 
-    width:200px; 
-    height:auto;
-    }
-    
-    #card-detail p{
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 2px;
-    }
-    
-    #card-detail h1{
-    color: #2779B2;
-    font-weight: 900;
-    }
-
-    #cv .fa-chevron-up{
-        margin-left: -15px;
-        font-size: 14px;
-        margin-top:-20px;
-        position: absolute;
-    }
-
-    #collapse-4{
-
-    /*max-height:375px;*/ 
-    padding:2px;
-    
-    }
-
-    #card-detail {
-      padding-left:2px;
-      padding-right:2px; 
-    }
-
-    #card-detail .image-detail{
-        width:80px; 
-        height:auto;
-        margin-bottom: 15%;
-    }
-
-    #card-detail p{
-        font-size: 10px;
-        margin-left:10px; 
-        font-weight: bold;
-        margin-bottom: 2px;
-    }
-
-    #card-detail h1{
-        margin-left:10px;
-        font-size: 15px;
-        font-weight: 900;
-    }
-
-    #card-detail .button_minus {
-        font-size: 10px;
-        margin-left:15px;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .button_plus{
-        font-size: 10px;
-        margin-left:5px;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .d-inline{
-       font-size: 13px;
-       margin-left:5px;
-    }
-
-    #card-detail .btn-default{
-        color:#fff;
-        background-color:#174C7C;
-        font-size:10px;
-        font-weight: 800; 
-        padding-top:5px; 
-        padding-bottom:5px;
-      }
-
-      #bt_beli a{
-        
-        border-radius: 5px;
-        padding-right:15px;
-        padding-left: 15px;
-        padding-top:10px;
-        padding-bottom: 10px;
-        font-size: 10px;
-        font-weight:800;
-        margin-right:0px;
-      }
-}
-
-@media (max-width: 600px) {
-
-    #shape-1 {
-        float: left;
-        width: 100%;
-        height: 19rem;
-        top:15.1rem;
-        border-top-right-radius: 100%;
-        /*background:#fff;*/
-        /*background:#5D2B30;*/
-        position: absolute;
-   }
-  
-   #shape-2 {
-    right:0;
-    width: 100%;
-    height: 19rem;
-    top:34.3rem;
-    border-bottom-left-radius: 100%;
-    background:#ffcc94;
-    /*background:#5D2B30;*/
-    position: absolute;
-    z-index: ;
-  }
-
-    #sidebar {
-        width: 70%;
-        left: -70%;
-    }
-
-    .warna{
-        height:34.3rem;
-    }
-    
-    #sidebar ul.components {
-    padding: 20px 0;
-    }
-    
     #sidebar ul li a {
-        margin-bottom: 5px;
-        font-size: 15px;
+        font-size: 20px;
+        margin-left: 5rem;
+        margin-right: 5rem;
     }
-
-    #pageSubmenu{
-        font-size: 14px;
-    }
-    #sidebar ul li.active>a,
-    a[aria-expanded="true"] {
-        color: white;
-        /*background: #5D2B30;*/
-    
-    }
-
-    .nav-center img{
-        left:-4.8rem;
-        position:absolute;
-        top:-2.4rem;
-    }
-
-    .navbar .navbar-brand img {
-        width:200px;
-        height:auto;
-    }
-
-    a.login{
-        border:none;
-        font-size: 15px;
-        font-weight: 900;
-        padding-left:2rem;
-        padding-right:2rem;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        margin-top: -15px;
-        color: #174C7C;
-        background-color: #fff;
-      }
 
     #log .logout {
-        
-        font-size: 15px;
-    }
-      
-
-    a.register {
-        font-size: 15px;
+        padding:8px 40px;
+        margin-left: 5rem;
     }
 
-    .reset{
-        font-size: 17px;
+    .sidebar-dot-top-right {
+        width: 190px;
     }
 
-    #sidebar .social-icons a {
-        margin-right: 5px;
-        margin-left: 5px;
-        font-size:14px;
-        color: #fff;
+    .sidebar-dot-bottom {
+        width:300px;
+        margin-top:0;
     }
 
-    .cat_fil{
-        font-size: 17px;
-        font-weight: bold;
-        font-style:normal;
-        line-height: 1;
-        font-family: Open Sans;
-      }
-
-      .tombol{
-        font-size: 17px;
+    #content .dot-content-top-right {
+        width: 200px;
     }
 
-      .menu-filter{
-        width:25%;
-        height: auto;
+    .shape-content-bottom-right {
+        width: 250px;
+        bottom:19%;
     }
 
-    
-
-    #content .cr_bl{
-    
-        margin-left: 1.8rem;
+    .dot-content-bottom-left {
+        width: 200px;
+        bottom:19%;
     }
 
-    #content .cara_belanja img{
-        width:100px;
-        height:auto;
-      }
-  
-      #content .cara_belanja h5{
-          font-weight: 900;
-          font-size: 18px;
-          margin-left:-7rem;
-          margin-right:2px;
-          
-      }
-  
-      #content .cara_belanja p{
-          margin-right:10px;
-          font-size: 14px;
-          margin-left:-7rem;
-          
-      }
-
-    #content .kontak{
-        
-        margin-left: 0.5rem;
-        margin-bottom : -2rem;
-
+    #product_list{
+        margin-bottom: -6rem;
     }
 
-    #i-kontak, #i-envelop {
-        font-size: 3.9em;
-        margin-top:1.3rem;
-        margin-left:20px;
-    }
-
-    #content .contact_kami h5.no_telp{
-        margin-left:-6rem;
-        font-size: 29px;
-       
-    }
-
-    #content .contact_kami p.telp{
-        margin-left:-6rem;
-        margin-top: 1rem;
-        font-size: 23px;
-       
-   }
-
-   #content .contact_kami p{
-    margin-top:1.2rem;
-    margin-left:-6rem;
-    font-size: 23px;
-    font-weight: 600;
-    
-   }
-
-  #content .contact_kami h5{
-    margin-left:-6rem;
-    font-family: Open Sans;
-    font-size: 18px;
-    
-  }
-
-    #content .button_add_to_cart {
-        
-        border-radius: 5px;
-        padding:8px 15px;
-        color: #ffffff;
-        margin-right: 2px;
-        font-size: 16px;
-        font-weight: 600; 
-    }
-
-    #content .button_add_to_cart::after {
-        padding:8px;
-    }
-
-    .button-collapse{
-        margin-left: 8px;
-        margin-right: 10px;
-        margin-bottom:20px;
-        font-size: 40px;
-        left:-1.5rem;
-        right:-1rem;
-        top:0;
-        padding-top:2px;
-    }
-
-     .collapse{
-        margin-bottom:10px;
-      }
-
-    #content .item_product{
-        width:100%; 
+    #product_list .card-body{
         padding:5px;
-        padding-bottom: 10px; 
-        border-radius:15px;
-        margin-bottom:4rem;
     }
 
-    #content .item_product img{
-        border-radius:15px;
-        height: 220px;
+    #product_list .button_add_to_cart{
+        font-size: 12px;
     }
 
     #content .product-price-header {
-        line-height: 1.36;
-        font-size:18px;
+        font-size:12px;
     }
 
     #content .product-price {
-        font-size: 25px; 
-        font-weight: 900;
+        font-size: 15px; 
     }
 
-    /*
-    #content .hdr_tbl_cart {
-       margin-top:-2px;
-    }*/
-
-    #content .tbl_cart {
-        width: 50%;
-        padding-right:0;
+    .img-detail-cart{
+        width: 35%;
     }
 
-    #content .button_plus{
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 15px;
-        margin-top:1px;
-        margin-right:8px;
-        margin-left:-12px;
+    #card-detail .image-detail{
+        width:160px; 
+        height:auto;
     }
 
-    #content .button_minus {
-        font-size: 15px;
-        margin-left:8px;
+    #card-cart h5{
+        font-size: 18px;
+    }
+
+    .table-detail h2{
+        font-size: 25px;
+    }
+
+    #card-detail p{
+        font-size: 20px;
+    }
+
+    .tabel-quantity{
+        width:40%;
+    }
+
+    .fixed-bottom h2{
+        font-size: 25px;
+        margin-top:4px;
+    }
+
+    #card-detail .button_minus .button_plus .d-inline{
+        font-size: 18px;
     }
       
-      #content .show {
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 15px;
-        font-weight: 900;
-        margin-left:-10px;
-    }
-
-
-    #footer {
+    .image-profil-user{
+        width:180px;
+        height:180px;
+        left:20%;
+        top:17%;
         
-        padding-top: 7rem;
-        padding-bottom: 2rem;
     }
 
-    
-    #footer .social-icons a {
-        margin-top: 0;
-        margin-right: 10px;
-        margin-left: 10px;
+    .profil-row{
+        margin-top:0;
+    }
+
+    .heading-profil{
+        font-size: 33px;
+        line-height: 0.8;
+    }
+
+    .name-profil{
+        font-size:25px;
+        line-height: 0.8;
+    }
+
+    .breadcrumb-profil-name {
         font-size:20px;
+        line-height: 0.8;
     }
-
-    .copyright p {
-        margin-top: 20px;
-        margin-bottom: 10rem;
-        font-size: 13px;
-     }
-
-      .fixed-bottom{
-        margin-left:15px;
-        margin-right:15px;
-     }
-
-     #ex4 .p1[data-count]:after{
-        
-        right:50%;
-        top:10%;
-        line-height:0.5em;
-        color: white;
-        min-width: 1.3em;
-        
-      }
-
-    #card-cart{
-    border-radius:14px; 
-    padding-left:10px; 
-    height:50px;
-    padding-bottom:4px;
+      
+    .breadcrumb-profil-name + .breadcrumb-profil-name::before {
+        font-size: 28px;
+        line-height: 0.8;
     }
-    
-    #ex4 .fa-shopping-cart{
-        font-size: 25px;
-        color: #ffffff;
-        top:2px;
-        position: absolute;
-      }
-    
-    #card-cart h5{
-    font-size:13px;
-    margin-left:-2.5rem;
-    margin-top:-10px;
-    }
-    
-    #card-detail .image-detail{
-    border-radius:10px; 
-    width:200px; 
-    height:auto;
-    }
-    
-    #card-detail p{
+      
+    .breadcrumb-profil-name.active {
     font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 2px;
+    line-height: 0.8;
+    margin-top:2px;
+    }
+
+    .contact-row{
+        margin-top:2rem;
+    }
+}
+
+@media (max-width: 600px){
+    .dot-top-right {
+        width: 200px;
+    }
+
+    .td-label-loc{
+        width: 20%;
+    }
+
+    .dot-bottom-left {
+        width: 300px;
+    }
+
+    .shape-bottom-right {
+        width: 300px;
+    }
+
+    .image-logo-login{
+        margin-top:0;
+    }
+
+    #hero_cools{
+        margin-bottom: 0;
+    }
+
+   .text-hero{
+        right:3rem;
+        top:8rem;
     }
     
-    #card-detail h1{
-    font-weight: 900;
+    .text-hero h1{
+        font-size: 40px;
     }
 
-    #cv .fa-chevron-up{
-        margin-left: -15px;
-        font-size: 14px;
-        margin-top:-20px;
-        position: absolute;
+    .text-hero hr{
+        width:290px;
+        border-top: 1.5px solid #ffffff;
     }
-
-    #collapse-4{
-
-    /*max-height:375px;*/ 
-    padding:2px;
     
+    #sidebar {
+        width: 40%;
+        left: -40%;
     }
 
-    #card-detail {
-      padding-left:2px;
-      padding-right:2px; 
+    #sidebar .sidebar-header {
+        margin-left: 5rem;
+    }
+
+    #sidebar .sidebar-header img{
+        width: 120px;
+        height: 120px;
+    }
+
+    #sidebar .sidebar-header p {
+        font-size:17px;
+    }
+
+    #sidebar ul li a {
+        font-size: 20px;
+        margin-left: 5rem;
+        margin-right: 5rem;
+    }
+
+    #log .logout {
+        padding:8px 40px;
+        margin-left: 5rem;
+    }
+
+    .sidebar-dot-top-right {
+        width: 190px;
+    }
+
+    .sidebar-dot-bottom {
+        width:300px;
+        margin-top:0;
+    }
+
+    #content .dot-content-top-right {
+        width: 200px;
+    }
+
+    .shape-content-bottom-right {
+        width: 250px;
+        bottom:19%;
+    }
+
+    .dot-content-bottom-left {
+        width: 200px;
+        bottom:19%;
+    }
+
+    #product_list{
+        margin-bottom: -6rem;
+    }
+
+    #product_list .card-body{
+        padding:5px;
+    }
+
+    #product_list .button_add_to_cart{
+        font-size: 12px;
+    }
+
+    #content .product-price-header {
+        font-size:12px;
+    }
+
+    #content .product-price {
+        font-size: 15px; 
+    }
+
+    .img-detail-cart{
+        width: 35%;
     }
 
     #card-detail .image-detail{
-        width:80px; 
+        width:160px; 
         height:auto;
-        margin-bottom: 15%;
+    }
+
+    #card-cart h5{
+        font-size: 18px;
+    }
+
+    .table-detail h2{
+        font-size: 25px;
     }
 
     #card-detail p{
-        font-size: 10px;
-        margin-left:10px; 
-        font-weight: bold;
-        margin-bottom: 2px;
+        font-size: 20px;
     }
 
-    #card-detail h1{
-        margin-left:10px;
-        font-size: 15px;
-        font-weight: 900;
+    .tabel-quantity{
+        width:40%;
     }
 
-    #card-detail .button_minus {
-        font-size: 10px;
-        margin-left:15px;
-        font-weight: 800; 
-        cursor:pointer; 
+    .fixed-bottom h2{
+        font-size: 25px;
+        margin-top:4px;
     }
 
-    #card-detail .button_plus{
-        font-size: 10px;
-        margin-left:5px;
-        font-weight: 800; 
-        cursor:pointer; 
+    #card-detail .button_minus .button_plus .d-inline{
+        font-size: 18px;
     }
-
-    #card-detail .d-inline{
-       font-size: 13px;
-       margin-left:5px;
-    }
-
-    #card-detail .btn-default{
-        color:#fff;
-        font-size:10px;
-        font-weight: 800; 
-        padding-top:5px; 
-        padding-bottom:5px;
-      }
-
-      #bt_beli a{
+      
+    .image-profil-user{
+        width:180px;
+        height:180px;
+        left:20%;
+        top:17%;
         
-        border-radius: 5px;
-        padding-right:15px;
-        padding-left: 15px;
-        padding-top:10px;
-        padding-bottom: 10px;
-        font-size: 10px;
-        font-weight:800;
-        margin-right:0px;
-      }
+    }
+
+    .profil-row{
+        margin-top:0;
+    }
+
+    .heading-profil{
+        font-size: 33px;
+        line-height: 0.8;
+    }
+
+    .name-profil{
+        font-size:25px;
+        line-height: 0.8;
+    }
+
+    .breadcrumb-profil-name {
+        font-size:20px;
+        line-height: 0.8;
+    }
+      
+    .breadcrumb-profil-name + .breadcrumb-profil-name::before {
+        font-size: 28px;
+        line-height: 0.8;
+    }
+      
+    .breadcrumb-profil-name.active {
+    font-size: 20px;
+    line-height: 0.8;
+    margin-top:2px;
+    }
+
+    .contact-row{
+        margin-top:2rem;
+    }
 }
 
 @media (max-width: 540px) {

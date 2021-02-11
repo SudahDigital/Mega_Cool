@@ -103,7 +103,7 @@ Home
                             
                             <!--<a href="{{URL::route('product_detail', ['id'=>$value->id])}}">-->
                             <a href="#">
-                                <img style="" src="{{ asset('storage/'.(($value->image!='') ? $value->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-150 w-100 img-responsive" alt="...">
+                                <img style="" src="{{ asset('storage/'.(($value->image!='') ? $value->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
                             </a>
                             <div class="card-body" style="background-color:#1A4066;">
                                 <div class="float-left px-1 py-2" style="width: 100%;">
@@ -302,10 +302,10 @@ Home
                                             }
                                             ?>
                                             <h2 id="productPrice_kr{{$detil->product_id}}" style="font-weight:700;color: #153651;font-family: Montserrat;">Rp. {{ number_format($total, 0, ',', '.') }},-</h2>
-                                            <table width="20%">
+                                            <table width="20%" class="tabel-quantity">
                                                 <tbody>
                                                     <tr>
-                                                        <td width="3%" align="left" valign="middle" rowspan="2">
+                                                        <td width="3%" class="" align="left" valign="middle" rowspan="2">
                                                             <p style="color: #000">Qty</p>
                                                             <input type="hidden" id="order_id{{$detil->product_id}}" name="order_id" value="{{$detil->order_id}}">
                                                             @if($detil->discount > 0)
@@ -316,7 +316,7 @@ Home
                                                             <input type="hidden" id="id_detil{{$detil->product_id}}" value="{{$detil->id}}">
                                                             <input type="hidden" id="jmlkr_{{$detil->product_id}}" name="quantity" value="{{$detil->quantity}}">    
                                                         </td>
-                                                        <td width="5%" align="left" valign="middle" rowspan="2">
+                                                        <td width="3%" class="" align="left" valign="middle" rowspan="2">
                                                             <p id="show_kr_{{$detil->product_id}}" class="d-inline" style="">{{$detil->quantity}}</p>
                                                         </td>
                                                         <td width="1%" align="center" valign="middle" bgcolor="#1A4066" style="border-top-left-radius:5px;border-top-right-radius:5px;">
