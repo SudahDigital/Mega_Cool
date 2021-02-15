@@ -11,6 +11,7 @@ use App\User;
 use App\Customer;
 use App\City;
 use Telegram\Bot\Laravel\Facades\Telegram;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CustomerKeranjangController extends Controller
 {
@@ -341,7 +342,7 @@ $pesan = DB::table('order_product')
         ->get();
 foreach($pesan as $key=>$tele){
 $href.='
-*'.$tele->Product_name.' (Qty :'.$tele->quantity.');';
+*'.$tele->Product_name.' (Qty :'.$tele->quantity.')';
 }
 if($request->get('voucher_code_hide_modal')!= ""){
     if ($type == 1){
@@ -357,13 +358,14 @@ else{
             
 '.$info_harga;
             Telegram::sendMessage([
-                'chat_id' => env('TELEGRAM_CHANNEL_ID', '1670286573'),
+                'chat_id' => env('TELEGRAM_CHANNEL_ID', '1179259045'),
                 'parse_mode' => 'HTML',
                 'text' => $text_wa
             ]);
                 //$url = "https://api.whatsapp.com/send?phone=6282311988000&text=$text_wa";
                 //return Redirect::to($url);
-                return redirect()->route('home_customer')->with('sukses_pesan', 'Pesanan berhasil dikirim');    
+                Alert::success('', 'Pesanan berhasil dikirim');
+                return redirect()->route('home_customer');    
             }
         }
         

@@ -163,6 +163,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Telegram\Bot\Laravel\TelegramServiceProvider::class,
+        //UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -229,6 +231,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Telegram' => Telegram\Bot\Laravel\Facades\Telegram::class,
+        //'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
     ],
 
 ];

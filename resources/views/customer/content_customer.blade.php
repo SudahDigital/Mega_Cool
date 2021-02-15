@@ -430,7 +430,7 @@ Home
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" id="order_id_pesan" name="id" value="{{$item !==null ? $item->id : ''}}"/>
-                    <button type="submit" class="btn btn-block bt-wa" onclick="pesan_wa()" ><i class="fa fa-paper-plane" aria-hidden="true" style="color: #ffffff !important"></i> &nbsp;{{__('Pesan') }}</button>
+                    <button type="submit" class="btn btn-block bt-wa"><i class="fa fa-paper-plane" aria-hidden="true" style="color: #ffffff !important"></i> &nbsp;{{__('Pesan') }}</button>
                 </div>
                 </form>
             </div>

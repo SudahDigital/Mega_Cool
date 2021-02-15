@@ -826,7 +826,7 @@
     <!--<script src="{{ asset('assets/js/jquery.firstVisitPopup.js')}}"></script>-->
     
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>-->
-    
+    @include('sweetalert::alert')
     <script type="text/javascript">
 
         //Select2
@@ -1115,12 +1115,12 @@
             return true;
         }
         
-        function pesan_wa()
+        /*function pesan_wa()
         {
-            var name = document.getElementById("name").value;
-            var email = document.getElementById("email").value;
-            var address = document.getElementById("address").value;
-            var phone = document.getElementById("phone").value;
+            //var name = document.getElementById("name").value;
+            //var email = document.getElementById("email").value;
+            //var address = document.getElementById("address").value;
+            //var phone = document.getElementById("phone").value;
             var order_id = $('#order_id_cek').val();
             if (name != "" && email!="" && address !="" && phone !="" && phone.length > 9) {
                 $.ajax({
@@ -1172,11 +1172,12 @@
                     confirmButtonColor: '#4db849'
                     }).then(function(){ 
                         location.reload();
-                    });*/
+                    });
             }else{
                 alert('Anda harus mengisi data dengan lengkap  & benar !');
             }
         }
+        */
 
         function button_plus(id)
         {
