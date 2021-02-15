@@ -5,6 +5,8 @@
    .red-tooltip{
        cursor:pointer;
     }
+
+    
 </style>
 <script>
     $(document).ready(function(){
@@ -17,7 +19,7 @@
             <div class="col-sm-12 col-md-12">
                 <nav aria-label="breadcrumb" class="float-right mt-0">
                     <ol class="breadcrumb px-0 button_breadcrumb">
-                        <li class="breadcrumb-profil-item active mt-1" aria-current="page">Profil</li>&nbsp;
+                        <li id="prf-brd" class="breadcrumb-profil-item active mt-1" aria-current="page">Profil</li>&nbsp;
                         <li class="breadcrumb-profil-item" style="color: #000!important;"><a href="{{ url('/') }}"><i class="fa fa-home"></i></a></li>
                     </ol>
                 </nav>
@@ -33,8 +35,8 @@
                     <img class="image-profil-user " src="{{asset('assets/image/image-noprofile.png')}}" alt="user"/>
                 @endif
             </a>
-            <div class="col-sm-7 profil-row" style="background: transparent;z-index:2;">
-                <div class="col-6 col-md-12">
+            <div class="col-md-7 profil-row" style="background: transparent;z-index:2;">
+                <div id="col-hdn-prf" class="col-6 col-md-12">
                     <p class="heading-profil">Hello!</p>
                     <p class="name-profil">{{Auth::user()->name}}</p>
                     <nav aria-label="breadcrumb" class="mt-n3">
@@ -112,4 +114,10 @@
         </div>
         </div>
     </div>
+    <script>
+        if ($(window).width() < 601) {
+            $('#prf-brd').removeClass('mt-1');
+            $('#col-hdn-prf').removeClass('col-6');
+        } 
+    </script>
 @endsection

@@ -38,6 +38,8 @@ Route::group(['middleware' => ['auth','checkRole:SALES']],function(){
     Route::get('/histori','historiController@index')->name('riwayat_pemesanan');
     Route::resource('category','filterProductController');
     Route::resource('search','searchController');
+    Route::get('/updated-activity', 'TelegramBotController@updatedActivity')->name('update.telegram');
+
 });
 
 Route::match(["GET", "POST"], "/register", function(){

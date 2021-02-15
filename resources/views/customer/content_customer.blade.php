@@ -3,10 +3,15 @@
 Home    
 @endsection
 @section('content')
-    
-    <div class="container" style="">
-        <div class="row ">
-            <div class="col-md-12">
+    @if(session('sukses_peesan'))
+    <div class="alert alert-success">
+        {{session('sukses_pesan')}}
+    </div>
+    @endif
+
+    <div class="container list-product">
+        <div class="row">
+            <div class="col-md-12 ">
                 <nav aria-label="breadcrumb" class="" >
                     <ol class="breadcrumb pt-3 pb-0" style="background-color:#ffffff">
                         <h2 class="breadcrumb-item">Our</h2>
@@ -90,7 +95,7 @@ Home
         <img src="{{ asset('assets/image/dot-top-right-content.jpg') }}" class="dot-content-top-right" style="" alt="dot-top-right-content">
         <img src="{{ asset('assets/image/shape-content.jpg') }}" class="shape-content-bottom-right" style="" alt="shape-content">
         <img src="{{ asset('assets/image/dot-bottom-left-content.jpg') }}" class="dot-content-bottom-left" style="" alt="dot-bottom-left-content">
-        <div class="container" style="">
+        <div class="container list-product" style="">
             <div class="row mt-0">
                 <div class="col-md-12 mt-4">
                     <div class="row section_content">
@@ -231,10 +236,10 @@ Home
                     <div class="container">
                         <table class="table borderless">
                             <tr>
-                                <td align="left" width="50%">
+                                <td align="left" width="30%">
                                     <h5 style="color:#000">{{$total_item}} Item</h5>
                                 </td>
-                                <td align="right" width="50%">
+                                <td align="right" width="70%">
                                     <h5 class="pull-right" style="color: #000">Pesan Sekarang <i class="fa fa-paper-plane" aria-hidden="true" style="color: #FF0000 !important"></i></h5>
                                 </td>
                             </tr>
@@ -281,10 +286,10 @@ Home
                 </table>
                 -->
             <div id="{{$total_item > 0 ? 'collapse-4' : '' }}" class="collapse" data-parent="#accordion">
-                <div class="container">
+                <div id="cont-collapse" class="container">
                     <div class="card-body" id="card-detail" style="">
-                        <div class="col-md-12" style="padding-bottom:6rem;">
-                            <table class="table-detail" width="100%" >
+                        <div class="col-md-12" style="padding-bottom:7rem;">
+                            <table class="table-detail" width="100%">
                                 <tbody>
                                     @foreach($keranjang as $detil)
                                     <tr>
@@ -292,7 +297,7 @@ Home
                                             <img src="{{ asset('storage/'.$detil->image)}}" 
                                             class="image-detail"  alt="...">   
                                         </td>
-                                        <td width="60%" align="left" valign="top" style="border-bottom: 1px solid #ddd;padding-top:3%;">
+                                        <td width="60%" class="td-desc-detail" align="left" valign="top" style="border-bottom: 1px solid #ddd;padding-top:3%;">
                                             <p style="color: #000">{{ $detil->Product_name}}</p>
                                             <?php 
                                             if($detil->discount > 0){
@@ -359,7 +364,6 @@ Home
                                 </div>
                             </div>
                         </div>
-                            
                     </div>
                     <div class="fixed-bottom" style="background-color:#e9eff5;">
                         <div class="container">
@@ -375,7 +379,7 @@ Home
                                         </div>
                                     </div>
                                     -->
-                                    <div class="row float-left mt-2">
+                                    <div id="div_total" class="row float-left mt-2">
                                     <p class="mt-1" style="color: #000;font-weight:bold; ">Total Harga</p>&nbsp;
                                     @if($item!==null)
                                     <h2 id="total_kr_" style="font-weight:700;color: #153651;font-family: Montserrat;">Rp. {{number_format($item->total_price , 0, ',', '.')}},-</h2>
@@ -402,78 +406,39 @@ Home
             </div>
         </div>
     </div>
-
-    <!-- Modal pesan 
-    <div class="modal fade ml-1" id="my_modal_content" role="dialog" tabindex="-1" aria-hidden="true">
+    <!-- Modal pesan telegram--> 
+    <div class="modal fade ml-0" id="my_modal_content" role="dialog" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            //-- Modal content--//
-            <div class="modal-content" style="background: #FDD8AF">
+            <!-- Modal content-->
+            <div class="modal-content" style="background: #1A4066;">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <form method="POST" target="_BLANK" action="{{ route('customer.keranjang.pesan') }}">
+                <form method="POST" action="{{ route('customer.keranjang.pesan') }}">
                     @csrf
-                    
+                    @if($item!==null)
+                    <input type="hidden" name ="voucher_code_hide_modal" id="voucher_code_hide_modal">
+                    <input type="hidden" name="total_novoucher" id="total_novoucher_val">
+                    <input type="hidden" name="total_pesanan" id="total_pesan_val" value="{{$item->total_price}}">
+                        @else
+                        <input type="hidden" name ="voucher_code_hide_modal"  id="voucher_code_hide_modal">
+                        <input type="hidden" name="total_novoucher" id="total_novoucher_val">
+                        <input type="hidden" name="total_pesanan" id="total_pesan_val" >
+                    @endif
                 <div class="modal-body">
-                    <div class="row justify-content-center">
-                        <div class="col-sm-12">
-                            <div class="card contact_card" style="border-radius:15px;">
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        @if($item!==null)
-                                        <input type="hidden" name ="voucher_code_hide_modal" id="voucher_code_hide_modal">
-                                        <input type="hidden" name="total_novoucher" id="total_novoucher_val">
-                                        <input type="hidden" name="total_pesanan" id="total_pesan_val" value="{{$item->total_price}}">
-                                            @else
-                                            <input type="hidden" name ="voucher_code_hide_modal"  id="voucher_code_hide_modal">
-                                            <input type="hidden" name="total_novoucher" id="total_novoucher_val">
-                                            <input type="hidden" name="total_pesanan" id="total_pesan_val" >
-                                        @endif
-                                        
-                                    <input type="text" value="{{$item_name !== null ? $item_name->username : ''}}" name="username" class="form-control contact_input @error('name') is-invalid @enderror" placeholder="Name" id="name" required autocomplete="off" autofocus value="{{ old('name') }}">
-                                        @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
-                                    <div class="form-group">
-                                        <input type="email" value="{{$item_name !== null ? $item_name->email : ''}}" name="email" class="form-control contact_input @error('email') is-invalid @enderror" placeholder="Email" id="email" required autocomplete="off" value="{{ old('email') }}">
-                                        @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
-                                    <div class="form-group">
-                                        <textarea type="text"  name="address" class="form-control contact_input @error('address') is-invalid @enderror" placeholder="Address" id="address" required autocomplete="off" value="{{ old('address') }}">{{$item_name !== null ? $item_name->address : ''}}</textarea>
-                                        @error('address')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
-                                    <div class="form-group">
-                                        <input type="tel" value="{{$item_name !== null ? $item_name->phone : ''}}" name="phone"  minlength="10" maxlength="13" class="form-control contact_input" placeholder="Phone" id="phone" required autocomplete="off" onkeypress="return hanyaAngka(event)">
-                                        //--<label for="password-confirm" class="contact_label">{{ __('Konfirmasi Kata Sandi') }}</label>--//
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    Anda akan melakukan pesanan melalui telegram...
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" id="order_id_pesan" name="id" value="{{$item !==null ? $item->id : ''}}"/>
-                    <button type="submit" class="btn btn-block bt-wa" onclick="pesan_wa()"  style="color:#fff; background-color:#6a3137; "><i class="fab fa-whatsapp" style="font-weight: bold;"></i> &nbsp;{{__('Pesan') }}</button>
+                    <button type="submit" class="btn btn-block bt-wa" onclick="pesan_wa()" ><i class="fa fa-paper-plane" aria-hidden="true" style="color: #ffffff !important"></i> &nbsp;{{__('Pesan') }}</button>
                 </div>
                 </form>
             </div>
         </div>
     </div>
-    -->
+    
+
+    
     <!-- Modal validasi stok -->
     <div class="modal fade ml-1" id="modal_validasi" role="dialog" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
@@ -495,7 +460,17 @@ Home
             </div>
         </div>
     </div>
-
+<script>
+    if ($(window).width() < 601) {
+        $('#div_total').removeClass('float-left');
+        $('#div_total').addClass('justify-content-center');
+        $('#beli_sekarang').removeClass('float-right');
+        $('#beli_sekarang').addClass('btn-block');
+    }
+    if ($(window).width() <= 480) {
+        $('#cont-collapse').removeClass('container');
+    }  
+</script>
 @endsection
 
 

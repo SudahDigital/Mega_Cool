@@ -34,7 +34,12 @@
             border-top-left-radius: 15px !important;
             border-top-right-radius: 15px !important;
         }*/
-
+        @media only screen and (max-width: 600px) {
+            .col-md-2{
+                width: 40%;
+            }
+            
+        }
         .alert{
             position:fixed;
             top:5%; 
@@ -1408,7 +1413,12 @@
                                 success: function (response) {
                                 // We get the element having id of display_info and put the response inside it
                                 $('#accordion' ).html(response);
-
+                                if ($(window).width() < 601) {
+                                        $('#div_total').removeClass('float-left');
+                                        $('#div_total').addClass('justify-content-center');
+                                        $('#beli_sekarang').removeClass('float-right');
+                                        $('#beli_sekarang').addClass('btn-block');
+                                    }
                                 },
                                 complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
                                     $('#loader').addClass('hidden')
@@ -1738,6 +1748,13 @@
                                 // We get the element having id of display_info and put the response inside it
                                 $( '#accordion' ).html(response);
                                 $('#collapse-4').addClass('show');
+                                if ($(window).width() < 601) {
+                                        $('#div_total').removeClass('float-left');
+                                        $('#div_total').addClass('justify-content-center');
+                                        $('#beli_sekarang').removeClass('float-right');
+                                        $('#beli_sekarang').addClass('btn-block');
+                                    }
+                                
                                 },
                                 complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
                                     $('#loader').addClass('hidden')

@@ -1,6 +1,20 @@
 @extends('auth.template-auth')
 @section('title') Login @endsection
 @section('content')
+<style>
+    @media only screen and (max-width: 600px) {
+        .col-md-2{
+            width: 40%;
+        }
+        
+    }
+    @media only screen and (max-width: 540px) {
+        .col-md-7{
+            width: 90%;
+        }
+        
+    }
+</style>
     <div class="container">
         <div class="d-flex justify-content-center mx-auto" >
             <div class="col-md-2 image-logo-login" style="z-index: 2">
@@ -14,7 +28,7 @@
         </div>
             
         <div class="row justify-content-center">
-            <div class="col-sm-7" style="z-index: 2">
+            <div class="col-md-7" style="z-index: 2">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="card mx-auto contact_card" 
@@ -65,6 +79,4 @@
             </div>
         </div>
     </div>
-    <br>
-    <br>
 @endsection

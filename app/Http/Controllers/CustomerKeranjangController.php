@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use App\product;
 use App\order_product;
 use App\Order;
-
-
+use App\User;
+use App\Customer;
+use App\City;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 class CustomerKeranjangController extends Controller
 {
@@ -266,13 +268,14 @@ class CustomerKeranjangController extends Controller
     }
 
     public function pesan(Request $request){
+        $user_id = \Auth::user()->id;
         $id = $request->get('id');
         $cek_order = DB::select("SELECT order_product.order_id, order_product.product_id,order_product.quantity, 
                     products.stock, products.description FROM products,order_product WHERE order_product.product_id = products.id AND 
                     order_product.quantity > products.stock AND order_product.order_id = '$id'");
         $count_cek = count($cek_order);
         if($count_cek > 0){
-            return view('errors/error_wa');
+            return view('errors/error_telegram');
         }else{
             $cek_quantity = Order::with('products')->where('id',$id)->get();
             foreach($cek_quantity as $q){
@@ -282,15 +285,14 @@ class CustomerKeranjangController extends Controller
                     $up_product->save();
                     }
                 }
-            $username = $request->get('username');
-            $email = $request->get('email');
-            $address = $request->get('address');
-            $phone = $request->get('phone');
+            $user = User::findOrfail($user_id);
+            $ses_order = $request->session()->get('ses_order');
+            $customer = Customer::findOrfail($ses_order->customer_id);
+            $city = City::findOrfail($user->city_id);
+            $customer_id = $ses_order->customer_id;
             $orders = Order::findOrfail($id);
-            $orders->username = $username;
-            $orders->email = $email;
-            $orders->address = $address;
-            $orders->phone = $phone;
+            $orders->customer_id = $customer_id;
+            
             if($request->get('voucher_code_hide_modal') != ""){
                 $keyword = $request->get('voucher_code_hide_modal');
                 $vouchers_cek = \App\Voucher::where('code','=',"$keyword")->first();
@@ -313,32 +315,55 @@ class CustomerKeranjangController extends Controller
                 $vouchers->uses +=1;
                 $vouchers->save();
             }
-            $total_ongkir  = 15000;
-            $total_bayar  = $total_pesanan + $total_ongkir;
-            $href='Hello Admin Gentong,  %0ANama %3A '.$username.', %0AEmail %3A '.$email.', %0ANo. Hp %3A' .$phone.', %0AAlamat %3A' .$address.',%0AIngin membeli %3A%0A';
-            if($request->get('voucher_code_hide_modal')!= ""){
-                if ($type == 1){
-                    $info_harga = 'Total Pesanan %3A Rp.'.number_format(($sum_novoucher), 0, ',', '.').'%0AOngkos Kirim %3A Rp.'.number_format(($total_ongkir), 0, ',', '.').'%0ADiskon %3A '.number_format(($disc_amount), 0, ',', '.').'% %0AJenis Diskon %3A '.$code_name.' %0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
-                }else{
-                    $info_harga = 'Total Pesanan %3A Rp.'.number_format(($sum_novoucher), 0, ',', '.').'%0AOngkos Kirim %3A Rp.'.number_format(($total_ongkir), 0, ',', '.').'%0ADiskon %3A Rp.'.number_format(($disc_amount), 0, ',', '.') .'%0AJenis Diskon %3A '.$code_name.' %0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
-                }
-            }
-            else{
-                $info_harga = 'Total Pesanan %3A Rp.'.number_format(($total_pesanan), 0, ',', '.').'%0AOngkos Kirim %3A Rp.'.number_format(($total_ongkir), 0, ',', '.').'%0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
-            }
-            if($orders->save()){
-                $pesan = DB::table('order_product')
-                        ->join('orders','order_product.order_id','=','orders.id')
-                        ->join('products','order_product.product_id','=','products.id')
-                        ->where('orders.id','=',"$id")
-                        ->get();
-                foreach($pesan as $key=>$wa){
-                    $href.='*'.$wa->description.'%20(Qty %3A%20'.$wa->quantity.' Pcs)%0A';
-                }
-                $text_wa=$href.'%0A'.$info_harga;
-                $url = "https://api.whatsapp.com/send?phone=6282311988000&text=$text_wa";
-                return Redirect::to($url);
-                
+            //$total_ongkir  = 15000;
+            $total_bayar  = $total_pesanan;
+            $href='Hello Admin Mega Cools,
+
+<b>Detail Sales</b> 
+Nama : '.$user->name.',
+Email : '.$user->email.',
+No. Hp :' .$user->phone.',
+Sales Area :' .$city->city_name.',
+
+<b>Detail Pelanggan</b> 
+Nama  : '.$customer->name.',
+Email : '.$customer->email.',
+No. Telp : '.$customer->phone.',
+Nama Toko : '.$customer->store_name.',
+Alamat : '.$customer->address.',
+
+<b>Detail Pesanan</b>';
+if($orders->save()){
+$pesan = DB::table('order_product')
+        ->join('orders','order_product.order_id','=','orders.id')
+        ->join('products','order_product.product_id','=','products.id')
+        ->where('orders.id','=',"$id")
+        ->get();
+foreach($pesan as $key=>$tele){
+$href.='
+*'.$tele->Product_name.' (Qty :'.$tele->quantity.');';
+}
+if($request->get('voucher_code_hide_modal')!= ""){
+    if ($type == 1){
+        $info_harga = '<b>Total Pesanan</b> : Rp.'.number_format(($sum_novoucher), 0, ',', '.');
+    }else{
+        $info_harga = '<b>Total Pesanan</b> : Rp.'.number_format(($sum_novoucher), 0, ',', '.');
+    }
+}
+else{
+    $info_harga = '<b>Total Pesanan</b> : Rp.'.number_format(($total_pesanan), 0, ',', '.');
+}
+            $text_wa=$href.'
+            
+'.$info_harga;
+            Telegram::sendMessage([
+                'chat_id' => env('TELEGRAM_CHANNEL_ID', '1670286573'),
+                'parse_mode' => 'HTML',
+                'text' => $text_wa
+            ]);
+                //$url = "https://api.whatsapp.com/send?phone=6282311988000&text=$text_wa";
+                //return Redirect::to($url);
+                return redirect()->route('home_customer')->with('sukses_pesan', 'Pesanan berhasil dikirim');    
             }
         }
         
@@ -681,10 +706,10 @@ class CustomerKeranjangController extends Controller
                         <div class="container">
                             <table class="table borderless">
                                 <tr>
-                                    <td align="left" width="50%">
+                                    <td align="left" width="30%">
                                         <h5 style="color:#000">'.$total_item.'&nbsp;Item</h5>
                                     </td>
-                                    <td align="right" width="50%">
+                                    <td align="right" width="70%">
                                         <h5 class="pull-right" style="color: #000">Pesan Sekarang <i class="fa fa-paper-plane" aria-hidden="true" style="color: #FF0000 !important"></i></h5>
                                     </td>
                                 </tr>
@@ -693,19 +718,19 @@ class CustomerKeranjangController extends Controller
                     </div>
                 </a>
                 <div id="collapse-4" class="collapse" data-parent="#accordion" style="" >
-                    <div class="container">
+                    <div id="cont-collapse" class="container">
                         <div class="card-body" id="card-detail">
-                            <div class="col-md-12" style="padding-bottom:6rem;">
+                            <div class="col-md-12" style="padding-bottom:7rem;">
                                 <table class="table-detail" width="100%">
                                     <tbody>';
                                         foreach($keranjang as $order){
                                             foreach($order->products as $detil){
                                             echo'<tr>
-                                                <td width="25%" valign="middle" style="border-bottom: 1px solid #ddd;padding-top:3%;">
+                                                <td width="25%" class="img-detail-cart" valign="middle" style="border-bottom: 1px solid #ddd;padding-top:3%;">
                                                     <img src="'.asset('storage/'.$detil->image).'" 
                                                     class="image-detail"  alt="...">   
                                                 </td>
-                                                <td width="60%" align="left" valign="top" style="border-bottom: 1px solid #ddd;padding-top:3%;">
+                                                <td width="60%" class="td-desc-detail" align="left" valign="top" style="border-bottom: 1px solid #ddd;padding-top:3%;">
                                                     <p style="color: #000">'.$detil->Product_name.'</p>';
                                                     if($detil->discount > 0){
                                                         $total=$detil->price_promo * $detil->pivot->quantity;
@@ -714,7 +739,7 @@ class CustomerKeranjangController extends Controller
                                                         $total=$detil->price * $detil->pivot->quantity;
                                                     }
                                                     echo'<h2 id="productPrice_kr'.$detil->id.'" style="font-weight:700;color: #153651;font-family: Montserrat;">Rp.&nbsp;'.number_format($total, 0, ',', '.').',-</h2>
-                                                    <table width="20%">
+                                                    <table width="20%" class="tabel-quantity">
                                                         <tbody>
                                                             <tr id="response-id'.$detil->id.'">
                                                                 <td width="3%" align="left" valign="middle" rowspan="2">
@@ -796,7 +821,7 @@ class CustomerKeranjangController extends Controller
                                                 <button class="btn " type="submit" onclick="btn_code()" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
                                             </div>
                                         </div>-->';
-                                    echo'<div class="row float-left mt-2">
+                                    echo'<div id="div_total" class="row float-left mt-2">
                                             <p class="mt-1" style="color: #000;font-weight:bold; ">Total Harga</p>&nbsp;
                                             <h2 id="total_kr_" style="font-weight:700;color: #153651;font-family: Montserrat;">Rp.&nbsp;'.number_format(($item_price) , 0, ',', '.').',-</h2>
                                             <input type="hidden" id="total_kr_val" value="'.$item_price.'">  

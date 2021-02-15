@@ -60,6 +60,10 @@
         width: 400px;
     }
 
+    .dot-top-right-nocart {
+        width: 400px;
+    }
+
     .td-label-loc{
         width: 15%;
     }
@@ -121,7 +125,7 @@
         width:300px;
         height:300px;
         left:28%;
-        top:25%;
+        top:14rem;
         
     }
 
@@ -157,6 +161,10 @@
 
 @media (max-width: 1440px){
     .dot-top-right {
+        width: 300px;
+    }
+
+    .dot-top-right-nocart {
         width: 300px;
     }
 
@@ -235,7 +243,7 @@
         width:250px;
         height:250px;
         left:25%;
-        top:32.5%;
+        top:14.8rem;
         
     }
 
@@ -271,6 +279,10 @@
 
 @media (max-width: 1366px){
     .dot-top-right {
+        width: 200px;
+    }
+
+    .dot-top-right-nocart {
         width: 200px;
     }
     
@@ -345,7 +357,7 @@
         width:250px;
         height:250px;
         left:25%;
-        top:31%;
+        top:13rem;
         
     }
 
@@ -385,6 +397,10 @@
 
 @media (max-width: 1024px){
     .dot-top-right {
+        width: 200px;
+    }
+
+    .dot-top-right-nocart {
         width: 200px;
     }
 
@@ -507,7 +523,7 @@
         width:180px;
         height:180px;
         left:25%;
-        top:31%;
+        top:10.5rem;
         
     }
 
@@ -555,6 +571,10 @@
         width: 200px;
     }
 
+    .dot-top-right-nocart {
+        width: 200px;
+    }
+
     .td-label-loc{
         width: 20%;
     }
@@ -699,7 +719,7 @@
         width:180px;
         height:180px;
         left:20%;
-        top:17%;
+        top:10rem;
         
     }
 
@@ -743,6 +763,11 @@
         width: 200px;
     }
 
+    .dot-top-right-nocart {
+        width: 200px;
+        top:4rem;
+    }
+
     .td-label-loc{
         width: 20%;
     }
@@ -756,7 +781,7 @@
     }
 
     .image-logo-login{
-        margin-top:0;
+        margin-top:10rem;
     }
 
     #hero_cools{
@@ -765,21 +790,21 @@
 
    .text-hero{
         right:3rem;
-        top:8rem;
+        top:6rem;
     }
     
     .text-hero h1{
-        font-size: 40px;
+        font-size: 32px;
     }
 
     .text-hero hr{
-        width:290px;
+        width:235px;
         border-top: 1.5px solid #ffffff;
     }
     
     #sidebar {
-        width: 40%;
-        left: -40%;
+        width: 50%;
+        left: -50%;
     }
 
     #sidebar .sidebar-header {
@@ -811,22 +836,31 @@
     }
 
     .sidebar-dot-bottom {
-        width:300px;
-        margin-top:0;
+        width:290px;
+        margin-top:1rem;
+    }
+
+    .breadcrumb-item {
+        font-size:25px;
+        margin-bottom: -1rem;
+    }
+    
+    .breadcrumb-item.active {
+      font-size: 25px;
     }
 
     #content .dot-content-top-right {
-        width: 200px;
+        width: 170px;
     }
 
     .shape-content-bottom-right {
-        width: 250px;
-        bottom:19%;
+        width: 200px;
+        bottom:9.5%;
     }
 
     .dot-content-bottom-left {
-        width: 200px;
-        bottom:19%;
+        width: 170px;
+        bottom:9.5%;
     }
 
     #product_list{
@@ -834,19 +868,19 @@
     }
 
     #product_list .card-body{
-        padding:5px;
+        padding:10px;
     }
 
     #product_list .button_add_to_cart{
-        font-size: 12px;
+        font-size: 18px;
     }
 
     #content .product-price-header {
-        font-size:12px;
+        font-size:18px;
     }
 
     #content .product-price {
-        font-size: 15px; 
+        font-size: 24px; 
     }
 
     .img-detail-cart{
@@ -854,7 +888,7 @@
     }
 
     #card-detail .image-detail{
-        width:160px; 
+        width:130px; 
         height:auto;
     }
 
@@ -862,12 +896,20 @@
         font-size: 18px;
     }
 
+    .table-detail{
+        margin-left: -1rem;
+    }
+
+    .td-desc-detail{
+        width: 70%;
+    }
+
     .table-detail h2{
         font-size: 25px;
     }
 
     #card-detail p{
-        font-size: 20px;
+        font-size: 16px;
     }
 
     .tabel-quantity{
@@ -882,32 +924,43 @@
     #card-detail .button_minus .button_plus .d-inline{
         font-size: 18px;
     }
+
+    .breadcrumb-profil-item{
+        margin-top:-3.3rem;
+    }
+
+    #prf-brd {
+        margin-top:-2.9rem;
+    }
       
     .image-profil-user{
-        width:180px;
-        height:180px;
-        left:20%;
-        top:17%;
-        
+        width:150px;
+        height:150px;
+        left:12%;
+        top:15rem;
     }
 
     .profil-row{
-        margin-top:0;
+        margin-top:15%;
     }
 
     .heading-profil{
         font-size: 33px;
         line-height: 0.8;
+        margin-left: 37%;
     }
 
     .name-profil{
         font-size:25px;
         line-height: 0.8;
+        margin-left: 37%;
     }
 
     .breadcrumb-profil-name {
-        font-size:20px;
+        font-size:17px;
         line-height: 0.8;
+        margin-left: 37%;
+        margin-right: 0;
     }
       
     .breadcrumb-profil-name + .breadcrumb-profil-name::before {
@@ -916,9 +969,13 @@
     }
       
     .breadcrumb-profil-name.active {
-    font-size: 20px;
+    font-size: 17px;
     line-height: 0.8;
     margin-top:2px;
+    }
+
+    .detail-profil{
+        margin-top:2rem;
     }
 
     .contact-row{
@@ -926,4227 +983,2249 @@
     }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 540px){
+    .dot-top-right {
+        width: 180px;
+    }
 
-    #shape-1 {
-        float: left;
-        width: 100%;
-        height: 19rem;
-        top:15rem;
-        border-top-right-radius: 100%;
-        /*background:#fff;*/
-        position: absolute;
-   }
-  
-   #shape-2 {
-    right:0;
-    width: 100%;
-    height: 19rem;
-    top:34.2rem;
-    border-bottom-left-radius: 100%;
-    /*background:#5D2B30;*/
-    position: absolute;
-    z-index: ;
-  }
+    .dot-top-right-nocart {
+        width: 180px;
+        top:4rem;
+    }
 
+    .td-label-loc{
+        width: 22%;
+    }
+
+    .dot-bottom-left {
+        width: 280px;
+    }
+
+    .shape-bottom-right {
+        width: 280px;
+    }
+
+    .image-logo-login{
+        margin-top:5rem;
+    }
+
+    #hero_cools{
+        margin-bottom: 0;
+    }
+
+   .text-hero{
+        right:2rem;
+        top:5rem;
+    }
+    
+    .text-hero h1{
+        font-size: 28px;
+    }
+
+    .text-hero hr{
+        width:210px;
+        border-top: 1.5px solid #ffffff;
+    }
+    
     #sidebar {
-        width: 70%;
-        left: -70%;
+        width: 55%;
+        left: -55%;
     }
 
-    .warna{
-        height:34.2rem;
+    #sidebar .sidebar-header {
+        margin-left: 5rem;
     }
-    
-    #sidebar ul.components {
-    padding: 20px 0;
+
+    #sidebar .sidebar-header img{
+        width: 120px;
+        height: 120px;
     }
-    
+
+    #sidebar .sidebar-header p {
+        font-size:16px;
+    }
+
     #sidebar ul li a {
-        margin-bottom: 5px;
-        font-size: 15px;
+        font-size: 18px;
+        margin-left: 5rem;
+        margin-right: 5rem;
     }
-
-    #pageSubmenu{
-        font-size: 14px;
-    }
-    #sidebar ul li.active>a,
-    a[aria-expanded="true"] {
-        color: white;
-    }
-
-    .nav-center img{
-        left:-5rem;
-        position:absolute;
-        top:-2.4rem;
-    }
-
-    .navbar .navbar-brand img {
-        width:200px;
-        height:auto;
-    }
-
-    
-    a.login{
-        border:none;
-        font-size: 15px;
-        font-weight: 900;
-        padding-left:2rem;
-        padding-right:2rem;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        margin-top: -15px;
-        background-color: #fff;
-      }
 
     #log .logout {
-        
-        font-size: 15px;
-    }
-      
-
-    a.register {
-        font-size: 15px;
+        padding:8px 40px;
+        margin-left: 5rem;
     }
 
-    .reset{
-        font-size: 17px;
+    .sidebar-dot-top-right {
+        width: 190px;
     }
 
-    #sidebar .social-icons a {
-        margin-right: 5px;
-        margin-left: 5px;
-        font-size:14px;
-        color: #fff;
+    .sidebar-dot-bottom {
+        width:290px;
+        margin-top:1rem;
     }
 
-    .cat_fil{
-        font-size: 17px;
-        font-weight: bold;
-        font-style:normal;
-        line-height: 1;
-        font-family: Open Sans;
-      }
-
-      .tombol{
-        font-size: 17px;
+    .breadcrumb-item {
+        font-size:25px;
+        margin-bottom: -1rem;
     }
-
-      .menu-filter{
-        width:22%;
-        height: auto;
-    }
-
     
-    #content .cr_bl{
-    
-        margin-left: 1.8rem;
+    .breadcrumb-item.active {
+      font-size: 25px;
     }
 
-    #content .cara_belanja img{
-        width:90px;
-        height:auto;
-      }
-  
-      #content .cara_belanja h5{
-          font-weight: 900;
-          font-size: 18px;
-          margin-left:-4rem;
-          margin-right:2px;
-          
-      }
-  
-      #content .cara_belanja p{
-          margin-left:-4rem;
-          margin-right:10px;
-          font-size: 14px;
-          
-      }
-
-    #content .kontak{
-        
-        margin-left: 0.5rem;
-        margin-bottom : -2rem;
-
+    #content .dot-content-top-right {
+        width: 170px;
     }
 
-    #i-kontak, #i-envelop {
-        font-size: 3.9em;
-        margin-top:1.3rem;
-        margin-left:20px;
+    .shape-content-bottom-right {
+        width: 200px;
+        bottom:9.5%;
     }
 
-    #content .contact_kami h5.no_telp{
-        margin-left:-6rem;
-        font-size: 29px;
-       
+    .dot-content-bottom-left {
+        width: 170px;
+        bottom:9.5%;
     }
 
-    #content .contact_kami p.telp{
-        margin-left:-6rem;
-        margin-top: 1rem;
-        font-size: 23px;
-       
-   }
-
-   #content .contact_kami p{
-    margin-top:1.2rem;
-    margin-left:-6rem;
-    font-size: 23px;
-    font-weight: 600;
-    
-   }
-
-  #content .contact_kami h5{
-    margin-left:-6rem;
-    font-family: Open Sans;
-    font-size: 18px;
-    
-  }
-
-    #content .button_add_to_cart {
-        margin-right:0;
-        border-radius: 5px;
-        padding:8px 10px;
-        color: #ffffff;
-        font-size: 14px;
-        font-weight: 600; 
+    #product_list{
+        margin-bottom: -6rem;
     }
 
-    #content .button_add_to_cart::after {
-        padding:8px;
+    #product_list .card-body{
+        padding:10px;
     }
 
-    .button-collapse{
-        margin-left: 10px;
-        margin-right: 0;
-        margin-bottom:20px;
-        font-size: 40px;
-        left:-1.5rem;
-        right:-1rem;
-        top:0;
-        padding-top:2px;
-    }
-
-     .collapse{
-        margin-bottom:10px;
-      }
-
-    #content .item_product{
-        width:100%; 
-        padding:5px;
-        padding-bottom: 10px; 
-        border-radius:15px;
-        margin-bottom:4rem;
-    }
-
-    #content .item_product img{
-        border-radius:15px;
-        height: 220px;
+    #product_list .button_add_to_cart{
+        font-size: 18px;
     }
 
     #content .product-price-header {
-        line-height: 1.36;
         font-size:18px;
     }
 
     #content .product-price {
-        font-size: 25px; 
-        font-weight: 900;
-    }
-
-    /*
-    #content .hdr_tbl_cart {
-       margin-top:-2px;
-    }*/
-
-    #content .tbl_cart {
-        width: 50%;
-        padding-right:0;
-    }
-
-    #content .button_plus{
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 15px;
-        margin-top:2px;
-        margin-left:-10px;
-    }
-
-    #content .button_minus {
-        font-size: 15px;
-        margin-left:5px;
-        margin-top:2px;
-    }
-      
-      #content .show {
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 15px;
-        margin-left:-9px;
-    }
-
-
-    #footer {
-        
-        padding-top: 7rem;
-        padding-bottom: 2rem;
+        font-size: 24px; 
     }
 
     #footer .social-icons a {
-        margin-top: 0;
+        margin-top: 3rem;
         margin-right: 10px;
         margin-left: 10px;
-        font-size:20px;
+        font-size:25px;
     }
 
-    .copyright p {
-        margin-top: 20px;
-        margin-bottom: 10rem;
-        font-size: 13px;
-     }
-
-      .fixed-bottom{
-        margin-left:15px;
-        margin-right:15px;
-     }
-
-     #ex4 .p1[data-count]:after{
-        
-        right:50%;
-        top:10%;
-        line-height:0.5em;
-        color: white;
-        min-width: 1.3em;
-        
-      }
-
-    #card-cart{
-    border-radius:14px; 
-    padding-left:10px; 
-    height:50px;
-    padding-bottom:4px;
-    }
-    
-    #ex4 .fa-shopping-cart{
-        font-size: 25px;
-        color: #ffffff;
-        top:2px;
-        position: absolute;
-      }
-    
     #card-cart h5{
-    font-size:13px;
-    margin-left:-2.5rem;
-    margin-top:-10px;
-    }
-    
-    #card-detail .image-detail{
-    border-radius:10px; 
-    width:200px; 
-    height:auto;
-    }
-    
-    #card-detail p{
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 2px;
-    }
-    
-    #card-detail h1{
-    font-weight: 900;
+        font-size: 18px;
     }
 
-    #cv .fa-chevron-up{
-        margin-left: -15px;
-        font-size: 14px;
-        margin-top:-20px;
-        position: absolute;
+    .table-detail{
+        margin-left: -1rem;
+        margin-right: -1rem;
     }
 
-    #collapse-4{
-
-    /*max-height:375px;*/ 
-    padding:2px;
-    
-    }
-
-    #card-detail {
-      padding-left:2px;
-      padding-right:2px; 
+    .img-detail-cart{
+        width: 30%;
     }
 
     #card-detail .image-detail{
-        width:80px; 
+        width:100px; 
         height:auto;
-        margin-bottom: 15%;
     }
 
-    #card-detail p{
-        font-size: 10px;
-        margin-left:10px; 
-        font-weight: bold;
-        margin-bottom: 2px;
-    }
-
-    #card-detail h1{
-        margin-left:10px;
-        font-size: 15px;
-        font-weight: 900;
-    }
-
-    #card-detail .button_minus {
-        font-size: 10px;
-        margin-left:15px;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .button_plus{
-        font-size: 10px;
-        margin-left:5px;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .d-inline{
-       font-size: 13px;
-       margin-left:5px;
-    }
-
-    #card-detail .btn-default{
-        color:#fff;
-        font-size:10px;
-        font-weight: 800; 
-        padding-top:5px; 
-        padding-bottom:5px;
-      }
-
-      #bt_beli a{
-        
-        border-radius: 5px;
-        padding-right:15px;
-        padding-left: 15px;
-        padding-top:10px;
-        padding-bottom: 10px;
-        font-size: 10px;
-        font-weight:800;
-        margin-right:0px;
-      }
-}
-
-@media (max-width: 480px) {
-
-    #shape-1 {
-        float: left;
-        width: 100%;
-        height: 19rem;
-        top:12.1rem;
-        border-top-right-radius: 100%;
-        /*background:#fff;*/
-        position: absolute;
-   }
-  
-   #shape-2 {
-    right:0;
-    width: 100%;
-    height: 19rem;
-    top:31.3rem;
-    border-bottom-left-radius: 100%;
-    background:#ffcc94;
-    /*background:#5D2B30;*/
-    position: absolute;
-    z-index: ;
-  }
-
-    #sidebar {
+    .td-desc-detail{
         width: 70%;
-        left: -70%;
     }
 
-    #sidebar ul.components {
-    padding: 20px 0;
-    }
-    
-    #sidebar ul li a {
-        margin-bottom: 5px;
-        font-size: 15px;
-    }
-
-    #pageSubmenu{
-        font-size: 14px;
-    }
-    #sidebar ul li.active>a,
-    a[aria-expanded="true"] {
-        color: white;
-    }
-
-    .nav-center img{
-        left:-5rem;
-        position:absolute;
-        top:-2.4rem;
-    }
-
-    .navbar .navbar-brand img {
-        width:195px;
-        height:auto;
-    }
-
-    
-    a.login{
-        border:none;
-        font-size: 15px;
-        font-weight: 900;
-        padding-left:2rem;
-        padding-right:2rem;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        margin-top: -15px;
-        background-color: #fff;
-      }
-
-    #log .logout {
-        
-        font-size: 15px;
-    }
-      
-
-    a.register {
-        font-size: 15px;
-    }
-
-    .reset{
-        font-size: 17px;
-    }
-
-    #sidebar .social-icons a {
-        margin-right: 5px;
-        margin-left: 5px;
-        font-size:14px;
-        color: #fff;
-    }
-
-    
-    .cat_fil{
-        font-size: 15px;
-        font-weight: bold;
-        font-style:normal;
-        line-height: 1;
-        font-family: Open Sans;
-      }
-
-      .tombol{
-        font-size: 15px;
-    }
-
-      .menu-filter{
-        width:25%;
-        height: auto;
-        padding-left:9px;
-        padding-top:8px;
-    }
-
-    .warna{
-        height:31.3rem;
-    }
-
-    #content .cr_bl{
-    
-        margin-left: 1.4rem;
-    }
-
-    #content .cara_belanja img{
-        width:90px;
-        height:auto;
-      }
-  
-      #content .cara_belanja h5{
-          font-weight: 900;
-          font-size: 18px;
-          margin-left:-3rem;
-          margin-right:2px;
-          
-      }
-  
-      #content .cara_belanja p{
-          margin-left:-3rem;
-          margin-right:10px;
-          font-size: 14px;
-          
-      }
-
-    #content .kontak{
-        
-        margin-left: 0.5rem;
-        margin-bottom : -2rem;
-
-    }
-
-    #i-kontak, #i-envelop {
-        font-size: 3.9em;
-        margin-top:1.3rem;
-        margin-left:20px;
-    }
-
-    #content .contact_kami h5.no_telp{
-        margin-left:-6rem;
-        font-size: 29px;
-       
-    }
-
-    #content .contact_kami p.telp{
-        margin-left:-6rem;
-        margin-top: 1rem;
-        font-size: 23px;
-       
-   }
-
-   #content .contact_kami p{
-    margin-top:1.2rem;
-    margin-left:-6rem;
-    font-size: 23px;
-    font-weight: 600;
-    
-   }
-
-  #content .contact_kami h5{
-    margin-left:-6rem;
-    font-family: Open Sans;
-    font-size: 18px;
-    
-  }
-
-    #content .button_add_to_cart {
-        
-        border-radius: 5px;
-        padding:8px 10px;
-        color: #ffffff;
-        font-size: 12px;
-        font-weight: 600; 
-    }
-
-    #content .button_add_to_cart::after {
-        padding:8px;
-    }
-
-    #accordion .button_add_to_pesan {
-        font-size: 17px;
-    }
-
-    .button-collapse{
-        margin-left: 10px;
-        margin-right: 0;
-        margin-bottom:10px;
-        font-size: 15px;
-        left:-1.5rem;
-        right:-1rem;
-        top:0;
-        padding-top:2px;
-    }
-
-     .collapse{
-        margin-bottom:10px;
-      }
-
-    #content .item_product{
-        width:100%; 
-        padding:5px;
-        padding-bottom: 10px; 
-        border-radius:15px;
-        margin-bottom:4rem;
-    }
-
-    #content .item_product img{
-        border-radius:15px;
-        height: 190px;
-    }
-
-    #content .product-price-header {
-        line-height: 1.36;
-        font-size:14px;
-    }
-
-    #content .product-price {
-        font-size: 22px; 
-        font-weight: 900;
-    }
-
-    /*
-    #content .hdr_tbl_cart {
-       margin-top:-2px;
-    }*/
-
-    #content .tbl_cart {
-        width: 50%;
-        padding-right:0;
-    }
-
-    #content .button_plus{
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 15px;
-        margin-top:2px;
-        margin-left:-10px;
-    }
-
-    #content .button_minus {
-        font-size: 15px;
-        margin-left:5px;
-        margin-top:2px;
-    }
-      
-      #content .show {
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 15px;
-        margin-left:-9px;
-    }
-
-
-    #footer {
-        
-        padding-top: 7rem;
-        padding-bottom: 2rem;
-    }
-
-    #footer .social-icons a {
-        margin-top: 0;
-        margin-right: 10px;
-        margin-left: 10px;
-        font-size:20px;
-    }
-
-    .copyright p {
-        margin-top: 20px;
-        margin-bottom: 10rem;
-        font-size: 13px;
-     }
-
-      .fixed-bottom{
-        margin-left:15px;
-        margin-right:15px;
-     }
-
-     #ex4 .p1[data-count]:after{
-        
-        right:50%;
-        top:10%;
-        line-height:0.5em;
-        color: white;
-        min-width: 1.3em;
-        
-      }
-
-    #card-cart{
-    border-radius:14px; 
-    padding-left:10px; 
-    height:50px;
-    padding-bottom:4px;
-    }
-    
-    #ex4 .fa-shopping-cart{
-        font-size: 25px;
-        color: #ffffff;
-        top:2px;
-        position: absolute;
-      }
-    
-    #card-cart h5{
-    font-size:13px;
-    margin-left:-2.5rem;
-    margin-top:-10px;
-    }
-    
-    #card-detail .image-detail{
-    border-radius:10px; 
-    width:200px; 
-    height:auto;
-    }
-    
-    #card-detail p{
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 2px;
-    }
-    
-    #card-detail h1{
-    font-weight: 900;
-    }
-
-    #cv .fa-chevron-up{
-        margin-left: -15px;
-        font-size: 14px;
-        margin-top:-20px;
-        position: absolute;
-    }
-
-    #collapse-4{
-
-    /*max-height:375px;*/ 
-    padding:2px;
-    
-    }
-
-    #card-detail {
-      padding-left:2px;
-      padding-right:2px; 
-    }
-
-    #card-detail .image-detail{
-        width:80px; 
-        height:auto;
-        margin-bottom: 15%;
+    #card-detail h2{
+        font-size: 22px;
     }
 
     #card-detail p{
-        font-size: 10px;
-        margin-left:10px; 
-        font-weight: bold;
-        margin-bottom: 2px;
-    }
-
-    #card-detail h1{
-        margin-left:10px;
-        font-size: 15px;
-        font-weight: 900;
-    }
-
-    #card-detail .button_minus {
-        font-size: 10px;
-        margin-left:15px;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .button_plus{
-        font-size: 10px;
-        margin-left:5px;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .d-inline{
-       font-size: 13px;
-       margin-left:5px;
-    }
-
-    #card-detail .btn-default{
-        color:#fff;
-        font-size:10px;
-        font-weight: 800; 
-        padding-top:5px; 
-        padding-bottom:5px;
-      }
-
-      #bt_beli a{
-        
-        border-radius: 5px;
-        padding-right:15px;
-        padding-left: 15px;
-        padding-top:10px;
-        padding-bottom: 10px;
-        font-size: 10px;
-        font-weight:800;
-        margin-right:0px;
-      }
-}
-
-@media (max-width: 425px) {
-
-    #shape-1 {
-        float: left;
-        width: 100%;
-        height: 19rem;
-        top:9.5rem;
-        border-top-right-radius: 100%;
-        /*background:#fff;*/
-        position: absolute;
-   }
-  
-   #shape-2 {
-        right:0;
-        width: 100%;
-        height: 19rem;
-        top:28.5rem;
-        border-bottom-left-radius: 100%;
-        /*background:#5D2B30;*/
-        position: absolute;
-        z-index: ;
-    }
-
-    #sidebar {
-        width: 70%;
-        left: -70%;
-    }
-
-    
-    
-    #sidebar ul.components {
-        padding: 20px 0;
-    }
-    
-    #sidebar ul li a {
-        margin-bottom: 5px;
-        font-size: 13px;
-    }
-
-    #pageSubmenu{
-        font-size: 12px;
-    }
-    #sidebar ul li.active>a,
-        a[aria-expanded="true"] {
-        color: white;
-    }
-
-    
-    a.login{
-        border:none;
-        font-size: 14px;
-        font-weight: 900;
-        padding-left:1.5rem;
-        padding-right:1.5rem;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        margin-top: -15px;
-        background-color: #fff;
-      }
-
-    #log .logout {
-        
-        font-size: 14px;
-    }
-      
-
-    a.register {
-        font-size: 14px;
-    }
-
-    .reset{
         font-size: 16px;
     }
 
-    #sidebar .social-icons a {
-        margin-right: 5px;
-        margin-left: 5px;
-        font-size:14px;
-        color: #fff;
-    }
-
-    
-    .nav-center img{
-        left:-4.5rem;
-        position:absolute;
-        top:-2.3rem;
-    }
-
-    .navbar .navbar-brand img {
-        width:180px;
-        height:auto;
-    }
-
-    .cat_fil{
-        font-size: 14px;
-        font-weight: bold;
-        font-style:normal;
-        line-height: 1.4;
-        font-family: Open Sans;
-    }
-
-    .tombol{
-        font-size: 15px;
-    }
-
-    .menu-filter{
-        width:30%;
-        height: auto;
-        padding-top:8px;
-    }
-
-    .menu-logo-filter{
-        width:70%;
-    }
-
-    .warna{
-        height:28.5rem;
-    }
-
-    #content .cr_bl{
-
-    margin-left: 1rem;
-    }
-
-    #cara-belanja .card-body{
-        padding:0;
-    }
-
-    #content .cara_belanja img{
-        width:90px;
-        height:auto;
-        margin-left:-15px;
-    }
-
-    #content .cara_belanja h5{
-        font-weight: 900;
-        font-size: 17px;
-        margin-left:-2.5rem;
-        margin-right:-2.5rem;
-        
-    }
-
-    #content .cara_belanja p{
-        margin-left:-2.5rem;
-        margin-right:-10px;
-        font-size: 12px;
-        
-    }
-
-    #content .kontak{
-    
-        margin-left: 0.5rem;
-        margin-bottom : -2rem;
-
-    }
-
-    #i-kontak, #i-envelop {
-        font-size: 3.9em;
-        margin-top:1.3rem;
-    }
-
-    #content .contact_kami h5.no_telp{
-        margin-left:-6rem;
-        font-size: 29px;
-        
-    }
-
-    #content .contact_kami p.telp{
-        margin-left:-6rem;
-        margin-top: 1rem;
-        font-size: 20px;
-        
-    }
-
-    #content .contact_kami p{
-    
-    margin-left:5.5rem;
-    margin-top: -4rem;
-    font-size: 20px;
-    font-weight: 600;
-    
-    }
-
-    #content .contact_kami h5{
-    margin-left:5.5rem;
-    font-family: Open Sans;
-    font-size: 16px;
-    
-    }
-    
-    #content .button_add_to_cart {
-        border-radius: 5px;
-        padding:8px 10px;
-        color: #ffffff;
-        font-size: 12px;
-        font-weight: 600; 
-    }
-
-    #content .button_add_to_cart::after {
-        padding:10px;
-    }
-
-    #accordion .button_add_to_pesan {
-        
-        font-size: 21px;
-        
-      }
-
-    .button-collapse{
-        margin-left: 3px;
-        margin-right: 5px;
+    .tabel-quantity{
+        width:50%;
         margin-bottom:10px;
-        font-size: 10px;
-        left:-1rem;
-        right:-1rem;
-        top:0;
-        padding-top:2px;
-     }
-
-     .collapse{
-        margin-bottom:10px;
-      }
-
-    #content .item_product{
-        width:100%; 
-        padding:5px;
-        padding-bottom: 10px; 
-        border-radius:15px;
-        margin-bottom:4rem;
     }
 
-    #content .item_product img{
-        border-radius:15px;
-        height: 160px;
+    .fixed-bottom p{
+        font-size: 18px;
     }
 
-    #content .product-price-header {
-        line-height: 1.2;
-        font-size:14px;
+    .fixed-bottom h2{
+        font-size: 22px;
+        margin-top:4px;
     }
 
-    #content .product-price {
-        font-size: 19px; 
-        font-weight: 900;
+    #card-detail .button_minus .button_plus .d-inline{
+        font-size: 18px;
     }
 
-    /*
-    #content .hdr_tbl_cart {
-       margin-top:-2px;
-    }*/
-
-    #content .tbl_cart {
-        width: 50%;
-        padding-right:0;
+    .breadcrumb-profil-item{
+        margin-top:-3.3rem;
     }
 
-    #content .button_plus{
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 12px;
-        margin-top:2px;
-        margin-left:-10px;
-    }
-
-    #content .button_minus {
-        font-size: 12px;
-        margin-left:5px;
-        margin-top:2px;
+    #prf-brd {
+        margin-top:-3rem;
     }
       
-      #content .show {
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 12px;
-        margin-left:-7px;
+    .image-profil-user{
+        width:140px;
+        height:140px;
+        left:10%;
+        top:15rem;
     }
 
-
-    #footer {
-        
-        padding-top: 7rem;
-        padding-bottom: 2rem;
+    .profil-row{
+        margin-top:15%;
     }
 
-    #footer .social-icons a {
-        margin-top: 0;
-        margin-right: 10px;
-        margin-left: 10px;
-        font-size:20px;
+    .heading-profil{
+        font-size: 33px;
+        line-height: 0.8;
+        margin-left: 37%;
     }
 
-    .copyright p {
-        margin-top: 20px;
-        margin-bottom: 10rem;
-        font-size: 13px;
-     }
-
-      .fixed-bottom{
-        margin-left:15px;
-        margin-right:15px;
-     }
-
-     #ex4 .p1[data-count]:after{
-        
-        right:50%;
-        top:10%;
-        line-height:0.5em;
-        color: white;
-        min-width: 1.3em;
-        
-      }
-
-    #card-cart{
-    border-radius:14px; 
-    padding-left:10px; 
-    height:50px;
-    padding-bottom:4px;
-    }
-    
-    #ex4 .fa-shopping-cart{
-        font-size: 25px;
-        color: #ffffff;
-        top:2px;
-        position: absolute;
-      }
-    
-    #card-cart h5{
-    font-size:13px;
-    margin-left:-2.5rem;
-    margin-top:-10px;
-    }
-    
-    #card-detail .image-detail{
-    border-radius:10px; 
-    width:200px; 
-    height:auto;
-    }
-    
-    #card-detail p{
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 2px;
-    }
-    
-    #card-detail h1{
-    font-weight: 900;
+    .name-profil{
+        font-size:25px;
+        line-height: 0.8;
+        margin-left: 37%;
     }
 
-    #cv .fa-chevron-up{
-        margin-left: -15px;
-        font-size: 14px;
-        margin-top:-20px;
-        position: absolute;
-    }
-
-    #collapse-4{
-
-    /*max-height:375px;*/ 
-    padding:2px;
-    
-    }
-
-    #card-detail {
-      padding-left:2px;
-      padding-right:2px; 
-    }
-
-    #card-detail .image-detail{
-        width:80px; 
-        height:auto;
-        margin-bottom: 15%;
-    }
-
-    #card-detail p{
-        font-size: 10px;
-        margin-left:10px; 
-        font-weight: bold;
-        margin-bottom: 2px;
-    }
-
-    #card-detail h1{
-        margin-left:10px;
-        font-size: 15px;
-        font-weight: 900;
-    }
-
-    #card-detail .button_minus {
-        font-size: 10px;
-        margin-left:15px;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .button_plus{
-        font-size: 10px;
-        margin-left:5px;
-        margin-top:0;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .d-inline{
-       font-size: 13px;
-       margin-left:5px;
-    }
-
-    #card-detail .btn-default{
-        color:#fff;
-        font-size:10px;
-        font-weight: 800; 
-        padding-top:5px; 
-        padding-bottom:5px;
-      }
-
-      #bt_beli a{
-        
-        border-radius: 5px;
-        padding-right:15px;
-        padding-left: 15px;
-        padding-top:10px;
-        padding-bottom: 10px;
-        font-size: 10px;
-        font-weight:800;
-        margin-right:0px;
-      }
-}
-
-@media (max-width: 411px) {
-
-    #shape-1 {
-        float: left;
-        width: 100%;
-        height: 19rem;
-        top:9.5rem;
-        border-top-right-radius: 100%;
-        /*background:#fff;*/
-        position: absolute;
-   }
-  
-   #shape-2 {
-    right:0;
-    width: 100%;
-    height: 19rem;
-    top:28.5rem;
-    border-bottom-left-radius: 100%;
-    /*background:#5D2B30;*/
-    position: absolute;
-    z-index: ;
-  }
-
-    #sidebar {
-        width: 70%;
-        left: -70%;
-    }
-
-    
-    
-    #sidebar ul.components {
-    padding: 20px 0;
-    }
-    
-    #sidebar ul li a {
-        margin-bottom: 5px;
-        font-size: 13px;
-    }
-
-    #pageSubmenu{
-        font-size: 12px;
-    }
-    #sidebar ul li.active>a,
-    a[aria-expanded="true"] {
-        color: white;
-    }
-
-    
-    a.login{
-        border:none;
-        font-size: 14px;
-        font-weight: 900;
-        padding-left:1.5rem;
-        padding-right:1.5rem;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        margin-top: -15px;
-        background-color: #fff;
-      }
-
-    #log .logout {
-        
-        font-size: 14px;
-    }
-      
-
-    a.register {
-        font-size: 14px;
-    }
-
-    .reset{
-        font-size: 16px;
-    }
-
-    #sidebar .social-icons a {
-        margin-right: 5px;
-        margin-left: 5px;
-        font-size:14px;
-        color: #fff;
-    }
-
-    
-    .nav-center img{
-        left:-4.5rem;
-        position:absolute;
-        top:-2.3rem;
-    }
-
-    .navbar .navbar-brand img {
-        width:180px;
-        height:auto;
-    }
-
-    .cat_fil{
-        font-size: 13px;
-        font-weight: bold;
-        font-style:normal;
-        line-height: 1;
-        font-family: Open Sans;
-      }
-
-      .tombol{
-        font-size: 15px;
-    }
-
-    .menu-filter{
-        width:30%;
-        height: auto;
-        padding-top:8px;
-    }
-
-    .menu-logo-filter{
-        width:70%;
-    }
-
-    .warna{
-        height:28.5rem;
-    }
-
-    #content .cr_bl{
-    
-    margin-left: 1rem;
-    }
-
-    #cara-belanja .card-body{
-        padding:0;
-    }
-
-    #content .cara_belanja img{
-        width:90px;
-        height:auto;
-        margin-left:-15px;
-    }
-
-    #content .cara_belanja h5{
-        font-weight: 900;
-        font-size: 17px;
-        margin-left:-2.5rem;
-        margin-right:-2.5rem;
-        
-    }
-
-    #content .cara_belanja p{
-        margin-left:-2.5rem;
-        margin-right:-10px;
-        font-size: 12px;
-        
-    }
-
-    #content .kontak{
-    
-        margin-left: 0.5rem;
-        margin-bottom : -2rem;
-
-    }
-
-    #i-kontak, #i-envelop {
-        font-size: 3.9em;
-        margin-top:1.3rem;
-    }
-
-    #content .contact_kami h5.no_telp{
-        margin-left:-5rem;
-        font-size: 29px;
-        
-    }
-
-    #content .contact_kami p.telp{
-        margin-left:-5rem;
-        margin-top: 1rem;
-        font-size: 20px;
-        
-    }
-
-    #content .contact_kami p{
-    
-    margin-left:6rem;
-    margin-top: -4rem;
-    font-size: 20px;
-    font-weight: 600;
-    
-    }
-
-    #content .contact_kami h5{
-    margin-left:6rem;
-    font-family: Open Sans;
-    font-size: 16px;
-    
-    }
-      
-    #content .button_add_to_cart {
-        border-radius: 5px;
-        padding:8px 8px;
-        color: #ffffff;
-        font-size: 12px;
-        font-weight: 600; 
-    }
-
-    #content .button_add_to_cart::after {
-        padding:8px;
-    }
-
-    #accordion .button_add_to_pesan {
-        font-size: 17px;
-        border-radius: 6px;
-    }
-
-    .button-collapse{
-        margin-left: 2px;
+    .breadcrumb-profil-name {
+        font-size:16px;
+        line-height: 0.8;
+        margin-left: 37%;
         margin-right: 0;
-        margin-bottom:10px;
-        font-size: 8px;
-        left:-1rem;
-        right:-1rem;
-        top:0;
-        padding-top:2px;
-     }
-
-     .collapse{
-        margin-bottom:10px;
-      }
-
-    #content .item_product{
-        width:100%; 
-        padding:5px;
-        padding-bottom: 10px; 
-        border-radius:15px;
-        margin-bottom:4rem;
-    }
-
-    #content .item_product img{
-        border-radius:15px;
-        height: 155px;
-    }
-
-    #content .product-price-header {
-        line-height: 1.36;
-        font-size:13px;
-    }
-
-    #content .product-price {
-        font-size: 19px; 
-        font-weight: 900;
-    }
-
-    /*
-    #content .hdr_tbl_cart {
-       margin-top:-2px;
-    }*/
-
-    #content .tbl_cart {
-        width: 50%;
-        padding-right:0;
-    }
-
-    #content .button-minus{
-       font-size: 10px;
-    }
-
-    #content .button_plus{
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 12px;
-        margin-top:2px;
-        margin-left:-10px;
-    }
-
-    #content .button_minus {
-        font-size: 12px;
-        margin-left:5px;
-        margin-top:2px;
     }
       
-      #content .show {
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 12px;
-        margin-left:-7px;
-    }
-
-
-    #footer {
-        
-        padding-top: 7rem;
-        padding-bottom: 2rem;
-    }
-
-    #footer .social-icons a {
-        margin-top: 0;
-        margin-right: 10px;
-        margin-left: 10px;
-        font-size:20px;
-    }
-
-    .copyright p {
-        margin-top: 20px;
-        margin-bottom: 10rem;
-        font-size: 13px;
-     }
-
-      .fixed-bottom{
-        margin-left:15px;
-        margin-right:15px;
-     }
-
-     #ex4 .p1[data-count]:after{
-        
-        right:50%;
-        top:10%;
-        line-height:0.5em;
-        color: white;
-        min-width: 1.3em;
-        
-      }
-
-    #card-cart{
-    border-radius:14px; 
-    padding-left:10px; 
-    height:50px;
-    padding-bottom:4px;
-    }
-    
-    #ex4 .fa-shopping-cart{
-        font-size: 25px;
-        color: #ffffff;
-        top:2px;
-        position: absolute;
-      }
-    
-    #card-cart h5{
-    font-size:13px;
-    margin-left:-2.5rem;
-    margin-top:-10px;
-    }
-    
-    #card-detail .image-detail{
-    border-radius:10px; 
-    width:200px; 
-    height:auto;
-    }
-    
-    #card-detail p{
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 2px;
-    }
-    
-    #card-detail h1{
-    font-weight: 900;
-    }
-
-    #cv .fa-chevron-up{
-        margin-left: -15px;
-        font-size: 14px;
-        margin-top:-20px;
-        position: absolute;
-    }
-
-    #collapse-4{
-
-    /*max-height:375px;*/ 
-    padding:2px;
-    
-    }
-
-    #card-detail {
-      padding-left:2px;
-      padding-right:2px; 
-    }
-
-    #card-detail .image-detail{
-        width:80px; 
-        height:auto;
-        margin-bottom: 15%;
-    }
-
-    #card-detail p{
-        font-size: 10px;
-        margin-left:10px; 
-        font-weight: bold;
-        margin-bottom: 2px;
-    }
-
-    #card-detail h1{
-        margin-left:10px;
-        font-size: 15px;
-        font-weight: 900;
-    }
-
-    #card-detail .button_minus {
-        font-size: 10px;
-        margin-left:15px;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .button_plus{
-        font-size: 10px;
-        margin-left:5px;
-        margin-top:0;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .d-inline{
-       font-size: 13px;
-       margin-left:5px;
-    }
-
-    #card-detail .btn-default{
-        color:#fff;
-        font-size:10px;
-        font-weight: 800; 
-        padding-top:5px; 
-        padding-bottom:5px;
-      }
-
-      #bt_beli a{
-        
-        border-radius: 5px;
-        padding-right:15px;
-        padding-left: 15px;
-        padding-top:10px;
-        padding-bottom: 10px;
-        font-size: 10px;
-        font-weight:800;
-        margin-right:0px;
-      }
-}
-
-@media (max-width: 384px) {
-
-
-    #shape-1 {
-        float: left;
-        width: 100%;
-        height: 17rem;
-        top:9.8rem;
-        border-top-right-radius: 100%;
-        /*background:#fff;*/
-        position: absolute;
-   }
-  
-   #shape-2 {
-    right:0;
-    width: 100%;
-    height: 17rem;
-    top:26.8rem;
-    border-bottom-left-radius: 100%;
-    /*background:#5D2B30;*/
-    position: absolute;
-    z-index: ;
-  }
-
-
-    #sidebar {
-        width: 70%;
-        left: -70%;
-    }
-
-    #sidebar ul.components {
-    padding: 20px 0;
-    }
-    
-    #sidebar ul li a {
-        margin-bottom: 5px;
-        font-size: 13px;
-    }
-
-    #pageSubmenu{
-        font-size: 12px;
-    }
-    #sidebar ul li.active>a,
-    a[aria-expanded="true"] {
-        color: white;
-    }
-
-    .nav-center img{
-        left:-4.8rem;
-        position:absolute;
-        top:-2.3rem;
-    }
-
-    .navbar .navbar-brand img {
-        width:180px;
-        height:auto;
-    }
-
-    a.login{
-        border:none;
-        font-size: 14px;
-        font-weight: 900;
-        padding-left:1.5rem;
-        padding-right:1.5rem;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        margin-top: -15px;
-        background-color: #fff;
-      }
-
-    #log .logout {
-        
-        font-size: 14px;
+    .breadcrumb-profil-name + .breadcrumb-profil-name::before {
+        font-size: 28px;
+        line-height: 0.8;
     }
       
-
-    a.register {
-        font-size: 14px;
-    }
-
-    .reset{
-        font-size: 16px;
-    }
-
-    #sidebar .social-icons a {
-        margin-right: 5px;
-        margin-left: 5px;
-        font-size:14px;
-        color: #fff;
-    }
-
-    
-
-    .cat_fil{
-        font-size: 13px;
-        font-weight: bold;
-        font-style:normal;
-        line-height: 1;
-        font-family: Open Sans;
-      }
-
-      .tombol{
-        font-size: 15px;
-    }
-
-    .menu-filter{
-        width:30%;
-        height: auto;
-        padding-top:8px;
-    }
-
-    .menu-logo-filter{
-        width:70%;
-    }
-
-    .warna{
-        height:26.8rem;
-    }
-  
-    #content .cr_bl{
-    
-    margin-left: 1rem;
-    }
-
-    #content .kontak{
-    
-        margin-left: 0.5rem;
-        margin-bottom : -2rem;
-
-    }
-
-    #i-kontak, #i-envelop {
-        font-size: 3.9em;
-        margin-top:1.3rem;
-        margin-left:0;
-    }
-
-    #content .contact_kami h5.no_telp{
-        margin-left:0;
-        font-size: 29px;
-       
-    }
-
-    #content .contact_kami p.telp{
-        margin-left:0;
-        margin-top: 1rem;
-        font-size: 20px;
-       
-   }
-
-   #content .contact_kami p{
-    
-    margin-left:5.5rem;
-    margin-top: -4rem;
-    font-size: 20px;
-    font-weight: 600;
-    
-   }
-
-  #content .contact_kami h5{
-    margin-left:5.5rem;
-    font-family: Open Sans;
+    .breadcrumb-profil-name.active {
     font-size: 16px;
-    
-  }
-  
-
-    #cara-belanja .card-body{
-        padding:0;
+    line-height: 0.8;
+    margin-top:2px;
     }
 
-    #content .cara_belanja img{
-        width:80px;
-        height:auto;
-        margin-left:-5px;
-      }
-
-    #content .cara_belanja h5{
-        font-weight: 900;
-        font-size: 13px;
-        margin-left:-2rem;
-        margin-right:-1rem;
-        
+    .detail-profil{
+        margin-top:2rem;
+        margin-left:1rem;
     }
 
-    #content .cara_belanja p{
-        margin-left:-2rem;
-        margin-right:-1rem;
-        font-size: 10px;
-        
-    }
-  
-    #content .button_add_to_cart {
-        
-        border-radius: 5px;
-        padding:8px 10px;
-        color: #ffffff;
-        font-size: 11px;
-        font-weight: 600; 
+    .contact-row{
+        margin-top:2rem;
     }
 
-    #content .button_add_to_cart::after {
-        padding:10px;
-    }
-
-    .button-collapse{
-        margin-left: 1px;
-        margin-right: 1px;
-        margin-bottom:10px;
-        font-size: 10px;
-        left:-1rem;
-        right:-1rem;
-        top:0;
-        padding-top:2px;
-     }
-
-     .collapse{
-        margin-bottom:10px;
-      }
-
-    #content .item_product{
-        width:100%; 
-        padding:5px;
-        padding-bottom: 10px; 
-        border-radius:15px;
-        margin-bottom:4rem;
-    }
-
-    #content .item_product img{
-        border-radius:15px;
-        height: 135px;
-    }
-
-    #content .product-price-header {
-        line-height: 1.36;
-        font-size:13px;
-    }
-
-    #content .product-price {
-        font-size: 17px; 
-        font-weight: 900;
-    
-    }
-
-    /*
-    #content .hdr_tbl_cart {
-       margin-top:-2px;
-    }*/
-
-    #content .tbl_cart {
-        width: 50%;
-        padding-right:0;
-    }
-
-    
-    #content .button_plus{
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 12px;
-        margin-top:3px;
-        margin-left:-10px;
-    }
-
-    #content .button_minus {
-        font-size: 12px;
+    .section_content{
         margin-left:5px;
-        margin-top:3px;
     }
-      
-    #content .show {
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 12px;
-        margin-left:-10px;
-    }
-
-
-    #footer {
-        
-        padding-top: 7rem;
-        padding-bottom: 2rem;
-    }
-
-    #footer .social-icons a {
-        margin-top: 0;
-        margin-right: 10px;
-        margin-left: 10px;
-        font-size:20px;
-    }
-
-    .copyright p {
-        margin-top: 20px;
-        margin-bottom: 10rem;
-        font-size: 13px;
-     }
-
-      .fixed-bottom{
-        margin-left:15px;
-        margin-right:15px;
-     }
-
-     #ex4 .p1[data-count]:after{
-        
-        right:50%;
-        top:10%;
-        line-height:0.5em;
-        color: white;
-        min-width: 1.3em;
-        
-      }
-
-    #card-cart{
-    border-radius:14px; 
-    padding-left:10px; 
-    height:50px;
-    padding-bottom:4px;
-    }
-    
-    #ex4 .fa-shopping-cart{
-        font-size: 25px;
-        color: #ffffff;
-        top:2px;
-        position: absolute;
-      }
-    
-    #card-cart h5{
-    font-size:13px;
-    margin-left:-2.5rem;
-    margin-top:-10px;
-    }
-    
-    #card-detail .image-detail{
-    border-radius:10px; 
-    width:200px; 
-    height:auto;
-    }
-    
-    #card-detail p{
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 2px;
-    }
-    
-    #card-detail h1{
-    font-weight: 900;
-    }
-
-    #cv .fa-chevron-up{
-        margin-left: -15px;
-        font-size: 14px;
-        margin-top:-20px;
-        position: absolute;
-    }
-
-    #collapse-4{
-
-    /*max-height:375px;*/ 
-    padding:2px;
-    
-    }
-
-    #card-detail {
-      padding-left:2px;
-      padding-right:2px; 
-    }
-
-    #card-detail .image-detail{
-        width:80px; 
-        height:auto;
-        margin-bottom: 15%;
-    }
-
-    #card-detail p{
-        font-size: 10px;
-        margin-left:10px; 
-        font-weight: bold;
-        margin-bottom: 2px;
-    }
-
-    #card-detail h1{
-        margin-left:10px;
-        font-size: 15px;
-        font-weight: 900;
-    }
-
-    #card-detail .button_minus {
-        font-size: 10px;
-        margin-left:15px;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .button_plus{
-        font-size: 10px;
-        margin-left:5px;
-        margin-top:0;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .d-inline{
-       font-size: 13px;
-       margin-left:5px;
-    }
-
-    #card-detail .btn-default{
-        color:#fff;
-        font-size:10px;
-        font-weight: 800; 
-        padding-top:5px; 
-        padding-bottom:5px;
-      }
-
-      #bt_beli a{
-        
-        border-radius: 5px;
-        padding-right:15px;
-        padding-left: 15px;
-        padding-top:10px;
-        padding-bottom: 10px;
-        font-size: 10px;
-        font-weight:800;
-        margin-right:0px;
-      }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 480px){
+    .dot-top-right {
+        width: 150px;
+    }
 
-    #shape-1 {
-        float: left;
-        width: 100%;
-        height: 17rem;
-        top:9.3rem;
-        border-top-right-radius: 100%;
-        /*background:#fff;*/
-        position: absolute;
-   }
-  
-   #shape-2 {
-    right:0;
-    width: 100%;
-    height: 18rem;
-    top:26.3rem;
-    border-bottom-left-radius: 100%;
-    /*background:#5D2B30;*/
-    position: absolute;
-    z-index: ;
-  }
+    .dot-bottom-left {
+        width: 200px;
+    }
 
+    .shape-bottom-right {
+        width: 200px;
+    }
+
+    .dot-top-right-nocart {
+        width: 150px;
+        top:2.8rem;
+    }
+
+    .td-label-loc{
+        width: 25%;
+    }
+
+    .image-logo-login{
+        margin-top:5rem;
+    }
+
+    #hero_cools{
+        margin-bottom: 0;
+    }
+
+   .text-hero{
+        right:2rem;
+        top:5rem;
+    }
+    
+    .text-hero h1{
+        font-size: 26px;
+    }
+
+    .text-hero hr{
+        width:190px;
+        border-top: 1.5px solid #ffffff;
+    }
+    
     #sidebar {
-        width: 70%;
-        left: -70%;
+        width: 60%;
+        left: -60%;
     }
 
-    #sidebar ul.components {
-    padding: 20px 0;
+    #sidebar .sidebar-header {
+        margin-left: 5rem;
     }
-    
-    #sidebar ul li a {
-        margin-bottom: 5px;
-        font-size: 13px;
-    }
-
-    #pageSubmenu{
-        font-size: 12px;
-    }
-    #sidebar ul li.active>a,
-    a[aria-expanded="true"] {
-        color: white;
-    }
-
-    .nav-center img{
-        left:-4.8rem;
-        position:absolute;
-        top:-2.3rem;
-    }
-
-    .navbar .navbar-brand img {
-        width:180px;
-        height:auto;
-    }
-
-    a.login{
-        border:none;
-        font-size: 14px;
-        font-weight: 900;
-        padding-left:1.5rem;
-        padding-right:1.5rem;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        margin-top: -15px;
-        background-color: #fff;
-      }
-
-    #log .logout {
-        
-        font-size: 14px;
-    }
-      
-
-    a.register {
-        font-size: 14px;
-    }
-
-    .reset{
-        font-size: 16px;
-    }
-
-    #sidebar .social-icons a {
-        margin-right: 5px;
-        margin-left: 5px;
-        font-size:14px;
-        color: #fff;
-    }
-
-    
-
-    .cat_fil{
-        font-size: 13px;
-        font-weight: bold;
-        font-style:normal;
-        line-height: 1;
-        font-family: Open Sans;
-      }
-
-      .tombol{
-        font-size: 15px;
-    }
-
-    .menu-filter{
-        width:33%;
-        height: auto;
-        padding-top:8px;
-    }
-
-    .menu-logo-filter{
-        width:67%;
-    }
-
-    .warna{
-        height:26.3rem;
-    }
-  
-    #content .cr_bl{
-    
-    margin-left: 1rem;
-    }
-
-    #content .kontak{
-    
-        margin-left: 0.5rem;
-        margin-bottom : -2rem;
-
-    }
-
-    #i-kontak, #i-envelop {
-        font-size: 3.9em;
-        margin-top:1.3rem;
-        margin-left:0;
-    }
-
-    #content .contact_kami h5.no_telp{
-        margin-left:0;
-        font-size: 29px;
-       
-    }
-
-    #content .contact_kami p.telp{
-        margin-left:0;
-        margin-top: 1rem;
-        font-size: 20px;
-       
-   }
-
-   #content .contact_kami p{
-    
-    margin-left:5.5rem;
-    margin-top: -4rem;
-    font-size: 20px;
-    font-weight: 600;
-    
-   }
-
-  #content .contact_kami h5{
-    margin-left:5.5rem;
-    font-family: Open Sans;
-    font-size: 16px;
-    
-  }
-  
-
-    #cara-belanja .card-body{
-        padding:0;
-    }
-
-    #content .cara_belanja img{
-        width:80px;
-        height:auto;
-        margin-left:-5px;
-      }
-
-    #content .cara_belanja h5{
-        font-weight: 900;
-        font-size: 13px;
-        margin-left:-2rem;
-        margin-right:-1rem;
-        
-    }
-
-    #content .cara_belanja p{
-        margin-left:-2rem;
-        margin-right:-1rem;
-        font-size: 10px;
-        
-    }
-  
-    #content .button_add_to_cart {
-        
-        border-radius: 5px;
-        padding:8px;
-        color: #ffffff;
-        font-size: 10px;
-        font-weight: 600; 
-    }
-
-    #content .button_add_to_cart::after {
-        padding:8px;
-    }
-
-    .button-collapse{
-        margin-left: 1px;
-        margin-right: 0;
-        margin-bottom:10px;
-        font-size: 8px;
-        left:-1rem;
-        right:-1rem;
-        top:0;
-        padding-top:2px;
-     }
-
-     .collapse{
-        margin-bottom:10px;
-      }
-
-    #content .item_product{
-        width:100%; 
-        padding:5px;
-        padding-bottom: 10px; 
-        border-radius:15px;
-        margin-bottom:4rem;
-    }
-
-    #content .item_product img{
-        border-radius:15px;
-        height: 135px;
-    }
-
-    #content .product-price-header {
-        line-height: 1.3;
-        font-size:13px;
-    }
-
-    #content .product-price {
-        margin-top:-7px;
-        font-size: 19px; 
-        font-weight: 900;
-    }
-
-    #content .hdr_tbl_cart {
-       margin-top:-4px;
-    }
-
-    #content .tbl_cart {
-        width: 50%;
-        padding-right:0;
-    }
-
-    
-    #content .button_plus{
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 12px;
-        margin-top:3px;
-        margin-left:-10px;
-    }
-
-    #content .button_minus {
-        font-size: 12px;
-        margin-left:5px;
-        margin-top:3px;
-    }
-      
-    #content .show {
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 12px;
-        margin-left:-10px;
-    }
-
-
-    #footer {
-        
-        padding-top: 7rem;
-        padding-bottom: 2rem;
-    }
-
-    #footer .social-icons a {
-        margin-top: 0;
-        margin-right: 10px;
-        margin-left: 10px;
-        font-size:20px;
-    }
-
-    .copyright p {
-        margin-top: 20px;
-        margin-bottom: 10rem;
-        font-size: 13px;
-     }
-
-      .fixed-bottom{
-        margin-left:15px;
-        margin-right:15px;
-     }
-
-     #ex4 .p1[data-count]:after{
-        
-        right:50%;
-        top:10%;
-        line-height:0.5em;
-        color: white;
-        min-width: 1.3em;
-        
-      }
-
-    #card-cart{
-    border-radius:14px; 
-    padding-left:10px; 
-    height:50px;
-    padding-bottom:4px;
-    }
-    
-    #ex4 .fa-shopping-cart{
-        font-size: 25px;
-        color: #ffffff;
-        top:2px;
-        position: absolute;
-      }
-    
-    #card-cart h5{
-    font-size:13px;
-    margin-left:-2.5rem;
-    margin-top:-10px;
-    }
-    
-    #card-detail .image-detail{
-    border-radius:10px; 
-    width:200px; 
-    height:auto;
-    }
-    
-    #card-detail p{
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 2px;
-    }
-    
-    #card-detail h1{
-    font-weight: 900;
-    }
-
-    #cv .fa-chevron-up{
-        margin-left: -15px;
-        font-size: 14px;
-        margin-top:-20px;
-        position: absolute;
-    }
-
-    #collapse-4{
-
-    /*max-height:375px;*/
-    padding:2px;
-    
-    }
-
-    #card-detail {
-      padding-left:2px;
-      padding-right:2px; 
-    }
-
-    #card-detail .image-detail{
-        width:80px; 
-        height:auto;
-        margin-bottom: 15%;
-    }
-
-    #card-detail p{
-        font-size: 10px;
-        margin-left:10px; 
-        font-weight: bold;
-        margin-bottom: 2px;
-    }
-
-    #card-detail h1{
-        margin-left:10px;
-        font-size: 15px;
-        font-weight: 900;
-    }
-
-    #card-detail .button_minus {
-        font-size: 10px;
-        margin-left:15px;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .button_plus{
-        font-size: 10px;
-        margin-left:5px;
-        margin-top:0;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .d-inline{
-       font-size: 13px;
-       margin-left:5px;
-    }
-
-    #card-detail .btn-default{
-        color:#fff;
-        font-size:10px;
-        font-weight: 800; 
-        padding-top:5px; 
-        padding-bottom:5px;
-      }
-
-      #bt_beli a{
-        
-        border-radius: 5px;
-        padding-right:15px;
-        padding-left: 15px;
-        padding-top:10px;
-        padding-bottom: 10px;
-        font-size: 10px;
-        font-weight:800;
-        margin-right:0px;
-      }
-}
-
-@media (max-width: 364px) {
-
-    #shape-1 {
-        float: left;
-        width: 100%;
-        height: 17rem;
-        top:9.1rem;
-        border-top-right-radius: 100%;
-        /*background:#fff;*/
-        position: absolute;
-   }
-  
-   #shape-2 {
-    right:0;
-    width: 100%;
-    height: 17rem;
-    top:26.1rem;
-    border-bottom-left-radius: 100%;
-    /*background:#fff;*/
-    position: absolute;
-    z-index: ;
-  }
-
-    #sidebar {
-        width: 70%;
-        left: -70%;
-    }
-
-    #sidebar ul.components {
-    padding: 20px 0;
-    }
-    
-    #sidebar ul li a {
-        margin-bottom: 5px;
-        font-size: 13px;
-    }
-
-    #pageSubmenu{
-        font-size: 12px;
-    }
-    #sidebar ul li.active>a,
-    a[aria-expanded="true"] {
-        color: white;
-    }
-
-    .nav-center img{
-        left:-4.8rem;
-        position:absolute;
-        top:-2.3rem;
-    }
-
-    .navbar .navbar-brand img {
-        width:180px;
-        height:auto;
-    }
-
-    a.login{
-        border:none;
-        font-size: 14px;
-        font-weight: 900;
-        padding-left:1.5rem;
-        padding-right:1.5rem;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        margin-top: -15px;
-        background-color: #fff;
-      }
-
-    #log .logout {
-        
-        font-size: 14px;
-    }
-      
-
-    a.register {
-        font-size: 14px;
-    }
-
-    .reset{
-        font-size: 16px;
-    }
-
-    #sidebar .social-icons a {
-        margin-right: 5px;
-        margin-left: 5px;
-        font-size:14px;
-        color: #fff;
-    }
-
-    
-
-    .cat_fil{
-        font-size: 13px;
-        font-weight: bold;
-        font-style:normal;
-        line-height: 1;
-        font-family: Open Sans;
-      }
-
-      .tombol{
-        font-size: 15px;
-    }
-
-    .menu-filter{
-        width:33%;
-        height: auto;
-        padding-top:8px;
-    }
-
-    .menu-logo-filter{
-        width:67%;
-    }
-
-    .warna{
-        height:26.1rem;
-    }
-  
-    #content .cr_bl{
-    
-    margin-left: 1rem;
-    }
-
-    #content .kontak{
-    
-        margin-left: 0.5rem;
-        margin-bottom : -2rem;
-
-    }
-
-    #i-kontak, #i-envelop {
-        font-size: 3.9em;
-        margin-top:1.3rem;
-        margin-left:0;
-    }
-
-    #content .contact_kami h5.no_telp{
-        margin-left:4.5rem;
-        font-size: 29px;
-        
-    }
-
-    #content .contact_kami p.telp{
-        margin-left:4.5rem;
-        font-size: 20px;
-        margin-top:-3.9rem;
-   }
-
-   #content .contact_kami p{
-    
-    margin-left:5.5rem;
-    margin-top: -4rem;
-    font-size: 20px;
-    font-weight: 600;
-    
-   }
-
-  #content .contact_kami h5{
-    margin-left:5.5rem;
-    font-family: Open Sans;
-    font-size: 16px;
-    
-  }
-  
-
-    #cara-belanja .card-body{
-        padding:0;
-    }
-
-    #content .cara_belanja img{
-        width:80px;
-        height:auto;
-        margin-left:-5px;
-      }
-
-    #content .cara_belanja h5{
-        font-weight: 900;
-        font-size: 13px;
-        margin-left:-2rem;
-        margin-right:-1rem;
-        
-    }
-
-    #content .cara_belanja p{
-        margin-left:-2rem;
-        margin-right:-1rem;
-        font-size: 10px;
-        
-    }
-  
-    #content .button_add_to_cart {
-        border-radius: 5px;
-        padding:8px;
-        color: #ffffff;
-        font-size: 10px;
-        font-weight: 600; 
-    }
-
-    #content .button_add_to_cart::after {
-        padding:8px;
-    }
-
-    .button-collapse{
-        margin-left: 0;
-        margin-right: 0;
-        margin-bottom:10px;
-        font-size: 6px;
-        left:-1rem;
-        right:-1rem;
-        top:0;
-        padding-top:2px;
-     }
-
-     .collapse{
-        margin-bottom:10px;
-      }
-
-    #content .item_product{
-        width:100%; 
-        padding:5px;
-        padding-bottom: 10px; 
-        border-radius:15px;
-        margin-bottom:4rem;
-    }
-
-    #content .item_product img{
-        border-radius:15px;
-        height: 135px;
-    }
-
-    #content .product-price-header {
-        line-height: 1.36;
-        font-size:12px;
-    }
-
-    #content .product-price {
-        font-size: 17px; 
-        font-weight: 900;
-    
-    }
-
-    /*
-    #content .hdr_tbl_cart {
-       margin-top:-2px;
-    }*/
-
-    #content .tbl_cart {
-        width: 50%;
-        padding-right:0;
-    }
-
-    
-    #content .button_plus{
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 12px;
-        margin-top:3px;
-        margin-left:-10px;
-    }
-
-    #content .button_minus {
-        font-size: 12px;
-        margin-left:5px;
-        margin-top:3px;
-    }
-      
-    #content .show {
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 12px;
-        margin-left:-10px;
-    }
-
-
-    #footer {
-        
-        padding-top: 7rem;
-        padding-bottom: 2rem;
-    }
-
-    #footer .social-icons a {
-        margin-top: 0;
-        margin-right: 10px;
-        margin-left: 10px;
-        font-size:20px;
-    }
-
-    .copyright p {
-        margin-top: 20px;
-        margin-bottom: 10rem;
-        font-size: 13px;
-     }
-
-      .fixed-bottom{
-        margin-left:15px;
-        margin-right:15px;
-     }
-
-     #ex4 .p1[data-count]:after{
-        
-        right:50%;
-        top:10%;
-        line-height:0.5em;
-        color: white;
-        min-width: 1.3em;
-        
-      }
-
-    #card-cart{
-    border-radius:14px; 
-    padding-left:10px; 
-    height:50px;
-    padding-bottom:4px;
-    }
-    
-    #ex4 .fa-shopping-cart{
-        font-size: 25px;
-        color: #ffffff;
-        top:2px;
-        position: absolute;
-      }
-    
-    #card-cart h5{
-    font-size:13px;
-    margin-left:-2.5rem;
-    margin-top:-10px;
-    }
-    
-    #card-detail .image-detail{
-    border-radius:10px; 
-    width:200px; 
-    height:auto;
-    }
-    
-    #card-detail p{
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 2px;
-    }
-    
-    #card-detail h1{
-    font-weight: 900;
-    }
-
-    #cv .fa-chevron-up{
-        margin-left: -15px;
-        font-size: 14px;
-        margin-top:-20px;
-        position: absolute;
-    }
-
-    #collapse-4{
-
-    /*max-height:375px;*/ 
-    padding:2px;
-    
-    }
-
-    #card-detail {
-      padding-left:2px;
-      padding-right:2px; 
-    }
-
-    #card-detail .image-detail{
-        width:80px; 
-        height:auto;
-        margin-bottom: 15%;
-    }
-
-    #card-detail p{
-        font-size: 10px;
-        margin-left:10px; 
-        font-weight: bold;
-        margin-bottom: 2px;
-    }
-
-    #card-detail h1{
-        margin-left:10px;
-        font-size: 15px;
-        font-weight: 900;
-    }
-
-    #card-detail .button_minus {
-        font-size: 10px;
-        margin-left:15px;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .button_plus{
-        font-size: 10px;
-        margin-left:5px;
-        margin-top:0;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .d-inline{
-       font-size: 13px;
-       margin-left:5px;
-    }
-
-    #card-detail .btn-default{
-        color:#fff;
-        font-size:10px;
-        font-weight: 800; 
-        padding-top:5px; 
-        padding-bottom:5px;
-      }
-
-      #bt_beli a{
-        
-        border-radius: 5px;
-        padding-right:15px;
-        padding-left: 15px;
-        padding-top:10px;
-        padding-bottom: 10px;
-        font-size: 10px;
-        font-weight:800;
-        margin-right:0px;
-      }
-}
-
-@media (max-width: 338px) {
-
-    #shape-1 {
-        float: left;
-        width: 100%;
-        height: 15rem;
-        top:10.3rem;
-        border-top-right-radius: 100%;
-        /*background:#fff;*/
-        position: absolute;
-   }
-  
-   #shape-2 {
-    right:0;
-    width: 100%;
-    height: 15rem;
-    top:25.3rem;
-    border-bottom-left-radius: 100%;
-    /*background:#fff;*/
-    position: absolute;
-    z-index: ;
-  }
-
-
-    #sidebar {
-        width: 70%;
-        left: -70%;
-    }
-
-    #sidebar ul.components {
-    padding: 20px 0;
-    }
-    
-    #sidebar ul li a {
-        margin-bottom: 5px;
-        font-size: 13px;
-    }
-
-    #pageSubmenu{
-        font-size: 12px;
-    }
-    #sidebar ul li.active>a,
-    a[aria-expanded="true"] {
-        color: white;
-    }
-
-    .nav-center img{
-        left:-1.7rem;
-        position:absolute;
-        top:-2.3rem;
-    }
-
-    .navbar .navbar-brand img {
-        width:180px;
-        height:auto;
-    }
-
-    a.login{
-        border:none;
-        font-size: 14px;
-        font-weight: 900;
-        padding-left:1.5rem;
-        padding-right:1.5rem;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        margin-top: -15px;
-        background-color: #fff;
-      }
-
-    #log .logout {
-        
-        font-size: 14px;
-    }
-      
-
-    a.register {
-        font-size: 14px;
-    }
-
-    .reset{
-        font-size: 14px;
-    }
-
-    #sidebar .social-icons a {
-        margin-right: 5px;
-        margin-left: 5px;
-        font-size:14px;
-        color: #fff;
-    }
-
-    .nav-center {
-        position: absolute;
-        left: 30%;
-    }
-
-    .cat_fil{
-        font-size: 13px;
-        font-weight: bold;
-        font-style:normal;
-        line-height: 1;
-        font-family: Open Sans;
-      }
-
-      .tombol{
-        font-size: 15px;
-    }
-
-    .menu-filter{
-        width:35%;
-        height: auto;
-        padding-top:8px;
-    }
-
-    .menu-logo-filter{
-        width:65%;
-    }
-
-    .warna{
-        height:25.3rem;
-    }
-
-    #content .cr_bl{
-    
-    margin-left: 1rem;
-    }
-
-    #content .cara_belanja img{
-        width:60px;
-        height:auto;
-        margin-left:-10px;
-      }
-  
-      #content .cara_belanja h5{
-          font-weight: 900;
-          font-size: 13px;
-          margin-right:-1rem;
-          margin-left:-3rem;
-      }
-  
-      #content .cara_belanja p{
-          margin-left:-3rem;
-          margin-right:-1rem;
-          font-size: 10px;
-          
-      }
-
-    #content .kontak{
-    
-    margin-left: 0.5rem;
-    margin-bottom : -2rem;
-
-    }
-
-    #i-kontak, #i-envelop {
-    font-size: 3.5em;
-    margin-top:1.3rem;
-    }
-
-    #content .contact_kami h5.no_telp{
-    margin-left:4.5rem;
-    font-size: 22px;
-        
-    }
-
-    #content .contact_kami p.telp{
-    margin-left:4.5rem;
-    margin-top: -4rem;
-    font-size: 20px;
-    
-    }
-
-    #content .contact_kami p{
-    
-    margin-left:4.5rem;
-    margin-top: -4rem;
-    font-size: 20px;
-    font-weight: 600;
-    
-    }
-    
-    #content .contact_kami h5{
-    margin-left:4.5rem;
-    font-family: Open Sans;
-    font-size: 13px;
-    
-    }
-
-    #content .button_add_to_cart {
-        
-    border-radius: 5px;
-    padding:8px;
-    color: #ffffff;
-    font-size: 9px;
-    font-weight: 600; 
-    }
-
-    #content .button_add_to_cart::after {
-        padding:8px;
-    }
-
-    .button-collapse{
-        margin-left: 0;
-        margin-right: 0;
-        margin-bottom:10px;
-        font-size: 8px;
-        left:-1rem;
-        right:-1rem;
-        top:0;
-        padding:0 0;
-
-    }
-
-     .collapse{
-        margin-bottom:10px;
-      }
-
-    #content .item_product{
-        width:100%; 
-        padding:5px;
-        padding-bottom: 10px; 
-        border-radius:15px;
-        margin-bottom:4rem;
-    }
-
-    #content .item_product img{
-        border-radius:15px;
-        height: 125px;
-    }
-
-    #content .product-price-header {
-        line-height: 1.36;
-        font-size:12px;
-    }
-
-    #content .product-price {
-        font-size: 17px; 
-        font-weight: 900;
-    }
-
-    /*
-    #content .hdr_tbl_cart {
-       margin-top:-2px;
-    }*/
-
-    #content .tbl_cart {
-        width: 50%;
-        padding-right:0;
-    }
-
-    #content .button-minus{
-       font-size: 10px;
-    }
-
-    #content .button_plus{
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 12px;
-        margin-top:0;
-    }
-
-    
-
-    #content .button_minus {
-        font-size: 12px;
-        margin-left:10px;
-    }
-      
-      #content .show {
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 12px;
-        margin-left:-10px;
-    }
-
-    #content .card-img-top{
-        margin-bottom:2rem;
-      }
-
-    #footer {
-        
-        padding-top: 7rem;
-        padding-bottom: 2rem;
-    }
-
-    #footer .social-icons a {
-        margin-top: 0;
-        margin-right: 10px;
-        margin-left: 10px;
-        font-size:20px;
-    }
-
-    .copyright p {
-        margin-top: 20px;
-        margin-bottom: 10rem;
-        font-size: 13px;
-     }
-
-      .fixed-bottom{
-        margin-left:15px;
-        margin-right:15px;
-     }
-
-     #ex4 .p1[data-count]:after{
-        
-        right:50%;
-        top:10%;
-        line-height:0.5em;
-        color: white;
-        min-width: 1.3em;
-        
-      }
-
-    #card-cart{
-    border-radius:14px; 
-    padding-left:10px; 
-    height:50px;
-    padding-bottom:4px;
-    }
-    
-    #ex4 .fa-shopping-cart{
-        font-size: 25px;
-        color: #ffffff;
-        top:2px;
-        position: absolute;
-      }
-    
-    #card-cart h5{
-    font-size:13px;
-    margin-left:-2.5rem;
-    margin-top:-10px;
-    }
-    
-    #card-detail .image-detail{
-    border-radius:10px; 
-    width:200px; 
-    height:auto;
-    }
-    
-    #card-detail p{
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 2px;
-    }
-    
-    #card-detail h1{
-    font-weight: 900;
-    }
-
-    #cv .fa-chevron-up{
-        margin-left: -15px;
-        font-size: 14px;
-        margin-top:-20px;
-        position: absolute;
-    }
-
-    #collapse-4{
-
-    /*max-height:375px;*/ 
-    padding:2px;
-    
-    }
-
-    #card-detail {
-      padding-left:2px;
-      padding-right:2px; 
-    }
-
-    #card-detail .image-detail{
-        width:80px; 
-        height:auto;
-        margin-bottom: 15%;
-    }
-
-    #card-detail p{
-        font-size: 10px;
-        margin-left:10px; 
-        font-weight: bold;
-        margin-bottom: 2px;
-    }
-
-    #card-detail h1{
-        margin-left:10px;
-        font-size: 15px;
-        font-weight: 900;
-    }
-
-    #card-detail .button_minus {
-        font-size: 10px;
-        margin-left:15px;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .button_plus{
-        font-size: 10px;
-        margin-left:5px;
-        margin-top:0;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .d-inline{
-       font-size: 13px;
-       margin-left:5px;
-    }
-
-    #card-detail .btn-default{
-        color:#fff;
-        font-size:10px;
-        font-weight: 800; 
-        padding-top:5px; 
-        padding-bottom:5px;
-      }
-
-      #bt_beli a{
-        
-        border-radius: 5px;
-        padding-right:15px;
-        padding-left: 15px;
-        padding-top:10px;
-        padding-bottom: 10px;
-        font-size: 10px;
-        font-weight:800;
-        margin-right:0px;
-      }
-}
-
-@media (max-width: 320px) {
-    
-    .bt-wa{
-        font-size:22px;
-    }
-
-    #shape-1 {
-    float: left;
-    width: 100%;
-    height: 19rem;
-    top:6rem;
-    border-top-right-radius: 100%;
-    position: absolute;
-   }
-  
-   #shape-2 {
-    right:0;
-    width: 100%;
-    height: 15rem;
-    top:25.1rem;
-    border-bottom-left-radius: 100%;
-    /*background:#ffd3a3;*/
-    position: absolute;
-    z-index: ;
-  }
-
-    #sidebar {
-        width: 70%;
-        left: -70%;
-    }
-
-    #sidebar ul.components {
-    padding: 20px 0;
-    }
-    
-    #sidebar ul li a {
-        margin-bottom: 5px;
-        font-size: 13px;
-    }
-
-    #pageSubmenu{
-        font-size: 12px;
-    }
-    #sidebar ul li.active>a,
-    a[aria-expanded="true"] {
-        color: white;
-    }
-
-    .nav-center img{
-        left:-1.7rem;
-        position:absolute;
-        top:-2.3rem;
-    }
-
-    .navbar .navbar-brand img {
-        width:180px;
-        height:auto;
-    }
-
-    a.login{
-        border:none;
-        font-size: 14px;
-        font-weight: 900;
-        padding-left:1.5rem;
-        padding-right:1.5rem;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        margin-top: -15px;
-        background-color: #fff;
-      }
-
-    #log .logout {
-        
-        font-size: 14px;
-    }
-      
-
-    a.register {
-        font-size: 14px;
-    }
-
-    .reset{
-        font-size: 14px;
-    }
-
-    #sidebar .social-icons a {
-        margin-right: 5px;
-        margin-left: 5px;
-        font-size:14px;
-        color: #fff;
-    }
-
-    .nav-center {
-        position: absolute;
-        left: 30%;
-    }
-
-    .cat_fil{
-        font-size: 13px;
-        font-weight: bold;
-        font-style:normal;
-        line-height: 1;
-        font-family: Open Sans;
-      }
-
-      .tombol{
-        font-size: 15px;
-    }
-
-    .menu-filter{
-        width:37%;
-        height: auto;
-        padding-top:8px;
-    }
-
-    .menu-logo-filter{
-        width:63%;
-    }
-
-    .warna{
-        height:25rem;
-    }
-
-    #content .cr_bl{
-    
-    margin-left: 1rem;
-    }
-
-    #content .cara_belanja img{
-        width:60px;
-        height:auto;
-        margin-left:-10px;
-      }
-  
-      #content .cara_belanja h5{
-          font-weight: 900;
-          font-size: 13px;
-          margin-right:-1rem;
-          
-      }
-  
-      #content .cara_belanja p{
-          margin-left:-3rem;
-          margin-right:-1rem;
-          font-size: 10px;
-          
-      }
-
-    #content .kontak{
-    
-    margin-left: 0.5rem;
-    margin-bottom : -2rem;
-
-    }
-
-    #i-kontak, #i-envelop {
-    font-size: 3.5em;
-    margin-top:1.3rem;
-    }
-
-    #content .contact_kami h5.no_telp{
-    margin-left:4.5rem;
-    font-size: 22px;
-        
-    }
-
-    #content .contact_kami p.telp{
-    margin-left:4.5rem;
-    margin-top: -4rem;
-    font-size: 20px;
-    
-    }
-
-    #content .contact_kami p{
-    
-    margin-left:4.5rem;
-    margin-top: -4rem;
-    font-size: 20px;
-    font-weight: 600;
-    
-    }
-    
-    #content .contact_kami h5{
-    margin-left:4.5rem;
-    font-family: Open Sans;
-    font-size: 13px;
-    
-    }
-
-    #content .button_add_to_cart {
-        
-    border-radius: 5px;
-    padding:8px;
-    color: #ffffff;
-    font-size: 7px;
-    font-weight: 600; 
-    }
-
-    #content .button_add_to_cart::after {
-        padding:8px;
-    }
-
-    .button-collapse{
-        margin-left: 3px;
-        margin-right: 0;
-        margin-bottom:10px;
-        font-size: 6px;
-        left:-1rem;
-        right:-1rem;
-        top:0;
-        padding-top:2px;
-     }
-
-     .collapse{
-        margin-bottom:10px;
-      }
-
-    #content .item_product{
-        width:100%; 
-        padding:5px;
-        padding-bottom: 10px; 
-        border-radius:15px;
-        margin-bottom:4rem;
-    }
 
-    #content .item_product img{
-        border-radius:15px;
+    #sidebar .sidebar-header img{
+        width: 120px;
         height: 120px;
     }
 
+    #sidebar .sidebar-header p {
+        font-size:16px;
+    }
+
+    #sidebar ul li a {
+        font-size: 18px;
+        margin-left: 5rem;
+        margin-right: 5rem;
+    }
+
+    #log .logout {
+        padding:8px 40px;
+        margin-left: 5rem;
+    }
+
+    .sidebar-dot-top-right {
+        width: 160px;
+    }
+
+    .sidebar-dot-bottom {
+        width:280px;
+        margin-top:1rem;
+    }
+
+    .breadcrumb-item {
+        font-size:22px;
+        margin-bottom: -1rem;
+    }
+    
+    .breadcrumb-item.active {
+      font-size: 22px;
+    }
+
+    #content .list-product{
+        margin-left:-10px;
+    }
+
+    #content .dot-content-top-right {
+        width: 170px;
+    }
+
+    .shape-content-bottom-right {
+        width: 200px;
+        bottom:10%;
+    }
+
+    .dot-content-bottom-left {
+        width: 170px;
+        bottom:10%;
+    }
+
+    #product_list{
+        margin-bottom: -6rem;
+    }
+
+    #product_list .card-body{
+        padding:5px;
+    }
+
+    #product_list .button_add_to_cart{
+        font-size: 18px;
+    }
+
     #content .product-price-header {
-        line-height: 1.36;
+        font-size:16px;
+    }
+
+    #content .product-price {
+        font-size: 20px; 
+    }
+
+    #footer .social-icons a {
+        margin-top: 3rem;
+        margin-right: 10px;
+        margin-left: 10px;
+        font-size:25px;
+    }
+
+    #card-cart h5{
+        font-size: 18px;
+    }
+
+    #card-detail .col-md-12{
+        width:108%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .img-detail-cart{
+        width: 35%;
+    }
+
+    #card-detail .image-detail{
+        width:100px; 
+        height:auto;
+    }
+
+    .td-desc-detail{
+        width: 55%;
+    }
+
+    #card-detail h2{
+        font-size: 22px;
+    }
+
+    #card-detail p{
+        font-size: 16px;
+    }
+
+    .tabel-quantity{
+        width:50%;
+        margin-bottom:10px;
+    }
+
+    .fixed-bottom p{
+        font-size: 18px;
+    }
+
+    .fixed-bottom h2{
+        font-size: 22px;
+        margin-top:4px;
+    }
+
+    #card-detail .button_minus .button_plus .d-inline{
+        font-size: 18px;
+    }
+
+    .breadcrumb-profil-item{
+        margin-top:-3.3rem;
+    }
+
+    #prf-brd {
+        margin-top:-3rem;
+    }
+      
+    .image-profil-user{
+        width:130px;
+        height:130px;
+        left:10%;
+        top:13rem;
+    }
+
+    .profil-row{
+        margin-top:10%;
+    }
+
+    .heading-profil{
+        font-size: 33px;
+        line-height: 0.8;
+        margin-left: 38%;
+    }
+
+    .name-profil{
+        font-size:25px;
+        line-height: 0.8;
+        margin-left: 38%;
+    }
+
+    .breadcrumb-profil-name {
+        font-size:16px;
+        line-height: 0.8;
+        margin-left: 38%;
+        margin-right: 0;
+    }
+      
+    .breadcrumb-profil-name + .breadcrumb-profil-name::before {
+        font-size: 28px;
+        line-height: 0.8;
+    }
+      
+    .breadcrumb-profil-name.active {
+    font-size: 16px;
+    line-height: 0.8;
+    margin-top:2px;
+    }
+
+    .detail-profil{
+        margin-top:1rem;
+        margin-left:1rem;
+    }
+
+    .contact-row{
+        margin-top:1rem;
+    }
+
+    .section_content{
+        margin-left:5px;
+    }
+}
+
+@media (max-width: 425px){
+    .dot-top-right {
+        width: 140px;
+    }
+
+    .dot-bottom-left {
+        width: 190px;
+    }
+
+    .shape-bottom-right {
+        width: 190px;
+    }
+
+    .dot-top-right-nocart {
+        width: 150px;
+        top:2.8rem;
+    }
+
+    .td-label-loc{
+        width: 27%;
+    }
+
+    .image-logo-login{
+        margin-top:4rem;
+    }
+
+    #hero_cools{
+        margin-bottom: 0;
+    }
+
+   .text-hero{
+        right:2rem;
+        top:3rem;
+    }
+    
+    .text-hero h1{
+        font-size: 23px;
+    }
+
+    .text-hero hr{
+        width:170px;
+        border-top: 1.5px solid #ffffff;
+    }
+    
+    #sidebar {
+        width: 60%;
+        left: -60%;
+    }
+
+    #sidebar .sidebar-header {
+        margin-left: 4rem;
+    }
+
+    #sidebar .sidebar-header img{
+        width: 110px;
+        height: 110px;
+    }
+
+    #sidebar .sidebar-header p {
+        font-size:16px;
+    }
+
+    #sidebar ul li a {
+        font-size: 18px;
+        margin-left: 4rem;
+        margin-right: 4rem;
+    }
+
+    #log .logout {
+        padding:8px 40px;
+        margin-left: 4rem;
+    }
+
+    .sidebar-dot-top-right {
+        width: 130px;
+    }
+
+    .sidebar-dot-bottom {
+        width:250px;
+        margin-top:1rem;
+    }
+
+    .breadcrumb-item {
+        font-size:22px;
+        margin-bottom: -1rem;
+    }
+    
+    .breadcrumb-item.active {
+      font-size: 22px;
+    }
+
+    #content .list-product{
+        margin-left:-10px;
+    }
+
+    #content .dot-content-top-right {
+        width: 130px;
+    }
+
+    .shape-content-bottom-right {
+        width: 160px;
+        bottom:10.5%;
+    }
+
+    .dot-content-bottom-left {
+        width: 130px;
+        bottom:10.5%;
+    }
+
+    #product_list{
+        margin-bottom: -6rem;
+    }
+
+    #product_list .card-body{
+        padding:5px;
+    }
+
+    #product_list .button_add_to_cart{
+        font-size: 15px;
+    }
+
+    #content .product-price-header {
+        font-size:14px;
+    }
+
+    #content .product-price {
+        font-size: 17px; 
+    }
+
+    #footer .col-md-2{
+        width: 55%;
+    }
+
+    #footer .social-icons a {
+        margin-top: 3rem;
+        margin-right: 10px;
+        margin-left: 10px;
+        font-size:25px;
+    }
+
+    #card-cart h5{
+        font-size: 18px;
+    }
+
+    #card-detail .col-md-12{
+        width:108%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .img-detail-cart{
+        width: 35%;
+    }
+
+    #card-detail .image-detail{
+        width:100px; 
+        height:auto;
+    }
+
+    .td-desc-detail{
+        width: 55%;
+    }
+
+    #card-detail h2{
+        font-size: 22px;
+    }
+
+    #card-detail p{
+        font-size: 16px;
+    }
+
+    .tabel-quantity{
+        width:50%;
+        margin-bottom:10px;
+    }
+
+    .fixed-bottom p{
+        font-size: 18px;
+    }
+
+    .fixed-bottom h2{
+        font-size: 22px;
+        margin-top:4px;
+    }
+
+    #card-detail .button_minus .button_plus .d-inline{
+        font-size: 18px;
+    }
+
+    .breadcrumb-profil-item{
+        margin-top:-3.3rem;
+    }
+
+    #prf-brd {
+        margin-top:-3rem;
+    }
+      
+    .image-profil-user{
+        width:120px;
+        height:120px;
+        left:10%;
+        top:11rem;
+    }
+
+    .profil-row{
+        margin-top:5%;
+    }
+
+    .heading-profil{
+        font-size: 28px;
+        line-height: 0.8;
+        margin-left: 38%;
+    }
+
+    .name-profil{
+        font-size:20px;
+        line-height: 0.8;
+        margin-left: 38%;
+    }
+
+    .breadcrumb-profil-name {
+        font-size:13px;
+        line-height: 0.8;
+        margin-left: 38%;
+        margin-right: 0;
+    }
+      
+    .breadcrumb-profil-name + .breadcrumb-profil-name::before {
+        font-size: 25px;
+        line-height: 0.8;
+    }
+      
+    .breadcrumb-profil-name.active {
+    font-size: 13px;
+    line-height: 0.8;
+    margin-top:2px;
+    }
+
+    .detail-profil{
+        margin-top:1rem;
+        margin-left:1rem;
+    }
+
+    .contact-row{
+        margin-top:0;
+    }
+
+    .contact-card i{
+        font-size:30px;
+    }
+
+    .section_content{
+        margin-left:5px;
+    }
+}
+
+@media (max-width: 411px){
+    .dot-top-right {
+        width: 140px;
+    }
+
+    .dot-bottom-left {
+        width: 190px;
+    }
+
+    .shape-bottom-right {
+        width: 190px;
+    }
+
+    .dot-top-right-nocart {
+        width: 150px;
+        top:2.8rem;
+    }
+
+    .td-label-loc{
+        width: 30%;
+    }
+
+    .image-logo-login{
+        margin-top:4rem;
+    }
+
+    #hero_cools{
+        margin-bottom: 0;
+    }
+
+   .text-hero{
+        right:2rem;
+        top:2.7rem;
+    }
+    
+    .text-hero h1{
+        font-size: 23px;
+    }
+
+    .text-hero hr{
+        width:170px;
+        border-top: 1.5px solid #ffffff;
+    }
+    
+    #sidebar {
+        width: 60%;
+        left: -60%;
+    }
+
+    #sidebar .sidebar-header {
+        margin-left: 4rem;
+    }
+
+    #sidebar .sidebar-header img{
+        width: 110px;
+        height: 110px;
+    }
+
+    #sidebar .sidebar-header p {
+        font-size:16px;
+    }
+
+    #sidebar ul li a {
+        font-size: 16px;
+        margin-left: 4rem;
+        margin-right: 4rem;
+    }
+
+    #log .logout {
+        padding:8px 40px;
+        margin-left: 4rem;
+    }
+
+    .sidebar-dot-top-right {
+        width: 130px;
+    }
+
+    .sidebar-dot-bottom {
+        width:250px;
+        margin-top:-4rem;
+    }
+
+    .breadcrumb-item {
+        font-size:22px;
+        margin-bottom: -1rem;
+    }
+    
+    .breadcrumb-item.active {
+      font-size: 22px;
+    }
+
+    #content .list-product{
+        margin-left:-10px;
+    }
+
+    #content .dot-content-top-right {
+        width: 130px;
+    }
+
+    .shape-content-bottom-right {
+        width: 160px;
+        bottom:10.5%;
+    }
+
+    .dot-content-bottom-left {
+        width: 130px;
+        bottom:10.5%;
+    }
+
+    #product_list{
+        margin-bottom: -6rem;
+    }
+
+    #product_list .card-body{
+        padding:5px;
+    }
+
+    #product_list .button_add_to_cart{
+        font-size: 15px;
+    }
+
+    #content .product-price-header {
+        font-size:14px;
+    }
+
+    #content .product-price {
+        font-size: 17px; 
+    }
+
+    #footer .col-md-2{
+        width: 55%;
+    }
+
+    #footer .social-icons a {
+        margin-top: 3rem;
+        margin-right: 10px;
+        margin-left: 10px;
+        font-size:25px;
+    }
+
+    #card-cart h5{
+        font-size: 18px;
+    }
+
+    #card-detail .col-md-12{
+        width:108%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .img-detail-cart{
+        width: 35%;
+    }
+
+    #card-detail .image-detail{
+        width:100px; 
+        height:auto;
+    }
+
+    .td-desc-detail{
+        width: 55%;
+    }
+
+    #card-detail h2{
+        font-size: 22px;
+    }
+
+    #card-detail p{
+        font-size: 16px;
+    }
+
+    .tabel-quantity{
+        width:50%;
+        margin-bottom:10px;
+    }
+
+    .fixed-bottom p{
+        font-size: 18px;
+    }
+
+    .fixed-bottom h2{
+        font-size: 22px;
+        margin-top:4px;
+    }
+
+    #card-detail .button_minus .button_plus .d-inline{
+        font-size: 18px;
+    }
+
+    .breadcrumb-profil-item{
+        margin-top:-3.3rem;
+    }
+
+    #prf-brd {
+        margin-top:-3rem;
+    }
+      
+    .image-profil-user{
+        width:110px;
+        height:110px;
+        left:10%;
+        top:10.5rem;
+    }
+
+    .profil-row{
+        margin-top:5%;
+    }
+
+    .heading-profil{
+        font-size: 25px;
+        line-height: 0.5;
+        margin-left: 39%;
+    }
+
+    .name-profil{
+        font-size:18px;
+        line-height: 0.5;
+        margin-left: 39%;
+    }
+
+    .breadcrumb-profil-name {
+        font-size:13px;
+        line-height: 0.5;
+        margin-left: 39%;
+        margin-right: 0;
+    }
+      
+    .breadcrumb-profil-name + .breadcrumb-profil-name::before {
+        font-size: 22px;
+        line-height: 0.5;
+    }
+      
+    .breadcrumb-profil-name.active {
+    font-size: 13px;
+    line-height: 0.5;
+    margin-top:2px;
+    }
+
+    .detail-profil{
+        margin-top:1rem;
+        margin-left:1rem;
+    }
+
+    .contact-row{
+        margin-top:0;
+    }
+
+    .contact-card i{
+        font-size:35px;
+    }
+
+    .contact-tele-name, .contact-email-name{
+        font-size: 14px;
+      }
+
+    .contact-tele-number, .contact-email{
+        font-size: 16px;
+    }
+
+    .section_content{
+        margin-left:5px;
+    }
+}
+
+@media (max-width: 384px){
+    .dot-top-right {
+        width: 140px;
+    }
+
+    .dot-bottom-left {
+        width: 190px;
+    }
+
+    .shape-bottom-right {
+        width: 190px;
+    }
+
+    .dot-top-right-nocart {
+        width: 150px;
+        top:2.8rem;
+    }
+
+    .contact_input {
+        font-size:16px ;
+    }
+
+    .login-label h1{
+        font-size: 30px;
+    }
+
+    .btn_login_form{
+        font-size: 16px;
+    }
+
+    .td-label-loc{
+        width: 30%;
+    }
+
+    .image-logo-login{
+        margin-top:4rem;
+    }
+
+    #hero_cools{
+        margin-bottom: 0;
+    }
+
+   .text-hero{
+        right:2rem;
+        top:4rem;
+    }
+    
+    .text-hero h1{
+        font-size: 21px;
+        line-height:0.8;
+    }
+
+    .text-hero hr{
+        width:153px;
+        border-top: 1.5px solid #ffffff;
+        margin-top:-3px;
+    }
+    
+    #sidebar {
+        width: 60%;
+        left: -60%;
+    }
+
+    #sidebar .sidebar-header {
+        margin-left: 3rem;
+    }
+
+    #sidebar .sidebar-header img{
+        width: 110px;
+        height: 110px;
+    }
+
+    #sidebar .sidebar-header p {
+        font-size:16px;
+    }
+
+    #sidebar ul li a {
+        font-size: 16px;
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+
+    #log .logout {
+        padding:8px 35px;
+        margin-left: 3rem;
+    }
+
+    .sidebar-dot-top-right {
+        width: 130px;
+    }
+
+    .sidebar-dot-bottom {
+        width:230px;
+        margin-top:-4rem;
+    }
+
+    .breadcrumb-item {
+        font-size:20px;
+        margin-bottom: -1rem;
+    }
+    
+    .breadcrumb-item.active {
+      font-size: 20px;
+      margin-left:-10px;
+    }
+
+    #content .list-product{
+        margin-left:-10px;
+    }
+
+    #content .dot-content-top-right {
+        width: 100px;
+    }
+
+    .shape-content-bottom-right {
+        width: 130px;
+        bottom:11.7%;
+    }
+
+    .dot-content-bottom-left {
+        width: 100px;
+        bottom:11.7%;
+    }
+
+    #product_list{
+        margin-bottom: -6rem;
+    }
+
+    #product_list .card-body{
+        padding:5px;
+    }
+
+    #product_list .button_add_to_cart{
+        font-size: 14px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    #content .product-price-header {
+        font-size:12px;
+    }
+
+    #content .product-price {
+        font-size: 14px; 
+    }
+
+    #content .tbl_cart {
+        width: 50%;
+        padding-right:10px;
+    }
+
+    #content .show {
+        font-size: 16px;
+        font-weight: 600; 
+    }
+
+    #footer .col-md-2{
+        width: 55%;
+    }
+
+    #footer .social-icons a {
+        margin-top: 3rem;
+        margin-right: 10px;
+        margin-left: 10px;
+        font-size:23px;
+    }
+
+    #card-cart h5{
+        font-size: 16px;
+    }
+
+    #card-detail .col-md-12{
+        width:108%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .img-detail-cart{
+        width: 35%;
+    }
+
+    #card-detail .image-detail{
+        width:100px; 
+        height:auto;
+    }
+
+    .td-desc-detail{
+        width: 55%;
+    }
+
+    #card-detail h2{
+        font-size: 18px;
+    }
+
+    #card-detail p{
+        font-size: 14px;
+    }
+
+    #card-detail .button_minus, #card-detail .button_plus{
+        font-size: 13px;
+    }
+      
+    #card-detail .d-inline{
+        font-size: 18px;
+    }
+
+    #card-detail .btn-default{
+        font-size:16px;
+    }
+
+    .tabel-quantity{
+        width:50%;
+        margin-bottom:10px;
+    }
+
+    .fixed-bottom p{
+        font-size: 16px;
+    }
+
+    .fixed-bottom h2{
+        font-size: 18px;
+        margin-top:4px;
+    }
+
+    #accordion .button_add_to_pesan {
+        font-size: 18px;
+    }
+
+    .bt-wa {
+        font-size: 18px;
+    }
+
+    .breadcrumb-profil-item{
+        margin-top:-3.3rem;
+    }
+
+    #prf-brd {
+        margin-top:-3rem;
+    }
+      
+    .image-profil-user{
+        width:110px;
+        height:110px;
+        left:10%;
+        top:10.5rem;
+    }
+
+    .profil-row{
+        margin-top:5%;
+    }
+
+    .heading-profil{
+        font-size: 25px;
+        line-height: 0.5;
+        margin-left: 39%;
+    }
+
+    .name-profil{
+        font-size:18px;
+        line-height: 0.5;
+        margin-left: 39%;
+    }
+
+    .breadcrumb-profil-name {
+        font-size:13px;
+        line-height: 1;
+        margin-left: 39%;
+        margin-right: 0;
+    }
+      
+    .breadcrumb-profil-name + .breadcrumb-profil-name::before {
+        font-size: 22px;
+        line-height: 1;
+    }
+      
+    .breadcrumb-profil-name.active {
+    font-size: 13px;
+    line-height: 1;
+    margin-top:2px;
+    }
+
+    .detail-profil{
+        margin-top:1rem;
+        margin-left:1rem;
+    }
+
+    .contact-row{
+        margin-top:0;
+    }
+
+    .contact-card i{
+        font-size:35px;
+    }
+
+    .contact-tele-name, .contact-email-name{
+        font-size: 14px;
+      }
+
+    .contact-tele-number, .contact-email{
+        font-size: 16px;
+    }
+
+    .section_content{
+        margin-left:5px;
+    }
+}
+
+@media (max-width: 375px){
+    .dot-top-right {
+        width: 140px;
+    }
+
+    .dot-bottom-left {
+        width: 190px;
+    }
+
+    .shape-bottom-right {
+        width: 190px;
+    }
+
+    .dot-top-right-nocart {
+        width: 150px;
+        top:2.8rem;
+    }
+
+    .contact_input {
+        font-size:16px ;
+    }
+
+    .login-label h1{
+        font-size: 30px;
+    }
+
+    .btn_login_form{
+        font-size: 16px;
+    }
+
+    .td-label-loc{
+        width: 28%;
+    }
+
+    .td-label-loc h6{
+        font-size: 14px;
+    }
+
+    .image-logo-login{
+        margin-top:4rem;
+    }
+
+    #hero_cools{
+        margin-bottom: 0;
+    }
+
+   .text-hero{
+        right:2rem;
+        top:4rem;
+    }
+    
+    .text-hero h1{
+        font-size: 21px;
+        line-height:0.8;
+    }
+
+    .text-hero hr{
+        width:153px;
+        border-top: 1.5px solid #ffffff;
+        margin-top:-3px;
+    }
+    
+    #sidebar {
+        width: 60%;
+        left: -60%;
+    }
+
+    #sidebar .sidebar-header {
+        margin-left: 3rem;
+    }
+
+    #sidebar .sidebar-header img{
+        width: 110px;
+        height: 110px;
+    }
+
+    #sidebar .sidebar-header p {
+        font-size:16px;
+    }
+
+    #sidebar ul li a {
+        font-size: 16px;
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+
+    #log .logout {
+        padding:8px 35px;
+        margin-left: 3rem;
+    }
+
+    .sidebar-dot-top-right {
+        width: 130px;
+    }
+
+    .sidebar-dot-bottom {
+        width:230px;
+        margin-top:-4rem;
+    }
+
+    .breadcrumb-item {
+        font-size:20px;
+        margin-bottom: -1rem;
+    }
+    
+    .breadcrumb-item.active {
+      font-size: 20px;
+      margin-left:-10px;
+    }
+
+    #content .list-product{
+        margin-left:-10px;
+    }
+
+    #content .dot-content-top-right {
+        width: 100px;
+    }
+
+    .shape-content-bottom-right {
+        width: 130px;
+        bottom:11.7%;
+    }
+
+    .dot-content-bottom-left {
+        width: 100px;
+        bottom:11.7%;
+    }
+
+    #product_list{
+        margin-bottom: -6rem;
+    }
+
+    #product_list .card-body{
+        padding:5px;
+    }
+
+    #product_list .button_add_to_cart{
+        font-size: 14px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    #content .product-price-header {
+        font-size:12px;
+    }
+
+    #content .product-price {
+        font-size: 14px; 
+    }
+
+    #content .tbl_cart {
+        width: 50%;
+        padding-right:10px;
+    }
+
+    #content .show {
+        font-size: 16px;
+        font-weight: 600; 
+    }
+
+    #footer .col-md-2{
+        width: 55%;
+    }
+
+    #footer .social-icons a {
+        margin-top: 3rem;
+        margin-right: 10px;
+        margin-left: 10px;
+        font-size:23px;
+    }
+
+    #card-cart h5{
+        font-size: 16px;
+    }
+
+    #card-detail .col-md-12{
+        width:108%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .img-detail-cart{
+        width: 35%;
+    }
+
+    #card-detail .image-detail{
+        width:100px; 
+        height:auto;
+    }
+
+    .td-desc-detail{
+        width: 55%;
+    }
+
+    #card-detail h2{
+        font-size: 18px;
+    }
+
+    #card-detail p{
+        font-size: 14px;
+    }
+
+    #card-detail .button_minus, #card-detail .button_plus{
+        font-size: 13px;
+    }
+      
+    #card-detail .d-inline{
+        font-size: 18px;
+    }
+
+    #card-detail .btn-default{
+        font-size:16px;
+    }
+
+    .tabel-quantity{
+        width:50%;
+        margin-bottom:10px;
+    }
+
+    .fixed-bottom p{
+        font-size: 16px;
+    }
+
+    .fixed-bottom h2{
+        font-size: 18px;
+        margin-top:4px;
+    }
+
+    #accordion .button_add_to_pesan {
+        font-size: 18px;
+    }
+
+    .bt-wa {
+        font-size: 18px;
+    }
+
+    .breadcrumb-profil-item{
+        margin-top:-3.3rem;
+    }
+
+    #prf-brd {
+        margin-top:-3rem;
+    }
+      
+    .image-profil-user{
+        width:100px;
+        height:100px;
+        left:10%;
+        top:10.5rem;
+    }
+
+    .profil-row{
+        margin-top:3%;
+    }
+
+    .heading-profil{
+        font-size: 25px;
+        line-height: 0.5;
+        margin-left: 39%;
+    }
+
+    .name-profil{
+        font-size:18px;
+        line-height: 0.5;
+        margin-left: 39%;
+    }
+
+    .breadcrumb-profil-name {
+        font-size:13px;
+        line-height: 1;
+        margin-left: 39%;
+        margin-right: 0;
+    }
+      
+    .breadcrumb-profil-name + .breadcrumb-profil-name::before {
+        font-size: 22px;
+        line-height: 1;
+    }
+      
+    .breadcrumb-profil-name.active {
+    font-size: 13px;
+    line-height: 1;
+    margin-top:2px;
+    }
+
+    .detail-profil{
+        margin-top:1rem;
+        margin-left:1rem;
+    }
+
+    .contact-row{
+        margin-top:0;
+    }
+
+    .contact-card i{
+        font-size:35px;
+    }
+
+    .contact-tele-name, .contact-email-name{
+        font-size: 14px;
+      }
+
+    .contact-tele-number, .contact-email{
+        font-size: 16px;
+    }
+
+    .section_content{
+        margin-left:5px;
+    }
+}
+
+@media (max-width: 364px){
+    .dot-top-right {
+        width: 120px;
+    }
+
+    .dot-bottom-left {
+        width: 150px;
+    }
+
+    .shape-bottom-right {
+        width: 150px;
+    }
+
+    .dot-top-right-nocart {
+        width: 110px;
+        top:2.8rem;
+    }
+
+    .contact_input {
+        font-size:16px ;
+    }
+
+    .login-label h1{
+        font-size: 30px;
+    }
+
+    .btn_login_form{
+        font-size: 16px;
+    }
+
+    .td-label-loc{
+        width: 20%;
+    }
+
+    .td-label-loc h6{
+        font-size: 14px;
+    }
+
+    .image-logo-login{
+        margin-top:2rem;
+    }
+
+    #hero_cools{
+        margin-bottom: 0;
+    }
+
+   .text-hero{
+        right:2rem;
+        top:3rem;
+    }
+    
+    .text-hero h1{
+        font-size: 21px;
+        line-height:0.8;
+    }
+
+    .text-hero hr{
+        width:153px;
+        border-top: 1.5px solid #ffffff;
+        margin-top:-3px;
+    }
+    
+    #sidebar {
+        width: 60%;
+        left: -60%;
+    }
+
+    #sidebar .sidebar-header {
+        margin-left: 3rem;
+    }
+
+    #sidebar .sidebar-header img{
+        width: 110px;
+        height: 110px;
+    }
+
+    #sidebar .sidebar-header p {
+        font-size:16px;
+    }
+
+    #sidebar ul li a {
+        font-size: 16px;
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+
+    #log .logout {
+        padding:8px 35px;
+        margin-left: 3rem;
+    }
+
+    .sidebar-dot-top-right {
+        width: 130px;
+    }
+
+    .sidebar-dot-bottom {
+        width:230px;
+        margin-top:-4rem;
+    }
+
+    .breadcrumb-item {
+        font-size:20px;
+        margin-bottom: -1rem;
+    }
+    
+    .breadcrumb-item.active {
+      font-size: 20px;
+      margin-left:-10px;
+    }
+
+    #content .list-product{
+        margin-left:-10px;
+    }
+
+    #content .dot-content-top-right {
+        width: 100px;
+    }
+
+    .shape-content-bottom-right {
+        width: 130px;
+        bottom:12.7%;
+    }
+
+    .dot-content-bottom-left {
+        width: 100px;
+        bottom:12.7%;
+    }
+
+    #product_list{
+        margin-bottom: -6rem;
+    }
+
+    #product_list .card-body{
+        padding:2px;
+    }
+
+    #product_list .button_add_to_cart{
+        font-size: 14px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    #content .product-price-header {
+        font-size:12px;
+    }
+
+    #content .product-price {
+        font-size: 14px; 
+    }
+
+    #content .tbl_cart {
+        width: 50%;
+        padding-right:10px;
+    }
+
+    #content .show {
+        font-size: 16px;
+        font-weight: 600; 
+    }
+
+    #footer .col-md-2{
+        width: 55%;
+    }
+
+    #footer .social-icons a {
+        margin-top: 3rem;
+        margin-right: 10px;
+        margin-left: 10px;
+        font-size:23px;
+    }
+
+    
+
+    #card-cart h5{
+        font-size: 16px;
+    }
+
+    #card-detail .col-md-12{
+        width:108%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .img-detail-cart{
+        width: 35%;
+    }
+
+    #card-detail .image-detail{
+        width:100px; 
+        height:auto;
+    }
+
+    .td-desc-detail{
+        width: 55%;
+    }
+
+    #card-detail h2{
+        font-size: 18px;
+    }
+
+    #card-detail p{
+        font-size: 14px;
+    }
+
+    #card-detail .button_minus, #card-detail .button_plus{
+        font-size: 13px;
+    }
+      
+    #card-detail .d-inline{
+        font-size: 18px;
+    }
+
+    #card-detail .btn-default{
+        font-size:16px;
+    }
+
+    .tabel-quantity{
+        width:50%;
+        margin-bottom:10px;
+    }
+
+    .fixed-bottom p{
+        font-size: 16px;
+    }
+
+    .fixed-bottom h2{
+        font-size: 18px;
+        margin-top:4px;
+    }
+
+    #accordion .button_add_to_pesan {
+        font-size: 18px;
+    }
+
+    .breadcrumb-profil-item{
+        margin-top:-3.3rem;
+    }
+
+    #prf-brd {
+        margin-top:-3rem;
+    }
+      
+    .image-profil-user{
+        width:100px;
+        height:100px;
+        left:9%;
+        top:10rem;
+    }
+
+    .profil-row{
+        margin-top:1%;
+    }
+
+    .heading-profil{
+        font-size: 25px;
+        line-height: 0.5;
+        margin-left: 37%;
+    }
+
+    .name-profil{
+        font-size:18px;
+        line-height: 0.8;
+        margin-left: 37%;
+    }
+
+    .breadcrumb-profil-name {
+        font-size:13px;
+        line-height: 0.8;
+        margin-left: 37%;
+        margin-right: 0;
+    }
+      
+    .breadcrumb-profil-name + .breadcrumb-profil-name::before {
+        font-size: 22px;
+        line-height: 1;
+    }
+      
+    .breadcrumb-profil-name.active {
+    font-size: 13px;
+    line-height: 0.8;
+    margin-top:0;
+    }
+
+    .detail-profil{
+        margin-top:0;
+        margin-left:0;
+    }
+
+    .contact-row{
+        margin-top:0;
+    }
+
+    .contact-card i{
+        font-size:32px;
+    }
+
+    .contact-tele-name, .contact-email-name{
+        font-size: 14px;
+      }
+
+    .contact-tele-number, .contact-email{
+        font-size: 16px;
+    }
+
+    .section_content{
+        margin-left:5px;
+    }
+}
+
+@media (max-width: 338px){
+    .dot-top-right {
+        width: 120px;
+    }
+
+    .dot-bottom-left {
+        width: 150px;
+    }
+
+    .shape-bottom-right {
+        width: 150px;
+    }
+
+    .dot-top-right-nocart {
+        width: 120px;
+        top:2.8rem;
+    }
+
+    .contact_input {
+        font-size:16px ;
+    }
+
+    .login-label h1{
+        font-size: 30px;
+    }
+
+    .btn_login_form{
+        font-size: 16px;
+    }
+
+    .td-label-loc{
+        width: 20%;
+    }
+
+    .td-label-loc h6{
+        font-size: 14px;
+    }
+
+    .image-logo-login{
+        margin-top:4rem;
+    }
+
+    #hero_cools{
+        margin-bottom: 0;
+    }
+
+   .text-hero{
+        right:1.5rem;
+        top:3rem;
+    }
+    
+    .text-hero h1{
+        font-size: 18px;
+        line-height:0.8;
+    }
+
+    .text-hero hr{
+        width:135px;
+        border-top: 1.5px solid #ffffff;
+        margin-top:-3px;
+    }
+    
+    #sidebar {
+        width: 60%;
+        left: -60%;
+    }
+
+    #sidebar .sidebar-header {
+        margin-left: 2rem;
+    }
+
+    #sidebar .sidebar-header img{
+        width: 100px;
+        height: 100px;
+    }
+
+    #sidebar .sidebar-header p {
+        font-size:16px;
+    }
+
+    #sidebar ul li a {
+        font-size: 16px;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    #log .logout {
+        padding:8px 35px;
+        margin-left: 2rem;
+    }
+
+    .sidebar-dot-top-right {
+        width: 100px;
+    }
+
+    .sidebar-dot-bottom {
+        width:200px;
+        margin-top:-4rem;
+    }
+
+    .breadcrumb-item {
+        font-size:20px;
+        margin-bottom: -1rem;
+    }
+    
+    .breadcrumb-item.active {
+      font-size: 20px;
+      margin-left:-10px;
+    }
+
+    #content .list-product{
+        margin-left:-10px;
+    }
+
+    #content .dot-content-top-right {
+        width: 100px;
+    }
+
+    .shape-content-bottom-right {
+        width: 130px;
+        bottom:13%;
+    }
+
+    .dot-content-bottom-left {
+        width: 100px;
+        bottom:13%;
+    }
+
+    #product_list{
+        margin-bottom: -6rem;
+    }
+
+    #product_list .card-body{
+        padding:0;
+    }
+
+    #product_list .button_add_to_cart{
+        font-size: 14px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    #content .product-price-header {
         font-size:11px;
     }
 
     #content .product-price {
-        font-size: 17px; 
-        font-weight: 900;
+        font-size: 12px; 
     }
-
-    /*
-    #content .hdr_tbl_cart {
-       margin-top:-2px;
-    }*/
 
     #content .tbl_cart {
         width: 50%;
-        padding-right:0;
+        padding-right:10px;
     }
 
-    #content .button-minus{
-       font-size: 10px;
+    #content .show {
+        font-size: 16px;
+        font-weight: 600; 
     }
 
-    #content .button_plus{
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 12px;
-        margin-top:5px;
-    }
-
-    #content .button_minus {
-        font-size: 12px;
-        margin-left:5px;
-    }
-      
-      #content .show {
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 12px;
-    }
-
-    #content .card-img-top{
-        margin-bottom:2rem;
-      }
-
-    #footer {
-        
-        padding-top: 7rem;
-        padding-bottom: 2rem;
+    #footer .col-md-2{
+        width: 55%;
     }
 
     #footer .social-icons a {
-        margin-top: 0;
+        margin-top: 3rem;
         margin-right: 10px;
         margin-left: 10px;
-        font-size:20px;
+        font-size:23px;
     }
 
-    .copyright p {
-        margin-top: 20px;
-        margin-bottom: 10rem;
-        font-size: 13px;
-     }
-
-      .fixed-bottom{
-        margin-left:15px;
-        margin-right:15px;
-     }
-
-     #ex4 .p1[data-count]:after{
-        
-        right:50%;
-        top:10%;
-        line-height:0.5em;
-        color: white;
-        min-width: 1.3em;
-        
-      }
-
-    #card-cart{
-    border-radius:14px; 
-    padding-left:10px; 
-    height:50px;
-    padding-bottom:4px;
-    }
-    
-    #ex4 .fa-shopping-cart{
-        font-size: 25px;
-        color: #ffffff;
-        top:2px;
-        position: absolute;
-      }
-    
     #card-cart h5{
-    font-size:13px;
-    margin-left:-2.5rem;
-    margin-top:-10px;
-    }
-    
-    #card-detail .image-detail{
-    border-radius:10px; 
-    width:200px; 
-    height:auto;
-    }
-    
-    #card-detail p{
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 2px;
-    }
-    
-    #card-detail h1{
-    font-weight: 900;
+        font-size: 16px;
     }
 
-    #cv .fa-chevron-up{
-        margin-left: -15px;
-        font-size: 14px;
-        margin-top:-20px;
-        position: absolute;
+    #card-detail .col-md-12{
+        width:108%;
+        padding-left: 0;
+        padding-right: 0;
     }
 
-    #collapse-4{
-
-    /*max-height:375px;*/ 
-    padding:2px;
-    
-    }
-
-    #card-detail {
-      padding-left:2px;
-      padding-right:2px; 
+    .img-detail-cart{
+        width: 40%;
     }
 
     #card-detail .image-detail{
-        width:80px; 
+        width:100px; 
         height:auto;
-        margin-bottom: 15%;
     }
 
-    #card-detail p{
-        font-size: 10px;
-        margin-left:10px; 
-        font-weight: bold;
-        margin-bottom: 2px;
-    }
-
-    #card-detail h1{
-        margin-left:10px;
-        font-size: 15px;
-        font-weight: 900;
-    }
-
-    #card-detail .button_minus {
-        font-size: 10px;
-        margin-left:15px;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .button_plus{
-        font-size: 10px;
-        margin-left:5px;
-        margin-top:0;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .d-inline{
-       font-size: 13px;
-       margin-left:5px;
-    }
-
-    #card-detail .btn-default{
-        color:#fff;
-        font-size:10px;
-        font-weight: 800; 
-        padding-top:5px; 
-        padding-bottom:5px;
-      }
-
-      #bt_beli a{
-        
-        border-radius: 5px;
-        padding-right:15px;
-        padding-left: 15px;
-        padding-top:10px;
-        padding-bottom: 10px;
-        font-size: 10px;
-        font-weight:800;
-        margin-right:0px;
-      }
-}
-
-@media (max-width: 264px) {
-
-    #shape-1 {
-        float: left;
-        width: 100%;
-        height: 15rem;
-        top:4.5rem;
-        border-top-right-radius: 100%;
-        position: absolute;
-   }
-  
-   #shape-2 {
-    right:0;
-    width: 100%;
-    height: 15rem;
-    top:19rem;
-    border-bottom-left-radius: 100%;
-    /*background:#ffd3a3;*/
-    position: absolute;
-    z-index: ;
-  }
-
-    #sidebar {
+    .td-desc-detail{
         width: 70%;
-        left: -70%;
     }
 
-    #sidebar ul.components {
-    padding: 20px 0;
-    }
-    
-    #sidebar ul li a {
-        margin-bottom: 5px;
-        font-size: 13px;
-    }
-
-    #pageSubmenu{
-        font-size: 12px;
-    }
-    #sidebar ul li.active>a,
-    a[aria-expanded="true"] {
-        color: white;
-    }
-
-    .nav-center img{
-        left:-1.4rem;
-        position:absolute;
-        top:-1.9rem;
-    }
-
-    .navbar .navbar-brand img {
-        width:150px;
-        height:auto;
-    }
-
-    a.login{
-        border:none;
-        font-size: 14px;
-        font-weight: 900;
-        padding-left:1.5rem;
-        padding-right:1.5rem;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        margin-top: -15px;
-        background-color: #fff;
-      }
-
-    #log .logout {
-        
-        font-size: 14px;
-    }
-      
-
-    a.register {
-        font-size: 14px;
-    }
-
-    .reset{
-        font-size: 14px;
-    }
-
-    #sidebar .social-icons a {
-        margin-right: 5px;
-        margin-left: 5px;
-        font-size:14px;
-        color: #fff;
-    }
-
-    .nav-center {
-        position: absolute;
-        left: 30%;
-    }
-
-    .cat_fil{
-        font-size: 10px;
-        font-weight: bold;
-        font-style:normal;
-        line-height: 1;
-        font-family: Open Sans;
-      }
-
-      .tombol{
-        font-size: 13px;
-    }
-
-    .menu-filter{
-        width:37%;
-        height: auto;
-        padding-top:8px;
-    }
-
-    .menu-logo-filter{
-        width:63%;
-    }
-
-    .warna{
-        height:19.5rem;
-    }
-
-    #content .cr_bl{
-    
-    margin-left: 1rem;
-    }
-
-    #content .cara_belanja img{
-        width:50px;
-        height:auto;
-        margin-left:-10px;
-      }
-  
-      #content .cara_belanja h5{
-          font-weight: 900;
-          font-size: 12px;
-          margin-right:-1rem;
-          margin-left:-2rem;
-          
-      }
-  
-      #content .cara_belanja p{
-          margin-left:-2rem;
-          margin-right:-1rem;
-          font-size: 10px;
-          
-      }
-
-    #content .kontak{
-    
-    margin-left: 0.5rem;
-    margin-bottom : -2rem;
-
-    }
-
-    #i-kontak, #i-envelop {
-    font-size: 3.5em;
-    margin-top:1.3rem;
-    }
-
-    #content .contact_kami h5.no_telp{
-    margin-left:4.5rem;
-    font-size: 22px;
-        
-    }
-
-    #content .contact_kami p.telp{
-    margin-left:4.5rem;
-    margin-top: -4rem;
-    font-size: 20px;
-    
-    }
-
-    #content .contact_kami p{
-    
-    margin-left:4.5rem;
-    margin-top: -4rem;
-    font-size: 20px;
-    font-weight: 600;
-    
-    }
-    
-    #content .contact_kami h5{
-    margin-left:4.5rem;
-    font-family: Open Sans;
-    font-size: 13px;
-    
-    }
-
-    #content .button_add_to_cart {
-        
-    border-radius: 5px;
-    padding:8px;
-    color: #ffffff;
-    
-    font-size: 8px;
-    font-weight: 600; 
-    padding:2 15;
-    }
-
-    .button-collapse{
-        margin-left: 2px;
-        margin-right: 0;
-        margin-bottom:10px;
-        font-size: 4px;
-        left:-1rem;
-        right:-1rem;
-        top:0;
-        padding-top:2px;
-     }
-
-     .collapse{
-        margin-bottom:10px;
-      }
-
-    #content .item_product{
-        width:100%; 
-        padding:5px;
-        padding-bottom: 10px; 
-        border-radius:15px;
-        margin-bottom:4rem;
-    }
-
-    #content .item_product img{
-        border-radius:15px;
-        height: 90px;
-    }
-
-    #content .product-price-header {
-        line-height: 1.36;
-        font-size:8px;
-    }
-
-    #content .product-price {
-        font-size: 13px; 
-        font-weight: 900;
-    }
-
-   
-    #content .hdr_tbl_cart {
-       margin-top:-10px;
-    }
-
-    #content .tbl_cart {
-        width: 50%;
-        padding-right:0;
-    }
-
-    #content .button-minus{
-       font-size: 10px;
-    }
-
-    #content .button_plus{
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 12px;
-        margin-top:5px;
-    }
-
-    #content .button_minus {
-        font-size: 12px;
-        margin-left:5px;
-    }
-      
-      #content .show {
-        /*width: 25px; 
-        height: 25px;*/
-        font-size: 12px;
-    }
-
-    #content .card-img-top{
-        margin-bottom:2rem;
-      }
-
-    #footer {
-        
-        padding-top: 7rem;
-        padding-bottom: 2rem;
-    }
-
-    #footer .social-icons a {
-        margin-top: 0;
-        margin-right: 10px;
-        margin-left: 10px;
-        font-size:20px;
-    }
-
-    .copyright p {
-        margin-top: 20px;
-        margin-bottom: 10rem;
-        font-size: 13px;
-     }
-
-      .fixed-bottom{
-        margin-left:15px;
-        margin-right:15px;
-     }
-
-     #ex4 .p1[data-count]:after{
-        
-        right:50%;
-        top:10%;
-        line-height:0.5em;
-        color: white;
-        min-width: 1.3em;
-        
-      }
-
-    #card-cart{
-    border-radius:14px; 
-    padding-left:10px; 
-    height:50px;
-    padding-bottom:4px;
-    }
-    
-    #ex4 .fa-shopping-cart{
-        font-size: 25px;
-        color: #ffffff;
-        top:2px;
-        position: absolute;
-      }
-    
-    #card-cart h5{
-    font-size:13px;
-    margin-left:-2.5rem;
-    margin-top:-10px;
-    }
-    
-    #card-detail .image-detail{
-    border-radius:10px; 
-    width:200px; 
-    height:auto;
-    }
-    
-    #card-detail p{
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 2px;
-    }
-    
-    #card-detail h1{
-    font-weight: 900;
-    }
-
-    #cv .fa-chevron-up{
-        margin-left: -15px;
-        font-size: 14px;
-        margin-top:-20px;
-        position: absolute;
-    }
-
-    #collapse-4{
-
-    /*max-height:375px;*/ 
-    padding:2px;
-    
-    }
-
-    #card-detail {
-      padding-left:2px;
-      padding-right:2px; 
-    }
-
-    #card-detail .image-detail{
-        width:80px; 
-        height:auto;
-        margin-bottom: 15%;
+    #card-detail h2{
+        font-size: 16px;
     }
 
     #card-detail p{
-        font-size: 10px;
-        margin-left:10px; 
-        font-weight: bold;
-        margin-bottom: 2px;
+        font-size: 12px;
     }
 
-    #card-detail h1{
-        margin-left:10px;
-        font-size: 15px;
-        font-weight: 900;
+    #card-detail .button_minus, #card-detail .button_plus{
+        font-size: 13px;
     }
-
-    #card-detail .button_minus {
-        font-size: 10px;
-        margin-left:15px;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
-    #card-detail .button_plus{
-        font-size: 10px;
-        margin-left:5px;
-        margin-top:0;
-        font-weight: 800; 
-        cursor:pointer; 
-    }
-
+      
     #card-detail .d-inline{
-       font-size: 13px;
-       margin-left:5px;
+        font-size: 18px;
     }
 
     #card-detail .btn-default{
-        color:#fff;
-        font-size:10px;
-        font-weight: 800; 
-        padding-top:5px; 
-        padding-bottom:5px;
+        font-size:16px;
+    }
+
+    .tabel-quantity{
+        width:60%;
+        margin-bottom:10px;
+    }
+
+    .fixed-bottom p{
+        font-size: 14px;
+    }
+
+    .fixed-bottom h2{
+        font-size: 16px;
+        margin-top:4px;
+    }
+
+    #accordion .button_add_to_pesan {
+        font-size: 18px;
+    }
+
+    .breadcrumb-profil-item{
+        margin-top:-3.3rem;
+    }
+
+    #prf-brd {
+        margin-top:-3rem;
+    }
+      
+    .image-profil-user{
+        width:100px;
+        height:100px;
+        left:7%;
+        top:9.7rem;
+    }
+
+    .profil-row{
+        margin-top:0;
+    }
+
+    .heading-profil{
+        font-size: 25px;
+        line-height: 0.5;
+        margin-left: 37%;
+    }
+
+    .name-profil{
+        font-size:18px;
+        line-height: 0.8;
+        margin-left: 37%;
+    }
+
+    .breadcrumb-profil-name {
+        font-size:13px;
+        line-height: 0.8;
+        margin-left: 37%;
+        margin-right: 0;
+    }
+      
+    .breadcrumb-profil-name + .breadcrumb-profil-name::before {
+        font-size: 22px;
+        line-height: 1;
+    }
+      
+    .breadcrumb-profil-name.active {
+    font-size: 13px;
+    line-height: 0.8;
+    margin-top:0;
+    }
+
+    .detail-profil{
+        margin-top:0;
+        margin-left:0;
+        margin-right: 10px;
+    }
+
+    .contact-row{
+        margin-top:0;
+    }
+
+    .contact-card i{
+        font-size:28px;
+    }
+
+    .contact-tele-name, .contact-email-name{
+        font-size: 14px;
       }
 
-      #bt_beli a{
-        
-        border-radius: 5px;
-        padding-right:15px;
-        padding-left: 15px;
-        padding-top:10px;
-        padding-bottom: 10px;
-        font-size: 10px;
-        font-weight:800;
-        margin-right:0px;
-      }
+    .contact-tele-number, .contact-email{
+        font-size: 16px;
+    }
+
+    .section_content{
+        margin-left:5px;
+    }
 }
+

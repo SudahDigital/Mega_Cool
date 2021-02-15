@@ -623,8 +623,8 @@
     </div>
 
     <div id="message" class="row justify-content-center"></div>
-    <img src="{{ asset('assets/image/dot-top-right-profil.jpg') }}" class="dot-top-right"  
-    style="" alt="ot-top-right-profil">
+    <img src="{{ asset('assets/image/dot-top-right-profil.jpg') }}" class="dot-top-right-nocart"  
+    style="" alt="dot-top-right-profil">
     <img src="{{ asset('assets/image/dot-bottom-left-profil.jpg') }}" class="dot-bottom-left"  
     style="" alt="dot-bottom-left-profil">
     <img src="{{ asset('assets/image/shape-profil-bottom.jpg') }}" class="shape-bottom-right"  
