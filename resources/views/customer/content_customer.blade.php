@@ -229,7 +229,7 @@ Home
         </div>
     </div>
     
-    <div id="accordion" class="fixed-bottom" style="border-radius:0;z-index: 1">
+    <div id="accordion" class="fixed-bottom" style="border-radius:0;z-index: 1;">
         <div class="card" style="border-radius:0;">
             <a role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
                 <div id="card-cart" class="card-header pt-1" style="border-radius:0;">

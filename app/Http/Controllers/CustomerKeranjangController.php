@@ -654,16 +654,16 @@ else{
                     ->whereNull('orders.customer_id')
                     ->count();
         if ($total_item < 1){
-            echo '<div id="accordion" class="fixed-bottom" style="border-radius:0;">
+            echo '<div id="accordion" class="fixed-bottom" style="border-radius:0;z-index:1;">
                     <div class="card" style="border-radius:0;">
                         <a role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
                             <div id="card-cart" class="card-header pt-1" style="border-radius:0;">
                                 <table class="table borderless">
                                     <tr>
-                                        <td align="left" width="50%">
+                                        <td align="left" width="30%">
                                             <h5 style="color:#000">0 Item</h5>
                                         </td>
-                                        <td align="right" width="50%">
+                                        <td align="right" width="70%">
                                             <h5 class="pull-right" style="color: #000">Pesan Sekarang <i class="fa fa-paper-plane" aria-hidden="true" style="color: #FF0000 !important"></i></h5>
                                         </td>
                                     </tr>
