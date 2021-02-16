@@ -960,7 +960,7 @@
         font-size:17px;
         line-height: 0.8;
         margin-left: 37%;
-        margin-right: 0;
+        margin-right: -10px;
     }
       
     .breadcrumb-profil-name + .breadcrumb-profil-name::before {
@@ -1198,7 +1198,7 @@
         font-size:16px;
         line-height: 0.8;
         margin-left: 37%;
-        margin-right: 0;
+        margin-right: -10px;
     }
       
     .breadcrumb-profil-name + .breadcrumb-profil-name::before {
@@ -1446,7 +1446,7 @@
         font-size:16px;
         line-height: 0.8;
         margin-left: 38%;
-        margin-right: 0;
+        margin-right: -10px;
     }
       
     .breadcrumb-profil-name + .breadcrumb-profil-name::before {
@@ -1698,7 +1698,7 @@
         font-size:13px;
         line-height: 0.8;
         margin-left: 38%;
-        margin-right: 0;
+        margin-right: -10px;
     }
       
     .breadcrumb-profil-name + .breadcrumb-profil-name::before {
@@ -1954,7 +1954,7 @@
         font-size:13px;
         line-height: 0.5;
         margin-left: 39%;
-        margin-right: 0;
+        margin-right: -10px;
     }
       
     .breadcrumb-profil-name + .breadcrumb-profil-name::before {
@@ -2261,7 +2261,7 @@
         font-size:13px;
         line-height: 1;
         margin-left: 39%;
-        margin-right: 0;
+        margin-right: -10px;
     }
       
     .breadcrumb-profil-name + .breadcrumb-profil-name::before {
@@ -2572,7 +2572,7 @@
         font-size:13px;
         line-height: 1;
         margin-left: 39%;
-        margin-right: 0;
+        margin-right: -10px;
     }
       
     .breadcrumb-profil-name + .breadcrumb-profil-name::before {
@@ -2881,7 +2881,7 @@
         font-size:13px;
         line-height: 0.8;
         margin-left: 37%;
-        margin-right: 0;
+        margin-right: -10px;
     }
       
     .breadcrumb-profil-name + .breadcrumb-profil-name::before {
@@ -3188,7 +3188,7 @@
         font-size:13px;
         line-height: 0.8;
         margin-left: 37%;
-        margin-right: 0;
+        margin-right: -10px;
     }
       
     .breadcrumb-profil-name + .breadcrumb-profil-name::before {

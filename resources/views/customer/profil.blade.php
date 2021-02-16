@@ -28,7 +28,7 @@
         
             
         <div class="row justify-content-end mt-5 ">
-            <a class="red-tooltip" data-toggle="modal" data-target="#modal-avatar" style="z-index: 2">
+            <a class="red-tooltip" data-toggle="modal" data-target="#modal-avatar" style="z-index: 3">
                 @if(\Auth::user()->avatar)
                     <img class="image-profil-user rounded-circle" src="{{asset('storage/'.Auth::user()->avatar)}}" alt="user" />
                 @else
