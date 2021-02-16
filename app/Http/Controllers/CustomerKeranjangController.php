@@ -318,54 +318,33 @@ class CustomerKeranjangController extends Controller
             }
             //$total_ongkir  = 15000;
             $total_bayar  = $total_pesanan;
-            $href='Hello Admin Mega Cools,
-
-<b>Detail Sales</b> 
-Nama : '.$user->name.',
-Email : '.$user->email.',
-No. Hp :' .$user->phone.',
-Sales Area :' .$city->city_name.',
-
-<b>Detail Pelanggan</b> 
-Nama  : '.$customer->name.',
-Email : '.$customer->email.',
-No. Telp : '.$customer->phone.',
-Nama Toko : '.$customer->store_name.',
-Alamat : '.$customer->address.',
-
-<b>Detail Pesanan</b>';
-if($orders->save()){
-$pesan = DB::table('order_product')
-        ->join('orders','order_product.order_id','=','orders.id')
-        ->join('products','order_product.product_id','=','products.id')
-        ->where('orders.id','=',"$id")
-        ->get();
-foreach($pesan as $key=>$tele){
-$href.='
-*'.$tele->Product_name.' (Qty :'.$tele->quantity.')';
-}
-if($request->get('voucher_code_hide_modal')!= ""){
-    if ($type == 1){
-        $info_harga = '<b>Total Pesanan</b> : Rp.'.number_format(($sum_novoucher), 0, ',', '.');
-    }else{
-        $info_harga = '<b>Total Pesanan</b> : Rp.'.number_format(($sum_novoucher), 0, ',', '.');
-    }
-}
-else{
-    $info_harga = '<b>Total Pesanan</b> : Rp.'.number_format(($total_pesanan), 0, ',', '.');
-}
-            $text_wa=$href.'
+            $href='Hello Admin Mega Cools,%0A%0A<b>Detail Sales</b>%0ANama : '.$user->name.',%0AEmail : '.$user->email.',%0ANo. Hp :' .$user->phone.',%0ASales Area :' .$city->city_name.',%0A%0A<b>Detail Pelanggan</b>%0ANama  : '.$customer->name.',%0AEmail : '.$customer->email.',%0ANo. Telp : '.$customer->phone.',%0ANama Toko : '.$customer->store_name.',%0AAlamat : '.$customer->address.',%0A%0A<b>Detail Pesanan</b>%0A';
+                if($orders->save()){
+                $pesan = DB::table('order_product')
+                        ->join('orders','order_product.order_id','=','orders.id')
+                        ->join('products','order_product.product_id','=','products.id')
+                        ->where('orders.id','=',"$id")
+                        ->get();
+                foreach($pesan as $key=>$tele){
+                $href.='
+                *'.$tele->Product_name.' (Qty :'.$tele->quantity.')';
+                }
+                if($request->get('voucher_code_hide_modal')!= ""){
+                    if ($type == 1){
+                        $info_harga = '<b>Total Pesanan</b> : Rp.'.number_format(($sum_novoucher), 0, ',', '.');
+                    }else{
+                        $info_harga = '<b>Total Pesanan</b> : Rp.'.number_format(($sum_novoucher), 0, ',', '.');
+                    }
+                }
+                else{
+                    $info_harga = '<b>Total Pesanan</b> : Rp.'.number_format(($total_pesanan), 0, ',', '.');
+                }
+                            $text_wa=$href.'%0A'.$info_harga;
             
-'.$info_harga;
-            Telegram::sendMessage([
-                'chat_id' => env('TELEGRAM_CHANNEL_ID', '1179259045'),
-                'parse_mode' => 'HTML',
-                'text' => $text_wa
-            ]);
-                //$url = "https://api.whatsapp.com/send?phone=6282311988000&text=$text_wa";
-                //return Redirect::to($url);
-                Alert::success('', 'Pesanan berhasil dikirim');
-                return redirect()->route('home_customer');    
+                $url = "https://api.whatsapp.com/send?phone=6282311988000&text=$text_wa";
+                return Redirect::to($url);
+                //Alert::success('', 'Pesanan berhasil dikirim');
+                //return redirect()->route('home_customer');    
             }
         }
         
@@ -845,7 +824,7 @@ else{
     public function cek_order(Request $request){
         $order_id = $request->get('order_id');
         $cek_order = DB::select("SELECT order_product.order_id, order_product.product_id,order_product.quantity, 
-                    products.stock, products.description FROM products,order_product WHERE order_product.product_id = products.id AND 
+                    products.stock, products.Product_name FROM products,order_product WHERE order_product.product_id = products.id AND 
                     order_product.quantity > products.stock AND order_product.order_id = '$order_id'");
         //$count_cek = count($cek_order);
         //return $cek_order;

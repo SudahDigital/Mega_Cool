@@ -1115,14 +1115,14 @@
             return true;
         }
         
-        /*function pesan_wa()
+        function pesan_wa()
         {
             //var name = document.getElementById("name").value;
             //var email = document.getElementById("email").value;
             //var address = document.getElementById("address").value;
             //var phone = document.getElementById("phone").value;
             var order_id = $('#order_id_cek').val();
-            if (name != "" && email!="" && address !="" && phone !="" && phone.length > 9) {
+            //if (name != "" && email!="" && address !="" && phone !="" && phone.length > 9) {
                 $.ajax({
                     url : '{{URL::to('/keranjang/cek_order')}}',
                     type:'POST',
@@ -1140,7 +1140,7 @@
                         if(len > 0){
                             
                             for(var i=0; i<len; i++){
-                                var desc = response['data'][i].description;
+                                var desc = response['data'][i].Product_name;
                                 
                                 var tr_str = "<li class='text-center'><small>"+desc+"</small></li>";
                                 $("#body_alert").append(tr_str);
@@ -1150,14 +1150,14 @@
                         else
                         {
                             Swal.fire({
-                            title: 'Memesan',
+                            title: 'Berhasil',
                             text: "Anda melakukan pesanan melalui whatsapp",
                             icon: 'success',
                             showCancelButton: false,
-                            confirmButtonText: "Ok",
+                            confirmButtonText: "OK",
                             confirmButtonColor: '#4db849'
                             }).then(function(){ 
-                                location.reload();
+                                window.location.href = '{{URL::to('/session/clear')}}';
                             });
                         }
                     }
@@ -1172,12 +1172,10 @@
                     confirmButtonColor: '#4db849'
                     }).then(function(){ 
                         location.reload();
-                    });
-            }else{
-                alert('Anda harus mengisi data dengan lengkap  & benar !');
-            }
+                    });*/
+            
         }
-        */
+        
 
         function button_plus(id)
         {

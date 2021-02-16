@@ -22,4 +22,10 @@ class SessionStore extends Controller
         $request->session()->put('ses_order', $ses_order);
         return redirect('/sales_home');
     }
+
+    public function clear(Request $request){
+        
+        $request->session()->forget('ses_order');
+        return redirect('/sales_home');
+    }
 }

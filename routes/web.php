@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth','checkRole:SALES']],function(){
     Route::get('/ajax/city', 'AjaxCitySearch@ajax_city');
     Route::get('/ajax/store', 'AjaxCitySearch@ajax_store');
     Route::post('/session/store','SessionStore@index')->name('session.store');
+    Route::get('/session/clear','SessionStore@clear')->name('session.clear');
     Route::resource('profil','ProfilController');
     Route::get('/home_cart', 'CustomerKeranjangController@ajax_cart');
     Route::post('/keranjang/apply_code', 'CustomerKeranjangController@apply_code');

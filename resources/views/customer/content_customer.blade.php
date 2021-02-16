@@ -414,7 +414,7 @@ Home
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <form method="POST" action="{{ route('customer.keranjang.pesan') }}">
+                <form method="POST" target="_BLANK" action="{{ route('customer.keranjang.pesan') }}">
                     @csrf
                     @if($item!==null)
                     <input type="hidden" name ="voucher_code_hide_modal" id="voucher_code_hide_modal">
@@ -426,11 +426,11 @@ Home
                         <input type="hidden" name="total_pesanan" id="total_pesan_val" >
                     @endif
                 <div class="modal-body">
-                    Anda akan melakukan pesanan melalui telegram...
+                    Anda akan melakukan pesanan melalui whatsapp...
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" id="order_id_pesan" name="id" value="{{$item !==null ? $item->id : ''}}"/>
-                    <button type="submit" class="btn btn-block bt-wa"><i class="fa fa-paper-plane" aria-hidden="true" style="color: #ffffff !important"></i> &nbsp;{{__('Pesan') }}</button>
+                    <button type="submit" onclick="pesan_wa()" class="btn btn-block bt-wa"><i class="fa fa-paper-plane" aria-hidden="true" style="color: #ffffff !important"></i> &nbsp;{{__('Pesan') }}</button>
                 </div>
                 </form>
             </div>
