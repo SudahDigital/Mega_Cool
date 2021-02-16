@@ -2501,6 +2501,7 @@
 
     #card-detail p{
         font-size: 14px;
+        line-height: 1;
     }
 
     #card-detail .button_minus, #card-detail .button_plus{
@@ -2813,7 +2814,8 @@
     }
 
     #card-detail p{
-        font-size: 14px;
+        font-size: 13px;
+        line-height: 1;
     }
 
     #card-detail .button_minus, #card-detail .button_plus{
@@ -2829,7 +2831,7 @@
     }
 
     .tabel-quantity{
-        width:50%;
+        width:60%;
         margin-bottom:10px;
     }
 
