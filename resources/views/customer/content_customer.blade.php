@@ -240,7 +240,7 @@ Home
                                     <h5 style="color:#000">{{$total_item}} Item</h5>
                                 </td>
                                 <td align="right" width="70%">
-                                    <h5 class="pull-right" style="color: #000">Pesan Sekarang <i class="fa fa-paper-plane" aria-hidden="true" style="color: #FF0000 !important"></i></h5>
+                                    <h5 class="pull-right" style="color: #000">Kirim Order&nbsp;&nbsp;<img src="{{ asset('assets/image/right-arrow.png') }}" width="20" class="my-auto" alt="right-arrow"></h5>
                                 </td>
                             </tr>
                         </table>
@@ -397,7 +397,7 @@ Home
                                         <input type="hidden" name="total_pesanan" id="total_pesan_val_hide" value="0">
                                     @endif
                                     <input type="hidden" id="order_id_cek" name="id" value="{{$item !==null ? $item->id : ''}}"/> 
-                                    <a type="button" id="beli_sekarang" class="btn button_add_to_pesan float-right mb-3" onclick="show_modal()" style="padding: 10px 20px; ">Pesan Sekarang <i class="fa fa-paper-plane" aria-hidden="true" style="color: #ffffff !important"></i></a>
+                                    <a type="button" id="beli_sekarang" class="btn button_add_to_pesan float-right mb-3" onclick="show_modal()" style="padding: 10px 20px; ">Pesan Sekarang <i class="fab fa-whatsapp" aria-hidden="true" style="color: #ffffff !important; font-weight:900;"></i></a>
                                 @endif
                             </div>
                         </div>
@@ -410,7 +410,7 @@ Home
     <div class="modal fade ml-0" id="my_modal_content" role="dialog" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <!-- Modal content-->
-            <div class="modal-content" style="background: #1A4066;">
+            <div class="modal-content" >
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
@@ -426,11 +426,11 @@ Home
                         <input type="hidden" name="total_pesanan" id="total_pesan_val" >
                     @endif
                 <div class="modal-body">
-                    Anda akan melakukan pesanan melalui whatsapp...
+                    <p style="color:  #1A4066;font-weight:600;">Proses pemesanan melalui whatsapp...</p>
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" id="order_id_pesan" name="id" value="{{$item !==null ? $item->id : ''}}"/>
-                    <button type="submit" onclick="pesan_wa()" class="btn btn-block bt-wa"><i class="fa fa-paper-plane" aria-hidden="true" style="color: #ffffff !important"></i> &nbsp;{{__('Pesan') }}</button>
+                    <button type="submit" onclick="pesan_wa()" class="btn btn-block bt-wa"><i class="fab fa-whatsapp fa-1x" aria-hidden="true" style="color: #ffffff !important; font-weight:900;"></i>&nbsp;{{__('Pesan') }}</button>
                 </div>
                 </form>
             </div>

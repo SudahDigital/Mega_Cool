@@ -318,7 +318,7 @@ class CustomerKeranjangController extends Controller
             }
             //$total_ongkir  = 15000;
             $total_bayar  = $total_pesanan;
-            $href='Hello Admin Mega Cools,%0A%0A<b>Detail Sales</b>%0ANama : '.$user->name.',%0AEmail : '.$user->email.',%0ANo. Hp :' .$user->phone.',%0ASales Area :' .$city->city_name.',%0A%0A<b>Detail Pelanggan</b>%0ANama  : '.$customer->name.',%0AEmail : '.$customer->email.',%0ANo. Telp : '.$customer->phone.',%0ANama Toko : '.$customer->store_name.',%0AAlamat : '.$customer->address.',%0A%0A<b>Detail Pesanan</b>%0A';
+            $href='Hello Admin Mega Cools,%0A%0ADetail Sales%0ANama : '.$user->name.',%0AEmail : '.$user->email.',%0ANo. Hp :' .$user->phone.',%0ASales Area :' .$city->city_name.',%0A%0ADetail Pelanggan%0ANama  : '.$customer->name.',%0AEmail : '.$customer->email.',%0ANo. Telp : '.$customer->phone.',%0ANama Toko : '.$customer->store_name.',%0AAlamat : '.$customer->address.',%0A%0ADetail Pesanan%0A';
                 if($orders->save()){
                 $pesan = DB::table('order_product')
                         ->join('orders','order_product.order_id','=','orders.id')
@@ -326,22 +326,21 @@ class CustomerKeranjangController extends Controller
                         ->where('orders.id','=',"$id")
                         ->get();
                 foreach($pesan as $key=>$tele){
-                $href.='
-                *'.$tele->Product_name.' (Qty :'.$tele->quantity.')';
+                $href.='*'.$tele->Product_name.' (Qty :'.$tele->quantity.')%0A';
                 }
                 if($request->get('voucher_code_hide_modal')!= ""){
                     if ($type == 1){
-                        $info_harga = '<b>Total Pesanan</b> : Rp.'.number_format(($sum_novoucher), 0, ',', '.');
+                        $info_harga = 'Total Pesanan : Rp.'.number_format(($sum_novoucher), 0, ',', '.');
                     }else{
-                        $info_harga = '<b>Total Pesanan</b> : Rp.'.number_format(($sum_novoucher), 0, ',', '.');
+                        $info_harga = 'Total Pesanan : Rp.'.number_format(($sum_novoucher), 0, ',', '.');
                     }
                 }
                 else{
-                    $info_harga = '<b>Total Pesanan</b> : Rp.'.number_format(($total_pesanan), 0, ',', '.');
+                    $info_harga = 'Total Pesanan : Rp.'.number_format(($total_pesanan), 0, ',', '.');
                 }
-                            $text_wa=$href.'%0A'.$info_harga;
+                    $text_wa=$href.'%0A'.$info_harga;
             
-                $url = "https://api.whatsapp.com/send?phone=6282311988000&text=$text_wa";
+                $url = "https://api.whatsapp.com/send?phone=6282113464465&text=$text_wa";
                 return Redirect::to($url);
                 //Alert::success('', 'Pesanan berhasil dikirim');
                 //return redirect()->route('home_customer');    
