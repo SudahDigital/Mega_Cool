@@ -17,14 +17,14 @@ class SessionStore extends Controller
         //echo $lat,$lng;
         $ses_order = new Order;
         //$ses_order->user_id = $request->get('user_id');
-        $ses_order->user_loc =$lat.','.$lng;
+        //$ses_order->user_loc =$lat.','.$lng;
+        $ses_order->user_loc = $request->get('user_loc');
         $ses_order->customer_id = $request->get('customer_id');
         $request->session()->put('ses_order', $ses_order);
         return redirect('/sales_home');
     }
 
     public function clear(Request $request){
-        
         $request->session()->forget('ses_order');
         return redirect('/sales_home');
     }

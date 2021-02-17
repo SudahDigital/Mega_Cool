@@ -499,6 +499,15 @@
         height:auto;
     }
 
+    #content .tbl_cart {
+        width: 50%;
+        padding-right:10px;
+    }
+
+    #content .td-btn-plus {
+        width: 13%;
+    }
+
     #card-cart h5{
         font-size: 18px;
     }
@@ -670,7 +679,7 @@
     }
 
     #product_list .button_add_to_cart{
-        font-size: 12px;
+        font-size: 10px;
     }
 
     #content .product-price-header {
@@ -679,6 +688,20 @@
 
     #content .product-price {
         font-size: 15px; 
+    }
+
+    #content .tbl_cart {
+        width: 40%;
+        padding-right:10px;
+    }
+
+    .td-text-quantity {
+        width: 40%;
+        padding-right: 10px;
+    }
+
+    #content .td-btn-plus {
+        width: 15%;
     }
 
     .img-detail-cart{
@@ -873,6 +896,20 @@
 
     #product_list .button_add_to_cart{
         font-size: 18px;
+    }
+
+    #content .tbl_cart {
+        width: 50%;
+        padding-right:10px;
+    }
+
+    .td-text-quantity {
+        width: 30%;
+        padding-right: 10px;
+    }
+
+    #content .td-btn-plus {
+        width: 15%;
     }
 
     #content .product-price-header {
@@ -1344,7 +1381,21 @@
     }
 
     #product_list .button_add_to_cart{
-        font-size: 18px;
+        font-size: 14px;
+    }
+
+    #content .tbl_cart {
+        width: 50%;
+        padding-right:10px;
+    }
+
+    .td-text-quantity {
+        width: 35%;
+        padding-right: 10px;
+    }
+
+    #content .td-btn-plus {
+        width: 15%;
     }
 
     #content .product-price-header {

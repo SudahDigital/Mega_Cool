@@ -557,71 +557,7 @@
             }
         }
     </style>
-    <style>
-        /* The container */
-        .cont-radio {
-          display: block;
-          position: relative;
-          padding-left: 35px;
-          margin-bottom: 12px;
-          cursor: pointer;
-          font-size: 22px;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-        }
-        
-        /* Hide the browser's default radio button */
-        .cont-radio input {
-          position: absolute;
-          opacity: 0;
-          cursor: pointer;
-        }
-        
-        /* Create a custom radio button */
-        .checkmark {
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 25px;
-          width: 25px;
-          background-color: #eee;
-          border-radius: 50%;
-        }
-        
-        /* On mouse-over, add a grey background color */
-        .cont-radio:hover input ~ .checkmark {
-          background-color: #ccc;
-        }
-        
-        /* When the radio button is checked, add a blue background */
-        .cont-radio input:checked ~ .checkmark {
-          background-color: #2196F3;
-        }
-        
-        /* Create the indicator (the dot/circle - hidden when not checked) */
-        .checkmark:after {
-          content: "";
-          position: absolute;
-          display: none;
-        }
-        
-        /* Show the indicator (dot/circle) when checked */
-        .cont-radio input:checked ~ .checkmark:after {
-          display: block;
-        }
-        
-        /* Style the indicator (dot/circle) */
-        .cont-radio .checkmark:after {
-             top: 9px;
-            left: 9px;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: white;
-        }
-        </style>
+    
     <script>
         $(document).ready(function(){
           $(".preloader").fadeOut();
@@ -680,18 +616,20 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td colspan="2" class="px-4">
-                                                <label class="radio-inline mx-auto">
-                                                    <input type="radio" name="user_loc" id="on_location" value="On Location" required> <label style="color: #ffffff">On Location</label>
-                                                </label>
-                                                <label class="mx-auto radio-inline form-control">
-                                                    <input type="radio" name="user_loc" id="off_location" value="Off Location" required> Off Location
-                                                </label>
-                                            </td>
-                                        </tr>
+                                        
                                     </tbody>
                                 </table>
+                                <div class="row justify-content-center mt-n4 mb-2">
+                                    <div class="custom-control custom-radio mr-4">
+                                        <input type="radio" name="user_loc" class="custom-control-input" id="on_location" value="On Location"  required>
+                                        <label class="custom-control-label" for="on_location" style="color:#ffffff;font-weight:600;">On Location</label>
+                                    </div>
+                                    
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" name="user_loc" class="custom-control-input" id="off_location" value="Off Location" >
+                                        <label class="custom-control-label" for="off_location" style="color:#ffffff;font-weight:600;">Off Location</label>
+                                    </div>
+                                </div>
                                 <input type="hidden" id="lat" name="lat">
                                 <input type="hidden" id="lng" name="lng">
                                 <div class="mx-auto text-center">
@@ -1251,7 +1189,6 @@
             
         }
         
-
         function button_plus(id)
         {
             var jumlah = $('#jumlah'+id).val();

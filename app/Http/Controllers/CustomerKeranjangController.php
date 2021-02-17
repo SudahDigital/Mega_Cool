@@ -292,6 +292,7 @@ class CustomerKeranjangController extends Controller
             $city = City::findOrfail($user->city_id);
             $customer_id = $ses_order->customer_id;
             $orders = Order::findOrfail($id);
+            $orders->user_loc = $ses_order->user_loc;
             $orders->customer_id = $customer_id;
             
             if($request->get('voucher_code_hide_modal') != ""){

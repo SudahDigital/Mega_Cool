@@ -143,10 +143,10 @@ Home
                                             <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart('{{$value->id}}')" style="">Tambah</button>
                                             
                                         </td>
-                                        <td width="10%" align="left" valign="middle" rowspan="2">
-                                            <p id="show_{{$value->id}}" class="d-inline show" style="">1</p>
+                                        <td width="30%" align="left" class="td-text-quantity" valign="middle" rowspan="2" class="pr-2">
+                                            <input type="text" id="show_{{$value->id}}" class="form-control mr-2 px-1 font-weight-bold" value="1" style="color:#000;font-weight:300;">
                                         </td>
-                                        <td width="10%" align="center" valign="middle" bgcolor="#ffffff" style="border-top-left-radius:5px;border-top-right-radius:5px;">
+                                        <td width="10%" class="td-btn-plus" align="center" valign="middle" bgcolor="#ffffff" style="border-top-left-radius:5px;border-top-right-radius:5px;">
                                             <a class="button_plus" onclick="button_plus('{{$value->id}}')" style=""><i class="fa fa-plus" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
