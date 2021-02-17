@@ -340,7 +340,7 @@ class CustomerKeranjangController extends Controller
                 }
                     $text_wa=$href.'%0A'.$info_harga;
             
-                $url = "https://api.whatsapp.com/send?phone=6282113464465&text=$text_wa";
+                $url = "https://api.whatsapp.com/send?phone=6281382333777&text=$text_wa";
                 return Redirect::to($url);
                 //Alert::success('', 'Pesanan berhasil dikirim');
                 //return redirect()->route('home_customer');    

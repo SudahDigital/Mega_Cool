@@ -6,6 +6,16 @@ use Illuminate\Http\Request;
 
 class SalesController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware(function($request, $next){
+            
+            if(Gate::allows('manage-sales')) return $next($request);
+
+            abort(403, 'Anda tidak memiliki cukup hak akses');
+        });
+
+    }
     /**
      * Display a listing of the resource.
      *

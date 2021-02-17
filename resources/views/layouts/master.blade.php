@@ -45,7 +45,7 @@
     <link href="netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 </head>
 
-<body class="theme-cyan">
+<body class="theme-indigo">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
@@ -158,18 +158,18 @@
                     </li>
                     
                     
-                    <li class="{{request()->routeIs(('users.index')||('sales.index')) ? 'active' : '' }}">
+                    <li class="{{request()->routeIs('users.index') ? 'active' : '' }}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">people</i>
                             <span>Manage Users</span>
                         </a>
                        
                         <ul class="ml-menu">
-                        @can('isSuperadmin')
-                            <li class="{{request()->routeIs('users.index') ? 'active' : '' }}">
-                                <a href="{{route('users.index')}}">List Admin</a>
-                            </li>
-                        @endcan
+                            @can('isSuperadmin')
+                                <li class="{{request()->routeIs('users.index') ? 'active' : '' }}">
+                                    <a href="{{route('users.index')}}">List Admin</a>
+                                </li>
+                             @endcan
                             <li class="{{request()->routeIs('sales.index') ? 'active' : '' }}">
                                 <a href="{{route('sales.index')}}">List Sales</a>
                             </li>
