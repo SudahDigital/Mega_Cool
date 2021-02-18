@@ -1931,7 +1931,7 @@
                     else
                     {   
                         if (checkBox.checked == true){
-                            $('#check_tunai_value').val('Cash');
+                            $('#check_tunai_value').val('Tunai');
                         }
                         else{
                             $('#check_tunai_value').val('');

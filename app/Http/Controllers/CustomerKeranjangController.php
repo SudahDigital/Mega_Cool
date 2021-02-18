@@ -299,7 +299,8 @@ class CustomerKeranjangController extends Controller
                 $orders->payment_method = $payment_method;
             }
             else{
-                $orders->payment_method =NULL;
+                $payment_method = "Non Tunai";
+                $orders->payment_method = $payment_method;
             }
             if($request->get('voucher_code_hide_modal') != ""){
                 $keyword = $request->get('voucher_code_hide_modal');
@@ -338,13 +339,13 @@ class CustomerKeranjangController extends Controller
                 }
                 if($request->get('voucher_code_hide_modal')!= ""){
                     if ($type == 1){
-                        $info_harga = 'Total Pesanan : Rp.'.number_format(($sum_novoucher), 0, ',', '.');
+                        $info_harga = 'Total Pesanan : Rp.'.number_format(($sum_novoucher), 0, ',', '.').'%0APembayaran :'.$payment_method;
                     }else{
-                        $info_harga = 'Total Pesanan : Rp.'.number_format(($sum_novoucher), 0, ',', '.');
+                        $info_harga = 'Total Pesanan : Rp.'.number_format(($sum_novoucher), 0, ',', '.').'%0APembayaran :'.$payment_method;
                     }
                 }
                 else{
-                    $info_harga = 'Total Pesanan : Rp.'.number_format(($total_pesanan), 0, ',', '.');
+                    $info_harga = 'Total Pesanan : Rp.'.number_format(($total_pesanan), 0, ',', '.').'%0APembayaran :'.$payment_method;
                 }
                     $text_wa=$href.'%0A'.$info_harga;
             
