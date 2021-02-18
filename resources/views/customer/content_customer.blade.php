@@ -260,48 +260,11 @@ Home
                     </div>
                 </div>
             </a>
-               
-                <!--
-                <table  width="100%" style="margin-bottom: 40px;">
-                    <tbody>
-                        <tr>
-                            <td width="5%" valign="middle">
-                                <div id="ex4">
-                               
-                                    <span class="p1 fa-stack fa-2x has-badge" data-count="{{$total_item}}">
-                                
-                                        //--<i class="p2 fa fa-circle fa-stack-2x"></i>--//
-                                        <i class="p3 fa fa-shopping-cart " data-count="4b" style=""></i>
-                                    </span>
-                                </div> 
-                            </td>
-                            <td width="25%" align="left" valign="middle">
-                                @if($item!==null)
-                            <h5 id="total_kr_">Rp. {{number_format($item->total_price , 0, ',', '.')}}</h5>
-                            <input type="hidden" id="total_kr_val" value="{{$item->total_price}}">
-                                @else
-                            <h5 id="total_kr_">Rp. 0</h5>
-                            <input type="hidden" id="total_kr_val" value="0">
-                                @endif
-                            </td>
-                            <td width="5%" valign="middle" >
-                                <a id="cv" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
-                                    <i class="fas fa-chevron-up" style=""></i>
-                                </a>
-                            </td>
-                            <td width="33%" align="right" valign="middle">
-                               
-                            <h5>({{$total_item}} Item)</h5>
-                             
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                -->
+            
             <div id="{{$total_item > 0 ? 'collapse-4' : '' }}" class="collapse" data-parent="#accordion">
                 <div id="cont-collapse" class="container">
                     <div class="card-body" id="card-detail" style="">
-                        <div class="col-md-12" style="padding-bottom:7rem;">
+                        <div class="col-md-12" style="padding-bottom:10rem;">
                             <table class="table-detail" width="100%">
                                 <tbody>
                                     @foreach($keranjang as $detil)
@@ -392,6 +355,10 @@ Home
                                     </div>
                                 </div>
                                 -->
+                                <div id="divchecktunai" class="custom-control custom-checkbox checkbox-lg ml-n3 mb-4 mt-n2">
+                                    <input type="checkbox" class="custom-control-input" id="checktunai" checked="">
+                                    <label class="custom-control-label" for="checktunai" style="color: #000;font-weight:600;">Pembayaran Tunai</label>
+                                </div>
                                 <div id="div_total" class="row float-left mt-2">
                                     <p class="mt-1" style="color: #000;font-weight:bold; ">Total Harga</p>&nbsp;
                                     @if($item!==null)
@@ -411,11 +378,7 @@ Home
                                 @endif
                                 <input type="hidden" id="order_id_cek" name="id" value="{{$item !==null ? $item->id : ''}}"/>
                                 <div id="chk-bl-btn" class="row justify-content-end my-auto">
-                                    <div id="divchecktunai" class="custom-control custom-checkbox checkbox-lg mr-3">
-                                        <input type="checkbox" class="custom-control-input" id="checktunai" checked="">
-                                        <label class="custom-control-label" for="checktunai" style="color: #153651;font-weight:600;">Pembayaran Tunai</label>
-                                    </div>
-                                    <a type="button" id="beli_sekarang" class="btn button_add_to_pesan float-right mb-3" onclick="show_modal()" style="padding: 10px 20px; ">Pesan Sekarang <i class="fab fa-whatsapp" aria-hidden="true" style="color: #ffffff !important; font-weight:900;"></i></a>
+                                    <a type="button" id="beli_sekarang" class="btn button_add_to_pesan float-right mb-2" onclick="show_modal()" style="padding: 10px 20px; ">Pesan Sekarang <i class="fab fa-whatsapp" aria-hidden="true" style="color: #ffffff !important; font-weight:900;"></i></a>
                                 </div>
                             @endif
                             </div>
@@ -482,17 +445,19 @@ Home
 <script>
     if ($(window).width() < 601) {
         $('#div_total').removeClass('float-left');
-        $('#div_total').addClass('justify-content-center');
+        //$('#div_total').addClass('justify-content-center');
         $('#div_total').removeClass('mt-2');
-        $('#div_total').addClass('mb-n4');
+        $('#div_total').addClass('mb-2');
         $('#beli_sekarang').removeClass('float-right');
         $('#beli_sekarang').addClass('btn-block');
+        $('#beli_sekarang').addClass('mb-0');
         $('#chk-bl-btn').removeClass('justify-content-end');
         $('#chk-bl-btn').addClass('justify-content-center');
         $('#divchecktunai').addClass('mb-2');
     }
     if ($(window).width() <= 480) {
         $('#cont-collapse').removeClass('container');
+        
     }
      
 </script>

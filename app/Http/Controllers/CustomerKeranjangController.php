@@ -691,7 +691,7 @@ class CustomerKeranjangController extends Controller
                                         <h5 style="color:#000">'.$total_item.'&nbsp;Item</h5>
                                     </td>
                                     <td align="right" width="70%">
-                                        <h5 class="pull-right" style="color: #000">Pesan Sekarang <i class="fa fa-paper-plane" aria-hidden="true" style="color: #FF0000 !important"></i></h5>
+                                    <h5 class="pull-right" style="color: #000">Kirim Order&nbsp;&nbsp;<img src="'.asset('assets/image/right-arrow.png').'" width="20" class="my-auto" alt="right-arrow"></h5>
                                     </td>
                                 </tr>
                             </table>
@@ -701,13 +701,13 @@ class CustomerKeranjangController extends Controller
                 <div id="collapse-4" class="collapse" data-parent="#accordion" style="" >
                     <div id="cont-collapse" class="container">
                         <div class="card-body" id="card-detail">
-                            <div class="col-md-12" style="padding-bottom:7rem;">
+                            <div class="col-md-12" style="padding-bottom:10rem;">
                                 <table class="table-detail" width="100%">
                                     <tbody>';
                                         foreach($keranjang as $order){
                                             foreach($order->products as $detil){
                                             echo'<tr>
-                                                <td width="25%" class="img-detail-cart" valign="middle" style="border-bottom: 1px solid #ddd;padding-top:3%;">
+                                                <td width="30%" class="img-detail-cart" valign="middle" style="border-bottom: 1px solid #ddd;padding-top:3%;">
                                                     <img src="'.asset('storage/'.$detil->image).'" 
                                                     class="image-detail"  alt="...">   
                                                 </td>
@@ -722,7 +722,7 @@ class CustomerKeranjangController extends Controller
                                                     echo'<h2 id="productPrice_kr'.$detil->id.'" style="font-weight:700;color: #153651;font-family: Montserrat;">Rp.&nbsp;'.number_format($total, 0, ',', '.').',-</h2>
                                                     <table width="20%" class="tabel-quantity">
                                                         <tbody>
-                                                            <tr id="response-id'.$detil->id.'">
+                                                            <tr>
                                                                 <td width="3%" align="left" valign="middle" rowspan="2">
                                                                     <p style="color: #000">Qty</p>
                                                                     <input type="hidden" id="order_id'.$detil->id.'" name="order_id" value="'.$order->id.'">';
@@ -802,13 +802,21 @@ class CustomerKeranjangController extends Controller
                                                 <button class="btn " type="submit" onclick="btn_code()" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
                                             </div>
                                         </div>-->';
-                                    echo'<div id="div_total" class="row float-left mt-2">
+                                    echo'
+                                        <div id="divchecktunai" class="custom-control custom-checkbox checkbox-lg ml-n3 mb-4 mt-n2">
+                                            <input type="checkbox" class="custom-control-input" id="checktunai" checked="">
+                                            <label class="custom-control-label" for="checktunai" style="color: #000;font-weight:600;">Pembayaran Tunai</label>
+                                        </div>
+                                        <div id="div_total" class="row float-left mt-2">
                                             <p class="mt-1" style="color: #000;font-weight:bold; ">Total Harga</p>&nbsp;
                                             <h2 id="total_kr_" style="font-weight:700;color: #153651;font-family: Montserrat;">Rp.&nbsp;'.number_format(($item_price) , 0, ',', '.').',-</h2>
                                             <input type="hidden" id="total_kr_val" value="'.$item_price.'">  
                                             <input type="hidden" class="form-control" id="voucher_code_hide">
                                         </div>';    
-                                    echo '<a type="button" id="beli_sekarang" class="btn button_add_to_pesan float-right mb-3" onclick="show_modal()" style="padding: 10px 20px; ">Pesan Sekarang <i class="fa fa-paper-plane" aria-hidden="true" style="color: #ffffff !important"></i></a>';
+                                    echo'
+                                        <div id="chk-bl-btn" class="row justify-content-end my-auto">
+                                            <a type="button" id="beli_sekarang" class="btn button_add_to_pesan float-right mb-2" onclick="show_modal()" style="padding: 10px 20px; ">Pesan Sekarang <i class="fa fa-paper-plane" aria-hidden="true" style="color: #ffffff !important"></i></a>
+                                        </div>';
                                     }
                                 echo'</div>
                             </div>

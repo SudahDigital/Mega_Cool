@@ -63,6 +63,9 @@
                 width: 40%;
             }
             
+            #beli_sekarang{
+                margin-bottom: 0;
+            }
         }
         .alert{
             position:fixed;
@@ -1515,11 +1518,21 @@
                                 success: function (response) {
                                 // We get the element having id of display_info and put the response inside it
                                 $('#accordion' ).html(response);
-                                if ($(window).width() < 601) {
-                                        $('#div_total').removeClass('float-left');
-                                        $('#div_total').addClass('justify-content-center');
-                                        $('#beli_sekarang').removeClass('float-right');
-                                        $('#beli_sekarang').addClass('btn-block');
+                                    if ($(window).width() < 601) {
+                                    $('#div_total').removeClass('float-left');
+                                    //$('#div_total').addClass('justify-content-center');
+                                    $('#div_total').removeClass('mt-2');
+                                    $('#div_total').addClass('mb-2');
+                                    $('#beli_sekarang').removeClass('float-right');
+                                    $('#beli_sekarang').addClass('btn-block');
+                                    $('#beli_sekarang').addClass('mb-0');
+                                    $('#chk-bl-btn').removeClass('justify-content-end');
+                                    $('#chk-bl-btn').addClass('justify-content-center');
+                                    $('#divchecktunai').addClass('mb-2');
+                                    }
+                                    if ($(window).width() <= 480) {
+                                        $('#cont-collapse').removeClass('container');
+                                        
                                     }
                                 },
                                 complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
@@ -1851,12 +1864,21 @@
                                 $( '#accordion' ).html(response);
                                 $('#collapse-4').addClass('show');
                                 if ($(window).width() < 601) {
-                                        $('#div_total').removeClass('float-left');
-                                        $('#div_total').addClass('justify-content-center');
-                                        $('#beli_sekarang').removeClass('float-right');
-                                        $('#beli_sekarang').addClass('btn-block');
+                                    $('#div_total').removeClass('float-left');
+                                    //$('#div_total').addClass('justify-content-center');
+                                    $('#div_total').removeClass('mt-2');
+                                    $('#div_total').addClass('mb-2');
+                                    $('#beli_sekarang').removeClass('float-right');
+                                    $('#beli_sekarang').addClass('btn-block');
+                                    $('#beli_sekarang').addClass('mb-0');
+                                    $('#chk-bl-btn').removeClass('justify-content-end');
+                                    $('#chk-bl-btn').addClass('justify-content-center');
+                                    $('#divchecktunai').addClass('mb-2');
                                     }
-                                
+                                    if ($(window).width() <= 480) {
+                                        $('#cont-collapse').removeClass('container');
+                                        
+                                    }
                                 },
                                 complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
                                     $('#loader').addClass('hidden')
