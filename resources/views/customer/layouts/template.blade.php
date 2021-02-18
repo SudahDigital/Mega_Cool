@@ -1896,6 +1896,7 @@
         function show_modal()
         {
             //$( "#collapse-4" ).load(window.location.href + " #collapse-4" );
+            var checkBox = document.getElementById("checktunai");
             var order_id = $('#order_id_cek').val();
             var total_pesan_val_hide = $('#total_pesan_val_hide').val();
             $.ajaxSetup({
@@ -1928,7 +1929,13 @@
                         $("#modal_validasi").modal('show');
                     }
                     else
-                    {
+                    {   
+                        if (checkBox.checked == true){
+                            $('#check_tunai_value').val('Cash');
+                        }
+                        else{
+                            $('#check_tunai_value').val('');
+                        }
                         $("#my_modal_content").modal('show');
                         $('#total_pesan_val').val(total_pesan_val_hide);
                         $('#order_id_pesan').val(order_id);

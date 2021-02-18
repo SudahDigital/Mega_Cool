@@ -294,7 +294,13 @@ class CustomerKeranjangController extends Controller
             $orders = Order::findOrfail($id);
             $orders->user_loc = $ses_order->user_loc;
             $orders->customer_id = $customer_id;
-            
+            if($request->get('check_tunai_value') != ""){
+                $payment_method=$request->get('check_tunai_value');
+                $orders->payment_method = $payment_method;
+            }
+            else{
+                $orders->payment_method =NULL;
+            }
             if($request->get('voucher_code_hide_modal') != ""){
                 $keyword = $request->get('voucher_code_hide_modal');
                 $vouchers_cek = \App\Voucher::where('code','=',"$keyword")->first();
@@ -318,7 +324,8 @@ class CustomerKeranjangController extends Controller
                 $vouchers->save();
             }
             //$total_ongkir  = 15000;
-            $total_bayar  = $total_pesanan;
+            //$total_bayar  = $total_pesanan;
+
             $href='Hello Admin Mega Cools,%0A%0ADetail Sales%0ANama : '.$user->name.',%0AEmail : '.$user->email.',%0ANo. Hp :' .$user->phone.',%0ASales Area :' .$city->city_name.',%0A%0ADetail Pelanggan%0ANama  : '.$customer->name.',%0AEmail : '.$customer->email.',%0ANo. Telp : '.$customer->phone.',%0ANama Toko : '.$customer->store_name.',%0AAlamat : '.$customer->address.',%0A%0ADetail Pesanan%0A';
                 if($orders->save()){
                 $pesan = DB::table('order_product')

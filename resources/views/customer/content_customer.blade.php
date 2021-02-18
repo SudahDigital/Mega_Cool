@@ -356,7 +356,7 @@ Home
                                 </div>
                                 -->
                                 <div id="divchecktunai" class="custom-control custom-checkbox checkbox-lg ml-n3 mb-4 mt-n2">
-                                    <input type="checkbox" class="custom-control-input" id="checktunai" checked="">
+                                    <input  type="checkbox" class="custom-control-input" id="checktunai" checked value="Cash">
                                     <label class="custom-control-label" for="checktunai" style="color: #000;font-weight:600;">Pembayaran Tunai</label>
                                 </div>
                                 <div id="div_total" class="row float-left mt-2">
@@ -402,10 +402,12 @@ Home
                     <input type="hidden" name ="voucher_code_hide_modal" id="voucher_code_hide_modal">
                     <input type="hidden" name="total_novoucher" id="total_novoucher_val">
                     <input type="hidden" name="total_pesanan" id="total_pesan_val" value="{{$item->total_price}}">
+                    <input type="hidden" name ="check_tunai_value" id="check_tunai_value">
                         @else
                         <input type="hidden" name ="voucher_code_hide_modal"  id="voucher_code_hide_modal">
                         <input type="hidden" name="total_novoucher" id="total_novoucher_val">
                         <input type="hidden" name="total_pesanan" id="total_pesan_val" >
+                        <input type="hidden" name ="check_tunai_value" id="check_tunai_value">
                     @endif
                 <div class="modal-body">
                     <p style="color:  #1A4066;font-weight:600;">Proses pemesanan melalui whatsapp...</p>
