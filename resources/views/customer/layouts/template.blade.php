@@ -30,6 +30,30 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183852861-1"></script>
     <style type="text/css">
+        .checkbox-lg .custom-control-label::before, 
+        .checkbox-lg .custom-control-label::after {
+        top: .8rem;
+        width: 1.55rem;
+        height: 1.55rem;
+        }
+
+        .checkbox-lg .custom-control-label {
+        padding-top: 13px;
+        padding-left: 6px;
+        }
+
+
+        .checkbox-xl .custom-control-label::before, 
+        .checkbox-xl .custom-control-label::after {
+        top: 1.2rem;
+        width: 1.85rem;
+        height: 1.85rem;
+        }
+
+        .checkbox-xl .custom-control-label {
+        padding-top: 23px;
+        padding-left: 10px;
+        }
         /*[class^='select2'] {
             border-top-left-radius: 15px !important;
             border-top-right-radius: 15px !important;
@@ -1304,7 +1328,7 @@
             rupiah += separator + ribuan.join('.');
             }
 
-            harga = "Rp " + rupiah+ ",-";
+            harga = "Rp. " + rupiah+ ",-";
 
             if (jumlah<1) {
             alert('Jumlah Tidak Boleh Kurang dari 1')

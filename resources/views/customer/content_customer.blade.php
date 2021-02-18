@@ -157,7 +157,7 @@ Home
                                             
                                         </td>
                                         <td width="30%" align="left" id="td-text-quantity" class="td-text-quantity" valign="middle" rowspan="2" >
-                                            <input type="number" id="show_{{$value->id}}" onkeyup="input_qty('{{$value->id}}')" class="form-control mr-0 px-1 font-weight-bold" value="1" style="color:#000;font-weight:300;text-align:center;">
+                                            <input type="number" id="show_{{$value->id}}" onkeyup="input_qty('{{$value->id}}')" class="form-control input-sm mr-0 px-1 font-weight-bold" value="1" style="color:#000;font-weight:300;text-align:center;">
                                         </td>
                                         <td width="10%" class="td-btn-plus" align="center" valign="middle" bgcolor="#ffffff" style="border-top-left-radius:5px;border-top-right-radius:5px;">
                                             <a class="button_plus" onclick="button_plus('{{$value->id}}')" style=""><i class="fa fa-plus" aria-hidden="true"></i></a>
@@ -382,17 +382,17 @@ Home
                         <div class="container">
                             <div class="col-md-12 py-3">
                                 <input type="hidden" class="form-control" id="voucher_code_hide">
-                                @if($total_item > 0)
-                                    <!--
-                                    <div class="input-group mb-2 mt-2">
-                                        <input type="text" class="form-control" id="voucher_code" 
-                                        placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#ffcc94;outline:none;">
-                                        <div class="input-group-append" required>
-                                            <button class="btn " type="submit" onclick="btn_code('')" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
-                                        </div>
+                            @if($total_item > 0)
+                                <!--
+                                <div class="input-group mb-2 mt-2">
+                                    <input type="text" class="form-control" id="voucher_code" 
+                                    placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#ffcc94;outline:none;">
+                                    <div class="input-group-append" required>
+                                        <button class="btn " type="submit" onclick="btn_code('')" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
                                     </div>
-                                    -->
-                                    <div id="div_total" class="row float-left mt-2">
+                                </div>
+                                -->
+                                <div id="div_total" class="row float-left mt-2">
                                     <p class="mt-1" style="color: #000;font-weight:bold; ">Total Harga</p>&nbsp;
                                     @if($item!==null)
                                     <h2 id="total_kr_" style="font-weight:700;color: #153651;font-family: Montserrat;">Rp. {{number_format($item->total_price , 0, ',', '.')}},-</h2>
@@ -400,18 +400,24 @@ Home
                                         @else
                                     <h2 id="total_kr_" style="font-weight:700;color: #153651;font-family: Montserrat;">Rp. 0,-</h2>
                                     <input type="hidden" id="total_kr_val" value="0">
-                                        @endif
-                                    </div>
-                                    
-
-                                    @if($item!==null)
-                                        <input type="hidden" name="total_pesanan" id="total_pesan_val_hide" value="{{$item->total_price}}">
-                                    @else
-                                        <input type="hidden" name="total_pesanan" id="total_pesan_val_hide" value="0">
                                     @endif
-                                    <input type="hidden" id="order_id_cek" name="id" value="{{$item !==null ? $item->id : ''}}"/> 
-                                    <a type="button" id="beli_sekarang" class="btn button_add_to_pesan float-right mb-3" onclick="show_modal()" style="padding: 10px 20px; ">Pesan Sekarang <i class="fab fa-whatsapp" aria-hidden="true" style="color: #ffffff !important; font-weight:900;"></i></a>
+                                </div>
+                                
+
+                                @if($item!==null)
+                                    <input type="hidden" name="total_pesanan" id="total_pesan_val_hide" value="{{$item->total_price}}">
+                                @else
+                                    <input type="hidden" name="total_pesanan" id="total_pesan_val_hide" value="0">
                                 @endif
+                                <input type="hidden" id="order_id_cek" name="id" value="{{$item !==null ? $item->id : ''}}"/>
+                                <div id="chk-bl-btn" class="row justify-content-end my-auto">
+                                    <div id="divchecktunai" class="custom-control custom-checkbox checkbox-lg mr-3">
+                                        <input type="checkbox" class="custom-control-input" id="checktunai" checked="">
+                                        <label class="custom-control-label" for="checktunai" style="color: #153651;font-weight:600;">Pembayaran Tunai</label>
+                                    </div>
+                                    <a type="button" id="beli_sekarang" class="btn button_add_to_pesan float-right mb-3" onclick="show_modal()" style="padding: 10px 20px; ">Pesan Sekarang <i class="fab fa-whatsapp" aria-hidden="true" style="color: #ffffff !important; font-weight:900;"></i></a>
+                                </div>
+                            @endif
                             </div>
                         </div>
                     </div>
@@ -477,8 +483,13 @@ Home
     if ($(window).width() < 601) {
         $('#div_total').removeClass('float-left');
         $('#div_total').addClass('justify-content-center');
+        $('#div_total').removeClass('mt-2');
+        $('#div_total').addClass('mb-n4');
         $('#beli_sekarang').removeClass('float-right');
         $('#beli_sekarang').addClass('btn-block');
+        $('#chk-bl-btn').removeClass('justify-content-end');
+        $('#chk-bl-btn').addClass('justify-content-center');
+        $('#divchecktunai').addClass('mb-2');
     }
     if ($(window).width() <= 480) {
         $('#cont-collapse').removeClass('container');
