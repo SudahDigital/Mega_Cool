@@ -12,8 +12,8 @@
     <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" >
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style_cools.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_1.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_1.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css')}}">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -1188,6 +1188,61 @@
                     });*/
             
         }
+
+        function input_qty(id){
+            
+            var jumlah = $('#show_'+id).val();
+            
+            if (jumlah == ""){
+                var jumlah = $('#jumlah'+id).val(0);
+                var harga = $('#harga'+id).val();
+                var harga = parseInt(harga) * jumlah;
+
+                // UBAH FORMAT UANG INDONESIA
+                var	number_string = harga.toString();
+                var sisa 	= number_string.length % 3;
+                var rupiah 	= number_string.substr(0, sisa);
+                var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+                if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+                }
+
+                harga = "Rp. " + rupiah +",-";
+                $('#productPrice'+id).text(harga);
+            }else{
+                var jumlah = parseInt(jumlah);
+                // AMBIL NILAI HARGA
+                var harga = $('#harga'+id).val();
+                var harga = parseInt(harga) * jumlah;
+
+                // UBAH FORMAT UANG INDONESIA
+                var	number_string = harga.toString();
+                var sisa 	= number_string.length % 3;
+                var rupiah 	= number_string.substr(0, sisa);
+                var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+                if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+                }
+
+                harga = "Rp. " + rupiah +",-";
+                
+                // alert(jumlah)
+                if (jumlah<1) {
+                    alert('Jumlah Tidak Boleh Kurang Dari 1');
+                    $('#jumlah'+id).val(0);
+                    $('#show_'+id).val("");
+                } else {
+                    $('#jumlah'+id).val(jumlah)
+                    $('#show_'+id).val(jumlah)
+                    $('#productPrice'+id).text(harga);
+                    
+                }
+            }
+        }
         
         function button_plus(id)
         {
@@ -1211,13 +1266,21 @@
 
             harga = "Rp. " + rupiah +",-";
             
+            var text_harga = $('#harga'+id).val();
+            var	text_string = text_harga.toString();
+            var hasil = text_string.length;
             // alert(jumlah)
             if (jumlah<1) {
             alert('Jumlah Tidak Boleh Kosong')
             } else {
-            $('#jumlah'+id).val(jumlah)
-            $('#show_'+id).html(jumlah)
-            $('#productPrice'+id).text(harga);
+                $('#jumlah'+id).val(jumlah)
+                $('#show_'+id).val(jumlah)
+                $('#productPrice'+id).text(harga);
+                if(hasil > 8){
+                    if ($(window).width() <= 480) {
+                        $('#productPrice'+id).style.fontSize = "small";
+                    } 
+                }
             }
         }
         
@@ -1247,10 +1310,11 @@
             alert('Jumlah Tidak Boleh Kurang dari 1')
             } else {
             $('#jumlah'+id).val(jumlah);
-            $('#show_'+id).html(jumlah);
+            $('#show_'+id).val(jumlah);
             $('#productPrice'+id).text(harga);
             }
         }
+
         /*
         function button_minus(id)
         {   
@@ -1356,12 +1420,15 @@
             var quantity = $('#jumlah'+id).val();
             var price = $('#harga'+id).val();
             var voucher_code_hide = document.getElementById("voucher_code_hide").value;
-            
-            $.ajaxSetup({
+            if (quantity <= 0 || quantity ==""){
+                alert('Jumlah tidak boleh kosong atau kurang dari 1');
+            }
+            else{
+                $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
-                    });
+                });
                 $.ajax({
                     url : '{{URL::to('/keranjang/simpan')}}',
                     type:'POST',
@@ -1378,8 +1445,8 @@
                         //$('#'+id).val(jumlah);
                         //$('#show_'+id).html(jumlah);
                         // UBAH FORMAT UANG INDONESIA
-                       $('#message').html("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert'>×</button>Product berhasil dimasukkan ke keranjang</div>").fadeIn('slow');
-                       $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+                        $('#message').html("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert'>×</button>Product berhasil dimasukkan ke keranjang</div>").fadeIn('slow');
+                        $(".alert").fadeTo(2000, 500).slideUp(500, function(){
                             $(".alert").slideUp(500); 
                         });
                         var	number_string = price.toString();
@@ -1442,7 +1509,7 @@
                     console.log('Error:', data);
                     }
                 });
-            
+            }
         }
         
         function button_minus_kr(id)

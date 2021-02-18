@@ -3,12 +3,25 @@
 Home    
 @endsection
 @section('content')
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+    -moz-appearance: textfield;
+    }
+</style>
     @if(session('sukses_peesan'))
     <div class="alert alert-success">
         {{session('sukses_pesan')}}
     </div>
     @endif
-
+    
     <div class="container list-product">
         <div class="row">
             <div class="col-md-12 ">
@@ -143,8 +156,8 @@ Home
                                             <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart('{{$value->id}}')" style="">Tambah</button>
                                             
                                         </td>
-                                        <td width="30%" align="left" class="td-text-quantity" valign="middle" rowspan="2" class="pr-2">
-                                            <input type="text" id="show_{{$value->id}}" class="form-control mr-2 px-1 font-weight-bold" value="1" style="color:#000;font-weight:300;">
+                                        <td width="30%" align="left" id="td-text-quantity" class="td-text-quantity" valign="middle" rowspan="2" >
+                                            <input type="number" id="show_{{$value->id}}" onkeyup="input_qty('{{$value->id}}')" class="form-control mr-0 px-1 font-weight-bold" value="1" style="color:#000;font-weight:300;text-align:center;">
                                         </td>
                                         <td width="10%" class="td-btn-plus" align="center" valign="middle" bgcolor="#ffffff" style="border-top-left-radius:5px;border-top-right-radius:5px;">
                                             <a class="button_plus" onclick="button_plus('{{$value->id}}')" style=""><i class="fa fa-plus" aria-hidden="true"></i></a>
@@ -469,7 +482,8 @@ Home
     }
     if ($(window).width() <= 480) {
         $('#cont-collapse').removeClass('container');
-    }  
+    }
+     
 </script>
 @endsection
 
