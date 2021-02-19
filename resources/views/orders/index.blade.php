@@ -40,7 +40,7 @@
 			<tr>
 				<th>No</th>
 				<th>Status</th>
-				<th width="30%">Buyer</th>
+				<th width="30%">Customer</th>
 				<th width="20%" style="padding-left: 5%;">Order Product</th>
 				<th>Total quantity</th>
 				<th>Order date</th>

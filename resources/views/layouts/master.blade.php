@@ -215,7 +215,7 @@
                         </ul>
                         
                     </li>
-
+                    <!--
                     <li class="{{request()->routeIs('vouchers.index') ? 'active' : ''}}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">chrome_reader_mode</i>
@@ -227,7 +227,7 @@
                             </li>
                         </ul>
                     </li>
-
+                    
                     <li class="{{request()->routeIs('orders.index') ? 'active' : ''}}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">shopping_cart</i>
@@ -239,6 +239,7 @@
                             </li>
                         </ul>
                     </li>
+                    -->
                 </ul>
             </div>
             <!-- #Menu -->

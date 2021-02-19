@@ -25,12 +25,12 @@ class OrderController extends Controller
     {
         $status = $request->get('status');
         if($status){
-        $orders = \App\Order::with('products')->whereNotNull('username')
+        $orders = \App\Order::with('products')->whereNotNull('customer_id')
         ->where('status',strtoupper($status))
         ->orderBy('id', 'DESC')->get();//paginate(10);
         }
         else{
-            $orders = \App\Order::with('products')->whereNotNull('username')
+            $orders = \App\Order::with('products')->whereNotNull('customer_id')
             ->orderBy('id', 'DESC')->get();
         }
         return view('orders.index', ['orders' => $orders]);
