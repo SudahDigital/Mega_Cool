@@ -892,22 +892,22 @@
         $('#customer_id').select2({
         placeholder: 'Pilih Toko',
         ajax: {
-            url: '{{URL::to('/ajax/store')}}',
-            processResults: function (data) {
-            return {
-                results:  $.map(data, function (item) {
-                    return {
-                            id: item.id,
-                            text: item.store_name
-                        
-                    }
-                })
-            };
+                url: '{{URL::to('/ajax/store')}}',
+                processResults: function (data) {
+                return {
+                    results:  $.map(data, function (item) {
+                        return {
+                                id: item.id,
+                                text: item.store_name
+                            
+                        }
+                    })
+                };
             }
             
         }
         });
-
+        
         //$('#accordion').collapse('show').height('auto');
 
         // duration of scroll animation
@@ -1488,7 +1488,7 @@
 
                         price = "Rp. " + rupiah +",-";
                         $('#jumlah'+id).val(1);
-                        $('#show_'+id).html(1);
+                        $('#show_'+id).val(1);
                         $('#productPrice'+id).text(price);
                         if(voucher_code_hide !=""){
                             $.ajax({
