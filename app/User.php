@@ -35,6 +35,10 @@ class User extends Authenticatable
     public function cities(){
         return $this->belongsTo('App\City','city_id');
     }
+
+    public function customers(){
+        return $this->belongsTo('App\customer','user_id');
+    }
     /**
      * The attributes that should be cast to native types.
      *

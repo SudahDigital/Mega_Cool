@@ -30,6 +30,24 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183852861-1"></script>
     <style type="text/css">
+        button#no-results-btn {
+            width: 100%;
+            height: 100%;
+            padding: 6px;
+        }
+
+        /* Make button look like other li elements */
+        button#no-results-btn {
+            border: 0;
+            background-color: #DADADA;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        button#no-results-btn:hover {
+            background-color: #5897fb;
+        }
+        
         .checkbox-lg .custom-control-label::before, 
         .checkbox-lg .custom-control-label::after {
         top: .8rem;
@@ -104,9 +122,6 @@
             font-weight: 600;
         }
 
-       
-        
-
         #LocationForm .modal-dialog-full-width {
             position:absolute;
             right:0;
@@ -118,6 +133,23 @@
         }
 
         #LocationForm .modal-content-full-width  {
+            height: auto !important;
+            min-height: 100% !important;
+            border-radius: 0 !important;
+            background-color: #1A4066 !important 
+        }
+        
+        #storeForm .modal-dialog-full-width {
+            position:absolute;
+            right:0;
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            max-width:none !important;
+        }
+
+        #storeForm .modal-content-full-width  {
             height: auto !important;
             min-height: 100% !important;
             border-radius: 0 !important;
@@ -593,7 +625,7 @@
 </head>
 <body>
     <div id="message" class="row justify-content-center"></div>
-    <!-- Modal firstpage-->
+    <!-- Modal loaction-->
     @if (!session()->has('ses_order'))
     <div class="modal fade right" id="LocationForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
@@ -639,7 +671,9 @@
                                             </td>
                                             <td class="px-2">
                                                 <div class="form-group">
-                                                    <select name="customer_id"  id="customer_id" class="form-control" style="width:100%;" required></select>
+                                                    <select name="customer_id"  id="customer_id" class="form-control" style="width:100%;" required>
+                                                        
+                                                    </select>
                                                 </div>
                                             </td>
                                         </tr>
@@ -660,7 +694,7 @@
                                 <input type="hidden" id="lat" name="lat">
                                 <input type="hidden" id="lng" name="lng">
                                 <div class="mx-auto text-center">
-                                    <button type="submit" class="btn btn_login_form" >{{ __('Check In') }}</button>
+                                    <button type="submit" class="btn btn_login_form" >{{ __('Masuk') }}</button>
                                 </div>
                             </form>
                         </div>
@@ -670,6 +704,85 @@
         </div>
     </div>
     @endif
+
+    <!-- Modal new store form-->
+    <div class="modal fade right" id="storeForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+        <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+            <div class="modal-content-full-width modal-content ">
+                <div class="modal-body">
+                    <img src="{{ asset('assets/image/dot-top-right.png') }}" class="dot-top-right"  
+                    style="" alt="dot-top-right">
+                    <img src="{{ asset('assets/image/dot-bottom-left.png') }}" class="dot-bottom-left"  
+                    style="" alt="dot-bottom-left">
+                    <img src="{{ asset('assets/image/shape-bottom-right.png') }}" class="shape-bottom-right"  
+                    style="" alt="shape-bottom-right">
+                    <div class="container">
+                        <div class="d-flex justify-content-center mx-auto">
+                            <div class="col-md-2 image-logo-login" style="z-index: 2">
+                            <img src="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png') }}" class="img-thumbnail pt-4" style="background-color:transparent; border:none;" alt="LOGO MEGACOOLS_DEFAULT">  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 login-label pt-4" style="z-index: 2">
+                        <h3 >Tambah Toko Baru</h3>
+                    </div>
+                    
+                    <div class="row justify-content-center">
+                        <div class="col-md-5 login-label" style="z-index: 2">
+                            <form method="POST" action="{{ route('register') }}">
+                                @csrf
+                                <div class="card mx-auto contact_card" 
+                                style="border-top-left-radius:25px;
+                                border-top-right-radius:25px;
+                                border-bottom-right-radius:0;
+                                border-bottom-left-radius:0;">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <input type="text" name="name" class="form-control contact_input @error('name') is-invalid @enderror" placeholder="Nama" id="name" required autocomplete="off" autofocus value="{{ old('name') }}">
+                                            <!--<label for="name" class="contact_label">{{ __('Nama') }}</label>-->
+                                            @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <hr style="border:1px solid rgba(116, 116, 116, 0.507);">
+                                        <div class="form-group">
+                                            <input type="email" name="email" class="form-control contact_input @error('email') is-invalid @enderror" placeholder="Email" id="email" required autocomplete="off" value="{{ old('email') }}">
+                                            <!--<label for="email" class="contact_label">{{ __('Email') }}</label>-->
+                                            @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <hr style="border:1px solid rgba(116, 116, 116, 0.507);">
+                                        <div class="form-group">
+                                            <input type="password" name="password" class="form-control contact_input @error('password') is-invalid @enderror" placeholder="Kata Sandi" id="password" required autocomplete="off" value="{{ old('password') }}">
+                                            <!--<label for="password" class="contact_label">{{ __('Kata Sandi') }}</label>-->
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <hr style="border:1px solid rgba(116, 116, 116, 0.507);">
+                                        <div class="form-group">
+                                            <input type="password" name="password_confirmation" class="form-control contact_input" placeholder="Konfirmasi Kata Sandi" id="password-confirm" required autocomplete="off">
+                                            <!--<label for="password-confirm" class="contact_label">{{ __('Konfirmasi Kata Sandi') }}</label>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mx-auto text-center">
+                                    <button type="submit" class="btn btn_login_form">{{ __('Sign Up') }}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!--preloader-->
     <div class="preloader" id="preloader">
@@ -826,31 +939,6 @@
             </div>
         </div>
     </div>
-    
-
-
-    <!-- Modal search -->
-    <div class="modal fade" id="searchModal" role="dialog">
-        <div class="modal-dialog">
-        <!-- Modal content-->
-            <div class="modal-content" style="background: #FDD8AF">
-                <div class="modal-body">
-                    <div class="row justify-content-center">
-                        <form action="{{route('search.index')}}">
-                            <div class="input-group">
-                                <div class="input-group-append">
-                                        <button class="btn search_botton_navbar" type="submit" id="button-search-addon" style="border-radius: 50%;"><i class="fa fa-search"></i></button>
-                                        <input class="form-control d-block search_input_navbar" name="keyword" type="text" value="{{Request::get('keyword')}}" placeholder="Search" aria-label="Search" aria-describedby="button-search-addon">
-                                </div>
-                                    
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
@@ -872,25 +960,41 @@
         //Select2
         $('#city_id').select2({
         placeholder: 'Pilih Kota',
+        language: {
+        noResults: function() {
+            return '&nbsp;Data Tidak Ditemukan';
+            },
+        },
+        escapeMarkup: function(markup) {
+            return markup;
+        },
         ajax: {
             url: '{{URL::to('/ajax/city')}}',
+            
             processResults: function (data) {
             return {
                 results:  $.map(data, function (item) {
                     return {
                             id: item.id,
-                            text: item.city_name
-                        
+                            text: item.city_name,
+                            
                     }
                 })
             };
             }
-            
         }
         });
 
         $('#customer_id').select2({
         placeholder: 'Pilih Toko',
+        language: {
+        noResults: function() {
+            return '&nbsp;Data Tidak Ditemukan<br><button id="no-results-btn" onclick="noResultsButtonClicked()">Tambah Toko Baru...</button>';
+            },
+        },
+        escapeMarkup: function(markup) {
+            return markup;
+        },
         ajax: {
                 url: '{{URL::to('/ajax/store')}}',
                 processResults: function (data) {
@@ -899,15 +1003,23 @@
                         return {
                                 id: item.id,
                                 text: item.store_name
-                            
                         }
+                        
                     })
                 };
+                
+            }
             }
             
-        }
         });
-        
+
+        function noResultsButtonClicked()
+        {
+            $("#storeForm").modal('show');
+            $("#customer_id").select2().on("select2-open", hideSelect2Keyboard);
+            
+        }
+
         //$('#accordion').collapse('show').height('auto');
 
         // duration of scroll animation
@@ -985,7 +1097,7 @@
             $("#LocationForm").modal('show');
         });
 
-        $('#LocationForm').on('show.bs.modal', function () {
+        /*$('#LocationForm').on('show.bs.modal', function () {
         //geolocation
         /*if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(savePosition, positionError, {timeout:10000});
@@ -1007,8 +1119,8 @@
                 $('#lat').val(position.coords.latitude);
                 $('#lng').val(position.coords.longitude);
                 //$("#LocationForm").modal('hide');    
-            }*/
-        });
+            }
+        });*/
 
         /*
         $(function () {

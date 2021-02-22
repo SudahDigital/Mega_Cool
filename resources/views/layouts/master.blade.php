@@ -215,19 +215,19 @@
                         </ul>
                         
                     </li>
-                    <!--
-                    <li class="{{request()->routeIs('vouchers.index') ? 'active' : ''}}">
+                    
+                    <li class="{{request()->routeIs('customers.index') ? 'active' : ''}}">
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">chrome_reader_mode</i>
-                            <span>Manage Vouchers</span>
+                            <i class="material-icons">contacts</i>
+                            <span>Manage Customers</span>
                         </a>
                         <ul class="ml-menu">
-                            <li class="{{request()->routeIs('vouchers.index') ? 'active' : '' }}">
-                                <a href="{{route('vouchers.index')}}">Vouchers</a>
+                            <li class="{{request()->routeIs('customers.index') ? 'active' : '' }}">
+                                <a href="{{route('customers.index')}}">Customers</a>
                             </li>
                         </ul>
                     </li>
-                    
+                    <!--
                     <li class="{{request()->routeIs('orders.index') ? 'active' : ''}}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">shopping_cart</i>
