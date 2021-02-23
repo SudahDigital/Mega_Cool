@@ -50,7 +50,7 @@
         <div class="form-group form-float">
             <div class="form-line">
                 <input type="text" class="form-control" name="name" autocomplete="off" required>
-                <label class="form-label">Contact</label>
+                <label class="form-label">Contact Person</label>
             </div>
         </div>
 

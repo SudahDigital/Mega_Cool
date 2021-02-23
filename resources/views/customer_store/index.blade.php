@@ -37,7 +37,7 @@
 		<div class="col-md-6">&nbsp;</div>
 		<div class="col-md-12">
 			<a href="{{route('customers.import')}}" class="btn btn-success ">Import Excel (<small>New</small>) </a>&nbsp;
-			<a href="{{route('products.export_all')}}" class="btn btn-success ">Export Excel (<small>Products Stock</small>)</a>&nbsp;
+			<a href="{{route('customers.export')}}" class="btn btn-success ">Export Excel </a>&nbsp;
 			<a href="{{route('customers.create')}}" class="btn bg-cyan">Create Customer</a>
 		</div>
 	</div>
@@ -65,8 +65,9 @@
 			<?php $no++;?>
 			<tr>
 				<td>{{$no}}</td>
-				<td>@if($c->store_code)
-					<img src="{{asset('storage/'.$c->store_code)}}" width="50px" height="50px" />
+				<td>
+					@if($c->store_code)
+					{{$c->store_code}}
 					@else
 					-
 					@endif

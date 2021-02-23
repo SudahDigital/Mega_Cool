@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CustomersImport;
+use App\Exports\CustomerExport;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -62,7 +63,7 @@ class CustomerController extends Controller
         $new_cust->store_name = $request->get('store_name');
         $new_cust->address = $request->get('address');
         $new_cust->payment_term = $request->get('payment_term');
-        $new_cust->user_id = $request->get('user');
+        $new_cust->user_id = $request->get('user_id');
         
         $new_cust->save();
         if ( $new_cust->save()){
@@ -91,7 +92,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cust = \App\Customer::findOrFail($id);
+        return view('customer_store.edit',['cust' => $cust]);
     }
 
     /**
@@ -103,7 +105,17 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cust =\App\Customer::findOrFail($id);
+        $cust->store_code = $request->get('store_code');
+        $cust->name = $request->get('name');
+        $cust->email = $request->get('email');
+        $cust->phone = $request->get('phone');
+        $cust->store_name = $request->get('store_name');
+        $cust->address = $request->get('address');
+        $cust->payment_term = $request->get('payment_term');
+        $cust->user_id = $request->get('user_id');
+        $cust->save();
+        return redirect()->route('customers.edit',[$id])->with('status','Customer Succsessfully Update');
     }
 
     /**
@@ -131,6 +143,10 @@ class CustomerController extends Controller
         $keyword = $request->get('q');
         $user = \App\User::where('name','LIKE',"%$keyword%")->get();
         return $user;
+    }
+
+    public function export() {
+        return Excel::download( new CustomerExport(), 'Customers.xlsx') ;
     }
 
     public function import(){

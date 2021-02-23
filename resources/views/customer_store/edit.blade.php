@@ -1,0 +1,105 @@
+@extends('layouts.master')
+@section('title') Edit Customer @endsection
+@section('content')
+
+	@if(session('status'))
+		<div class="alert alert-success">
+			{{session('status')}}
+		</div>
+	@endif
+	<!-- Form Create -->
+    <form id="form_validation" method="POST" enctype="multipart/form-data" action="{{route('customers.update',[$cust->id])}}">
+    	@csrf
+        <input type="hidden" name="_method" value="PUT">
+        <div class="form-group form-float">
+            <div class="form-line" id="code_">
+                <input type="text" class="form-control" name="store_code" autocomplete="off" 
+                value="{{$cust->store_code}}" readonly required>
+                <label class="form-label">Customer Code / Search Key</label>
+            </div>
+        </div>
+
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="text" class="form-control" name="store_name" value="{{$cust->store_name}}" autocomplete="off" required>
+                <label class="form-label">Name</label>
+            </div>
+        </div>
+
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="email" class="form-control" value="{{$cust->email}}" name="email" autocomplete="off" required>
+                <label class="form-label">Email</label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="form-line">
+                <textarea name="address" rows="4" class="form-control no-resize" placeholder="Address" autocomplete="off" required>{{$cust->address}}</textarea>
+            </div>
+        </div>
+
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="text" class="form-control" name="phone" value="{{$cust->phone}}" minlength="10" maxlength="12" autocomplete="off" required>
+                <label class="form-label">Phone Number</label>
+            </div>
+            <div class="help-info">Min.10, Max. 12 Characters</div>
+        </div>
+
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="text" class="form-control" name="name" value="{{$cust->name}}" autocomplete="off" required>
+                <label class="form-label">Contact Person</label>
+            </div>
+        </div>
+
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="text" class="form-control" name="payment_term" value="{{$cust->payment_term}}" autocomplete="off" required>
+                <label class="form-label">Payment Term</label>
+            </div>
+        </div>
+
+        <h2 class="card-inside-title">Sales Representative</h2>
+            <select name="user_id"  id="user" class="form-control"></select>
+        <br>
+        
+        <button class="btn btn-primary waves-effect" name="save_action" value="SAVE" type="submit" style="margin-top: 20px;">SAVE</button>
+    </form>
+    <!-- #END#  -->		
+
+@endsection
+
+@section('footer-scripts')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script>
+    $('#user').select2({
+      placeholder: 'Select an item',
+      ajax: {
+        url: '{{URL::to('/ajax/users/search')}}',
+        processResults: function (data) {
+          return {
+            results:  $.map(data, function (item) {
+                  return {
+                        id: item.id,
+                        text: item.name
+                      
+                  }
+              })
+          };
+        }
+        
+      }
+    });
+
+    var users = JSON.stringify([{!! $cust->users !!}]);
+    users = JSON.parse(users);
+    users.forEach(function(cust){
+    var option = new Option(cust.name, cust.id, true, true);
+    $('#user').append(option).trigger('change');
+    });
+</script>
+
+@endsection
