@@ -38,7 +38,7 @@
 		<div class="col-md-12">
 			<a href="{{route('customers.import')}}" class="btn btn-success ">Import Excel (<small>New</small>) </a>&nbsp;
 			<a href="{{route('products.export_all')}}" class="btn btn-success ">Export Excel (<small>Products Stock</small>)</a>&nbsp;
-			<a href="{{route('products.create')}}" class="btn bg-cyan">Create Product</a>
+			<a href="{{route('customers.create')}}" class="btn bg-cyan">Create Customer</a>
 		</div>
 	</div>
 </form>	

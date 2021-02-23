@@ -43,7 +43,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('customer_store.create');
     }
 
     /**
@@ -54,7 +54,22 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $new_cust = new \App\Customer;
+        $new_cust->store_code = $request->get('store_code');
+        $new_cust->name = $request->get('name');
+        $new_cust->email = $request->get('email');
+        $new_cust->phone = $request->get('phone');
+        $new_cust->store_name = $request->get('store_name');
+        $new_cust->address = $request->get('address');
+        $new_cust->payment_term = $request->get('payment_term');
+        $new_cust->user_id = $request->get('user');
+        
+        $new_cust->save();
+        if ( $new_cust->save()){
+            return redirect()->route('customers.create')->with('status','Customer Succsessfully Created');
+        }else{
+            return redirect()->route('customers.create')->with('error','Customer Not Succsessfully Created');
+        }
     }
 
     /**
@@ -102,6 +117,22 @@ class CustomerController extends Controller
         //
     }
 
+    public function ajaxSearch(Request $request){
+        $keyword = $request->get('code');
+        $cust = \App\Customer::where('store_code','=',"$keyword")->count();
+        if ($cust > 0) {
+            echo "taken";	
+          }else{
+            echo 'not_taken';
+          }
+    }
+
+    public function ajaxUserSearch(Request $request){
+        $keyword = $request->get('q');
+        $user = \App\User::where('name','LIKE',"%$keyword%")->get();
+        return $user;
+    }
+
     public function import(){
         return view('customer_store.import_customers');
     }
@@ -110,9 +141,8 @@ class CustomerController extends Controller
         \Validator::make($request->all(), [
             "file" => "required|mimes:xls,xlsx"
         ])->validate();
-
-        Excel::import(new CustomersImport, request()->file('file'));
-
+            
+        $data = Excel::toArray(new CustomersImport, request()->file('file'));
         return redirect()->route('customers.import')->with('status', 'File successfully upload');
     }
 }

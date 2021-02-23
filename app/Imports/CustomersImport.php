@@ -6,9 +6,11 @@ use App\Customer;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class CustomersImport implements ToModel
+class CustomersImport implements ToModel, WithHeadingRow
 {
+    use Importable;
     /**
     * @param array $row
     *
@@ -17,12 +19,17 @@ class CustomersImport implements ToModel
     public function model(array $row)
     {
         return new Customer([
-            'store_code'=>$row['Search_Key'],
-            'store_name' => $row['Name'],
-            'address' => $row['Address'],
-            'phone'=>$row['Phone'],
-            'name' => $row['Contact'],
-            'payment_term'=>$row['Payment_Term']
+            'store_code'=>$row[0]=='NULL' ? null : $row[0],
+            'store_name' => $row[1]=='NULL' ? null : $row[1],
+            'address' => $row[2]=='NULL' ? null : $row[2],
+            'phone'=>$row[3]=='NULL' ? null : $row[3],
+            'name' => $row[4]=='NULL' ? null : $row[4],
+            'payment_term'=>$row[5]=='NULL' ? : $row[5],
         ]);
+    }
+
+    public function startRow(): int
+    {
+        return 2;
     }
 }
