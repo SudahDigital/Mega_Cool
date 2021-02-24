@@ -158,7 +158,7 @@ class CustomerController extends Controller
             "file" => "required|mimes:xls,xlsx"
         ])->validate();
             
-        $data = Excel::toArray(new CustomersImport, request()->file('file'));
+        $data = Excel::import(new CustomersImport, request()->file('file'));
         return redirect()->route('customers.import')->with('status', 'File successfully upload');
     }
 }

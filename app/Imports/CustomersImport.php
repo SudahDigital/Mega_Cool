@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class CustomersImport implements ToModel, WithHeadingRow
+class CustomersImport implements ToModel,  WithStartRow
 {
     use Importable;
     /**
@@ -24,7 +24,7 @@ class CustomersImport implements ToModel, WithHeadingRow
             'address' => $row[2]=='NULL' ? null : $row[2],
             'phone'=>$row[3]=='NULL' ? null : $row[3],
             'name' => $row[4]=='NULL' ? null : $row[4],
-            'payment_term'=>$row[5]=='NULL' ? : $row[5],
+            'payment_term'=>$row[5]=='NULL' ? null : $row[5],
         ]);
     }
 

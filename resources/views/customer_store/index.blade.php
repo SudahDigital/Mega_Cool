@@ -52,7 +52,7 @@
 				<th>Name</th>
 				<th>Address</th>
 				<th>Phone</th>
-				<th>Contact</th>
+				<th>Contact Person</th>
 				<th>Payment Term</th>
 				<th>Sales Rep</th>
 				<th>Status</th>
