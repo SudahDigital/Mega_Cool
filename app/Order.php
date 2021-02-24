@@ -15,6 +15,14 @@ class Order extends Model
         return $this->belongsTo('App\Voucher','id_voucher');
     }
 
+    public function customers(){
+        return $this->belongsTo('App\Customer','customer_id');
+    }
+
+    public function users(){
+        return $this->belongsTo('App\User','user_id');
+    }
+
     public function getTotalQuantityAttribute(){
         $total_quantity = 0;
         foreach($this->products as $p){

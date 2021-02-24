@@ -53,6 +53,7 @@
                 <label class="form-label">Product Price /Box (IDR)</label>
             </div>
         </div>
+        <!--
         @if($product->discount > 0)
         <div class="form-group form-float">
             <div class="form-line">
@@ -67,7 +68,8 @@
                 <label class="form-label">Discount ( % )</label>
             </div>
         </div>
-            
+        -->
+        <input type="hidden" class="form-control" name="discount" autocomplete="off" value="{{$product->discount}}" required/>    
         <div class="form-group form-float">
             <div class="form-line">
                 <input type="number" class="form-control" name="stock" min="0" autocomplete="off" value="{{$product->stock}}" required>
@@ -81,12 +83,14 @@
                 <label class="form-label">Low Stock Treshold</label>
             </div>
         </div>
-        
+        <!--
         <h2 class="card-inside-title">Make Top Product</h2>
         <div class="form-group">
             <input type="checkbox" name="top_product" id="top_product" value="1"  {{$product->top_product == '1' ? 'checked' : ''}}>
 			<label for="top_product">Top Product</label>
 		</div>
+        -->
+        <input type="hidden" name="top_product" id="top_product" value="1"  {{$product->top_product == '1' ? 'checked' : ''}}>
 
         <h2 class="card-inside-title">Status</h2>
         <div class="form-group">

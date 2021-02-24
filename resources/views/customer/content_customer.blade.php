@@ -388,7 +388,7 @@ Home
             </div>
         </div>
     </div>
-    <!-- Modal pesan telegram--> 
+    <!-- Modal pesan wa--> 
     <div class="modal fade ml-0" id="my_modal_content" role="dialog" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <!-- Modal content-->

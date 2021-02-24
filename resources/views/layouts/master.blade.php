@@ -205,7 +205,7 @@
 
                     <li class="{{request()->routeIs('products.index') ? 'active' : ''}}">
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">local_drink</i>
+                            <i class="material-icons">hardware</i>
                             <span>Manage Products</span>
                         </a>
                         <ul class="ml-menu">

@@ -30,7 +30,7 @@ class OrderController extends Controller
         ->orderBy('id', 'DESC')->get();//paginate(10);
         }
         else{
-            $orders = \App\Order::with('products')->whereNotNull('customer_id')
+            $orders = \App\Order::with('products')->with('customers')->whereNotNull('customer_id')
             ->orderBy('id', 'DESC')->get();
         }
         return view('orders.index', ['orders' => $orders]);

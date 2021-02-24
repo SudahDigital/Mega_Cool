@@ -30,6 +30,18 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183852861-1"></script>
     <style type="text/css">
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+        -moz-appearance: textfield;
+        }
+
         button#no-results-btn {
             width: 100%;
             height: 100%;
@@ -121,6 +133,8 @@
             background:transparent;
             font-weight: 600;
         }
+
+        .select2-results__options { max-height: 100px !important }
 
         #LocationForm .modal-dialog-full-width {
             position:absolute;
@@ -672,7 +686,6 @@
                                             <td class="px-2">
                                                 <div class="form-group">
                                                     <select name="customer_id"  id="customer_id" class="form-control" style="width:100%;" required>
-                                                        
                                                     </select>
                                                 </div>
                                             </td>
@@ -729,16 +742,26 @@
                     
                     <div class="row justify-content-center">
                         <div class="col-md-5 login-label" style="z-index: 2">
-                            <form method="POST" action="{{ route('register') }}">
+                            <form method="POST" action="{{route('session.new_store')}}">
                                 @csrf
                                 <div class="card mx-auto contact_card" 
                                 style="border-top-left-radius:25px;
                                 border-top-right-radius:25px;
                                 border-bottom-right-radius:0;
                                 border-bottom-left-radius:0;">
-                                    <div class="card-body">
+                                    <div class="card-body pb-1 pt-2">
                                         <div class="form-group">
-                                            <input type="text" name="name" class="form-control contact_input @error('name') is-invalid @enderror" placeholder="Nama" id="name" required autocomplete="off" autofocus value="{{ old('name') }}">
+                                            <input type="text" name="store_name" class="form-control mb-n2 contact_input @error('store_name') is-invalid @enderror" placeholder="Nama Toko" id="store_name" required autocomplete="off" autofocus value="{{ old('store_name') }}">
+                                            <!--<label for="name" class="contact_label">{{ __('Nama') }}</label>-->
+                                            @error('store_name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <hr style="border-bottom:1px solid rgba(116, 116, 116, 0.507);">
+                                        <div class="form-group">
+                                            <input type="text" name="name" class="form-control my-n2 contact_input @error('name') is-invalid @enderror" placeholder="Nama Customer" id="name" required autocomplete="off" autofocus value="{{ old('name') }}">
                                             <!--<label for="name" class="contact_label">{{ __('Nama') }}</label>-->
                                             @error('name')
                                                 <span class="invalid-feedback" role="alert">
@@ -746,35 +769,30 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                        <hr style="border:1px solid rgba(116, 116, 116, 0.507);">
+                                        <hr style="border-bottom:1px solid rgba(116, 116, 116, 0.507);">
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control contact_input @error('email') is-invalid @enderror" placeholder="Email" id="email" required autocomplete="off" value="{{ old('email') }}">
-                                            <!--<label for="email" class="contact_label">{{ __('Email') }}</label>-->
-                                            @error('email')
+                                            <input type="number" name="phone" class="form-control my-n2 contact_input @error('telp') is-invalid @enderror" placeholder="No. Telp" id="telp" required autocomplete="off" autofocus value="{{ old('telp') }}">
+                                            <!--<label for="name" class="contact_label">{{ __('Nama') }}</label>-->
+                                            @error('telp')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                         </div>
-                                        <hr style="border:1px solid rgba(116, 116, 116, 0.507);">
+                                        <hr style="border-bottom:1px solid rgba(116, 116, 116, 0.507);">
                                         <div class="form-group">
-                                            <input type="password" name="password" class="form-control contact_input @error('password') is-invalid @enderror" placeholder="Kata Sandi" id="password" required autocomplete="off" value="{{ old('password') }}">
-                                            <!--<label for="password" class="contact_label">{{ __('Kata Sandi') }}</label>-->
-                                            @error('password')
+                                            <input type="text" name="address" class="form-control my-n2 contact_input @error('address') is-invalid @enderror" placeholder="Alamat" id="address" required autocomplete="off" autofocus value="{{ old('address') }}">
+                                            <!--<label for="name" class="contact_label">{{ __('Nama') }}</label>-->
+                                            @error('address')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
-                                        </div>
-                                        <hr style="border:1px solid rgba(116, 116, 116, 0.507);">
-                                        <div class="form-group">
-                                            <input type="password" name="password_confirmation" class="form-control contact_input" placeholder="Konfirmasi Kata Sandi" id="password-confirm" required autocomplete="off">
-                                            <!--<label for="password-confirm" class="contact_label">{{ __('Konfirmasi Kata Sandi') }}</label>-->
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mx-auto text-center">
-                                    <button type="submit" class="btn btn_login_form">{{ __('Sign Up') }}</button>
+                                    <button type="submit" class="btn btn_login_form">{{ __('Simpan') }}</button>
                                 </div>
                             </form>
                         </div>
@@ -987,6 +1005,7 @@
 
         $('#customer_id').select2({
         placeholder: 'Pilih Toko',
+        
         language: {
         noResults: function() {
             return '&nbsp;Data Tidak Ditemukan<br><button id="no-results-btn" onclick="noResultsButtonClicked()">Tambah Toko Baru...</button>';
@@ -1002,7 +1021,7 @@
                     results:  $.map(data, function (item) {
                         return {
                                 id: item.id,
-                                text: item.store_name
+                                text: item.store_code+' - '+item.store_name
                         }
                         
                     })

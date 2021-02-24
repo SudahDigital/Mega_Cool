@@ -14,7 +14,8 @@ class AjaxCitySearch extends Controller
 
     public function ajax_store(Request $request){
         $keyword = $request->get('q');
-        $store = \App\Customer::where('store_name','LIKE',"%$keyword%")->get();
+        $store = \App\Customer::where('store_name','LIKE',"%$keyword%")
+        ->orWhere('store_code','LIKE',"%$keyword%")->get();
         return $store;
     }
 }

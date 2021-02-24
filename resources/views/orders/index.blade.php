@@ -38,12 +38,12 @@
 	<table class="table table-bordered table-striped table-hover dataTable js-basic-example">
 		<thead>
 			<tr>
-				<th>No</th>
-				<th>Status</th>
-				<th width="30%">Customer</th>
-				<th width="20%" style="padding-left: 5%;">Order Product</th>
-				<th>Total quantity</th>
-				<th>Order date</th>
+				<th width="1%">No</th>
+				<th width="2%">Status</th>
+				<th width="25%">Customer</th>
+				<th width="15%">Order Product</th>
+				<th width="2%">Total quantity</th>
+				<th width="10%">Order date</th>
 				<th>Total price</th>
 				<th width="5%">Action</th>
 			</tr>
@@ -65,13 +65,23 @@
 					<span class="badge bg-black text-light">{{$order->status}}</span>
 					@endif
 				</td>
-				<td><small><b>Name :</b> {{$order->username}}</small><br>
-					<small><b>Email :</b> {{$order->email}}</small><br>
-					<small><b>Addr :</b> {{$order->address}}</small><br>
-					<small><b>Phone :</b> {{$order->phone}}</small>
+				<td><small><b>Name :</b> {{$order->customers->store_name}}</small>
+					@if($order->customers->status == 'NEW')<span class="badge bg-pink">New</span>@endif
+					<br>
+					<small><b>Email :</b> {{$order->customers->email}}</small><br>
+					<small><b>Addr :</b> {{$order->customers->address}}</small><br>
+					<small><b>Phone :</b> {{$order->customers->phone}}</small><br>
+					<small><b>Sales Rep :</b> {{$order->users->name}} <span class="badge {{$order->user_loc == 'On Location' ? 'bg-green' : 'bg-black'}}">{{$order->user_loc}}</span></small><br>
+					<small><b>Payment Term :</b> 
+						@if($order->payment_method == 'Non Tunai')
+						{{$order->customers->payment_term}}
+						@else
+						{{$order->payment_method}}
+						@endif
+					</small>
 				</td>
 				<td align="left">
-					<ul style="margin-left: 0;">
+					<ul style="margin-left: -25px;">
 						@foreach($order->products as $p)
 						<li><small>{{$p->description}} <b>({{$p->pivot->quantity}})</b></small></li>
 						@endforeach
@@ -84,7 +94,7 @@
 				<td>
 					<a class="btn btn-info btn-xs btn-block" href="{{route('orders.detail',[$order->id])}}">Details</a>&nbsp;
 					@can('isSuperadmin')
-						<a style="margin-top:0;" class="btn btn-success btn-xs btn-block" href="{{route('order_edit',[$order->id])}}">Edit</a>&nbsp;
+						<!--<a style="margin-top:0;" class="btn btn-success btn-xs btn-block" href="{{route('order_edit',[$order->id])}}">Edit</a>&nbsp;-->
 					@endcan
 				</td>
 			</tr>
