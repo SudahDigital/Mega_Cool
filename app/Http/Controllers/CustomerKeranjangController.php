@@ -289,7 +289,7 @@ class CustomerKeranjangController extends Controller
             $user = User::findOrfail($user_id);
             $ses_order = $request->session()->get('ses_order');
             $customer = Customer::findOrfail($ses_order->customer_id);
-            $city = City::findOrfail($user->city_id);
+            //$city = City::findOrfail($user->city_id);
             $customer_id = $ses_order->customer_id;
             $orders = Order::findOrfail($id);
             $orders->user_loc = $ses_order->user_loc;
