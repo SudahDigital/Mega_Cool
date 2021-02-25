@@ -327,7 +327,7 @@ class CustomerKeranjangController extends Controller
             //$total_ongkir  = 15000;
             //$total_bayar  = $total_pesanan;
 
-            $href='Hello Admin Mega Cools,%0A%0ADetail Sales%0ANama : '.$user->name.',%0AEmail : '.$user->email.',%0ANo. Hp :' .$user->phone.',%0ASales Area :' .$city->city_name.',%0A%0ADetail Pelanggan%0ANama  : '.$customer->name.',%0AEmail : '.$customer->email.',%0ANo. Telp : '.$customer->phone.',%0ANama Toko : '.$customer->store_name.',%0AAlamat : '.$customer->address.',%0A%0ADetail Pesanan%0A';
+            $href='Hello Admin Mega Cools,%0A%0ADetail Sales%0ANama : '.$user->name.',%0AEmail : '.$user->email.',%0ANo. Hp :' .$user->phone.',%0ASales Area :' .$user->sales_area.',%0A%0ADetail Pelanggan%0ANama  : '.$customer->name.',%0AEmail : '.$customer->email.',%0ANo. Telp : '.$customer->phone.',%0ANama Toko : '.$customer->store_name.',%0AAlamat : '.$customer->address.',%0A%0ADetail Pesanan%0A';
                 if($orders->save()){
                 $pesan = DB::table('order_product')
                         ->join('orders','order_product.order_id','=','orders.id')
