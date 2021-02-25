@@ -108,6 +108,18 @@
             color:#ffffff; 
             font-weight:bold;
         }
+
+        .select2-selection--single {
+            /*height: 100% !important;
+            overflow: hidden;*/
+            text-overflow: ellipse;
+        }
+
+        .select2-selection__rendered{
+            word-wrap: break-word !important;
+            text-overflow: inherit !important;
+            white-space: normal !important;
+        }
         
         .select2-container--default .select2-selection--single{
             padding:4px;
@@ -688,6 +700,11 @@
                                                     <select name="customer_id"  id="customer_id" class="form-control" style="width:100%;" required>
                                                     </select>
                                                 </div>
+                                                
+                                                <input id="nm-toko-hide" name="nm_toko_hide" type="hidden" />
+                                                <input id="nm-cust-hide" name="nm_cust_hide" type="hidden" />
+                                                <input id="no-telp-hide" name="no_telp_hide" type="hidden" />
+                                                <input id="alamat-hide" name="alamat_hide" type="hidden" />
                                             </td>
                                         </tr>
                                         
@@ -742,8 +759,7 @@
                     
                     <div class="row justify-content-center">
                         <div class="col-md-5 login-label" style="z-index: 2">
-                            <form method="POST" action="{{route('session.new_store')}}">
-                                @csrf
+                            
                                 <div class="card mx-auto contact_card" 
                                 style="border-top-left-radius:25px;
                                 border-top-right-radius:25px;
@@ -751,9 +767,8 @@
                                 border-bottom-left-radius:0;">
                                     <div class="card-body pb-1 pt-2">
                                         <div class="form-group">
-                                            <input type="text" name="store_name" class="form-control mb-n2 contact_input @error('store_name') is-invalid @enderror" placeholder="Nama Toko" id="store_name" required autocomplete="off" autofocus value="{{ old('store_name') }}">
-                                            <!--<label for="name" class="contact_label">{{ __('Nama') }}</label>-->
-                                            @error('store_name')
+                                            <input type="text" name="store_name" class="form-control mb-n2 contact_input @error('store_name') is-invalid @enderror" placeholder="Nama Toko" id="new_store_name" required autocomplete="off" autofocus value="{{ old('new_store_name') }}">
+                                            @error('new_store_name')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -761,9 +776,8 @@
                                         </div>
                                         <hr style="border-bottom:1px solid rgba(116, 116, 116, 0.507);">
                                         <div class="form-group">
-                                            <input type="text" name="name" class="form-control my-n2 contact_input @error('name') is-invalid @enderror" placeholder="Nama Customer" id="name" required autocomplete="off" autofocus value="{{ old('name') }}">
-                                            <!--<label for="name" class="contact_label">{{ __('Nama') }}</label>-->
-                                            @error('name')
+                                            <input type="text" name="name" class="form-control my-n2 contact_input @error('name') is-invalid @enderror" placeholder="Nama Customer" id="new_name" required autocomplete="off" autofocus value="{{ old('new_name') }}">
+                                            @error('new_name')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -771,9 +785,8 @@
                                         </div>
                                         <hr style="border-bottom:1px solid rgba(116, 116, 116, 0.507);">
                                         <div class="form-group">
-                                            <input type="number" name="phone" class="form-control my-n2 contact_input @error('telp') is-invalid @enderror" placeholder="No. Telp" id="telp" required autocomplete="off" autofocus value="{{ old('telp') }}">
-                                            <!--<label for="name" class="contact_label">{{ __('Nama') }}</label>-->
-                                            @error('telp')
+                                            <input type="number" minlength="10" maxlength="13" name="phone" class="form-control my-n2 contact_input @error('telp') is-invalid @enderror" placeholder="No. Telp" id="new_telp" required autocomplete="off" autofocus value="{{ old('new_telp') }}">
+                                            @error('new_telp')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -781,9 +794,8 @@
                                         </div>
                                         <hr style="border-bottom:1px solid rgba(116, 116, 116, 0.507);">
                                         <div class="form-group">
-                                            <input type="text" name="address" class="form-control my-n2 contact_input @error('address') is-invalid @enderror" placeholder="Alamat" id="address" required autocomplete="off" autofocus value="{{ old('address') }}">
-                                            <!--<label for="name" class="contact_label">{{ __('Nama') }}</label>-->
-                                            @error('address')
+                                            <input type="text" name="address" class="form-control my-n2 contact_input @error('address') is-invalid @enderror" placeholder="Alamat" id="new_address" required autocomplete="off" autofocus value="{{ old('address') }}">
+                                            @error('new_address')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -792,9 +804,9 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 mx-auto text-center">
-                                    <button type="submit" class="btn btn_login_form">{{ __('Simpan') }}</button>
+                                    <button type="submit" id="btn_new_toko" class="btn btn_login_form">{{ __('Simpan') }}</button>
                                 </div>
-                            </form>
+                            
                         </div>
                     </div>
                 </div>
@@ -1005,7 +1017,6 @@
 
         $('#customer_id').select2({
         placeholder: 'Pilih Toko',
-        
         language: {
         noResults: function() {
             return '&nbsp;Data Tidak Ditemukan<br><button id="no-results-btn" onclick="noResultsButtonClicked()">Tambah Toko Baru...</button>';
@@ -1035,9 +1046,39 @@
         function noResultsButtonClicked()
         {
             $("#storeForm").modal('show');
-            $("#customer_id").select2().on("select2-open", hideSelect2Keyboard);
-            
+            $("#customer_id").select2().on("select2-open", function(e) {
+                    $('.select2-drop-active .select2-input').blur();
+            });
+           
         }
+
+        $("#btn_new_toko").on("click", function(){
+            var newTokoVal = $("#new_store_name").val();
+            var newnameVal = $("#new_name").val();
+            var newtelpVal = $("#new_telp").val();
+            var newaddressVal = $("#new_address").val();
+            if (newTokoVal != "" && newnameVal!="" && newtelpVal !="" && newaddressVal !="" ){
+                var newToko = new Option(newTokoVal, newTokoVal, true, true);
+                $("#customer_id").append(newToko).trigger("change");
+                $("#nm-toko-hide").val(newTokoVal);
+                $("#nm-cust-hide").val(newnameVal);
+                $("#no-telp-hide").val(newtelpVal);
+                $("#alamat-hide").val(newaddressVal); 
+                $("#storeForm").modal('hide');
+            }
+            else{
+                Swal.fire({
+                    text: "Anda harus mengisi data dengan lengkap dan benar",
+                    icon: 'error',
+                    showCancelButton: false,
+                    confirmButtonText: "Ok",
+                });
+            }
+            
+        });  
+        
+        
+        
 
         //$('#accordion').collapse('show').height('auto');
 
