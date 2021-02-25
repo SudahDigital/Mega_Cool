@@ -129,6 +129,20 @@ class CustomerController extends Controller
         //
     }
 
+    public function deletePermanent($id){
+
+        $cust = \App\Customer::findOrFail($id);
+        $order_cust = \App\Order::where('customer_id','=',"$cust->id")->count();
+        if($order_cust > 1){
+            return redirect()->route('customers.index')->with('error', 'Cannot be deleted, because this data already exists in orders');
+        }
+        else {
+        $cust->forceDelete();
+        return redirect()->route('customers.index')->with('status', 'Customer permanently deleted!');
+        }
+
+    }
+
     public function ajaxSearch(Request $request){
         $keyword = $request->get('code');
         $cust = \App\Customer::where('store_code','=',"$keyword")->count();

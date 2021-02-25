@@ -7,6 +7,12 @@
 	</div>
 @endif
 
+@if(session('error'))
+	<div class="alert alert-danger">
+		{{session('error')}}
+	</div>
+@endif
+
 <form action="{{route('customers.index')}}">
 	<div class="row">
 		<!--
@@ -99,13 +105,13 @@
 		                <div class="modal-dialog modal-sm" role="document">
 		                    <div class="modal-content modal-col-red">
 		                        <div class="modal-header">
-		                            <h4 class="modal-title" id="deleteModalLabel">Delete Product</h4>
+		                            <h4 class="modal-title" id="deleteModalLabel">Delete Customer</h4>
 		                        </div>
 		                        <div class="modal-body">
-		                           Delete this product ..? 
+		                           Delete this customer ..? 
 		                        </div>
 		                        <div class="modal-footer">
-		                        	<form action="{{route('customers.destroy',[$c->id])}}" method="POST">
+		                        	<form action="{{route('customers.delete-permanent',[$c->id])}}" method="POST">
 										@csrf
 										<input type="hidden" name="_method" value="DELETE">
 										<button type="submit" class="btn btn-link waves-effect">Delete</button>

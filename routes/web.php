@@ -89,6 +89,7 @@ Route::get('/admin', function () {
     Route::get('/vouchers/{id}/restore', 'voucherController@restore')->name('vouchers.restore');
     Route::delete('/vouchers/{vouchers}/delete-permanent','voucherController@deletePermanent')->name('vouchers.delete-permanent');
     Route::resource('vouchers','VoucherController');
+    Route::delete('/customers/{customers}/delete-permanent','CustomerController@deletePermanent')->name('customers.delete-permanent');
     Route::get('/customers/export', 'CustomerController@export')->name('customers.export');
     Route::get('/customers/import', 'CustomerController@import')->name('customers.import');
     Route::post('/customers/import_data', 'CustomerController@import_data')->name('customers.import_data');
