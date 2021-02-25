@@ -826,7 +826,7 @@ class CustomerKeranjangController extends Controller
                                         </div>';    
                                     echo'
                                         <div id="chk-bl-btn" class="row justify-content-end my-auto">
-                                            <a type="button" id="beli_sekarang" class="btn button_add_to_pesan float-right mb-2" onclick="show_modal()" style="padding: 10px 20px; ">Pesan Sekarang <i class="fa fa-paper-plane" aria-hidden="true" style="color: #ffffff !important"></i></a>
+                                            <a type="button" id="beli_sekarang" class="btn button_add_to_pesan float-right mb-2" onclick="show_modal()" style="padding: 10px 20px; ">Pesan Sekarang <i class="fab fa-whatsapp" aria-hidden="true" style="color: #ffffff !important; font-weight:900;"></i></a>
                                         </div>';
                                     }
                                 echo'</div>
