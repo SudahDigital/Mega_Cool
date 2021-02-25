@@ -41,7 +41,7 @@
                     <p class="name-profil">{{Auth::user()->name}}</p>
                     <nav aria-label="breadcrumb" class="mt-n3">
                         <ol class="breadcrumb px-0 button_breadcrumb" style="background:transparent;">
-                            <li class="breadcrumb-profil-name active mt-2 " aria-current="page">{{$user->cities->city_name}}</li>&nbsp;&nbsp;
+                            <li class="breadcrumb-profil-name active mt-2 " aria-current="page">{{$user->sales_area}}</li>&nbsp;&nbsp;
                             <li class="breadcrumb-profil-name " style="color: #000!important;">Mega Cools</li>
                         </ol>
                     </nav>

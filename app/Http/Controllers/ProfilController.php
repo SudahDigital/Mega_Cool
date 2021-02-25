@@ -14,7 +14,7 @@ class ProfilController extends Controller
     public function index()
     {
         $id=\Auth::user()->id;
-        $user = \App\User::with('cities')->where('id',$id)->first();
+        $user = \App\User::where('id',$id)->first();
         return view('customer.profil',['user'=> $user]);
     }
 
