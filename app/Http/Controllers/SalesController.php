@@ -65,7 +65,7 @@ class SalesController extends Controller
         $new_user->email = $request->get('email');
         $new_user->password = \Hash::make($request->get('password'));
         //$new_user->username = $request->get('username');
-        $new_user->roles = json_encode($request->get('roles'));
+        $new_user->roles = $request->get('roles');
         $new_user->address = $request->get('address');
         $new_user->phone = $request->get('phone');
         $new_user->sales_area = $request->get('sales_area');

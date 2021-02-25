@@ -32,8 +32,8 @@
             -->               
             <h2 class="card-inside-title">Roles</h2>
             <div class="form-group">
-                <input class="form-control {{$errors->first('roles') ? "is-invalid" : "" }}" type="radio" name="roles[]" id="ADMIN" value="SUPERADMIN" required> <label for="ADMIN">Super Admin</label>
-                <input class="form-control {{$errors->first('roles') ? "is-invalid" : "" }}" type="radio" name="roles[]" id="STAFF" value="ADMIN"> <label for="STAFF">Admin</label>
+                <input class="form-control {{$errors->first('roles') ? "is-invalid" : "" }}" type="radio" name="roles" id="ADMIN" value="SUPERADMIN" required> <label for="ADMIN">Super Admin</label>
+                <input class="form-control {{$errors->first('roles') ? "is-invalid" : "" }}" type="radio" name="roles" id="STAFF" value="ADMIN"> <label for="STAFF">Admin</label>
                 <div class="invalid-feedback">
                     {{$errors->first('roles')}}
                 </div>
@@ -117,7 +117,7 @@
                     <label class="form-label">Name</label>
                 </div>
             </div>
-            <input class="form-control {{$errors->first('roles') ? "is-invalid" : "" }}" type="hidden" name="roles[]" id="SALES" value="SALES" required>
+            <input class="form-control {{$errors->first('roles') ? "is-invalid" : "" }}" type="hidden" name="roles" id="SALES" value="SALES" required>
             
             <div class="form-group form-float">
                 <div class="form-line">

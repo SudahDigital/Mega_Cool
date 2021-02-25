@@ -289,7 +289,7 @@
 											<br/>
 											<b><small>Sales Area:</small></b>
 											<br/>
-											{{$u->cities['city_name']}}
+											{{$u->sales_area}}
 											<br/>
 											<br/>
 											<b><small>Profil Description:</small></b>
