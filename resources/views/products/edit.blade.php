@@ -90,7 +90,7 @@
 			<label for="top_product">Top Product</label>
 		</div>
         -->
-        <input type="hidden" name="top_product" id="top_product" value="1"  {{$product->top_product == '1' ? 'checked' : ''}}>
+        <input type="hidden" name="top_product" id="top_product" value="0"  {{$product->top_product == '1' ? 'checked' : ''}}>
 
         <h2 class="card-inside-title">Status</h2>
         <div class="form-group">
