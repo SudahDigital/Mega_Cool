@@ -68,7 +68,7 @@ class SalesController extends Controller
         $new_user->roles = json_encode($request->get('roles'));
         $new_user->address = $request->get('address');
         $new_user->phone = $request->get('phone');
-        $new_user->city_id = $request->get('city_id');
+        $new_user->sales_area = $request->get('sales_area');
         
         $new_user->save();
         if ( $new_user->save()){
@@ -114,7 +114,7 @@ class SalesController extends Controller
         $user->name = $request->get('name');
         $user->phone = $request->get('phone');
         $user->address = $request->get('address');
-        $user->city_id = $request->get('city_id');
+        $user->sales_area = $request->get('sales_area');
         $user->status = $request->get('status');
         $user->save();
         return redirect()->route('sales.edit',[$id])->with('status','Sales Succsessfully Update');
