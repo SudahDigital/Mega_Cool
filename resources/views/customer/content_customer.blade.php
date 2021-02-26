@@ -464,7 +464,7 @@ Home
     }
     if ($(window).width() <= 480) {
         $('#cont-collapse').removeClass('container');
-        $('.card-cart').removeClass('container');
+        //$('.card-cart').removeClass('container');
     }
      
 </script>

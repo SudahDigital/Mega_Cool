@@ -644,18 +644,23 @@ class CustomerKeranjangController extends Controller
             echo '<div id="accordion" class="fixed-bottom" style="border-radius:0;z-index:1;">
                     <div class="card" style="border-radius:0;">
                         <a role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
-                            <div id="card-cart" class="card-header pt-1" style="border-radius:0;">
+                        <div id="card-cart" class="card-header pt-1" style="border-radius:0;">
+                            <div class="card-cart container">
                                 <table class="table borderless">
                                     <tr>
-                                        <td align="left" width="30%">
-                                            <h5 style="color:#000">0 Item</h5>
+                                        <td align="left" id="td_itm" width="40%">
+                                            <h5 style="color:#000">'.$total_item.'&nbsp;Item</h5>
                                         </td>
-                                        <td align="right" width="70%">
-                                            <h5 class="pull-right" style="color: #000">Pesan Sekarang <i class="fa fa-paper-plane" aria-hidden="true" style="color: #FF0000 !important"></i></h5>
+                                        <td align="middle" id="td_crv" width="20%">
+                                            <i class="fas fa-chevron-up" style=""></i>
+                                        </td>
+                                        <td align="right" id="td_krm-order" width="40%">
+                                            <h5 class="pull-right" style="color: #000">Kirim Order&nbsp;&nbsp;<img src="'.asset('assets/image/right-arrow.png').'" width="20" class="my-auto" alt="right-arrow"></h5>
                                         </td>
                                     </tr>
                                 </table>
                             </div>
+                        </div>
                         </a>
                         <div  class="collapse" data-parent="#accordion" style="" >
                             <div class="card-body" id="card-detail">
