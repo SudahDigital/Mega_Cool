@@ -1547,7 +1547,9 @@
                     icon: 'error',
                     title: 'Jumlah tidak boleh kurang dari 1'
                 });
-            } else {
+            } 
+            else 
+            {
             $('#jumlah'+id).val(jumlah);
             $('#show_'+id).val(jumlah);
             $('#productPrice'+id).text(harga);
@@ -1715,7 +1717,22 @@
             harga = "Rp. " + rupiah +",-";
 
             if (jumlah<1) {
-            alert('Jumlah order minimal 1')
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-center',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                    })
+
+                    Toast.fire({
+                    icon: 'error',
+                    title: 'Jumlah order minimal 1'
+                });
             } else {
                 $('#jmlbrg_'+id).val(jumlah);
                 //$('#show_'+id).html(jumlah);
