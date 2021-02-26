@@ -882,17 +882,18 @@
             <!-- BANNER -->
             <div role="main" style="background-color:#ffffff">
                 <div class="container">
-                    <button type="button" id="sidebarCollapse" class="btn button-burger-menu">
+                    <button type="button" id="sidebarCollapse" class="btn button-burger-menu ">
                         <i class="fas fa-bars fa-2x" style="color:#ffffff;"></i>
                     </button>
                 </div>
+                <!--
                 <div class="text-hero">
                     <h1><span class="the">The</span>&nbsp;<span class="power">Power</span></h1>
                     <h1><span class="the">Of</span>&nbsp;<span class="power">Innovation</span></h1>
                     <hr/>
                 </div>
-                
-                <img src="{{ asset('assets/image/main-banner.png') }}" class="w-100 h-90" alt="main-banner" style="margin-top:-1.5rem;">
+                -->
+                <img src="{{ asset('assets/image/main-banner_r1.jpg') }}" class="w-100 h-90" alt="main-banner_r1" style="margin-top:-10px">
                 <!--
                 <div id="bannerSlide" class="carousel slide" data-ride="carousel">--//data-interval="5000"//--
                     -- The slideshow //--

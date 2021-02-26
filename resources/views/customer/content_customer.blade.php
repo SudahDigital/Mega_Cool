@@ -426,8 +426,6 @@ Home
         </div>
     </div>
     
-
-    
     <!-- Modal validasi stok -->
     <div class="modal fade ml-1" id="modal_validasi" role="dialog" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
