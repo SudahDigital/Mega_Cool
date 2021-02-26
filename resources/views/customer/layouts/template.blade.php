@@ -12,8 +12,8 @@
     <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" >
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_1.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_2.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_2.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_3.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css')}}">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -877,15 +877,20 @@
         </nav>
         <div class="overlay"></div>
         
+        <nav class="navbar navbar-expand-lg fixed-top" style="z-index: 1.5;">
+            <div class="container">
+                <button type="button" id="sidebarCollapse" class="btn button-burger-menu ">
+                    <i class="fas fa-bars fa-2x d-none d-md-block d-md-none" style="color:#ffffff;"></i>
+                    <i class="fas fa-bars fa-1x d-md-none" style="color:#ffffff;"></i>
+                </button>
+            </div>
+        </nav>
+
         <!--hero-->
         <div id="hero_cools">
             <!-- BANNER -->
             <div role="main" style="background-color:#ffffff">
-                <div class="container">
-                    <button type="button" id="sidebarCollapse" class="btn button-burger-menu ">
-                        <i class="fas fa-bars fa-2x" style="color:#ffffff;"></i>
-                    </button>
-                </div>
+                
                 <!--
                 <div class="text-hero">
                     <h1><span class="the">The</span>&nbsp;<span class="power">Power</span></h1>
@@ -893,7 +898,7 @@
                     <hr/>
                 </div>
                 -->
-                <img src="{{ asset('assets/image/main-banner_r1.jpg') }}" class="w-100 h-90" alt="main-banner_r1" style="margin-top:-10px">
+                <img src="{{ asset('assets/image/main-banner_r2.jpg') }}" class="w-100 h-90" alt="main-banner_r2" style="margin-top:-5px">
                 <!--
                 <div id="bannerSlide" class="carousel slide" data-ride="carousel">--//data-interval="5000"//--
                     -- The slideshow //--
@@ -990,6 +995,19 @@
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>-->
     <!--@include('sweetalert::alert')-->
     <script type="text/javascript">
+        $(document).ready(function(){
+            $(window).scroll(function(){
+                var scroll = $(window).scrollTop();
+                if (scroll > 200) {
+                    $(".navbar").css("background" , "#1A4066");
+                    $(".navbar").css("opacity" , "0.9");
+                }
+
+                else{
+                    $(".navbar").css("background" , "transparent");  	
+                }
+            })
+        });
 
         //Select2
         $('#city_id').select2({

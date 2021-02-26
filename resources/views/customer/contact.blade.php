@@ -60,7 +60,7 @@
     <script>
         if ($(window).width() <= 600) {
             $('#prf-brd').removeClass('mt-1');
-            //$('.contact-row').addClass('mt-5');
+            //$('#prf-brd').addClass('mt-2');
         } 
         if ($(window).width() <= 411) {
             $('.col-9').addClass('ml-n3');

@@ -12,8 +12,8 @@
     <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" >
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_1.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_2.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_2.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_3.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css')}}">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -616,7 +616,8 @@
             <div role="main">
                 <div class="container">
                     <button type="button" id="sidebarCollapse" class="btn button-burger-menu-nocart">
-                        <i class="fas fa-bars fa-2x" style="color:#1A4066;"></i>
+                        <i class="fas fa-bars fa-2x d-none d-md-block d-md-none" style="color:#1A4066;"></i>
+                        <i class="fas fa-bars fa-1x d-md-none" style="color:#1A4066;"></i>
                     </button>
                 </div>
                 @yield('content')
