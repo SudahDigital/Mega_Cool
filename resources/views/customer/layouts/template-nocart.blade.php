@@ -590,6 +590,9 @@
                    <a href="{{URL::route('profil.index')}}">Profile</a>
                 </li>
                 <li>
+                    <a href="{{URL::route('session.clear')}}">Ubah Lokasi</a>
+                 </li>
+                <li>
                     <a href="{{URL::route('contact')}}">Kontak Kami</a>
                 </li>
             </ul>
