@@ -503,15 +503,10 @@ a[aria-expanded="true"] {
 
 @media (max-width: 768px){
   #collapse-4 .card-body{
-    height: 73vh;
+    height: 57vh;
   }
 }
 
-@media (max-width: 425px){
-  #collapse-4 .card-body{
-    height: 70vh;
-  }
-}
 
  .beli-sekarang {
   position: fixed;
