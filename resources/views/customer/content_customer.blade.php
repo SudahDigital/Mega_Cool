@@ -363,7 +363,7 @@ Home
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" id="order_id_pesan" name="id" value="{{$item !==null ? $item->id : ''}}"/>
-                    <button type="submit" onclick="pesan_wa()" class="btn btn-block bt-wa"><i class="fab fa-whatsapp fa-1x" aria-hidden="true" style="color: #ffffff !important; font-weight:900;"></i>&nbsp;{{__('Pesan') }}</button>
+                    <button type="submit" id="ga_pesan" onclick="pesan_wa()" class="btn btn-block bt-wa"><i class="fab fa-whatsapp fa-1x" aria-hidden="true" style="color: #ffffff !important; font-weight:900;"></i>&nbsp;{{__('Pesan') }}</button>
                 </div>
                 </form>
             </div>
