@@ -2140,12 +2140,12 @@
         }, 6000);*/
     </script>
     <script>
-        /*
+        
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'UA-183852861-1');
-        */
+        
     </script>
 </body>
 
