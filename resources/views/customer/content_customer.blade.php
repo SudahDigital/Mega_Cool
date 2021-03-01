@@ -345,7 +345,7 @@ Home
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <form method="POST" target="_BLANK" action="{{ route('customer.keranjang.pesan') }}">
+                <form method="POST" id="ga_pesan_form" target="_BLANK" action="{{ route('customer.keranjang.pesan') }}">
                     @csrf
                     @if($item!==null)
                     <input type="hidden" name ="voucher_code_hide_modal" id="voucher_code_hide_modal">
