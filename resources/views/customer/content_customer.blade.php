@@ -122,31 +122,31 @@ Home
                             @endif
                             
                             <!--<a href="{{URL::route('product_detail', ['id'=>$value->id])}}">-->
-                            <a href="#">
+                            <a>
                                 <img style="" src="{{ asset('storage/'.(($value->image!='') ? $value->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
                             </a>
                             <div class="card-body" style="background-color:#1A4066;">
+                                @if($value->stock == 0)
+                                    <span class="badge badge-warning ml-1">Sisa stok 0</span>
+                                @endif
                                 <div class="float-left px-1 py-2" style="width: 100%;">
                                     <p class="product-price-header mb-0" style="">
                                         {{$value->Product_name}}
                                     </p>
                                 </div>
                                 @if($value->discount > 0)
-                                <div class="d-inline-block">
-                                    <div class="text-left">
-                                        <p class="product-price mt-0 mb-0 ml-1" style="color:#ffff;"><del><b><i>Rp. {{ number_format($value->price, 0, ',', '.') }}'-</i></b> </del></p>
+                                    <div class="d-inline-block">
+                                        <div class="text-left">
+                                            <p class="product-price mt-0 mb-0 ml-1" style="color:#ffff;"><del><b><i>Rp. {{ number_format($value->price, 0, ',', '.') }}'-</i></b> </del></p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="float-left px-1 py-2" style="">
-                                    <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp. {{ number_format($value->price_promo, 0, ',', '.') }}'-</p>
-                                </div>
+                                    <div class="float-left px-1 py-2" style="">
+                                        <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp. {{ number_format($value->price_promo, 0, ',', '.') }}'-</p>
+                                    </div>
                                 @else
-                                <div class="float-left px-1 py-2" style="">
-                                    <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp. {{ number_format($value->price, 0, ',', '.') }},-</p>
-                                </div>
-                                @endif
-                                @if($value->stock == 0)
-                                    <div class="p-1 mb-0 text-dark text-center" style="border-radius:7px;background-color:#e9eff5;"><small><b>Sisa Stok {{$value->stock}}</b></small></div>
+                                    <div class="float-left px-1 py-2" style="">
+                                        <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp. {{ number_format($value->price, 0, ',', '.') }},-</p>
+                                    </div>
                                 @endif
                                 <table width="100%" class="hdr_tbl_cart">
                                     <tbody>
@@ -155,14 +155,14 @@ Home
                                             <input type="hidden" id="jumlah{{$value->id}}" name="quantity" value="1">
                                             <input type="hidden" id="harga{{$value->id}}" name="price" value="{{ $value->price }}">
                                             <input type="hidden" id="{{$value->id}}" name="Product_id" value="{{$value->id}}">
-                                            <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart('{{$value->id}}')" style="">Tambah</button>
+                                            <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart('{{$value->id}}')" {{$value->stock == 0 ? 'disabled' : ''}}>Tambah</button>
                                             
                                         </td>
                                         <td width="30%" align="left" id="td-text-quantity" class="td-text-quantity" valign="middle" rowspan="2" >
                                             <input type="number" id="show_{{$value->id}}" onkeyup="input_qty('{{$value->id}}')" class="form-control input-sm mr-0 px-1 font-weight-bold" value="1" style="color:#000;font-weight:300;text-align:center;">
                                         </td>
                                         <td width="10%" class="td-btn-plus" align="center" valign="middle" bgcolor="#ffffff" style="border-top-left-radius:5px;border-top-right-radius:5px;">
-                                            <a class="button_plus" onclick="button_plus('{{$value->id}}')" style=""><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                            <a class="button_plus" onclick="button_plus('{{$value->id}}')"><i class="fa fa-plus" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                     <tr>
@@ -172,62 +172,6 @@ Home
                                     </tr>
                                     </tbody>
                                 </table>
-                                <!--
-                                <table width="100%" class="hdr_tbl_cart mt-auto" style="bottom: 0">
-                                    <tbody>
-                                        <tr>
-                                            <td width="10%" align="right" valign="middle">
-                                                <input type="hidden" id="Product_id{{$value->id}}" name="Product_id" value="{{$value->id}}">
-                                                <input type="hidden" id="quantity_add{{$value->id}}" name="quantity" value="1">
-                                                @if($value->discount > 0)
-                                                <input type="hidden" id="harga{{$value->id}}" name="price" value="{{$value->price_promo}}">
-                                                @else
-                                                <input type="hidden" id="harga{{$value->id}}" name="price" value="{{$value->price}}">
-                                                @endif
-                                                @if($value->stock > 0)
-                                                <button class="btn button_minus" onclick="button_minus('{{$value->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                                @else
-                                                <button disabled class="btn button_minus" onclick="" style="background:none; border:none; color:#693234;outline:none;cursor: no-drop;"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                                @endif
-                                            </td>
-                                            <td width="10%" align="center" valign="middle">
-                                                <?php
-                                                //$ses_id = \Request::header('User-Agent');
-                                                //$clientIP = \Request::getClientIp(true);
-                                                $user =  \Auth::user()->id; 
-                                                //$user = \Request::header('User-Agent'); 
-                                                $view_pesan = \DB::select("SELECT orders.user_id, orders.status, orders.customer_id, 
-                                                            products.description, products.image, products.price, order_product.id,
-                                                            order_product.order_id,order_product.product_id,order_product.quantity
-                                                            FROM order_product, products, orders WHERE 
-                                                            orders.id = order_product.order_id AND order_product.product_id = $value->id AND 
-                                                            order_product.product_id = products.id AND orders.status = 'SUBMIT' 
-                                                            AND orders.user_id = '$user' AND orders.customer_id IS NULL ");
-                                                $hitung = count($view_pesan);
-                                                    if($hitung > 0){
-                                                        foreach ($view_pesan as $key => $k) {
-                                                        echo '<p id="show_'.$value->id.'" class="d-inline show" style="">'.$k->quantity.'</p>';
-                                                        echo '<input type="hidden" id="jmlbrg_'.$value->id.'" name="quantity" value="'.$k->quantity.'">';
-                                                        }
-                                                    }
-                                                    else{
-                                                        echo '<input type="hidden" id="jmlbrg_'.$value->id.'" name="quantity" value="0">';
-                                                        echo '<p id="show_'.$value->id.'" class="d-inline show" style="">0</p>';
-                                                    }
-                                                ?>
-                                                <input type="hidden" id="stock{{$value->id}}" name="stock" value="{{$value->stock}}">
-                                            </td>
-                                            <td width="10%" align="left" valign="middle">
-                                                @if($value->stock > 0)
-                                                <button class="btn button_plus" onclick="button_plus('{{$value->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                                @else
-                                                <button disabled class="btn button_plus" onclick="" style="background:none; border:none; color:#693234;outline:none;cursor: no-drop;"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                -->
                             </div>
                         </div>
                     </div>
