@@ -498,7 +498,7 @@ a[aria-expanded="true"] {
 }
 
 #collapse-4 .card-body{
-  height: 60vh;
+  height: 50vh;
 }
 
 @media (max-width: 768px){
