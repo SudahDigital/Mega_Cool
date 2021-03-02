@@ -158,7 +158,7 @@
                     </li>
                     
                     
-                    <li class="{{request()->routeIs('users.index') ? 'active' : '' }}">
+                    <li class="{{request()->routeIs('users.index') || request()->routeIs('sales.index') ? 'active' : '' }}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">people</i>
                             <span>Manage Users</span>
