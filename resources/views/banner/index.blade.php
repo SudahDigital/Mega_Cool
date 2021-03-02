@@ -10,18 +10,7 @@
 
 <form action="{{route('banner.index')}}">
 	<div class="row">
-		<!--
-		<div class="col-md-4">
-			<div class="input-group input-group-sm">
-        		<div class="form-line">
-				<input type="text" class="form-control" name="name" value="{{Request::get('name')}}"  placeholder="Filter berdasarkan nama" autocomplete="off" />
-	    		</div>
-				<span class="input-group-addon">
-					<input type="submit" class="btn bg-blue" value="Filter">
-				</span>
-			</div>
-		</div>
-		-->
+		
 		<div class="col-md-4">
 			<ul class="nav nav-tabs tab-col-pink pull-left" >
 				<li role="presentation" class="active">

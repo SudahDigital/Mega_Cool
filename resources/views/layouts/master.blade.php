@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Mega Cool @yield('title')</title>
     <!-- Favicon-->
     <link rel="icon" href="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png')}}" type="image/x-icon">
@@ -176,8 +177,6 @@
                         </ul>
                     </li>
                     
-
-                    <!--
                     <li class="{{request()->routeIs('banner.index') ? 'active' : '' }}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">insert_photo</i>
@@ -189,8 +188,7 @@
                             </li>
                         </ul>
                     </li>
-                    -->
-
+                    
                     <li class="{{request()->routeIs('categories.index') ? 'active' : ''}}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">label</i>
