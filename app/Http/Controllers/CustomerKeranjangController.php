@@ -27,7 +27,7 @@ class CustomerKeranjangController extends Controller
         //$clientIP = \Request::getClientIp(true);
         //$session_id = $ses_id.$clientIP;
         $banner_active = \App\Banner::orderBy('position', 'ASC')->first();
-        $banner = \App\Banner::orderBy('position', 'ASC')->get();
+        $banner = \App\Banner::orderBy('position', 'ASC')->limit(5)->get();
         $categories = \App\Category::all();//paginate(10);
         $cat_count = $categories->count();
         $top_product = product::with('categories')->where('top_product','=','1')->orderBy('top_product','DESC')->get();
