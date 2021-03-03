@@ -42,8 +42,8 @@
 		</div>
 		<div class="col-md-6">&nbsp;</div>
 		<div class="col-md-12">
-			<a href="{{route('products.import_products')}}" class="btn btn-success ">Import Excel (<small>Update Stock</small>) </a>&nbsp;
-			<a href="{{route('products.export_all')}}" class="btn btn-success ">Export Excel (<small>Products Stock</small>)</a>&nbsp;
+			<a href="{{route('products.import_products')}}" class="btn btn-success "><i class="fas fa-file-excel fa-0x "></i> Import (<small>Update Stock</small>) </a>&nbsp;
+			<a href="{{route('products.export_all')}}" class="btn btn-success "><i class="fas fa-file-excel fa-0x "></i> Export (<small>Products Stock</small>)</a>&nbsp;
 			<a href="{{route('products.create')}}" class="btn bg-cyan">Create Product</a>
 		</div>
 		
