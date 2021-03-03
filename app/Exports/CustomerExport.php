@@ -24,6 +24,8 @@ class CustomerExport implements FromCollection, WithMapping, WithHeadings, WithC
                 $customer->store_name,
                 $customer->address,
                 $customer->phone,
+                $customer->phone_owner,
+                $customer->phone_store,
                 $customer->name,
                 $customer->payment_term,
                 $customer->user_id,
@@ -35,7 +37,9 @@ class CustomerExport implements FromCollection, WithMapping, WithHeadings, WithC
            'Cust_Code',
            'Name',
            'Address',
-           'Phone',
+           'Whatsapp',
+           'Owner Phone',
+           'Office/Shop Phone',
            'Contact',
            'Payment_Term',
            'Sales_Rep',
@@ -46,6 +50,8 @@ class CustomerExport implements FromCollection, WithMapping, WithHeadings, WithC
     {
         return [
             'D' =>'0',
+            'E' =>'0',
+            'F' =>'0',
         ];
         
     }
