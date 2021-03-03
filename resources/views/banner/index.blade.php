@@ -31,18 +31,19 @@
 	<table class="table table-bordered table-striped table-hover dataTable js-basic-example">
 		<thead>
 			<tr>
-				<th>No</th>
+				<th width="1%">#</th>
 				<th>Name</th>
 				<th>Image</th>
+				
 				<th width="20%">Actions</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="tablecontents">
 			<?php $no=0;?>
 			@foreach($banner as $c)
 			<?php $no++;?>
-			<tr>
-				<td>{{$no}}</td>
+			<tr class="row1" data-id="{{ $c->id }}">
+				<td><i class="fa fa-sort"></i></td>
 				<td>{{$c->name}}</td>
 				<td>@if($c->image)
 					<img src="{{asset('storage/'.$c->image)}}" width="50px" height="50px" />
@@ -116,7 +117,49 @@
 			@endforeach
 		</tbody>
 	</table>
-	
-	
 </div>
+@endsection
+@section('footer-scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script type="text/javascript">
+	$(function () {
+	  $( "#tablecontents" ).sortable({
+		items: "tr",
+		cursor: 'move',
+		opacity: 0.6,
+		update: function() {
+			sendOrderToServer();
+		}
+	  });
+
+	  function sendOrderToServer() {
+		var order = [];
+		var token = $('meta[name="csrf-token"]').attr('content');
+		$('tr.row1').each(function(index,element) {
+		  order.push({
+			id: $(this).attr('data-id'),
+			position: index+1
+		  });
+		});
+
+		$.ajax({
+		  type: "POST", 
+		  dataType: "json", 
+		  url: '{{URL::to('/ajax/post-sortable')}}',
+			data: {
+			posit: order,
+			_token: token
+		  },
+		  success: function(response) {
+			  if (response.status == "success") {
+				console.log(response);
+				} else {
+				console.log(response);
+			  }
+			  
+		  }
+		});
+	  }
+	});
+</script>
 @endsection

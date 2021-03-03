@@ -59,6 +59,7 @@ Route::get('/admin', function () {
     Route::resource('users','UserController');
     Route::get('/ajax/cities/search', 'SalesController@ajaxSearch');
     Route::resource('sales','SalesController');
+    Route::post('/ajax/post-sortable','BannerController@post_sortable');
     Route::get('/banner/trash', 'BannerController@trash')->name('banner.trash');
     Route::get('/banner/{id}/restore', 'BannerController@restore')->name('banner.restore');
     Route::delete('/banner/{banner}/delete-permanent','BannerController@deletePermanent')->name('banner.delete-permanent');

@@ -12,7 +12,7 @@
     <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" >
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_4.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_5.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_3.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css')}}">
     <!-- Scrollbar Custom CSS -->
@@ -897,27 +897,23 @@
         <div id="hero_cools">
             <!-- BANNER -->
             <div role="main" style="background-color:#ffffff">
-                
-                <!--
-                <div class="text-hero">
-                    <h1><span class="the">The</span>&nbsp;<span class="power">Power</span></h1>
-                    <h1><span class="the">Of</span>&nbsp;<span class="power">Innovation</span></h1>
-                    <hr/>
-                </div>
-                -->
-                <img src="{{ asset('assets/image/main-banner_r2.jpg') }}" class="w-100 h-90" alt="main-banner_r2" style="margin-top:-5px">
-                <!--
-                <div id="bannerSlide" class="carousel slide" data-ride="carousel">--//data-interval="5000"//--
-                    -- The slideshow //--
+                <div id="bannerSlide" class="carousel slide" data-ride="carousel"><!--data-interval="5000"-->
+                    <ol class="carousel-indicators">
+                        @foreach($banner as $value)
+                            <li data-target="#bannerSlide" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
+                        @endforeach
+                    </ol>
+                    
+                    <!-- The slideshow -->
                     <div class="carousel-inner">
                         @foreach($banner as $k => $v)
-                            <div class="carousel-item {{$v->id == $banner_active->id ? 'active' : ''}}">
-                                <img src="{{asset('storage/'.$v->image)}}" class="w-100 h-100" alt="main-banner">
+                            <div class="carousel-item {{$v->position == $banner_active->position ? 'active' : ''}}">
+                                <img src="{{asset('storage/'.$v->image)}}" class="w-100 h-100" style="margin-top:-5px">
                             </div>
                         @endforeach
                     </div>
 
-                    --// Left and right controls //--
+                    <!-- Left and right controls -->
                     <a class="carousel-control-prev" href="#bannerSlide" data-slide="prev">
                         <span class="carousel-control-prev-icon"></span>
                     </a>
@@ -925,7 +921,6 @@
                         <span class="carousel-control-next-icon"></span>
                     </a>
                 </div>
-                -->
             </div>
         </div>
 
