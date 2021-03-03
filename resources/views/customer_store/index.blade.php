@@ -55,9 +55,9 @@
 			<tr>
 				<th>No</th>
 				<th>Search Key</th>
-				<th>Name</th>
+				<th>Name/Email</th>
 				<th>Address</th>
-				<th>Phone</th>
+				<th >Phone</th>
 				<th>Contact Person</th>
 				<th>Payment Term</th>
 				<th>Sales Rep</th>
@@ -78,9 +78,16 @@
 					-
 					@endif
 				</td>
-				<td>{{$c->store_name}}</td>
+				<td>
+					<small class="text-primary"><b> Name : </b>{{$c->store_name ? "$c->store_name" : '-'}}</small><br>
+					<small class="text-secondary"><b> Email : </b>{{$c->email ? "$c->email" : '-'}}</small>
+				</td>
 				<td>{{$c->address}}</td>
-				<td>{{$c->phone}}</td>
+				<td>
+					<small class="text-primary"><b> Wa : </b>{{$c->phone != NULL ? "$c->phone" : '-'}}</small><br>
+					<small class="text-warning"><b> Owner : </b>{{$c->phone_owner != NULL ? "$c->phone_owner" : '-'}}</small><br>
+					<small class="text-danger"><b> Office : </b>{{$c->phone_store != NULL ? "$c->phone_store" : '-'}}</small>
+				</td>
 				<td>{{$c->name}}</td>
 				<td>{{$c->payment_term}}</td>
 				<td>@if($c->user_id > 0)
@@ -98,6 +105,7 @@
 
 				</td>
 				<td>
+					<a class="btn bg-grey waves-effect" href="{{route('customers.detail',[$c->id])}}">Detail</a>&nbsp;
 					<a class="btn btn-info btn-xs" href="{{route('customers.edit',[$c->id])}}"><i class="material-icons">edit</i></a>&nbsp;
 					<button type="button" class="btn btn-danger btn-xs waves-effect" data-toggle="modal" data-target="#deleteModal{{$c->id}}"><i class="material-icons">delete</i></button>&nbsp;
 					<!-- Modal Delete -->

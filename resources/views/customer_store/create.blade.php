@@ -41,10 +41,24 @@
 
         <div class="form-group form-float">
             <div class="form-line">
-                <input type="text" class="form-control" name="phone" minlength="10" maxlength="12" autocomplete="off" required>
-                <label class="form-label">Phone Number</label>
+                <input id="txtNumber" class="form-control" onkeypress="return isNumberKey(event)"  type="text" name="phone" minlength="10" maxlength="13" autocomplete="off">
+                <label class="form-label">Whatsapp Number</label>
             </div>
-            <div class="help-info">Min.10, Max. 12 Characters</div>
+            <div class="help-info">Min.10, Max. 13 Characters</div>
+        </div>
+
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="text" id="txtNumber" class="form-control" onkeypress="return isNumberKey(event)" name="phone_owner"  autocomplete="off" >
+                <label class="form-label">Owner Phone</label>
+            </div>
+        </div>
+
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="text" id="txtNumber" class="form-control" onkeypress="return isNumberKey(event)" name="phone_store"  autocomplete="off" >
+                <label class="form-label">Office/Shop Phone</label>
+            </div>
         </div>
 
         <div class="form-group form-float">
@@ -76,6 +90,15 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script>
+    function isNumberKey(evt)
+        {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode != 46 && charCode > 31 
+            && (charCode < 48 || charCode > 57))
+            return false;
+            return true;
+        }
+
     $('#user').select2({
       placeholder: 'Select an item',
       ajax: {

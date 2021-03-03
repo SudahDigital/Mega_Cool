@@ -60,6 +60,8 @@ class CustomerController extends Controller
         $new_cust->name = $request->get('name');
         $new_cust->email = $request->get('email');
         $new_cust->phone = $request->get('phone');
+        $new_cust->phone_owner = $request->get('phone_owner');
+        $new_cust->phone_store = $request->get('phone_store');
         $new_cust->store_name = $request->get('store_name');
         $new_cust->address = $request->get('address');
         $new_cust->payment_term = $request->get('payment_term');
@@ -110,6 +112,8 @@ class CustomerController extends Controller
         $cust->name = $request->get('name');
         $cust->email = $request->get('email');
         $cust->phone = $request->get('phone');
+        $cust->phone_owner = $request->get('phone_owner');
+        $cust->phone_store = $request->get('phone_store');
         $cust->store_name = $request->get('store_name');
         $cust->address = $request->get('address');
         $cust->payment_term = $request->get('payment_term');
@@ -127,6 +131,12 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function detail($id)
+    {
+        $customer = \App\Customer::findOrFail($id);
+        return view('customer_store.detail', ['customer' => $customer]);
     }
 
     public function deletePermanent($id){
