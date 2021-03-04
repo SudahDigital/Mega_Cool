@@ -945,9 +945,9 @@
             <!-- BANNER -->
             <div role="main" style="background-color:#ffffff">
                 <div id="bannerSlide" class="carousel slide" data-ride="carousel"><!--data-interval="5000"-->
-                    <ol class="carousel-indicators">
+                    <ol class="carousel-indicators" style="z-index: 1;">
                         @foreach($banner as $value)
-                            <li data-target="#bannerSlide" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
+                            <li data-target="#bannerSlide" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}" ></li>
                         @endforeach
                     </ol>
                     
@@ -955,7 +955,7 @@
                     <div class="carousel-inner">
                         @foreach($banner as $k => $v)
                             <div class="carousel-item {{$v->position == $banner_active->position ? 'active' : ''}}">
-                                <img src="{{asset('storage/'.$v->image)}}" class="w-100 h-100" style="margin-top:-5px">
+                                <img src="{{asset('storage/'.$v->image)}}" class="w-100 h-100" style="margin-top:-5px;z-index:1;">
                             </div>
                         @endforeach
                     </div>

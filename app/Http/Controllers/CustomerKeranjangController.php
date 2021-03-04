@@ -328,7 +328,7 @@ class CustomerKeranjangController extends Controller
             //$total_ongkir  = 15000;
             //$total_bayar  = $total_pesanan;
 
-            $href='Hello Admin Mega Cools,%0A%0ADetail Sales%0ANama : '.$user->name.',%0AEmail : '.$user->email.',%0ANo. Hp :' .$user->phone.',%0ASales Area :' .$user->sales_area.',%0A%0ADetail Pelanggan%0ANama  : '.$customer->name.',%0AEmail : '.$customer->email.',%0ANo. WA : '.$customer->phone.',%0ANo. Owner : '.$customer->phone_owner.',%0ANo. Toko : '.$customer->phone_store.',%0ANama Toko : '.$customer->store_name.',%0AAlamat : '.$customer->address.',%0A%0ADetail Pesanan%0A';
+            $href='*Hello Admin Mega Cools*,%0A%0A*Detail Sales*%0ANama : '.$user->name.',%0AEmail : '.$user->email.',%0ANo. Hp : ' .$user->phone.',%0ASales Area : ' .$user->sales_area.',%0A%0A*Detail Pelanggan*%0ANama  : '.$customer->name.',%0AEmail : '.$customer->email.',%0ANo. WA : '.$customer->phone.',%0ANo. Owner : '.$customer->phone_owner.',%0ANo. Toko : '.$customer->phone_store.',%0ANama Toko : '.$customer->store_name.',%0AAlamat : '.$customer->address.',%0A%0A*Detail Pesanan*%0A';
                 if($orders->save()){
                 $pesan = DB::table('order_product')
                         ->join('orders','order_product.order_id','=','orders.id')
@@ -340,13 +340,13 @@ class CustomerKeranjangController extends Controller
                 }
                 if($request->get('voucher_code_hide_modal')!= ""){
                     if ($type == 1){
-                        $info_harga = 'Total Pesanan : Rp.'.number_format(($sum_novoucher), 0, ',', '.').'%0APembayaran :'.$payment_method;
+                        $info_harga = '*Total Pesanan* : Rp.'.number_format(($sum_novoucher), 0, ',', '.').'%0A*Pembayaran* : '.$payment_method;
                     }else{
-                        $info_harga = 'Total Pesanan : Rp.'.number_format(($sum_novoucher), 0, ',', '.').'%0APembayaran :'.$payment_method;
+                        $info_harga = '*Total Pesanan* : Rp.'.number_format(($sum_novoucher), 0, ',', '.').'%0A*Pembayaran* : '.$payment_method;
                     }
                 }
                 else{
-                    $info_harga = 'Total Pesanan : Rp.'.number_format(($total_pesanan), 0, ',', '.').'%0APembayaran :'.$payment_method;
+                    $info_harga = '*Total Pesanan* : Rp.'.number_format(($total_pesanan), 0, ',', '.').'%0A*Pembayaran* : '.$payment_method;
                 }
                 if($request->get('notes') != ""){
                     $notes_wa=$request->get('notes');
@@ -354,7 +354,7 @@ class CustomerKeranjangController extends Controller
                 else{
                     $notes_wa = '-';
                 }
-                $note_sales = 'Notes : '.$notes_wa;
+                $note_sales = '*Notes* : '.$notes_wa;
                 $text_wa=$href.'%0A'.$info_harga.'%0A'.$note_sales;
             
                 $url = "https://api.whatsapp.com/send?phone=6281382333777&text=$text_wa";
