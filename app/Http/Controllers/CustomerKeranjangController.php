@@ -288,20 +288,21 @@ class CustomerKeranjangController extends Controller
                 }
             $user = User::findOrfail($user_id);
             $ses_order = $request->session()->get('ses_order');
+            $payment_method=$request->get('check_tunai_value');
+            if($request->get('notes') != ""){
+                $notes=$request->get('notes');
+            }else{
+                $notes = NULL;
+            }
             $customer = Customer::findOrfail($ses_order->customer_id);
             //$city = City::findOrfail($user->city_id);
             $customer_id = $ses_order->customer_id;
             $orders = Order::findOrfail($id);
             $orders->user_loc = $ses_order->user_loc;
             $orders->customer_id = $customer_id;
-            if($request->get('check_tunai_value') != ""){
-                $payment_method=$request->get('check_tunai_value');
-                $orders->payment_method = $payment_method;
-            }
-            else{
-                $payment_method = "TOP";
-                $orders->payment_method = $payment_method;
-            }
+            $orders->payment_method = $payment_method;
+            $orders->notes = $notes;
+            
             if($request->get('voucher_code_hide_modal') != ""){
                 $keyword = $request->get('voucher_code_hide_modal');
                 $vouchers_cek = \App\Voucher::where('code','=',"$keyword")->first();
@@ -327,7 +328,7 @@ class CustomerKeranjangController extends Controller
             //$total_ongkir  = 15000;
             //$total_bayar  = $total_pesanan;
 
-            $href='Hello Admin Mega Cools,%0A%0ADetail Sales%0ANama : '.$user->name.',%0AEmail : '.$user->email.',%0ANo. Hp :' .$user->phone.',%0ASales Area :' .$user->sales_area.',%0A%0ADetail Pelanggan%0ANama  : '.$customer->name.',%0AEmail : '.$customer->email.',%0ANo. Telp : '.$customer->phone.',%0ANama Toko : '.$customer->store_name.',%0AAlamat : '.$customer->address.',%0A%0ADetail Pesanan%0A';
+            $href='Hello Admin Mega Cools,%0A%0ADetail Sales%0ANama : '.$user->name.',%0AEmail : '.$user->email.',%0ANo. Hp :' .$user->phone.',%0ASales Area :' .$user->sales_area.',%0A%0ADetail Pelanggan%0ANama  : '.$customer->name.',%0AEmail : '.$customer->email.',%0ANo. WA : '.$customer->phone.',%0ANo. Owner : '.$customer->phone_owner.',%0ANo. Toko : '.$customer->phone_store.',%0ANama Toko : '.$customer->store_name.',%0AAlamat : '.$customer->address.',%0A%0ADetail Pesanan%0A';
                 if($orders->save()){
                 $pesan = DB::table('order_product')
                         ->join('orders','order_product.order_id','=','orders.id')
@@ -347,7 +348,14 @@ class CustomerKeranjangController extends Controller
                 else{
                     $info_harga = 'Total Pesanan : Rp.'.number_format(($total_pesanan), 0, ',', '.').'%0APembayaran :'.$payment_method;
                 }
-                    $text_wa=$href.'%0A'.$info_harga;
+                if($request->get('notes') != ""){
+                    $notes_wa=$request->get('notes');
+                }
+                else{
+                    $notes_wa = '-';
+                }
+                $note_sales = 'Notes : '.$notes_wa;
+                $text_wa=$href.'%0A'.$info_harga.'%0A'.$note_sales;
             
                 $url = "https://api.whatsapp.com/send?phone=6281382333777&text=$text_wa";
                 return Redirect::to($url);
@@ -819,10 +827,12 @@ class CustomerKeranjangController extends Controller
                                             </div>
                                         </div>-->';
                                     echo'
+                                        <!--
                                         <div id="divchecktunai" class="custom-control custom-checkbox checkbox-lg ml-n3 mb-4 mt-n2">
                                             <input type="checkbox" class="custom-control-input" id="checktunai" checked="">
                                             <label class="custom-control-label" for="checktunai" style="color: #000;font-weight:600;">Pembayaran Tunai</label>
                                         </div>
+                                        -->
                                         <div id="div_total" class="row float-left mt-2">
                                             <p class="mt-1" style="color: #000;font-weight:bold; ">Total Harga</p>&nbsp;
                                             <h2 id="total_kr_" style="font-weight:700;color: #153651;font-family: Montserrat;">Rp.&nbsp;'.number_format(($item_price) , 0, ',', '.').',-</h2>

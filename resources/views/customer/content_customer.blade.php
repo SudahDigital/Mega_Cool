@@ -302,11 +302,12 @@ Home
                                         <button class="btn " type="submit" onclick="btn_code('')" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
                                     </div>
                                 </div>
-                                -->
+                                
                                 <div id="divchecktunai" class="custom-control custom-checkbox checkbox-lg ml-n3 mb-4 mt-n2">
                                     <input  type="checkbox" class="custom-control-input" id="checktunai" checked value="Cash">
                                     <label class="custom-control-label" for="checktunai" style="color: #000;font-weight:600;">Pembayaran Tunai</label>
                                 </div>
+                                -->
                                 <div id="div_total" class="row float-left mt-2">
                                     <p class="mt-1" style="color: #000;font-weight:bold; ">Total Harga</p>&nbsp;
                                     @if($item!==null)
@@ -363,29 +364,28 @@ Home
                         <div class="col-md-5 login-label" style="z-index: 2">
                             <form class="form-inline" method="POST" id="ga_pesan_form" target="_BLANK" action="{{ route('customer.keranjang.pesan') }}">
                                 @csrf
+                                <div class="col-md-5 px-0 pt-3">
+                                    <p class="text-left">Pilih Metode Pembayaran</p>
+                                </div>
                                 @if($item!==null)
                                 <input type="hidden" name ="voucher_code_hide_modal" id="voucher_code_hide_modal">
                                 <input type="hidden" name="total_novoucher" id="total_novoucher_val">
                                 <input type="hidden" name="total_pesanan" id="total_pesan_val" value="{{$item->total_price}}">
-                                <input type="hidden" name ="check_tunai_value" id="check_tunai_value">
-                                    @else
+                                @else
                                     <input type="hidden" name ="voucher_code_hide_modal"  id="voucher_code_hide_modal">
                                     <input type="hidden" name="total_novoucher" id="total_novoucher_val">
                                     <input type="hidden" name="total_pesanan" id="total_pesan_val" >
-                                    <input type="hidden" name ="check_tunai_value" id="check_tunai_value">
                                 @endif
-                                <div class="col-md-5 px-0 pt-3">
-                                    <p class="text-left">Pilih Metode Pembayaran</p>
-                                </div>
                                 <div class="col-md-7 p-0 ">
                                     <select name="check_tunai_value"  id="check_tunai" style="width:100%;" class="selectpicker" required>
                                         <option data-icon="fa-check-circle" value="Cash"> Cash</option>
-                                        <option data-icon="fa-check-circle" value="Term of Payment"> Term of Payment</option>
+                                        <option data-icon="fa-check-circle" value="TOP 7 Days"> TOP 7 Days</option>
+                                        <option data-icon="fa-check-circle" value="TOP 30 Days"> TOP 30 Days</option>
                                     </select>
                                 </div>
                                 <div class="col-md-12 px-0 mt-4">
                                     <div class="form-group">
-                                        <textarea name="note" class="form-control p-3" rows="5" placeholder="Note..."
+                                        <textarea name="notes" class="form-control p-3" rows="5" placeholder="Note..."
                                         style="width: 100%;
                                         border-top-left-radius:25px;
                                         border-top-right-radius:25px;
