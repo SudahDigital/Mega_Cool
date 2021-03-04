@@ -190,6 +190,35 @@
             background-color: #1A4066 !important 
         }
 
+        #my_modal_content .modal-dialog-full-width {
+            position:absolute;
+            right:0;
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            max-width:none !important;
+        }
+
+        #my_modal_content .modal-content-full-width  {
+            height: auto !important;
+            min-height: 100% !important;
+            border-radius: 0 !important;
+            background-color: #1A4066 !important 
+        }
+
+        .close {
+            float: left;
+            font-size: 40px;
+            font-weight: 500;
+            line-height: 1;
+            color: #FF0000 !important;
+            text-shadow: 0 1px 0 #fff;
+            filter: alpha(opacity=20);
+            opacity: 1;
+            outline:none;
+        }
+
         .borderless td, .borderless th {
             border: none;
         }
@@ -810,7 +839,7 @@
                                         </div>
                                         <hr style="border-bottom:1px solid rgba(116, 116, 116, 0.507);">
                                         <div class="form-group">
-                                            <input type="number" minlength="10" maxlength="13" name="phone_store" class="form-control my-n3 contact_input @error('new_telp_toko') is-invalid @enderror" placeholder="No. Telp 2 (Telp. Toko)" id="new_telp_toko" required autocomplete="off" autofocus value="{{ old('new_telp_toko') }}">
+                                            <input type="number" minlength="10" maxlength="13" name="phone_store" class="form-control my-n3 contact_input @error('new_telp_toko') is-invalid @enderror" placeholder="No. Telp 3 (Telp. Toko)" id="new_telp_toko" required autocomplete="off" autofocus value="{{ old('new_telp_toko') }}">
                                             @error('new_telp_toko')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -1006,6 +1035,10 @@
                     $(".navbar").css("background" , "transparent");  	
                 }
             })
+        });
+
+        $('#check_tunai').select2({
+            minimumResultsForSearch: -1
         });
 
         //Select2 city

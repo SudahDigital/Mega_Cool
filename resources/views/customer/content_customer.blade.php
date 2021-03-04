@@ -16,7 +16,6 @@ Home
     -moz-appearance: textfield;
     }
 
-    
 </style>
     @if(session('sukses_peesan'))
     <div class="alert alert-success">
@@ -338,34 +337,60 @@ Home
         </div>
     </div>
     <!-- Modal pesan wa--> 
-    <div class="modal fade ml-0" id="my_modal_content" role="dialog" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <!-- Modal content-->
-            <div class="modal-content" >
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <form method="POST" id="ga_pesan_form" target="_BLANK" action="{{ route('customer.keranjang.pesan') }}">
-                    @csrf
-                    @if($item!==null)
-                    <input type="hidden" name ="voucher_code_hide_modal" id="voucher_code_hide_modal">
-                    <input type="hidden" name="total_novoucher" id="total_novoucher_val">
-                    <input type="hidden" name="total_pesanan" id="total_pesan_val" value="{{$item->total_price}}">
-                    <input type="hidden" name ="check_tunai_value" id="check_tunai_value">
-                        @else
-                        <input type="hidden" name ="voucher_code_hide_modal"  id="voucher_code_hide_modal">
-                        <input type="hidden" name="total_novoucher" id="total_novoucher_val">
-                        <input type="hidden" name="total_pesanan" id="total_pesan_val" >
-                        <input type="hidden" name ="check_tunai_value" id="check_tunai_value">
-                    @endif
+    <div class="modal fade right ml-0" id="my_modal_content" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+        <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+            <div class="modal-content-full-width modal-content ">
                 <div class="modal-body">
-                    <p style="color:  #1A4066;font-weight:600;">Proses pemesanan melalui whatsapp...</p>
+                    <button type="button" class="close text-left" data-dismiss="modal">&times;</button>
+                    <img src="{{ asset('assets/image/dot-top-right.png') }}" class="dot-top-right"  
+                    style="" alt="dot-top-right">
+                    <img src="{{ asset('assets/image/dot-bottom-left.png') }}" class="dot-bottom-left"  
+                    style="" alt="dot-bottom-left">
+                    <img src="{{ asset('assets/image/shape-bottom-right.png') }}" class="shape-bottom-right"  
+                    style="" alt="shape-bottom-right">
+                    <div class="container">
+                        <div class="d-flex justify-content-center mx-auto">
+                            <div class="col-md-2 image-logo-login" style="z-index: 2">
+                            <img src="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png') }}" class="img-thumbnail pt-4" style="background-color:transparent; border:none;" alt="LOGO MEGACOOLS_DEFAULT">  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 login-label py-3" style="z-index: 2">
+                        <h3 >Konfirmasi Pesanan</h3>
+                    </div>
+                    
+                    <div class="row justify-content-center">
+                        <div class="col-md-5 login-label" style="z-index: 2">
+                            <form class="form-inline" method="POST" id="ga_pesan_form" target="_BLANK" action="{{ route('customer.keranjang.pesan') }}">
+                                @csrf
+                                @if($item!==null)
+                                <input type="hidden" name ="voucher_code_hide_modal" id="voucher_code_hide_modal">
+                                <input type="hidden" name="total_novoucher" id="total_novoucher_val">
+                                <input type="hidden" name="total_pesanan" id="total_pesan_val" value="{{$item->total_price}}">
+                                <input type="hidden" name ="check_tunai_value" id="check_tunai_value">
+                                    @else
+                                    <input type="hidden" name ="voucher_code_hide_modal"  id="voucher_code_hide_modal">
+                                    <input type="hidden" name="total_novoucher" id="total_novoucher_val">
+                                    <input type="hidden" name="total_pesanan" id="total_pesan_val" >
+                                    <input type="hidden" name ="check_tunai_value" id="check_tunai_value">
+                                @endif
+                                <div class="col-md-6 pb-0">
+                                    <p class="text-left">Pilih Metode Pembayaran</p>
+                                </div>
+                                <div class="col-md-6 pt-0">
+                                    <select name="check_tunai_value"  id="check_tunai" style="width:100%;" class="custom-select" required>
+                                        <option  value="AL">Alabama</option>
+                                        <option value="WY">Wyoming</option>
+                                    </select>
+                                </div>
+                                <div class="mx-auto text-center">
+                                    <input type="hidden" id="order_id_pesan" name="id" value="{{$item !==null ? $item->id : ''}}"/>
+                                    <button type="submit" id="ga_pesan" onclick="pesan_wa()" class="btn btn_login_form"><i class="fab fa-whatsapp fa-1x" aria-hidden="true" style="color: #ffffff !important; font-weight:900;"></i>&nbsp;{{__('Pesan Sekarang') }}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <input type="hidden" id="order_id_pesan" name="id" value="{{$item !==null ? $item->id : ''}}"/>
-                    <button type="submit" id="ga_pesan" onclick="pesan_wa()" class="btn btn-block bt-wa"><i class="fab fa-whatsapp fa-1x" aria-hidden="true" style="color: #ffffff !important; font-weight:900;"></i>&nbsp;{{__('Pesan') }}</button>
-                </div>
-                </form>
             </div>
         </div>
     </div>
@@ -374,7 +399,7 @@ Home
     <div class="modal fade ml-1" id="modal_validasi" role="dialog" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <!-- Modal content-->
-            <div class="modal-content" style="background: #FDD8AF">
+            <div class="modal-content" style="">
                 <div class="modal-body">
                     <div class="row justify-content-center">
                         <div class="col-sm-12">

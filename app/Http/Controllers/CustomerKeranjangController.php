@@ -276,7 +276,7 @@ class CustomerKeranjangController extends Controller
                     order_product.quantity > products.stock AND order_product.order_id = '$id'");
         $count_cek = count($cek_order);
         if($count_cek > 0){
-            return view('errors/error_telegram');
+            return view('errors/error_wa');
         }else{
             $cek_quantity = Order::with('products')->where('id',$id)->get();
             foreach($cek_quantity as $q){
@@ -299,7 +299,7 @@ class CustomerKeranjangController extends Controller
                 $orders->payment_method = $payment_method;
             }
             else{
-                $payment_method = "Non Tunai";
+                $payment_method = "TOP";
                 $orders->payment_method = $payment_method;
             }
             if($request->get('voucher_code_hide_modal') != ""){
