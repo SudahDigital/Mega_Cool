@@ -374,14 +374,24 @@ Home
                                     <input type="hidden" name="total_pesanan" id="total_pesan_val" >
                                     <input type="hidden" name ="check_tunai_value" id="check_tunai_value">
                                 @endif
-                                <div class="col-md-6 pb-0">
+                                <div class="col-md-5 px-0 pt-3">
                                     <p class="text-left">Pilih Metode Pembayaran</p>
                                 </div>
-                                <div class="col-md-6 pt-0">
-                                    <select name="check_tunai_value"  id="check_tunai" style="width:100%;" class="custom-select" required>
-                                        <option  value="AL">Alabama</option>
-                                        <option value="WY">Wyoming</option>
+                                <div class="col-md-7 p-0 ">
+                                    <select name="check_tunai_value"  id="check_tunai" style="width:100%;" class="selectpicker" required>
+                                        <option data-icon="fa-check-circle" value="Cash"> Cash</option>
+                                        <option data-icon="fa-check-circle" value="Term of Payment"> Term of Payment</option>
                                     </select>
+                                </div>
+                                <div class="col-md-12 px-0 mt-4">
+                                    <div class="form-group">
+                                        <textarea name="note" class="form-control p-3" rows="5" placeholder="Note..."
+                                        style="width: 100%;
+                                        border-top-left-radius:25px;
+                                        border-top-right-radius:25px;
+                                        border-bottom-right-radius:0;
+                                        border-bottom-left-radius:0;"></textarea>
+                                    </div>
                                 </div>
                                 <div class="mx-auto text-center">
                                     <input type="hidden" id="order_id_pesan" name="id" value="{{$item !==null ? $item->id : ''}}"/>

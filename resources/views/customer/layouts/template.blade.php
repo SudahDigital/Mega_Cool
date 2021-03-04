@@ -1037,8 +1037,16 @@
             })
         });
 
+        //fa icon select
+        function formatText (icon) {
+            return $('<span><i class="fas ' + $(icon.element).data('icon') + '" style="color:green;"></i> ' + icon.text + '</span>');
+        };
+
+        //trigger fa icon select
         $('#check_tunai').select2({
-            minimumResultsForSearch: -1
+            minimumResultsForSearch: -1,
+            templateSelection: formatText,
+            templateResult: formatText
         });
 
         //Select2 city
