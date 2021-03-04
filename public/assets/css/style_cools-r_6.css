@@ -1241,6 +1241,25 @@ color: #ffffff;
     box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.2);
 }
 
+#storeForm .contact_input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+   font-weight: 500;
+   font-size:medium;
+}
+
+#storeForm .contact_input::-moz-placeholder { /* Firefox 19+ */
+   font-weight: 500;
+   font-size:medium;
+}
+
+#storeForm .contact_input::-ms-input-placeholder { /* IE 10+ */
+    font-weight: 500;
+    font-size:medium;
+}
+#storeForm .contact_input::-moz-placeholder { /* Firefox 18- */
+    font-weight: 500;
+    font-size:medium;
+}
+
 .contact_input {
   font-family: 'Montserrat';
   background: transparent !important;

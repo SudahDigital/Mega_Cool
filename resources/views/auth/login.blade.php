@@ -15,7 +15,7 @@
         
     }
 </style>
-    <div class="container">
+    <div class="container pt-5">
         <div class="d-flex justify-content-center mx-auto" >
             <div class="col-md-2 image-logo-login" style="z-index: 2">
                <img src="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png') }}" class="img-thumbnail" style="background-color:transparent; border:none;" alt="LOGO MEGACOOLS_DEFAULT">  

@@ -21,6 +21,8 @@ class SessionStore extends Controller
         $new_cust = new \App\Customer;
         $new_cust->name = $request->get('nm_cust_hide');
         $new_cust->phone = $request->get('no_telp_hide');
+        $new_cust->phone_owner = $request->get('no_owner_hide');
+        $new_cust->phone_store = $request->get('no_toko_hide');
         $new_cust->store_name = $request->get('nm_toko_hide');
         $new_cust->address = $request->get('alamat_hide');
         $new_cust->user_id = $id_user;

@@ -12,8 +12,8 @@
     <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" >
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_5.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_3.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_6.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_4.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css')}}">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -104,6 +104,7 @@
                 margin-bottom: 0;
             }
         }
+
         .alert{
             position:fixed;
             top:5%; 
@@ -225,6 +226,7 @@
         .left-paddle {
             left: 0;
         }
+
         .right-paddle {
             right: 0;
         }
@@ -232,8 +234,6 @@
         .paddles_hide {
             display: none;
         }
-
-        
 
         .row::-webkit-scrollbar {
             height: 12px;
@@ -555,52 +555,50 @@
         }
     
         #product_list .ribbon {
-        position: absolute;
-        left: -5px; top: -5px;
-        z-index: 1;
-        overflow: hidden;
-        width: 200px; height: 200px;
-        text-align: right;
+            position: absolute;
+            left: -5px; top: -5px;
+            z-index: 1;
+            overflow: hidden;
+            width: 200px; height: 200px;
+            text-align: right;
         }
 
         #product_list .span-ribbon {
-        font-size: 20px;
-        font-weight: bold;
-        color: #FFF;
-        text-transform: uppercase;
-        text-align: center;
-        line-height: 40px;
-        transform: rotate(-45deg);
-        -webkit-transform: rotate(-45deg);
-        width: 225px;
-        display: block;
-        background: #79A70A;
-        background: linear-gradient(#F79E05 0%, #8F5408 100%);
-        box-shadow: 0 6px 10px -5px rgba(0, 0, 0, 1);
-        position: absolute;
-        top: 40px; left: -52px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #FFF;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 40px;
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+            width: 225px;
+            display: block;
+            background: #79A70A;
+            background: linear-gradient(#F79E05 0%, #8F5408 100%);
+            box-shadow: 0 6px 10px -5px rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 40px; left: -52px;
         }
 
         #product_list .span-ribbon::before {
-        content: "";
-        position: absolute; left: 0px; top: 100%;
-        z-index: -1;
-        border-left: 7px solid #8F5408;
-        border-right: 7px solid transparent;
-        border-bottom: 7px solid transparent;
-        border-top: 7px solid #8F5408;
-        
+            content: "";
+            position: absolute; left: 0px; top: 100%;
+            z-index: -1;
+            border-left: 7px solid #8F5408;
+            border-right: 7px solid transparent;
+            border-bottom: 7px solid transparent;
+            border-top: 7px solid #8F5408;
         }
         
         #product_list .span-ribbon::after {
-        content: "";
-        position: absolute; right: 0px; top: 100%;
-        z-index: -1;
-        border-left: 7px solid transparent;
-        border-right: 7px solid #8F5408;
-        border-bottom: 7px solid transparent;
-        border-top: 7px solid #8F5408;
-        
+            content: "";
+            position: absolute; right: 0px; top: 100%;
+            z-index: -1;
+            border-left: 7px solid transparent;
+            border-right: 7px solid #8F5408;
+            border-bottom: 7px solid transparent;
+            border-top: 7px solid #8F5408;
         }
 
         @media(max-width: 768px){
@@ -711,6 +709,8 @@
                                                 <input id="nm-toko-hide" name="nm_toko_hide" type="hidden" />
                                                 <input id="nm-cust-hide" name="nm_cust_hide" type="hidden" />
                                                 <input id="no-telp-hide" name="no_telp_hide" type="hidden" />
+                                                <input id="no-owner-hide" name="no_owner_hide" type="hidden" />
+                                                <input id="no-toko-hide" name="no_toko_hide" type="hidden" />
                                                 <input id="alamat-hide" name="alamat_hide" type="hidden" />
                                             </td>
                                         </tr>
@@ -774,7 +774,7 @@
                                 border-bottom-left-radius:0;">
                                     <div class="card-body pb-1 pt-2">
                                         <div class="form-group">
-                                            <input type="text" name="store_name" class="form-control mb-n2 contact_input @error('store_name') is-invalid @enderror" placeholder="Nama Toko" id="new_store_name" required autocomplete="off" autofocus value="{{ old('new_store_name') }}">
+                                            <input type="text" name="store_name" class="form-control mb-n3 contact_input @error('store_name') is-invalid @enderror" placeholder="Nama Toko" id="new_store_name" required autocomplete="off" autofocus value="{{ old('new_store_name') }}">
                                             @error('new_store_name')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -783,7 +783,7 @@
                                         </div>
                                         <hr style="border-bottom:1px solid rgba(116, 116, 116, 0.507);">
                                         <div class="form-group">
-                                            <input type="text" name="name" class="form-control my-n2 contact_input @error('name') is-invalid @enderror" placeholder="Nama Customer" id="new_name" required autocomplete="off" autofocus value="{{ old('new_name') }}">
+                                            <input type="text" name="name" class="form-control my-n3 contact_input @error('name') is-invalid @enderror" placeholder="Nama Customer" id="new_name" required autocomplete="off" autofocus value="{{ old('new_name') }}">
                                             @error('new_name')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -792,7 +792,7 @@
                                         </div>
                                         <hr style="border-bottom:1px solid rgba(116, 116, 116, 0.507);">
                                         <div class="form-group">
-                                            <input type="number" minlength="10" maxlength="13" name="phone" class="form-control my-n2 contact_input @error('telp') is-invalid @enderror" placeholder="No. Telp" id="new_telp" required autocomplete="off" autofocus value="{{ old('new_telp') }}">
+                                            <input type="number" minlength="10" maxlength="13" name="phone" class="form-control my-n3 contact_input @error('new_telp') is-invalid @enderror" placeholder="No. Telp 1 (Whatsapp)" id="new_telp" required autocomplete="off" autofocus value="{{ old('new_telp') }}">
                                             @error('new_telp')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -801,7 +801,25 @@
                                         </div>
                                         <hr style="border-bottom:1px solid rgba(116, 116, 116, 0.507);">
                                         <div class="form-group">
-                                            <input type="text" name="address" class="form-control my-n2 contact_input @error('address') is-invalid @enderror" placeholder="Alamat" id="new_address" required autocomplete="off" autofocus value="{{ old('address') }}">
+                                            <input type="number" minlength="10" maxlength="13" name="phone_owner" class="form-control my-n3 contact_input @error('new_telp_owner') is-invalid @enderror" placeholder="No. Telp 2 (Telp. Owner)" id="new_telp_owner" required autocomplete="off" autofocus value="{{ old('new_telp_owner') }}">
+                                            @error('new_telp_owner')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <hr style="border-bottom:1px solid rgba(116, 116, 116, 0.507);">
+                                        <div class="form-group">
+                                            <input type="number" minlength="10" maxlength="13" name="phone_store" class="form-control my-n3 contact_input @error('new_telp_toko') is-invalid @enderror" placeholder="No. Telp 2 (Telp. Toko)" id="new_telp_toko" required autocomplete="off" autofocus value="{{ old('new_telp_toko') }}">
+                                            @error('new_telp_toko')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <hr style="border-bottom:1px solid rgba(116, 116, 116, 0.507);">
+                                        <div class="form-group">
+                                            <input type="text" name="address" class="form-control my-n3 contact_input @error('address') is-invalid @enderror" placeholder="Alamat" id="new_address" required autocomplete="off" autofocus value="{{ old('address') }}">
                                             @error('new_address')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -926,33 +944,7 @@
 
         <!--content-->
         <div id="content">
-            <!--
-            <nav class="navbar navbar-expand-lg fixed-top" style="z-index: 1.5;">
-                <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="btn button-burger-menu">
-                        <i class="fas fa-bars fa-2x" style="color:#ffffff;"></i>
-                    </button>
-                   
-                    <a class="navbar-brand nav-center" href="{{ url('/') }}">
-                        <img src="{{ asset('assets/image/logo-gentong.png') }}" class="p-0 m-0 d-inline-block align-top" alt="logo-gentong" loading="lazy">
-                    </a>
-                    <form action="{{route('search.index')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
-                        <div class="input-group">
-                            <div class="input-group-append">
-                                <button class="btn  my-2 my-sm-0 search_botton_navbar" type="submit" id="button-search-addon" style="border-radius: 50%;"><i class="fa fa-search"></i></button>&nbsp;&nbsp;&nbsp;
-                            </div>
-                            <input class="form-control d-inline-block m-100 search_input_navbar" name="keyword" type="text" value="{{Request::get('keyword')}}" placeholder="Search" aria-label="Search" aria-describedby="button-search-addon">
-                              
-                        </div>
-                    </form>
-                    <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="border-radius: 50%; background:#693234;; border:none;"><i class="fa fa-search" style=""></i></a>
-                    
-                </div>
-            </nav>
-            -->
-              
-               
-            @yield('content')
+           @yield('content')
         </div>
 
         <!-- Footer section -->
@@ -1001,6 +993,7 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <script type="text/javascript">
+        //navigation behavior
         $(document).ready(function(){
             $(window).scroll(function(){
                 var scroll = $(window).scrollTop();
@@ -1015,7 +1008,7 @@
             })
         });
 
-        //Select2
+        //Select2 city
         $('#city_id').select2({
         placeholder: 'Pilih Kota',
         language: {
@@ -1042,7 +1035,7 @@
             }
         }
         });
-
+        //select2 customer
         $('#customer_id').select2({
         placeholder: 'Pilih Toko',
         language: {
@@ -1071,6 +1064,7 @@
             
         });
 
+        //onclick no-result-customer
         function noResultsButtonClicked()
         {
             $("#storeForm").modal('show');
@@ -1080,17 +1074,22 @@
            
         }
 
+        //trigger new toko
         $("#btn_new_toko").on("click", function(){
             var newTokoVal = $("#new_store_name").val();
             var newnameVal = $("#new_name").val();
             var newtelpVal = $("#new_telp").val();
+            var newtelpownerVal = $("#new_telp_owner").val();
+            var newtelptokoVal = $("#new_telp_toko").val();
             var newaddressVal = $("#new_address").val();
-            if (newTokoVal != "" && newnameVal!="" && newtelpVal !="" && newaddressVal !="" ){
+            if (newTokoVal != "" && newnameVal!="" && newtelpVal !="" && newtelptokoVal !="" && newaddressVal !="" && newtelpownerVal !="" ){
                 var newToko = new Option(newTokoVal, newTokoVal, true, true);
                 $("#customer_id").append(newToko).trigger("change");
                 $("#nm-toko-hide").val(newTokoVal);
                 $("#nm-cust-hide").val(newnameVal);
                 $("#no-telp-hide").val(newtelpVal);
+                $("#no-owner-hide").val(newtelpownerVal);
+                $("#no-toko-hide").val(newtelptokoVal);
                 $("#alamat-hide").val(newaddressVal); 
                 $("#storeForm").modal('hide');
             }
@@ -1115,9 +1114,6 @@
             
         });  
         
-        
-        
-
         //$('#accordion').collapse('show').height('auto');
 
         // duration of scroll animation
@@ -1245,8 +1241,7 @@
             $('.collapse.in').toggleClass('in');
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
         });
-
-        //
+        //end sidebar
 
         function btn_code(){
             var voucher_code = document.getElementById("voucher_code").value;
