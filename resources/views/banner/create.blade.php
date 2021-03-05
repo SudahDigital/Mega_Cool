@@ -19,9 +19,10 @@
         
         <h2 class="card-inside-title">Banner Image</h2>
         <div class="form-group">
-         <div class="form-line">
-             <input type="file" name="image" class="form-control" id="image" autocomplete="off">
+            <div class="form-line">
+                <input type="file" name="image" class="form-control" id="image" autocomplete="off" required>
             </div>
+            <label id="name-error" class="error" for="image">{{ $errors->first('image') }}</label>
         </div>
                         
         <button class="btn btn-primary waves-effect" type="submit">SAVE</button>

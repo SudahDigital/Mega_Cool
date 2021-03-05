@@ -48,6 +48,9 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
+        \Validator::make($request->all(), [
+            "image" => "required|image|mimes:jpeg,png,jpg|max:500"
+        ])->validate();
         $name = $request->get('name');
         $newBanner = new \App\Banner;
         $newBanner->name = $name;
@@ -93,6 +96,9 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        \Validator::make($request->all(), [
+            "image" => "required|image|mimes:jpeg,png,jpg|max:500"
+        ])->validate();
         $name = $request->get('name');
         //$slug = $request->get('slug');
         $banner = \App\Banner::findOrFail($id);

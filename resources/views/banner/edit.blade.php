@@ -28,14 +28,15 @@
         -->
         <h2 class="card-inside-title">Image</h2>
         <div class="form-group">
-         <div class="form-line">
-            @if($banner_edit->image)
-            <img src="{{asset('storage/'.$banner_edit->image)}}" width="120px"/>
-            @else
-            No Image
-            @endif
-            <input type="file" name="image" class="form-control" id="avatar" autocomplete="off">
+            <div class="form-line">
+                @if($banner_edit->image)
+                <img src="{{asset('storage/'.$banner_edit->image)}}" width="120px"/>
+                @else
+                No Image
+                @endif
+                <input type="file" name="image" class="form-control" id="avatar" autocomplete="off">
             </div>
+            <label id="name-error" class="error" for="image">{{ $errors->first('image') }}</label>
         </div>
 
         <button class="btn btn-primary waves-effect" type="submit">EDIT</button>&nbsp;

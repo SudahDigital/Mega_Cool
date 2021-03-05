@@ -165,7 +165,7 @@ class CustomerController extends Controller
 
     public function ajaxUserSearch(Request $request){
         $keyword = $request->get('q');
-        $user = \App\User::where('name','LIKE',"%$keyword%")->get();
+        $user = \App\User::where('roles','=','SALES')->where('name','LIKE',"%$keyword%")->get();
         return $user;
     }
 

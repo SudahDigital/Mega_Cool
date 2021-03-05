@@ -981,7 +981,7 @@
         <div id="hero_cools">
             <!-- BANNER -->
             <div role="main" style="background-color:#ffffff">
-                <div id="bannerSlide" class="carousel slide" data-ride="carousel"><!--data-interval="5000"-->
+                <div id="bannerSlide" class="carousel slide" data-ride="carousel" data-interval="5000">
                     <ol class="carousel-indicators" style="z-index: 1;">
                         @foreach($banner as $value)
                             <li data-target="#bannerSlide" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}" ></li>
