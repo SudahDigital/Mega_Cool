@@ -37,6 +37,42 @@
     })(window,document,'script','dataLayer','GTM-MSWC453');</script>
     <!-- End Google Tag Manager -->
     <style type="text/css">
+
+        .btn-circle {
+            float: right;
+            width: 30px;
+            height: 30px;
+            padding: 2px 0px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 15px;
+            line-height: 1.42857;
+            right:2rem;
+            top: 2rem;
+        }
+
+        @media only screen and (max-width: 600px){
+            .btn-circle{
+                width: 20px;
+                height: 20px;
+                font-size: 10px;
+                padding: 3px 0px;
+                right:1rem;
+                top: 1rem;
+            }
+        }
+
+        .btn-warning {
+            background-color: #fff;
+            opacity: 0.7;
+            border-color: #fff;
+        }
+
+        .btn-warning:hover{
+            background-color: #fff;
+            border-color: #fff;
+        }
+        
         /* Chrome, Safari, Edge, Opera */
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
@@ -134,7 +170,7 @@
             outline: none;
             height: 37px;
             font-weight: 500;
-            font-size: 1em; 
+            font-size: 16px; 
             border-top-left-radius: 15px !important;
             border-top-right-radius: 15px !important;
         }
@@ -154,8 +190,9 @@
             font-weight: 600;
         }
 
-        .select2-results__options { max-height: 100px !important }
+        .select2-results__options { max-height: 100px !important;}
 
+        
         #LocationForm .modal-dialog-full-width {
             position:absolute;
             right:0;
@@ -208,11 +245,11 @@
         }
 
         .close {
-            float: left;
+            float: right;
             font-size: 40px;
             font-weight: 500;
             line-height: 1;
-            color: #FF0000 !important;
+            color: #ffffff !important;
             text-shadow: 0 1px 0 #fff;
             filter: alpha(opacity=20);
             opacity: 1;

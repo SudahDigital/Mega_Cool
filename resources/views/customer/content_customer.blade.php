@@ -15,8 +15,8 @@ Home
     input[type=number] {
     -moz-appearance: textfield;
     }
-
 </style>
+
     @if(session('sukses_peesan'))
     <div class="alert alert-success">
         {{session('sukses_pesan')}}
@@ -342,13 +342,13 @@ Home
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
             <div class="modal-content-full-width modal-content ">
                 <div class="modal-body">
-                    <button type="button" class="close text-left" data-dismiss="modal">&times;</button>
                     <img src="{{ asset('assets/image/dot-top-right.png') }}" class="dot-top-right"  
                     style="" alt="dot-top-right">
                     <img src="{{ asset('assets/image/dot-bottom-left.png') }}" class="dot-bottom-left"  
                     style="" alt="dot-bottom-left">
                     <img src="{{ asset('assets/image/shape-bottom-right.png') }}" class="shape-bottom-right"  
                     style="" alt="shape-bottom-right">
+                    <button type="button" class="btn btn-warning btn-circle" data-dismiss="modal" style="position:absolute;z-index:99999;"><i class="fa fa-times"></i></button>
                     <div class="container">
                         <div class="d-flex justify-content-center mx-auto">
                             <div class="col-md-2 image-logo-login" style="z-index: 2">
@@ -377,10 +377,10 @@ Home
                                     <input type="hidden" name="total_pesanan" id="total_pesan_val" >
                                 @endif
                                 <div class="col-md-7 p-0 ">
-                                    <select name="check_tunai_value"  id="check_tunai" style="width:100%;" class="selectpicker" required>
-                                        <option data-icon="fa-check-circle" value="Cash"> Cash</option>
-                                        <option data-icon="fa-check-circle" value="TOP 7 Days"> TOP 7 Days</option>
-                                        <option data-icon="fa-check-circle" value="TOP 30 Days"> TOP 30 Days</option>
+                                    <select name="check_tunai_value"  id="check_tunai" style="width:100%;" class="form-control" required>
+                                        <option data-icon="fa-check-circle" value="Cash">&nbsp;&nbsp;Cash</option>
+                                        <option data-icon="fa-check-circle" value="TOP 7 Days">&nbsp;&nbsp;TOP 7 Days</option>
+                                        <option data-icon="fa-check-circle" value="TOP 30 Days">&nbsp;&nbsp;TOP 30 Days</option>
                                     </select>
                                 </div>
                                 <div class="col-md-12 px-0 mt-4">
