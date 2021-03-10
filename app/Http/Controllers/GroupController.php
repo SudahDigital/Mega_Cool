@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PaketController extends Controller
+class GroupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,17 +16,15 @@ class PaketController extends Controller
         $status = $request->get('status');
         $keyword = $request->get('keyword') ? $request->get('keyword') : '';
         if($status){
-        $pakets = \App\Paket::with('groups')
-        ->where('paket_name','LIKE',"%$keyword%")
+        $groups = \App\Group::where('group_name','LIKE',"%$keyword%")
         ->where('status',strtoupper($status))->get();//->paginate(10);
         }
         else
             {
-            $pakets = \App\Paket::with('groups')
-            ->where('paket_name','LIKE',"%$keyword%")->get();
+            $groups = \App\Group::where('group_name','LIKE',"%$keyword%")->get();
             //->paginate(10);
             }
-        return view('paket.index', ['pakets'=> $pakets]);
+        return view('grouppaket.index', ['groups'=> $groups]);
     }
 
     /**
@@ -36,7 +34,7 @@ class PaketController extends Controller
      */
     public function create()
     {
-        return view('paket.create');
+        //
     }
 
     /**
@@ -93,5 +91,11 @@ class PaketController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function ajaxSearch(Request $request){
+        $keyword = $request->get('q');
+        $groups = \App\Group::where('name','LIKE',"%$keyword%")->get();
+        return $groups;
     }
 }

@@ -19,7 +19,7 @@ class CreatePaketTable extends Migration
             $table->string('display_name');
             $table->integer('bonus_quantity');
             $table->integer('purchase_quantity');
-            $table->integer('display_order');
+            $table->integer('display_order')->unsigned()->default(0);
             $table->enum('status',['ACTIVE','INACTIVE']);
             $table->timestamps();
         });

@@ -98,6 +98,8 @@ Route::get('/admin', function () {
     Route::get('/ajax/code_cust/search', 'CustomerController@ajaxSearch');
     Route::get('/ajax/users/search', 'CustomerController@ajaxUserSearch');
     Route::resource('customers','CustomerController');
+    Route::get('/ajax/groups/search', 'GroupController@ajaxSearch');
+    Route::resource('groups','GroupController');
     Route::resource('paket','PaketController');
 
 

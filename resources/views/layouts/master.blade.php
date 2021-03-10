@@ -201,7 +201,7 @@
                         </ul>
                     </li>
 
-                    <li class="{{request()->routeIs('products.index') ? 'active' : ''}}">
+                    <li class="{{request()->routeIs('products.index') || request()->routeIs('groups.index') || request()->routeIs('paket.index') ? 'active' : ''}}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">hardware</i>
                             <span>Manage Products</span>
@@ -209,6 +209,9 @@
                         <ul class="ml-menu">
                             <li class="{{request()->routeIs('products.index') ? 'active' : '' }}">
                                 <a href="{{route('products.index')}}">Products</a>
+                            </li>
+                            <li class="{{request()->routeIs('groups.index') ? 'active' : '' }}">
+                                <a href="{{route('groups.index')}}">Group Paket</a>
                             </li>
                             <li class="{{request()->routeIs('paket.index') ? 'active' : '' }}">
                                 <a href="{{route('paket.index')}}">Paket</a>

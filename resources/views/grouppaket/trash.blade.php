@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title') Paket List @endsection
+@section('title') Product List @endsection
 @section('content')
 @if(session('status'))
 	<div class="alert alert-success">
@@ -22,7 +22,7 @@
 		</div>
 		-->
 		<div class="col-md-6">
-			<ul class="nav nav-tabs tab-col-pink pull-left" >
+			<ul class="nav nav-tabs tab-col-pink pull-left" role="tablist">
 				<li role="presentation" class="{{Request::get('status') == NULL && Request::path() == 'products' ? 'active' : ''}}">
 					<a href="{{route('products.index')}}" aria-expanded="true" >All</a>
 				</li>
@@ -35,18 +35,17 @@
 				<li role="presentation" class="">
 					<a href="{{route('products.low_stock')}}">LOW STOCK</a>
 				</li>
-				<li role="presentation" class="">
-					<a href="{{route('products.trash')}}" >TRUSH</a>
+				<li role="presentation" class="active">
+					<a href="{{route('products.trash')}}">TRUSH</a>
 				</li>
 			</ul>
 		</div>
 		<div class="col-md-6">&nbsp;</div>
 		<div class="col-md-12">
-			<a href="{{route('products.import_products')}}" class="btn btn-success "><i class="fas fa-file-excel fa-0x "></i> Import (<small>Update Stock</small>) </a>&nbsp;
-			<a href="{{route('products.export_all')}}" class="btn btn-success "><i class="fas fa-file-excel fa-0x "></i> Export (<small>Products Stock</small>)</a>&nbsp;
-			<a href="{{route('paket.create')}}" class="btn bg-cyan">Create Paket</a>
+			<a href="{{route('products.import_products')}}" class="btn btn-success ">Import Excel (<small>Update Products</small>) </a>&nbsp;
+			<a href="{{route('products.export_all')}}" class="btn btn-success ">Export Excel</a>&nbsp;
+			<a href="{{route('products.create')}}" class="btn bg-cyan">Create Product</a>
 		</div>
-		
 	</div>
 </form>	
 <hr>
@@ -55,44 +54,56 @@
 		<thead>
 			<tr>
 				<th>No</th>
-				<th>Name</th>
-				<th>Group</th>
-				<th>Bonus Quantity</th>
-				<th>Purchase Quantity</th>
-				<th>Display Name</th>
+				<th>Product Image</th>
+				<th>Product Name</th>
+				<th>Descritption</th>
+				<th>Category</th>
+				<th>Stock</th>
+				<th>Low Stock Treshold</th>
+				<th>Price</th>
 				<th>Status</th>
-				<th width="25%">Action</th>
+				<th width="20%">Action</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php $no=0;?>
-			@foreach($pakets as $p)
+			@foreach($products as $p)
 			<?php $no++;?>
 			<tr>
 				<td>{{$no}}</td>
-				<td>{{$p->paket_name}}</td>
+				<td>@if($p->image)
+					<img src="{{asset('storage/'.$p->image)}}" width="50px" height="50px" />
+					@else
+					N/A
+					@endif
+				</td>
+				<td>{{$p->Product_name}}</td>
+				<td>{{$p->description}}</td>
 				<td>
-					@foreach($p->groups as $groups)
-						{{$groups->group_name}}
+					@foreach($p->categories as $category)
+						{{$category->name}}
 					@endforeach
 					
 				</td>
-				<td>{{$p->display_name}}</td>
-				<td>{{$p->bonus_quantity}}</td>
-				<td>{{$p->purchase_quantity}}</td>
-				<td>{{$p->display_name}}</td>
 				<td>
-					@if($p->status=="INACTIVE")
+					{{$p->stock}}
+				</td>
+				<td>
+					{{$p->low_stock_treshold}}
+				</td>
+				<td>
+					{{$p->price}}
+				</td>
+				<td>
+					@if($p->status=="DRAFT")
 					<span class="badge bg-dark text-white">{{$p->status}}</span>
 						@else
 					<span class="badge bg-green">{{$p->status}}</span>
 					@endif
-
 				</td>
 				<td>
-					<a class="btn btn-info btn-xs" href="{{route('products.edit',[$p->id])}}"><i class="material-icons">edit</i></a>
-					<button type="button" class="btn btn-danger btn-xs waves-effect" data-toggle="modal" data-target="#deleteModal{{$p->id}}"><i class="material-icons">delete</i></button>
-					<button type="button" class="btn bg-grey waves-effect" data-toggle="modal" data-target="#detailModal{{$p->id}}" style="padding: 4px 8px;"><small>Detail</small></button>
+					<button type="button" class="btn btn-danger btn-xs waves-effect" data-toggle="modal" data-target="#deleteModal{{$p->id}}"><i class="material-icons">delete</i></button>&nbsp;
+					<button type="button" class="btn bg-grey waves-effect" data-toggle="modal" data-target="#restoreModal{{$p->id}}">Restore</button>
 
 					<!-- Modal Delete -->
 		            <div class="modal fade" id="deleteModal{{$p->id}}" tabindex="-1" role="dialog">
@@ -102,9 +113,10 @@
 		                            <h4 class="modal-title" id="deleteModalLabel">Delete Product</h4>
 		                        </div>
 		                        <div class="modal-body">
-		                           Delete this paket
+		                           Delete permanent this product ..? 
+		                        </div>
 		                        <div class="modal-footer">
-		                        	<form action="{{route('products.destroy',[$p->id])}}" method="POST">
+		                        	<form action="{{route('products.delete-permanent',[$p->id])}}" method="POST">
 										@csrf
 										<input type="hidden" name="_method" value="DELETE">
 										<button type="submit" class="btn btn-link waves-effect">Delete</button>
@@ -114,12 +126,30 @@
 		                    </div>
 		                </div>
 		            </div>
+
+		           <!-- Modal Resotore -->
+				   <div class="modal fade" id="restoreModal{{$p->id}}" tabindex="-1" role="dialog">
+					<div class="modal-dialog modal-sm" role="document">
+						<div class="modal-content modal-col-green">
+							<div class="modal-header">
+								<h4 class="modal-title" id="restoreModalLabel">Restore Product</h4>
+							</div>
+							<div class="modal-body">
+							   Restore this product ..? 
+							</div>
+							<div class="modal-footer">
+								
+									<a href="{{route('products.restore', [$p->id])}}" class="btn bg-deep-orange">Restore</a>
+									<button type="button" class="btn bg-deep-orange" data-dismiss="modal">Close</button>
+								
+							</div>
+						</div>
+					</div>
+				</div>
 				</td>
 			</tr>
 			@endforeach
 		</tbody>
 	</table>
-
 </div>
-
 @endsection

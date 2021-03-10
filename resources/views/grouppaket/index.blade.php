@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title') Paket List @endsection
+@section('title') Group Paket List @endsection
 @section('content')
 @if(session('status'))
 	<div class="alert alert-success">
@@ -57,8 +57,6 @@
 				<th>No</th>
 				<th>Name</th>
 				<th>Group</th>
-				<th>Bonus Quantity</th>
-				<th>Purchase Quantity</th>
 				<th>Display Name</th>
 				<th>Status</th>
 				<th width="25%">Action</th>
@@ -66,20 +64,11 @@
 		</thead>
 		<tbody>
 			<?php $no=0;?>
-			@foreach($pakets as $p)
+			@foreach($groups as $p)
 			<?php $no++;?>
 			<tr>
 				<td>{{$no}}</td>
-				<td>{{$p->paket_name}}</td>
-				<td>
-					@foreach($p->groups as $groups)
-						{{$groups->group_name}}
-					@endforeach
-					
-				</td>
-				<td>{{$p->display_name}}</td>
-				<td>{{$p->bonus_quantity}}</td>
-				<td>{{$p->purchase_quantity}}</td>
+				<td>{{$p->group_name}}</td>
 				<td>{{$p->display_name}}</td>
 				<td>
 					@if($p->status=="INACTIVE")
