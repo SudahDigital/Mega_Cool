@@ -208,11 +208,7 @@
 						<img src="{{asset('assets/image/image-noprofile.png')}}" width="50px" height="50px" />
 						@endif
 					</td>
-					<!--
-					<td>
-						{{$u->cities['city_name']}}
-					</td>
-					-->
+					
 					<td>
 						{{$u->sales_area}}
 					</td>

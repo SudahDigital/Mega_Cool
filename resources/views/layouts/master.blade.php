@@ -210,8 +210,10 @@
                             <li class="{{request()->routeIs('products.index') ? 'active' : '' }}">
                                 <a href="{{route('products.index')}}">Products</a>
                             </li>
+                            <li class="{{request()->routeIs('paket.index') ? 'active' : '' }}">
+                                <a href="{{route('paket.index')}}">Paket</a>
+                            </li>
                         </ul>
-                        
                     </li>
                     
                     <li class="{{request()->routeIs('customers.index') ? 'active' : ''}}">

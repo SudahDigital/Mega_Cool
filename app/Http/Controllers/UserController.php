@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = \App\User::whereNull('city_id')->get();//paginate(10);
+        $users = \App\User::where('roles','!=','SALES')->get();//paginate(10);
         $filterkeyword = $request->get('keyword');
         $status = $request->get('status');
         if($filterkeyword){

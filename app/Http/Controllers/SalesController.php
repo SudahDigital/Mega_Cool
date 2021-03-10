@@ -23,7 +23,7 @@ class SalesController extends Controller
      */
     public function index(Request $request)
     {
-        $users = \App\User::with('cities')->whereNotNull('sales_area')->get();//paginate(10);
+        $users = \App\User::with('cities')->where('roles','=','SALES')->get();//paginate(10);
         $filterkeyword = $request->get('keyword');
         $status = $request->get('status');
         if($filterkeyword){
