@@ -60,6 +60,10 @@
                 right:1rem;
                 top: 1rem;
             }
+
+            #dropfilter{
+                margin-top: 11px;
+            }
         }
 
         .btn-warning {
@@ -285,7 +289,7 @@
         }
         
         .paddle:hover {
-            background: #6a3137;
+            background: #4b6b9e;
             color: #fff;
         }
         
@@ -293,7 +297,7 @@
             left: 0;
         }
 
-        .right-paddle {
+       .right-paddle {
             right: 0;
         }
         
@@ -301,8 +305,18 @@
             display: none;
         }
 
+        @media only screen and (max-width: 480px){
+            .left-paddle {
+             left: 10px;
+            }
+
+            .right-paddle {
+                right: -10px;
+            }
+        }
+
         .row::-webkit-scrollbar {
-            height: 12px;
+            height: 8px;
         }
         /* line 17, sass/page/_home.scss */
         .row::-webkit-scrollbar-track {
@@ -314,12 +328,12 @@
         .row::-webkit-scrollbar-thumb {
             -webkit-border-radius: 10px;
             border-radius: 10px;
-            background: #6a3137;
-            -webkit-box-shadow: inset 0 0 6px #FDD8AF;
+            background: #8c8e91;
+            -webkit-box-shadow: inset 0 0 6px #ffff;
         }
         /* line 30, sass/page/_home.scss */
         .row::-webkit-scrollbar-thumb:window-inactive {
-            background: rgba(255, 0, 0, 0.4);
+            background: rgba(45, 88, 129, 0.4);
         }
         /*Hidden class for adding and removing*/
         .lds-dual-ring.hidden {
@@ -1195,7 +1209,7 @@
         //$('#accordion').collapse('show').height('auto');
 
         // duration of scroll animation
-        var scrollDuration = 300;
+        var scrollDuration = 800;
         // paddles
         var leftPaddle = document.getElementsByClassName("left-paddle");
         var rightPaddle = document.getElementsByClassName("right-paddle");
@@ -1207,7 +1221,7 @@
 
         // get wrapper width
         var getMenuWrapperSize = function () {
-            return $(".menu-wrapper").outerWidth();
+            return $(".menu-wrapper").outerWidth()-20;
         };
         var menuWrapperSize = getMenuWrapperSize();
         // the wrapper is responsive

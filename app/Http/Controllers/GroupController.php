@@ -34,7 +34,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        return view('grouppaket.create');
     }
 
     /**
@@ -45,7 +45,17 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $new_group = new \App\Group;
+        $new_group->group_name = $request->get('group_name');
+        $new_group->display_name = $request->get('display_name');
+        
+        $new_group->save();
+
+        if($request->get('save_action') == 'SAVE'){
+          return redirect()
+                ->route('groups.create')
+                ->with('status', 'Group paket successfully saved');
+        }  
     }
 
     /**

@@ -20,7 +20,7 @@
 		<div class="col-md-2">
 			<input type="submit" class="btn bg-blue pull-left" value="Filter">
 		</div>
-		-->
+		
 		<div class="col-md-6">
 			<ul class="nav nav-tabs tab-col-pink pull-left" >
 				<li role="presentation" class="{{Request::get('status') == NULL && Request::path() == 'products' ? 'active' : ''}}">
@@ -41,10 +41,9 @@
 			</ul>
 		</div>
 		<div class="col-md-6">&nbsp;</div>
+		-->
 		<div class="col-md-12">
-			<a href="{{route('products.import_products')}}" class="btn btn-success "><i class="fas fa-file-excel fa-0x "></i> Import (<small>Update Stock</small>) </a>&nbsp;
-			<a href="{{route('products.export_all')}}" class="btn btn-success "><i class="fas fa-file-excel fa-0x "></i> Export (<small>Products Stock</small>)</a>&nbsp;
-			<a href="{{route('paket.create')}}" class="btn bg-cyan">Create Paket</a>
+			<a href="{{route('paket.create')}}" class="btn bg-cyan pull-right">Create Paket</a>
 		</div>
 		
 	</div>

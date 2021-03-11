@@ -23,90 +23,168 @@ Home
     </div>
     @endif
     
-    <div class="container list-product">
-        <div class="row">
-            <div class="col-md-12 ">
-                <nav aria-label="breadcrumb" class="" >
-                    <ol class="breadcrumb pt-3 pb-0" style="background-color:#ffffff">
-                        <h2 class="breadcrumb-item">Our</h2>
-                        <h2 class="breadcrumb-item active" aria-current="page">Product</h2>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div> 
-
-    <!--menu categories-->
-    <!--
-    <div style="{{$top_count > 0 ? 'background:#693234;' : 'background:#FDD8AF'}}">
-        <div class="container">
-            <div class="row align-middle mt-0" style="">  
-                <div class="col-sm-12 mt-4" style="">
-                    @if($cat_count > 5)
-                    <div class="col-md-12 mx-auto">
-                        <table width="100%" style="margin-bottom: 20px;" >
-                        <tbody>
-                            <tr>
-                                <td class="menu-filter" valign="middle">
-                                    @if($count_data <= 3)
-                                    <h3 class="cat_fil" id="cat_fil" style="color: #693234;">
-                                        Filter Category 
-                                    </h3>
-                                    @else
-                                    <h3 class="cat_fil" id="cat_fil" style="color: #ffffff; ">
-                                        Filter Category 
-                                    </h3>
-                                    @endif
-                                </td>
-                                <td width="60%" align="left" valign="middle" class="menu-logo-filter">
-                                    @if($count_data <=3)
-                                        <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color:#FDD8AF; border:none;">
-                                            <i class="fas fa-sliders-h tombol" style="color:#693234"></i>
-                                        </button>
-                                    @else
-                                    <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color:#693234; border:none;">
-                                        <i class="fas fa-sliders-h tombol" style="color:#fff;"></i>
-                                    </button>
-                                    @endif
-                                </td>
-                                //--
-                                <td width="25%" align="right">
-                                    
-                                        <nav aria-label="breadcrumb">
-                                            <ol class="breadcrumb px-0 button_breadcrumb">
-                                                <li class="breadcrumb-item active" aria-current="page" @if($count_data <= 3) style="color: #6a3137;margin-top:30px;" @else style="color: #fff;margin-top:30px;"@endif>Category Family Pack</li>
-                                            </ol>
-                                        </nav>
-                                </td>
-                            
-                            </tr>
-                        </tbody>
-                        </table>
-                    </div>
-                    <div id="demo" class="collapse" style="">
-                        <div class="col-md-12" style="margin-bottom: 20px;">
-                        <a href="{{url('/home_customer')}}" type="button" class="btn button_add_to_cart button-collapse mb=3">Semua Produk</a>
-                        @foreach($categories as $key => $value)
-                            <a href="{{route('category.index', ['id'=>$value->id] )}}" type="button" class="btn button_add_to_cart button-collapse mb-3">{{$value->name}}</a>
-                        @endforeach
+    <!--top product-->
+    @if($top_count > 0 )
+    <div id="top_product" style="background:#DADADA !important;">
+        <div class="container mb-n4" style="">
+            <div class="row">
+                <div class="col-8">
+                    <nav aria-label="breadcrumb" class="" >
+                        <ol class="breadcrumb pt-4 mt-3" style="background-color:#DADADA !important;">
+                            <h2 class="breadcrumb-item">Our</h2>
+                            <h2 class="breadcrumb-item active" aria-current="page">Product</h2>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-4 ">
+                    <div id="dropfilter" class="dropdown pt-4 mt-3 float-right">
+                        <button class="btn filter_category" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><b>Filter</b>
+                            <i class="fas fa-caret-down fa-lg"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style="height: auto;max-height: 200px;overflow-x: hidden; border-bottom-left-radius:1rem;border-bottom-right-radius:1rem;">
+                            <a class="dropdown-item" href="{{ url('/') }}" style="color: #1A4066;"><b>Semua Produk</b></a>
+                            @foreach($categories as $key => $value)
+                                <a class="dropdown-item" href="{{route('category.index', ['id'=>$value->id] )}}" style="color: #000;"><b>{{$value->name}}</b></a>
+                            @endforeach
                         </div>
                     </div>
-                    @else
-                    <div class="col-md-12 mb-2" style="">
-                        <a href="{{url('/home_customer')}}" type="button" class="btn button_add_to_cart button-collapse mb-3">Semua Produk</a>
-                        @foreach($categories as $key => $value)
-                            <a href="{{route('category.index', ['id'=>$value->id] )}}" type="button" class="btn button_add_to_cart button-collapse mb-3">{{$value->name}}</a>
+                </div>
+            </div>
+        </div>
+        <!--<img src="{{ asset('assets/image/dot-top-right-content.jpg') }}" class="dot-content-top-right" style="" alt="dot-top-right-content">-->
+        <img src="{{ asset('assets/image/shape-content.jpg') }}" class="shape-content-bottom-right" style="" alt="shape-content">
+        <img src="{{ asset('assets/image/dot-bottom-left-content.jpg') }}" class="dot-content-bottom-left" style="" alt="dot-bottom-left-content">
+        <div class="container list-product" style="">
+            <div class="row mt-0">
+                <div class="col-md-12 mt-4 menu-wrapper">
+                    <div class="row section_content flex-row flex-nowrap menu" style="overflow-x:auto;overflow-y:hidden;z-index:2222; ">
+                        @foreach($top_product as $key => $value_top)
+                        <div id="product_list"  class="col-6 col-md-3 d-flex mx-0 item" style="z-index: 1">
+                            <div class="card mx-auto d-flex item_product">
+                                @if($value_top->discount > 0)
+                                <div class="ribbon"><span class="span-ribbon">{{$value_top->discount}}% OFF</span></div>
+                                @endif
+                                
+                                <!--<a href="{{URL::route('product_detail', ['id'=>$value_top->id])}}">-->
+                                <a>
+                                    <img style="" src="{{ asset('storage/'.(($value_top->image!='') ? $value_top->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
+                                </a>
+                                <div class="card-body" style="background-color:#1A4066;">
+                                    @if($value_top->stock == 0)
+                                        <span class="badge badge-warning ml-1">Sisa stok 0</span>
+                                    @endif
+                                    <div class="float-left px-1 py-2" style="width: 100%;">
+                                        <p class="product-price-header mb-0" style="">
+                                            {{$value_top->Product_name}}
+                                        </p>
+                                    </div>
+                                    @if($value_top->discount > 0)
+                                        <div class="d-inline-block">
+                                            <div class="text-left">
+                                                <p class="product-price mt-0 mb-0 ml-1" style="color:#ffff;"><del><b><i>Rp. {{ number_format($value_top->price, 0, ',', '.') }}'-</i></b> </del></p>
+                                            </div>
+                                        </div>
+                                        <div class="float-left px-1 py-2" style="">
+                                            <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value_top->id}}" style="">Rp. {{ number_format($value_top->price_promo, 0, ',', '.') }}'-</p>
+                                        </div>
+                                    @else
+                                        <div class="float-left px-1 py-2" style="">
+                                            <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value_top->id}}" style="">Rp. {{ number_format($value_top->price, 0, ',', '.') }},-</p>
+                                        </div>
+                                    @endif
+                                    <table width="100%" class="hdr_tbl_cart">
+                                        <tbody>
+                                        <tr>
+                                            <td class="tbl_cart" valign="middle" style="" rowspan="2">
+                                                <input type="hidden" id="jumlah{{$value_top->id}}" name="quantity" value="1">
+                                                <input type="hidden" id="harga{{$value_top->id}}" name="price" value="{{ $value_top->price }}">
+                                                <input type="hidden" id="{{$value_top->id}}" name="Product_id" value="{{$value_top->id}}">
+                                                <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart('{{$value_top->id}}')" {{$value_top->stock == 0 ? 'disabled' : ''}}>Tambah</button>
+                                                
+                                            </td>
+                                            <td width="30%" align="left" id="td-text-quantity" class="td-text-quantity" valign="middle" rowspan="2" >
+                                                <input type="number" id="show_{{$value_top->id}}" onkeyup="input_qty('{{$value_top->id}}')" class="form-control input-sm mr-0 px-1 font-weight-bold" value="1" style="color:#000;font-weight:300;text-align:center;">
+                                            </td>
+                                            <td width="10%" class="td-btn-plus" align="center" valign="middle" bgcolor="#ffffff" style="border-top-left-radius:5px;border-top-right-radius:5px;">
+                                                <a class="button_plus" onclick="button_plus('{{$value_top->id}}')"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="10%" align="center" valign="middle" bgcolor="#ffffff" style="border-bottom-left-radius:5px;border-bottom-right-radius:5px;">
+                                                <a class="button_minus" onclick="button_minus('{{$value_top->id}}')" id="btn_min" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                         @endforeach
+                        <!--
+                        <div class="col-md-12">
+                            <div class="row justify-content-center" >
+                            <div class="page paging" style="margin-top:0; margin-bottom:1rem;">/*$product->appends(Request::all())->onEachSide(5)->links('vendor.pagination.bootstrap-4') */</div>
+                            </div>
+                        </div>
+                        -->
                     </div>
-                    @endif
+                    <div class="paddles d-none d-md-block d-md-none">
+                        @if($top_count > 4)
+                        <button class="left-paddle paddle paddles_hide">
+                            <i class="fa fa-angle-double-left" style=""></i>
+                        </button>
+                        <button class="right-paddle paddle" style="text-decoration: none;">
+                            <i class="fa fa-angle-double-right" style=""></i>
+                        </button>
+                        @endif
+                    </div>
+
+                    <div class="paddles d-md-none">
+                        @if($top_count > 2)
+                        <button class="left-paddle paddle paddles_hide">
+                            <i class="fa fa-angle-double-left" style=""></i>
+                        </button>
+                        <button class="right-paddle paddle" style="text-decoration: none;">
+                            <i class="fa fa-angle-double-right" style=""></i>
+                        </button>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    -->
-    <!--product-->
+    @endif
+
+    <!--non product-->
     <div style="background:#ffff">
-        <img src="{{ asset('assets/image/dot-top-right-content.jpg') }}" class="dot-content-top-right" style="" alt="dot-top-right-content">
+        @if($top_count < 1)
+        <div class="container mb-n4" style="">
+            <div class="row">
+                <div class="col-8">
+                    <nav aria-label="breadcrumb" class="" >
+                        <ol class="breadcrumb pt-4 mt-3" style="background-color:#fff !important;">
+                            <h2 class="breadcrumb-item">Our</h2>
+                            <h2 class="breadcrumb-item active" aria-current="page">Product</h2>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-4 ">
+                    <div id="dropfilter" class="dropdown pt-4 mt-3 float-right">
+                        <button class="btn filter_category" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><b>Filter</b>
+                            <i class="fas fa-caret-down fa-lg"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style="height: auto;max-height: 200px;overflow-x: hidden; border-bottom-left-radius:1rem;border-bottom-right-radius:1rem;">
+                            <a class="dropdown-item" href="{{ url('/') }}" style="color: #1A4066;"><b>Semua Produk</b></a>
+                            @foreach($categories as $key => $value)
+                                <a class="dropdown-item" href="{{route('category.index', ['id'=>$value->id] )}}" style="color: #000;"><b>{{$value->name}}</b></a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+        <!--<img src="{{ asset('assets/image/dot-top-right-content.jpg') }}" class="dot-content-top-right" style="" alt="dot-top-right-content">-->
         <img src="{{ asset('assets/image/shape-content.jpg') }}" class="shape-content-bottom-right" style="" alt="shape-content">
         <img src="{{ asset('assets/image/dot-bottom-left-content.jpg') }}" class="dot-content-bottom-left" style="" alt="dot-bottom-left-content">
         <div class="container list-product" style="">
@@ -438,6 +516,8 @@ Home
         $('#chk-bl-btn').removeClass('justify-content-end');
         $('#chk-bl-btn').addClass('justify-content-center');
         $('#divchecktunai').addClass('mb-2');
+        $('#dropfilter').removeClass('mt-3');
+        //$('#dropfilter').addClass('mt-2');
     }
     if ($(window).width() <= 480) {
         $('#cont-collapse').removeClass('container');

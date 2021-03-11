@@ -83,15 +83,15 @@
                 <label class="form-label">Low Stock Treshold</label>
             </div>
         </div>
-        <!--
+        
         <h2 class="card-inside-title">Make Top Product</h2>
         <div class="form-group">
             <input type="checkbox" name="top_product" id="top_product" value="1"  {{$product->top_product == '1' ? 'checked' : ''}}>
 			<label for="top_product">Top Product</label>
 		</div>
-        -->
+        <!--
         <input type="hidden" name="top_product" id="top_product" value="0"  {{$product->top_product == '1' ? 'checked' : ''}}>
-
+        -->
         <h2 class="card-inside-title">Status</h2>
         <div class="form-group">
             <input type="radio" value="PUBLISH" name="status" id="PUBLISH" {{$product->status == 'PUBLISH' ? 'checked' : ''}}>
