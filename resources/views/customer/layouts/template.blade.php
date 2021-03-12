@@ -833,6 +833,7 @@
                     style="" alt="dot-bottom-left">
                     <img src="{{ asset('assets/image/shape-bottom-right.png') }}" class="shape-bottom-right"  
                     style="" alt="shape-bottom-right">
+                    <button type="button" class="btn btn-warning btn-circle" onClick="window.location.reload();" data-dismiss="modal" style="position:absolute;z-index:99999;"><i class="fa fa-times"></i></button>
                     <div class="container">
                         <div class="d-flex justify-content-center mx-auto">
                             <div class="col-md-2 image-logo-login" style="z-index: 2">
