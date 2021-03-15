@@ -18,11 +18,13 @@ class GroupController extends Controller
         if($status){
         $groups = \App\Group::where('group_name','LIKE',"%$keyword%")
         ->where('status',strtoupper($status))->get();//->paginate(10);
+              
         }
         else
             {
             $groups = \App\Group::where('group_name','LIKE',"%$keyword%")->get();
             //->paginate(10);
+            
             }
         return view('grouppaket.index', ['groups'=> $groups]);
     }
@@ -33,8 +35,9 @@ class GroupController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('grouppaket.create');
+    {   
+        $products=\App\product::all();
+        return view('grouppaket.create', ['products'=>$products]);
     }
 
     /**

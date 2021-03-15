@@ -17,6 +17,7 @@ class CreateGroupProductTable extends Migration
             $table->increments('id');
             $table->integer('group_id')->unsigned()->nullable();
             $table->integer('product_id')->unsigned()->nullable();
+            $table->enum('status',['ACTIVE','INACTIVE']);
             $table->timestamps();
 
             //$table->foreign('group_id')->references('id')->on('groups');

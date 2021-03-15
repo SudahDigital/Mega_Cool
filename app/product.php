@@ -17,7 +17,7 @@ class product extends Model
         }
 
         public function groups(){
-            return $this->belongsToMany('App\Group','group_product','group_id','product_id')->withPivot('group_id');
+            return $this->belongsToMany('App\Group');
         }
 
         

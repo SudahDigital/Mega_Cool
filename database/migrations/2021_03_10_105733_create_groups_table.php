@@ -17,6 +17,7 @@ class CreateGroupsTable extends Migration
             $table->increments('id');
             $table->string('group_name');
             $table->string('display_name');
+            $table->integer('version')->unsigned();
             $table->enum('status',['ACTIVE','INACTIVE']);
             $table->timestamps();
         });
