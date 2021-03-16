@@ -27,7 +27,7 @@ class CustomersImport implements ToModel,  WithStartRow
             'phone_store'=>$row[5]=='NULL' ? null : $row[5],
             'name' => $row[6]=='NULL' ? null : $row[6],
             'payment_term'=>$row[7]=='NULL' ? null : $row[7],
-            'user_id'=>$row[8]=='NULL' ? null : $row[8],
+            /*'user_id'=>$row[8]=='NULL' ? null : $row[8],*/
         ]);
     }
 

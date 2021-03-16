@@ -28,7 +28,7 @@ class CustomerExport implements FromCollection, WithMapping, WithHeadings, WithC
                 $customer->phone_store,
                 $customer->name,
                 $customer->payment_term,
-                $customer->user_id,
+                /*$customer->user_id,*/
             ];
     }
 
@@ -42,7 +42,7 @@ class CustomerExport implements FromCollection, WithMapping, WithHeadings, WithC
            'Office/Shop Phone',
            'Contact',
            'Payment_Term',
-           'Sales_Rep',
+           /*'Sales_Rep',*/
         ] ;
     }
 
