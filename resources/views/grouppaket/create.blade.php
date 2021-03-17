@@ -10,11 +10,14 @@
 	<!-- Form Create -->
     <form id="form_validation" method="POST" enctype="multipart/form-data" action="{{route('groups.store')}}">
     	@csrf
+
         <div class="form-group form-float">
-            <div class="form-line">
-                <input type="text" class="form-control" name="group_name" autocomplete="off" required>
+            <div class="form-line" id="code_">
+                <input type="text" class="form-control" id="code" name="group_name" autocomplete="off" required>
                 <label class="form-label">Group Name</label>
             </div>
+            <label id="name-error" class=""></label>
+            <small class=""></small>
         </div>
         
         <div class="form-group form-float">
@@ -23,7 +26,7 @@
                 <label class="form-label">Display Name</label>
             </div>
         </div>
-
+        <!--
         <div class="card">
             <div class="card-body">
                 <table class="table" id="products_table">
@@ -36,11 +39,7 @@
                         <tr id="product0">
                             <td>
                                 <select name="products[]" id="sl0" class="products" style="width: 100%;">
-                                    @foreach ($products as $product)
-                                        <option value="{{ $product->id }}">
-                                            {{ $product->Product_name }}
-                                        </option>
-                                    @endforeach   
+                                   
                                 </select>
                             </td>
                         </tr>
@@ -55,22 +54,19 @@
             <div class="row">
             </div>
         </div>
+        -->
+        <label class="form-label">Produt Group</label>
+        <br>   
+        <select class="products" multiple="multiple" name="product_id[]" style="width: 100%;">
+            @foreach ($products as $product)
+                <option value="{{ $product->id }}">
+                    {{ $product->Product_name }}
+                </option>
+            @endforeach
+        </select>
+        
 
-        <div id="test">
-            <div id="tooltest0" class="tooltest0">
-                <label>Tool Name :</label>
-                <select class="toollist" name="FSR_tool_id[]" id="FSR_tool_id0" style="width: 350px" />
-                <option></option>
-                <option value="1">bla 1</option>
-                </select>
-            </div>
-            <div id="tool-placeholder"></div>
-            <div>
-                <input type="button" value="Add another" />
-            </div>
-        </div>
-       
-        <button class="btn btn-primary  " name="save_action" value="SAVE" type="submit">SAVE</button>
+       <button class="btn btn-primary" name="save_action" id="save" value="SAVE" type="submit" style="margin-top:20px;">SAVE</button>
     </form>
     <!-- #END#  -->		
 
@@ -78,10 +74,58 @@
 @section('footer-scripts')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script>
+    $(".products").select2({
+        width: 'resolve' // need to override the changed default
+    });
+
+    $("#code").on({
+        keydown: function(e) {
+        if (e.which === 32)
+            return false;
+        },
+        keyup: function(){
+        this.value = this.value.toUpperCase();
+        },
+        change: function() {
+            this.value = this.value.replace(/\s/g, "");
+            
+        }
+    });
+
+    $('document').ready(function(){
+        $('#code, .btn').on('keyup', function(){
+        var code = $('#code').val();
+            $.ajax({
+                url: '{{URL::to('/ajax/groups/search')}}',
+                type: 'get',
+                data: {
+                    'code' : code,
+                },
+                success: function(response){
+                    if (response == 'taken' && code !="" ) {
+                    $('#code_').addClass("focused error");
+                    $('#code_').siblings("label").addClass("error").text('Sorry... Group Name Already Exists');
+                    $('#code_').siblings("small").text('');
+                    $('#save').prop('disabled', true);
+                    }else if (response == 'not_taken' && code !="") {
+                    $('#code_').addClass("");
+                    $('#code_').siblings("small").addClass("text-primary").text('Group Name Available');
+                    $('#code_').siblings("label").text('');
+                    $('#save').prop('disabled', false);
+                    }
+                    else if(response == 'not_taken' && code ==""){
+                        $('#code_').siblings("label").text('');
+                        $('#code_').siblings("small").text('');
+                    }
+                }
+            });
+        });
+    });
     /*
      $('.products').select2();
-    $(document).ready(function(){
+     $(document).ready(function(){
         let row_number = 1;
         $("#add_row").click(function(e){
         $('.products').select2('destroy');
@@ -110,31 +154,6 @@
         });
     });
    */
-
-   $('.toollist').select2({ //apply select2 to my element
-    placeholder: "Search your Tool",
-    allowClear: true
-});
-
-
-$('input[type=button]').click(function () {
-    $('.toollist').select2('destroy');
-    
-    //$('.toollist').select2("destroy");
-    var noOfDivs = $('.tooltest0').length;
-    var clonedDiv = $('.tooltest0').first().clone(true);
-    clonedDiv.insertBefore("#tool-placeholder");
-    clonedDiv.attr('id', 'tooltest' + noOfDivs);
-    
-
-    $('.toollist').select2({ //apply select2 to my element
-        placeholder: "Search your Tool",
-        allowClear: true
-    });
-
-
-
-});
-    
 </script>
+
 @endsection

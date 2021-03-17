@@ -98,7 +98,9 @@ Route::get('/admin', function () {
     Route::get('/ajax/code_cust/search', 'CustomerController@ajaxSearch');
     Route::get('/ajax/users/search', 'CustomerController@ajaxUserSearch');
     Route::resource('customers','CustomerController');
-    Route::get('/ajax/groups/search', 'GroupController@ajaxSearch');
+    //Route::get('/ajax/groups/search', 'GroupController@ajaxSearch');
+    Route::get('/ajax/groups/search', 'GroupController@GroupNameSearch');
+    Route::post('groups/add/item', 'GroupController@add_item')->name('groups.add_item');
     Route::resource('groups','GroupController');
     Route::resource('paket','PaketController');
 

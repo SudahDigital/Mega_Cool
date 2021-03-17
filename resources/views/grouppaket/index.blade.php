@@ -22,6 +22,7 @@
 				<th>No</th>
 				<th>Name</th>
 				<th>Display Name</th>
+				<th>Product Group</th>
 				<th>Status</th>
 				<th width="25%">Action</th>
 			</tr>
@@ -34,6 +35,42 @@
 				<td>{{$no}}</td>
 				<td>{{$p->group_name}}</td>
 				<td>{{$p->display_name}}</td>
+				<td align="left">
+					<ul style="margin-left: -25px;">
+						@foreach($p->item_active as $p_group)
+						<li><small>{{$p_group->Product_name}}</small></li>
+						@endforeach
+					</ul>
+					<button type="button" class="btn bg-deep-purple btn-xs waves-effect" data-toggle="modal" data-target="#addItemModal{{$p->id}}">
+						<i class="material-icons" style="font-size: 1em;">add</i><small>Add item</small> 
+					</button>
+					<!-- Modal add item -->
+		            <div class="modal fade" id="addItemModal{{$p->id}}" tabindex="-1" role="dialog">
+		                <div class="modal-dialog" role="document">
+		                    <div class="modal-content">
+		                        <div class="modal-header">
+		                            <h4 class="modal-title" id="deleteModalLabel">Add Item Group</h4>
+		                        </div>
+		                        <div class="modal-body">
+									<form action="{{route('groups.add_item')}}" method="POST">
+										@csrf
+										<input type="hidden" name="group_id" value="{{$p->id}}">
+										<select class="products" multiple="multiple" name="product_id[]" style="width: 100%;">
+											@foreach ($products_list as $product_list)
+												<option value="{{ $product_list->id }}">
+													{{ $product_list->Product_name }}
+												</option>
+											@endforeach
+										</select>
+								<div class="modal-footer">
+		                        		<button type="submit" class="btn bg-teal waves-effect">Add</button>
+										<button type="button" class="btn bg-grey waves-effect" data-dismiss="modal">Close</button>
+									</form>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+				</td>
 				<td>
 					@if($p->status=="INACTIVE")
 					<span class="badge bg-dark text-white">{{$p->status}}</span>
@@ -73,5 +110,16 @@
 	</table>
 
 </div>
+
+@endsection
+@section('footer-scripts')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script>
+        $(".products").select2({
+            width: 'resolve' // need to override the changed default
+        });
+
+    </script>
 
 @endsection

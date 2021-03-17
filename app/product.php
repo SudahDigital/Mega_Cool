@@ -9,15 +9,15 @@ class product extends Model
 {
     use SoftDeletes;
         public function categories(){
-        return $this->belongsToMany('App\Category','category_product','product_id','category_id')->withPivot('category_id');
+            return $this->belongsToMany('App\Category','category_product','product_id','category_id')->withPivot('category_id');
         }
 
         public function orders(){
-        return $this->belongsToMany('App\Order');
+            return $this->belongsToMany('App\Order');
         }
 
         public function groups(){
-            return $this->belongsToMany('App\Group');
+            return $this->belongsToMany('App\Group')->wherePivot('status', 'ACTIVE');
         }
 
         
