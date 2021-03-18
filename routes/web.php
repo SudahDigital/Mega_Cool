@@ -100,7 +100,9 @@ Route::get('/admin', function () {
     Route::resource('customers','CustomerController');
     //Route::get('/ajax/groups/search', 'GroupController@ajaxSearch');
     Route::get('/ajax/groups/search', 'GroupController@GroupNameSearch');
-    Route::post('groups/add/item', 'GroupController@add_item')->name('groups.add_item');
+    //Route::post('/groups/add/item', 'GroupController@add_item')->name('groups.add_item');
+    Route::post('/groups/edit_status', 'GroupController@update_status')->name('groups.edit_status');
+    //Route::get('/groups/{id}/{status}/edit_status', 'GroupController@update_status')->name('groups.update_status');
     Route::resource('groups','GroupController');
     Route::resource('paket','PaketController');
 

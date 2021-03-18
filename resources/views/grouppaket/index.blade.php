@@ -6,7 +6,11 @@
 		{{session('status')}}
 	</div>
 @endif
-
+@if(session('error'))
+	<div class="alert alert-danger">
+		{{session('error')}}
+	</div>
+@endif
 <form action="{{route('products.index')}}">
 	<div class="row">
 		<div class="col-md-12">
@@ -41,35 +45,6 @@
 						<li><small>{{$p_group->Product_name}}</small></li>
 						@endforeach
 					</ul>
-					<button type="button" class="btn bg-deep-purple btn-xs waves-effect" data-toggle="modal" data-target="#addItemModal{{$p->id}}">
-						<i class="material-icons" style="font-size: 1em;">add</i><small>Add item</small> 
-					</button>
-					<!-- Modal add item -->
-		            <div class="modal fade" id="addItemModal{{$p->id}}" tabindex="-1" role="dialog">
-		                <div class="modal-dialog" role="document">
-		                    <div class="modal-content">
-		                        <div class="modal-header">
-		                            <h4 class="modal-title" id="deleteModalLabel">Add Item Group</h4>
-		                        </div>
-		                        <div class="modal-body">
-									<form action="{{route('groups.add_item')}}" method="POST">
-										@csrf
-										<input type="hidden" name="group_id" value="{{$p->id}}">
-										<select class="products" multiple="multiple" name="product_id[]" style="width: 100%;">
-											@foreach ($products_list as $product_list)
-												<option value="{{ $product_list->id }}">
-													{{ $product_list->Product_name }}
-												</option>
-											@endforeach
-										</select>
-								<div class="modal-footer">
-		                        		<button type="submit" class="btn bg-teal waves-effect">Add</button>
-										<button type="button" class="btn bg-grey waves-effect" data-dismiss="modal">Close</button>
-									</form>
-		                        </div>
-		                    </div>
-		                </div>
-		            </div>
 				</td>
 				<td>
 					@if($p->status=="INACTIVE")
@@ -80,9 +55,30 @@
 
 				</td>
 				<td>
-					<a class="btn btn-info btn-xs" href="{{route('groups.edit',[$p->id])}}"><i class="material-icons">edit</i></a>
+					<a class="btn btn-info btn-xs" href="{{route('groups.edit',[$p->id])}}">Detail</a>
+					<button type="button" class="btn bg-{{$p->status == 'ACTIVE' ? 'orange' : 'cyan'}} btn-xs" data-toggle="modal" data-target="#activeModal{{$p->id}}"><small>{{$p->status == 'ACTIVE' ? 'DEACTIVATE' : 'ACTIVATE'}}</small></button>
 					<button type="button" class="btn btn-danger btn-xs waves-effect" data-toggle="modal" data-target="#deleteModal{{$p->id}}"><i class="material-icons">delete</i></button>
-					
+					<!-- Modal deactivate -->
+					<div class="modal fade" id="activeModal{{$p->id}}" tabindex="-1" role="dialog">
+						<div class="modal-dialog modal-sm" role="document">
+							<div class="modal-content modal-col-{{$p->status == 'ACTIVE' ? 'orange' : 'cyan'}}">
+								<div class="modal-header">
+									<h4 class="modal-title">{{$p->status == 'ACTIVE' ? 'Deactivate Group' : 'Activate Group'}}</h4>
+								</div>
+								<div class="modal-body">
+									{{$p->status == 'ACTIVE' ? 'Deactivate this group ?' : 'Activate this group ?'}}
+								</div>
+								<div class="modal-footer">
+									<form action="{{route('groups.edit_status')}}" method="POST">
+										@csrf
+										<input type="hidden" name="{{$p->status == 'ACTIVE' ? 'deactivate_id' : 'activate_id'}}" value="{{$p->id}}">
+										<button type="submit" name="save_action" value="{{$p->status == 'ACTIVE' ? 'DEACTIVATE' : 'ACTIVATE'}}" class="btn btn-link waves-effect">{{$p->status == 'ACTIVE' ? 'DEACTIVATE' : 'ACTIVATE'}}</button>
+										<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Close</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
 					<!-- Modal Delete -->
 		            <div class="modal fade" id="deleteModal{{$p->id}}" tabindex="-1" role="dialog">
 		                <div class="modal-dialog modal-sm" role="document">
@@ -92,6 +88,7 @@
 		                        </div>
 		                        <div class="modal-body">
 		                           Delete this group
+								</div>
 		                        <div class="modal-footer">
 		                        	<form action="{{route('groups.destroy',[$p->id])}}" method="POST">
 										@csrf
@@ -110,16 +107,5 @@
 	</table>
 
 </div>
-
-@endsection
-@section('footer-scripts')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    <script>
-        $(".products").select2({
-            width: 'resolve' // need to override the changed default
-        });
-
-    </script>
 
 @endsection

@@ -18,7 +18,7 @@ class Group extends Model
         'group_name',
     ];
     public function products(){
-        return $this->belongsToMany('App\product','group_product','group_id','product_id')->withPivot('product_id');
+        return $this->belongsToMany('App\product','group_product','group_id','product_id')->withPivot('id','group_id','product_id','status');
     }
 
     public function item_active(){

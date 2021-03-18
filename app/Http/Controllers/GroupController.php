@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\Null_;
 
 class GroupController extends Controller
 {
@@ -89,9 +90,10 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        $groups = \App\Order::findOrFail($id);
-        $products = \App\product::get();
-        return view('orders.edit_order', ['order' => $order],['products' => $products]);
+        $groups = \App\Group::with('products')->findOrfail($id);
+        $products_list = \App\product::with('groups')
+                ->doesntHave('groups')->get();
+        return view('grouppaket.edit', ['groups' => $groups,'products_list'=>$products_list]);
     }
 
     /**
@@ -103,7 +105,70 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->get('save_action') == 'ADD'){
+            //$group= $request->input('group_id');
+            $products = $request->input('product_id', []);
+            for ($product=0; $product < count($products); $product++) {
+                if ($products[$product] != '') {
+                    $cek_exist = \App\group_product::where('product_id',$products[$product])
+                                ->where('group_id',$id)->first();
+                    //$count =  $cek_exist->count();            
+                        if($cek_exist){
+                            $new_group_product = \App\group_product::findOrFail($cek_exist->id);
+                            $new_group_product->status ='ACTIVE';
+                            $new_group_product->save();
+                        }
+                        else{
+                            $new_group_product = new \App\group_product;
+                            $new_group_product->group_id =  $id;
+                            $new_group_product->product_id = $products[$product];
+                            $new_group_product->save();
+                        }
+                }
+            }
+            return redirect()->route('groups.edit', [$id])->with('status',
+            'Item product successfully add');
+        }
+        else if($request->get('save_action') == 'DELETE_ITEM')
+        {
+            $del_id = $request->input('del_id');
+            //$cek_id = \App\group_product::findOrfail($del_id);
+            $cek_exist = \App\order_product::where('group_id','=',$id)->count();
+            if( $cek_exist > 0){
+                return redirect()->route('groups.edit', [$id])->with('error',
+                'Can\'t delete item, this group already exist in order');
+            }else{
+                $group_paket = \App\group_product::findOrFail($del_id);
+                $group_paket->delete();
+                return redirect()->route('groups.edit', [$id])->with('status',
+                'Item product successfully delete');
+            }
+        }
+        else if($request->get('save_action') == 'DEACTIVATE')
+        {
+            $deactive_id = $request->input('deactivate_id');
+            $group_product = \App\group_product::findOrFail($deactive_id);
+            $group_product->status = 'INACTIVE';
+            $group_product->save();
+            return redirect()->route('groups.edit', [$id])->with('status',
+            'Item product successfully deactivate');
+        }
+        else if($request->get('save_action') == 'ACTIVATE')
+        {
+            $active_id = $request->input('activate_id');
+            $group_product = \App\group_product::findOrFail($active_id);
+            $group_product->status = 'ACTIVE';
+            $group_product->save();
+            return redirect()->route('groups.edit', [$id])->with('status',
+            'Item product successfully activate');
+        }else{
+            $group = $group_product = \App\Group::findOrFail($id);
+            $group->group_name = $request->input('group_name');
+            $group->display_name = $request->input('display_name');
+            $group->save();
+            return redirect()->route('groups.edit', [$id])->with('status_group',
+            'Group successfully update');
+        }
     }
 
     /**
@@ -114,12 +179,57 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        //$cek_id = \App\group_product::findOrfail($del_id);
+        $cek_exist = \App\order_product::where('group_id','=',$id)->count();
+        if( $cek_exist > 0){
+            return redirect()->route('groups.index')->with('error',
+            'Can\'t delete, this group already exist in order');
+        }else{
+            $group = \App\Group::findOrFail($id);
+            $group->delete();
+            $group->products()->detach();
+            return redirect()->route('groups.index')->with('status',
+            'Group successfully delete');
+        }
     }
 
-    public function add_item(Request $request)
-    {
-        //$group = \App\Group::create($request->all());
+    public function update_status(Request $request){
+        if($request->get('save_action') == 'ACTIVATE')
+        {
+            $active_id = $request->input('activate_id');
+            $group = \App\Group::findOrFail($active_id);
+            $group->status='ACTIVE';
+            $group->save();
+            if($group->save()){
+                $group_product = \App\group_product::where('group_id',$active_id);
+                $group_product->update([
+                    'status' => 'ACTIVE'
+                ]);
+            }
+            
+            return redirect()->route('groups.index')->with('status',
+            'Group successfully activate');
+        }else{
+            $deactive_id = $request->input('deactivate_id');
+            $group = \App\Group::findOrFail($deactive_id);
+            $group->status='INACTIVE';
+            $group->save();
+            if($group->save()){
+                $group_product = \App\group_product::where('group_id',$deactive_id);
+                $group_product->update([
+                    'status' => 'INACTIVE'
+                ]);
+                
+            }
+            return redirect()->route('groups.index')->with('status_group',
+            'Group successfully deactivate');
+        }
+    }
+
+    /*public function add_item(Request $request)
+    //{
+        $group = \App\Group::create($request->all());
         $group= $request->input('group_id');
         $products = $request->input('product_id', []);
         for ($product=0; $product < count($products); $product++) {
@@ -140,10 +250,12 @@ class GroupController extends Controller
                     }
             }
         }
-        return redirect()
-            ->route('groups.index')
+        $groups = \App\Group::with('products')->findOrfail($group);
+        $products_list = \App\product::with('groups')
+                ->doesntHave('groups')->get();
+        return view('grouppaket.edit', ['groups' => $groups,'products_list'=>$products_list])
             ->with('status', 'Item group successfully add');
-    }
+    }*/
 
     public function ajaxSearch(Request $request){
         $keyword = $request->get('q');
