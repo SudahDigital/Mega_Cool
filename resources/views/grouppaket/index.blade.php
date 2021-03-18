@@ -41,9 +41,13 @@
 				<td>{{$p->display_name}}</td>
 				<td align="left">
 					<ul style="margin-left: -25px;">
-						@foreach($p->item_active as $p_group)
-						<li><small>{{$p_group->Product_name}}</small></li>
-						@endforeach
+						@if(($p->status == 'ACTIVE')&&($p->item_active->count() > 0))
+							@foreach($p->item_active as $p_group)
+								<li><small>{{$p_group->Product_name}}</small></li>
+							@endforeach
+						@else
+							--No item active--
+						@endif
 					</ul>
 				</td>
 				<td>

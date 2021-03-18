@@ -57,7 +57,7 @@
         -->
         <label class="form-label">Produt Group</label>
         <br>   
-        <select class="products" multiple="multiple" name="product_id[]" style="width: 100%;">
+        <select class="products" multiple="multiple" name="product_id[]" style="width: 100%;" required>
             @foreach ($products as $product)
                 <option value="{{ $product->id }}">
                     {{ $product->Product_name }}

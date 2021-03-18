@@ -157,10 +157,18 @@ class GroupController extends Controller
         {
             $active_id = $request->input('activate_id');
             $group_product = \App\group_product::findOrFail($active_id);
-            $group_product->status = 'ACTIVE';
-            $group_product->save();
-            return redirect()->route('groups.edit', [$id])->with('status',
-            'Item product successfully activate');
+            $cek = \App\group_product::where('product_id','=',$group_product->product_id)
+                    ->where('status','=','ACTIVE')->count();
+            if($cek > 0){
+                return redirect()->route('groups.edit', [$id])->with('error',
+                'Can\'t delete item, this item already exist in other group');
+            }
+            else{
+                $group_product->status = 'ACTIVE';
+                $group_product->save();
+                return redirect()->route('groups.edit', [$id])->with('status',
+                'Item product successfully activate');
+            }
         }else{
             $group = $group_product = \App\Group::findOrFail($id);
             $group->group_name = $request->input('group_name');
@@ -198,15 +206,19 @@ class GroupController extends Controller
         if($request->get('save_action') == 'ACTIVATE')
         {
             $active_id = $request->input('activate_id');
+            $group_product = \App\group_product::where('group_id',$active_id)->get();
+            foreach($group_product as $item){
+                $cek = \App\group_product::where('product_id','=',$item->product_id)->where('status','=','ACTIVE')->count();
+                if($cek == 0 ){
+                    $group_product = \App\group_product::where('id',$item->id);
+                        $group_product->update([
+                            'status' => 'ACTIVE'
+                        ]);
+                }
+            }
             $group = \App\Group::findOrFail($active_id);
             $group->status='ACTIVE';
             $group->save();
-            if($group->save()){
-                $group_product = \App\group_product::where('group_id',$active_id);
-                $group_product->update([
-                    'status' => 'ACTIVE'
-                ]);
-            }
             
             return redirect()->route('groups.index')->with('status',
             'Group successfully activate');
@@ -225,7 +237,9 @@ class GroupController extends Controller
             return redirect()->route('groups.index')->with('status_group',
             'Group successfully deactivate');
         }
+        
     }
+    
 
     /*public function add_item(Request $request)
     //{

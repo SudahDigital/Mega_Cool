@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title') Edit Group Paket @endsection
+@section('title') Detail Group Paket {{$groups->status=='INACTIVE' ? '(INACTIVE)' : ''}}@endsection
 @section('content')
     <!-- Modal add item -->
     <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog">
@@ -91,7 +91,9 @@
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-danger btn-xs waves-effect" data-toggle="modal" data-target="#deleteModal{{$p->pivot->id}}"><i class="material-icons">delete</i></button>
-                                    <button type="button" class="btn bg-{{$p->pivot->status == 'ACTIVE' ? 'orange' : 'cyan'}} btn-xs" data-toggle="modal" data-target="#activeModal{{$p->pivot->id}}"><small>{{$p->pivot->status == 'ACTIVE' ? 'DEACTIVATE' : 'ACTIVATE'}}</small></button>
+                                    <button type="button" class="btn bg-{{$p->pivot->status == 'ACTIVE' ? 'orange' : 'cyan'}} btn-xs" data-toggle="modal" data-target="#activeModal{{$p->pivot->id}}" {{$groups->status=='INACTIVE' ? 'disabled' : ''}}>
+                                        <small>{{$p->pivot->status == 'ACTIVE' ? 'DEACTIVATE' : 'ACTIVATE'}}</small>
+                                    </button>
                                     <!-- Modal Delete -->
                                     <div class="modal fade" id="deleteModal{{$p->pivot->id}}" tabindex="-1" role="dialog">
                                         <div class="modal-dialog modal-sm" role="document">
@@ -141,12 +143,12 @@
                         @endforeach
                     </tbody>
                 </table>
-                <button type="button" class="btn bg-deep-purple waves-effect" data-toggle="modal" data-target="#addItemModal" style="margin-left:20px;margin-bottom:20px;">
+                <button type="button" class="btn bg-deep-purple waves-effect" data-toggle="modal" data-target="#addItemModal" style="margin-left:20px;margin-bottom:20px;" {{$groups->status=='INACTIVE' ? 'disabled' : ''}}>
                     <i class="material-icons" style="font-size:1.2em;">add</i>Add item 
                 </button>
             </div>
         </div>
-        <button class="btn btn-primary" name="save_action" id="save" value="UPDATE" type="submit" style="margin-top:20px;">UPDATE</button>
+        <button class="btn btn-primary" name="save_action" id="save" value="UPDATE" type="submit" style="margin-top:20px;" {{$groups->status=='INACTIVE' ? 'disabled' : ''}}>UPDATE</button>
         <a href="{{route('groups.index')}}" class="btn bg-grey" style="margin-top:20px;margin-left:10px;">LIST GROUP</a>
     </form>
     <!-- #END#  -->		
