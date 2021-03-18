@@ -104,6 +104,8 @@ Route::get('/admin', function () {
     Route::post('/groups/edit_status', 'GroupController@update_status')->name('groups.edit_status');
     //Route::get('/groups/{id}/{status}/edit_status', 'GroupController@update_status')->name('groups.update_status');
     Route::resource('groups','GroupController');
+    Route::get('/ajax/paket/search', 'PaketController@PaketNameSearch');
+    Route::post('/paket/edit_status', 'PaketController@update_status')->name('paket.edit_status');
     Route::resource('paket','PaketController');
 
 

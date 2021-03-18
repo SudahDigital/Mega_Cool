@@ -76,7 +76,7 @@
 									<form action="{{route('groups.edit_status')}}" method="POST">
 										@csrf
 										<input type="hidden" name="{{$p->status == 'ACTIVE' ? 'deactivate_id' : 'activate_id'}}" value="{{$p->id}}">
-										<button type="submit" name="save_action" value="{{$p->status == 'ACTIVE' ? 'DEACTIVATE' : 'ACTIVATE'}}" class="btn btn-link waves-effect">{{$p->status == 'ACTIVE' ? 'DEACTIVATE' : 'ACTIVATE'}}</button>
+										<button type="submit" name="save_action" value="{{$p->status == 'ACTIVE' ? 'DEACTIVATE' : 'ACTIVATE'}}" class="btn btn-link waves-effect">{{$p->status == 'ACTIVE' ? 'Deactivate' : 'Activate'}}</button>
 										<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Close</button>
 									</form>
 								</div>

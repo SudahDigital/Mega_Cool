@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title') Edit Product @endsection
+@section('title') Edit Paket @endsection
 @section('content')
 
 	@if(session('status'))
@@ -8,100 +8,41 @@
 		</div>
 	@endif
 	<!-- Form Create -->
-    <form id="form_validation" method="POST" enctype="multipart/form-data" action="{{route('products.update',[$product->id])}}">
+    <form id="form_validation" method="POST" enctype="multipart/form-data" action="{{route('paket.update',[$pakets->id])}}">
         @csrf
         <input type="hidden" name="_method" value="PUT">
         <div class="form-group form-float">
-            <div class="form-line">
-                <input type="text" class="form-control" name="Product_name" autocomplete="off" required value="{{$product->Product_name}}">
-                <label class="form-label">Product Name</label>
+            <div class="form-line" >
+                <input type="text" class="form-control" value="{{$pakets->paket_name}}" readonly name="paket_name" autocomplete="off" required>
+                <label class="form-label">Paket Name</label>
             </div>
         </div>
-
-        <div class="form-group form-float">
-            <div class="form-line">
-                <input type="text" class="form-control" value="{{$product->slug}}" name="slug" autocomplete="off" required>
-                <label class="form-label">Slug</label>
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <div class="form-line">
-                <textarea name="description" rows="4" class="form-control no-resize" placeholder="Description" autocomplete="off" required>{{$product->description}}</textarea>
-            </div>
-        </div>
-
-        <h2 class="card-inside-title">Categories</h2>
-        <select name="categories"  id="categories" class="form-control"></select>
+        <!--
+        <h2 class="card-inside-title">Groups</h2>
+        <select name="groups"  id="groups" class="form-control" required></select>
         <br>
-        <h2 class="card-inside-title">Product Image</h2>
-        <div class="form-group">
-         <div class="form-line">
-            @if($product->image)
-            <img src="{{asset('storage/'.$product->image)}}" width="120px"/>
-            @else
-            No Image
-            @endif
-             <input type="file" name="image" class="form-control" id="image" autocomplete="off">
+        <br>
+        -->
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="text" value="{{$pakets->display_name}}" class="form-control" name="display_name" autocomplete="off" required>
+                <label class="form-label">Display Name</label>
             </div>
         </div>
-
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="number" value="{{$pakets->bonus_quantity}}" class="form-control" name="bonus_quantity" autocomplete="off" required>
+                <label class="form-label">Bonus Quantity</label>
+            </div>
+        </div>
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="number" class="form-control" value="{{$pakets->purchase_quantity}}" name="purchase_quantity" autocomplete="off" required>
+                <label class="form-label">Purchase Quantity</label>
+            </div>
+        </div>
         
-        <div class="form-group form-float">
-            <div class="form-line">
-                <input type="number" class="form-control" name="price" autocomplete="off" value="{{$product->price}}" required/>
-                <label class="form-label">Product Price /Box (IDR)</label>
-            </div>
-        </div>
-        <!--
-        @if($product->discount > 0)
-        <div class="form-group form-float">
-            <div class="form-line">
-                <input type="number" class="form-control" name="price_promo" autocomplete="off" value="{{$product->price_promo}}" readonly required/>
-                <label class="form-label">Product Price Promo (IDR)</label>
-            </div>
-        </div>
-        @endif
-        <div class="form-group form-float">
-            <div class="form-line">
-                <input type="number" class="form-control" name="discount" autocomplete="off" value="{{$product->discount}}" required/>
-                <label class="form-label">Discount ( % )</label>
-            </div>
-        </div>
-        -->
-        <input type="hidden" class="form-control" name="discount" autocomplete="off" value="{{$product->discount}}" required/>    
-        <div class="form-group form-float">
-            <div class="form-line">
-                <input type="number" class="form-control" name="stock" min="0" autocomplete="off" value="{{$product->stock}}" required>
-                <label class="form-label">Product Stock (Box)</label>
-            </div>
-        </div>
-
-        <div class="form-group form-float">
-            <div class="form-line">
-                <input type="number" class="form-control" name="low_stock_treshold" min="0" value="{{$product->low_stock_treshold}}" autocomplete="off" required>
-                <label class="form-label">Low Stock Treshold</label>
-            </div>
-        </div>
-        <!--
-        <h2 class="card-inside-title">Make Top Product</h2>
-        <div class="form-group">
-            <input type="checkbox" name="top_product" id="top_product" value="1"  {{$product->top_product == '1' ? 'checked' : ''}}>
-			<label for="top_product">Top Product</label>
-		</div>
-        -->
-        <input type="hidden" name="top_product" id="top_product" value="0"  {{$product->top_product == '1' ? 'checked' : ''}}>
-
-        <h2 class="card-inside-title">Status</h2>
-        <div class="form-group">
-            <input type="radio" value="PUBLISH" name="status" id="PUBLISH" {{$product->status == 'PUBLISH' ? 'checked' : ''}}>
-            <label for="PUBLISH">PUBLISH</label>
-                            &nbsp;
-            <input type="radio" value="DRAFT" name="status" id="DRAFT" {{$product->status == 'DRAFT' ? 'checked' : ''}}>
-            <label for="DRAFT">DRAFT</label>
-        </div>
-
-        <button class="btn btn-primary waves-effect" value="PUBLISH" type="submit">UPDATE</button>
+        <button class="btn btn-primary waves-effect" value="UPDATE" type="submit">UPDATE</button>
         <!--<a href="{{URL::previous()}}" class="btn btn-danger waves-effect" >CANCEL</a>-->
         
     </form>
@@ -109,34 +50,3 @@
 
 @endsection
 
-@section('footer-scripts')
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-<script>
-    $('#categories').select2({
-      placeholder: 'Select an item',
-      ajax: {
-        url: '{{URL::to('/ajax/categories/search')}}',
-        processResults: function (data) {
-          return {
-            results:  $.map(data, function (item) {
-                  return {
-                        id: item.id,
-                        text: item.name
-                      
-                  }
-              })
-          };
-        }
-        
-      }
-    });
-
-    var categories = {!! $product->categories !!}
-    categories.forEach(function(category){
-    var option = new Option(category.name, category.id, true, true);
-    $('#categories').append(option).trigger('change');
-    });
-</script>
-
-@endsection

@@ -6,6 +6,11 @@
 		{{session('status')}}
 	</div>
 @endif
+@if(session('error_edit'))
+	<div class="alert alert-danger">
+		{{session('error_edit')}}
+	</div>
+@endif
 
 <form action="{{route('products.index')}}">
 	<div class="row">
@@ -55,7 +60,6 @@
 			<tr>
 				<th>No</th>
 				<th>Name</th>
-				<th>Group</th>
 				<th>Bonus Quantity</th>
 				<th>Purchase Quantity</th>
 				<th>Display Name</th>
@@ -70,16 +74,9 @@
 			<tr>
 				<td>{{$no}}</td>
 				<td>{{$p->paket_name}}</td>
-				<td>
-					@foreach($p->groups as $groups)
-						{{$groups->group_name}}
-					@endforeach
-					
-				</td>
 				<td>{{$p->display_name}}</td>
 				<td>{{$p->bonus_quantity}}</td>
 				<td>{{$p->purchase_quantity}}</td>
-				<td>{{$p->display_name}}</td>
 				<td>
 					@if($p->status=="INACTIVE")
 					<span class="badge bg-dark text-white">{{$p->status}}</span>
@@ -89,21 +86,42 @@
 
 				</td>
 				<td>
-					<a class="btn btn-info btn-xs" href="{{route('products.edit',[$p->id])}}"><i class="material-icons">edit</i></a>
+					<a class="btn btn-info btn-xs" href="{{route('paket.edit',[$p->id])}}"><i class="material-icons">edit</i></a>
 					<button type="button" class="btn btn-danger btn-xs waves-effect" data-toggle="modal" data-target="#deleteModal{{$p->id}}"><i class="material-icons">delete</i></button>
-					<button type="button" class="btn bg-grey waves-effect" data-toggle="modal" data-target="#detailModal{{$p->id}}" style="padding: 4px 8px;"><small>Detail</small></button>
-
+					<button type="button" class="btn bg-{{$p->status == 'ACTIVE' ? 'orange' : 'cyan'}}" data-toggle="modal" data-target="#activeModal{{$p->id}}"><small>{{$p->status == 'ACTIVE' ? 'DEACTIVATE' : 'ACTIVATE'}}</small></button>
+					<!-- Modal deactivate -->
+					<div class="modal fade" id="activeModal{{$p->id}}" tabindex="-1" role="dialog">
+						<div class="modal-dialog modal-sm" role="document">
+							<div class="modal-content modal-col-{{$p->status == 'ACTIVE' ? 'orange' : 'cyan'}}">
+								<div class="modal-header">
+									<h4 class="modal-title">{{$p->status == 'ACTIVE' ? 'Deactivate Paket' : 'Activate Paket'}}</h4>
+								</div>
+								<div class="modal-body">
+									{{$p->status == 'ACTIVE' ? 'Deactivate this paket ?' : 'Activate this paket ?'}}
+								</div>
+								<div class="modal-footer">
+									<form action="{{route('paket.edit_status')}}" method="POST">
+										@csrf
+										<input type="hidden" name="{{$p->status == 'ACTIVE' ? 'deactivate_id' : 'activate_id'}}" value="{{$p->id}}">
+										<button type="submit" name="save_action" value="{{$p->status == 'ACTIVE' ? 'DEACTIVATE' : 'ACTIVATE'}}" class="btn btn-link waves-effect">{{$p->status == 'ACTIVE' ? 'Deactivate' : 'Activate'}}</button>
+										<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Close</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
 					<!-- Modal Delete -->
 		            <div class="modal fade" id="deleteModal{{$p->id}}" tabindex="-1" role="dialog">
 		                <div class="modal-dialog modal-sm" role="document">
 		                    <div class="modal-content modal-col-red">
 		                        <div class="modal-header">
-		                            <h4 class="modal-title" id="deleteModalLabel">Delete Product</h4>
+		                            <h4 class="modal-title" id="deleteModalLabel">Delete Paket</h4>
 		                        </div>
 		                        <div class="modal-body">
 		                           Delete this paket
+								</div>
 		                        <div class="modal-footer">
-		                        	<form action="{{route('products.destroy',[$p->id])}}" method="POST">
+		                        	<form action="{{route('paket.destroy',[$p->id])}}" method="POST">
 										@csrf
 										<input type="hidden" name="_method" value="DELETE">
 										<button type="submit" class="btn btn-link waves-effect">Delete</button>

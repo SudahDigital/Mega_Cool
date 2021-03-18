@@ -170,7 +170,7 @@ class GroupController extends Controller
                 'Item product successfully activate');
             }
         }else{
-            $group = $group_product = \App\Group::findOrFail($id);
+            $group = \App\Group::findOrFail($id);
             $group->group_name = $request->input('group_name');
             $group->display_name = $request->input('display_name');
             $group->save();
