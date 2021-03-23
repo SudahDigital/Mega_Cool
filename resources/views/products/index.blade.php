@@ -42,8 +42,8 @@
 		</div>
 		<div class="col-md-6">&nbsp;</div>
 		<div class="col-md-12">
-			<a href="{{route('products.import_products')}}" class="btn btn-success "><i class="fas fa-file-excel fa-0x "></i> Import (<small>Update Stock</small>) </a>&nbsp;
-			<a href="{{route('products.export_all')}}" class="btn btn-success "><i class="fas fa-file-excel fa-0x "></i> Export (<small>Products Stock</small>)</a>&nbsp;
+			<a href="{{route('products.import_products')}}" class="btn btn-success "><i class="fas fa-file-excel fa-0x "></i> Import</a>&nbsp;
+			<a href="{{route('products.export_all')}}" class="btn btn-success "><i class="fas fa-file-excel fa-0x "></i> Export</a>&nbsp;
 			<a href="{{route('products.create')}}" class="btn bg-cyan">Create Product</a>
 		</div>
 		
@@ -56,6 +56,7 @@
 			<tr>
 				<th>No</th>
 				<th>Product Image</th>
+				<th>Product Code</th>
 				<th>Product Name</th>
 				<th>Descritption</th>
 				<th>Category</th>
@@ -78,6 +79,7 @@
 					N/A
 					@endif
 				</td>
+				<td>{{$p->product_code}}</td>
 				<td>{{$p->Product_name}}</td>
 				<td>{{$p->description}}</td>
 				<td>
@@ -157,6 +159,10 @@
 									@else
 									No Image
 									@endif
+									<br/><br/>
+									<b>Product Code:</b>
+									<br/>
+									{{$p->product_code}}
 								   <br/><br/>
 		                           <b>Product Name:</b>
 		                           <br/>
@@ -177,6 +183,10 @@
 		                           <b>Stock:</b>
 		                           <br/>
 		                           {{$p->stock}}
+		                           <br/><br/>
+								   <b>Low Stock Treshold:</b>
+		                           <br/>
+		                           {{$p->low_stock_treshold}}
 		                           <br/><br/>
 		                           <b>Price:</b>
 		                           <br/>

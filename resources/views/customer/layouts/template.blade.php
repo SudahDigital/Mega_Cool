@@ -145,7 +145,7 @@
             }
         }
 
-        .alert{
+        /*.alert{
             position:fixed;
             top:5%; 
             width:50%; 
@@ -155,7 +155,7 @@
             border:none; 
             color:#ffffff; 
             font-weight:bold;
-        }
+        }*/
 
         .select2-selection--single {
             /*height: 100% !important;*/

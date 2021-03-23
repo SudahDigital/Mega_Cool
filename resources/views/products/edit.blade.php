@@ -13,6 +13,13 @@
         <input type="hidden" name="_method" value="PUT">
         <div class="form-group form-float">
             <div class="form-line">
+                <input type="text" class="form-control" name="code" autocomplete="off" required readonly value="{{$product->product_code}}">
+                <label class="form-label">Product Code</label>
+            </div>
+        </div>
+
+        <div class="form-group form-float">
+            <div class="form-line">
                 <input type="text" class="form-control" name="Product_name" autocomplete="off" required value="{{$product->Product_name}}">
                 <label class="form-label">Product Name</label>
             </div>

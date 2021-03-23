@@ -11,6 +11,15 @@
     <form id="form_validation" method="POST" enctype="multipart/form-data" action="{{route('products.store')}}">
     	@csrf
         <div class="form-group form-float">
+            <div class="form-line" id="code_">
+                <input type="text" class="form-control" id="code"  name="code" autocomplete="off" required>
+                <label class="form-label">Product Code</label>
+            </div>
+            <label id="name-error" class=""></label>
+            <small class=""></small>
+        </div>
+
+        <div class="form-group form-float">
             <div class="form-line">
                 <input type="text" class="form-control" name="Product_name" autocomplete="off" required>
                 <label class="form-label">Product Name</label>
@@ -85,7 +94,53 @@
 @section('footer-scripts')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script>
+    $("#code").on({
+        keydown: function(e) {
+        if (e.which === 32)
+            return false;
+        },
+        keyup: function(){
+        this.value = this.value.toUpperCase();
+        },
+        change: function() {
+            this.value = this.value.replace(/\s/g, "");
+            
+        }
+    });
+
+    $('document').ready(function(){
+        $('#code, .btn').on('keyup', function(){
+        var code = $('#code').val();
+            $.ajax({
+                url: '{{URL::to('/ajax/products/code/search')}}',
+                type: 'get',
+                data: {
+                    'code' : code,
+                },
+                success: function(response){
+                    if (response == 'taken' && code !="" ) {
+                    $('#code_').addClass("focused error");
+                    $('#code_').siblings("label").addClass("error").text('Sorry... Product code Already Exists');
+                    $('#code_').siblings("small").text('');
+                    $('#save').prop('disabled', true);
+                    }else if (response == 'not_taken' && code !="") {
+                    $('#code_').addClass("");
+                    $('#code_').siblings("small").addClass("text-primary").text('Product code Available');
+                    $('#code_').siblings("label").text('');
+                    $('#save').prop('disabled', false);
+                    }
+                    else if(response == 'not_taken' && code ==""){
+                        $('#code_').siblings("label").text('');
+                        $('#code_').siblings("small").text('');
+                    }
+                }
+            });
+        });
+    });
+
+    //select2
     $('#categories').select2({
       placeholder: 'Select an item',
       ajax: {

@@ -71,6 +71,7 @@ class productController extends Controller
             "stock" => "required|digits_between:0,10"
         ])->validate();*/
         $new_product = new \App\product;
+        $new_product->product_code = $request->get('code');
         $new_product->Product_name = $request->get('Product_name');
         $new_product->description = $request->get('description');
         if($request->has('discount') && ($request->get('discount') > 0)){
@@ -152,6 +153,7 @@ class productController extends Controller
     public function update(Request $request, $id)
     {
         $product = \App\product::findOrFail($id);
+        $product->product_code = $request->get('code');
         $product->Product_name = $request->get('Product_name');
         $product->description = $request->get('description');
         if($request->has('discount') && ($request->get('discount') > 0)){
@@ -271,7 +273,9 @@ class productController extends Controller
             "file" => "required|mimes:xls,xlsx"
         ])->validate();
         
-        $data = Excel::toArray(new ProductsImport, request()->file('file')); 
+        Excel::import(new ProductsImport,request()->file('file'));
+        return redirect()->route('products.import_products')->with('status', 'File successfully upload');
+        /*$data = Excel::toArray(new ProductsImport, request()->file('file')); 
 
         $update = collect(head($data))
             ->each(function ($row, $key){
@@ -283,5 +287,16 @@ class productController extends Controller
         if($update){
             return redirect()->route('products.import_products')->with('status', 'File successfully upload'); 
         }
+        */
+    }
+
+    public function codeSearch(Request $request){
+        $keyword = $request->get('code');
+        $vouchers = \App\product::where('product_code','=',"$keyword")->count();
+        if ($vouchers > 0) {
+            echo "taken";	
+          }else{
+            echo 'not_taken';
+          }
     }
 }

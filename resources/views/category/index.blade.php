@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		-->
-		<div class="col-md-4">
+		<div class="col-md-12">
 			<ul class="nav nav-tabs tab-col-pink pull-left" >
 				<li role="presentation" class="active">
 					<a href="{{route('categories.index')}}" aria-expanded="true" >All</a>
@@ -32,8 +32,9 @@
 				</li>
 			</ul>
 		</div>		
-		<div class="col-md-8">
-			<a href="{{route('categories.create')}}" class="btn btn-success pull-right">Create Category</a>
+		<div class="col-md-12">
+			<a href="{{route('categories.export')}}" class="btn btn-success "><i class="fas fa-file-excel fa-0x "></i> Export</a>&nbsp;
+			<a href="{{route('categories.create')}}" class="btn bg-cyan">Create Category</a>
 		</div>
 	</div>
 </form>
