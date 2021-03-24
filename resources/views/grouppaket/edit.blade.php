@@ -45,6 +45,18 @@
             <label id="name-error" class=""></label>
             <small class=""></small>
         </div>
+
+        <h2 class="card-inside-title">Group Image</h2>
+        <div class="form-group">
+            <div class="form-line">
+                @if($groups->group_image)
+                <img src="{{asset('storage/'.$groups->group_image)}}" width="120px"/>
+                @else
+                No Image
+                @endif
+                 <input type="file" name="group_image" class="form-control" id="group_image" autocomplete="off" required>
+            </div>
+        </div>
         
         <div class="form-group form-float">
             <div class="form-line">

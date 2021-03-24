@@ -111,7 +111,32 @@
         left: -25%;
     }
 
-    .sidebar-dot-bottom {
+    #sidebar .sidebar-header {
+        margin-left: 8rem;
+    }
+
+   #sidebar ul li a {
+        z-index:1;
+        margin-left: 8rem;
+        margin-right: 7rem;
+        font-size: 18px;
+    }
+
+    #sidebar ul .page-submenu li a {
+        padding: 0;
+        font-size: 18px !important;
+        display: block;
+    }
+
+    .collapse{
+        margin-bottom:0;
+    }
+
+    #log .logout {
+        margin-left: 8rem;
+    }
+
+   .sidebar-dot-bottom {
         margin-top:5rem;
     }
 
@@ -224,16 +249,28 @@
     }
 
     #sidebar .sidebar-header {
-        margin-left: 7rem;
+        margin-left: 6rem;
     }
 
-    #sidebar ul li a {
-        margin-left: 7rem;
-        margin-right: 7rem;
+   #sidebar ul li a {
+        z-index:1;
+        margin-left: 6rem;
+        margin-right: 6rem;
+        font-size: 18px;
+    }
+
+    #sidebar ul .page-submenu li a {
+        padding: 0;
+        font-size: 18px !important;
+        display: block;
+    }
+
+    .collapse{
+        margin-bottom:0;
     }
 
     #log .logout {
-        margin-left: 7rem;
+        margin-left: 6rem;
     }
 
     .sidebar-dot-bottom {
@@ -346,16 +383,28 @@
     }
 
     #sidebar .sidebar-header {
-        margin-left: 7rem;
+        margin-left: 5rem;
     }
 
-    #sidebar ul li a {
-        margin-left: 7rem;
-        margin-right: 7rem;
+   #sidebar ul li a {
+        z-index:1;
+        margin-left: 5rem;
+        margin-right: 5rem;
+        font-size: 18px;
+    }
+
+    #sidebar ul .page-submenu li a {
+        padding: 0;
+        font-size: 18px !important;
+        display: block;
+    }
+
+    .collapse{
+        margin-bottom:0;
     }
 
     #log .logout {
-        margin-left: 7rem;
+        margin-left: 5rem;
     }
 
     .sidebar-dot-bottom {
@@ -472,7 +521,7 @@
     }
 
     #sidebar .sidebar-header {
-        margin-left: 6rem;
+        margin-left: 4rem;
     }
 
     #sidebar .sidebar-header img{
@@ -481,18 +530,28 @@
     }
 
     #sidebar .sidebar-header p {
-        font-size:17px;
+        font-size:15px;
     }
 
     #sidebar ul li a {
-        font-size: 20px;
-        margin-left: 6rem;
-        margin-right: 6rem;
+        font-size: 18px;
+        margin-left: 4rem;
+        margin-right: 4rem;
+    }
+   
+    #sidebar ul .page-submenu li a {
+        padding: 0;
+        font-size: 18px !important;
+        display: block;
+    }
+
+    .collapse{
+        margin-bottom:0;
     }
 
     #log .logout {
         padding:8px 40px;
-        margin-left: 6rem;
+        margin-left: 4rem;
     }
 
     .sidebar-dot-top-right {
@@ -660,7 +719,7 @@
     }
 
     #sidebar .sidebar-header {
-        margin-left: 5rem;
+        margin-left: 4rem;
     }
 
     #sidebar .sidebar-header img{
@@ -669,18 +728,18 @@
     }
 
     #sidebar .sidebar-header p {
-        font-size:17px;
+        font-size:15px;
     }
 
     #sidebar ul li a {
-        font-size: 20px;
-        margin-left: 5rem;
-        margin-right: 5rem;
+        font-size: 18px;
+        margin-left: 4rem;
+        margin-right: 4rem;
     }
 
     #log .logout {
         padding:8px 40px;
-        margin-left: 5rem;
+        margin-left: 4rem;
     }
 
     .sidebar-dot-top-right {
@@ -867,7 +926,7 @@
     }
 
     #sidebar .sidebar-header {
-        margin-left: 5rem;
+        margin-left: 3rem;
     }
 
     #sidebar .sidebar-header img{
@@ -876,18 +935,23 @@
     }
 
     #sidebar .sidebar-header p {
-        font-size:17px;
+        font-size:14px;
     }
 
     #sidebar ul li a {
-        font-size: 20px;
-        margin-left: 5rem;
-        margin-right: 5rem;
+        font-size: 17px;
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+    #sidebar ul .page-submenu li a {
+        padding: 0;
+        font-size: 17px !important;
+        display: block;
     }
 
     #log .logout {
         padding:8px 40px;
-        margin-left: 5rem;
+        margin-left: 3rem;
     }
 
     .sidebar-dot-top-right {
@@ -1106,7 +1170,7 @@
     }
 
     #sidebar .sidebar-header {
-        margin-left: 5rem;
+        margin-left: 3rem;
     }
 
     #sidebar .sidebar-header img{
@@ -1115,18 +1179,24 @@
     }
 
     #sidebar .sidebar-header p {
-        font-size:16px;
+        font-size:14px;
     }
 
     #sidebar ul li a {
-        font-size: 18px;
-        margin-left: 5rem;
-        margin-right: 5rem;
+        font-size: 16px;
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+
+    #sidebar ul .page-submenu li a {
+        padding: 0;
+        font-size: 16px !important;
+        display: block;
     }
 
     #log .logout {
         padding:8px 40px;
-        margin-left: 5rem;
+        margin-left: 3rem;
     }
 
     .sidebar-dot-top-right {
@@ -1353,7 +1423,7 @@
     }
 
     #sidebar .sidebar-header {
-        margin-left: 5rem;
+        margin-left: 3rem;
     }
 
     #sidebar .sidebar-header img{
@@ -1362,18 +1432,24 @@
     }
 
     #sidebar .sidebar-header p {
-        font-size:16px;
+        font-size:14px;
     }
 
     #sidebar ul li a {
-        font-size: 18px;
-        margin-left: 5rem;
-        margin-right: 5rem;
+        font-size: 16px;
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+
+    #sidebar ul .page-submenu li a {
+        padding: 0;
+        font-size: 16px !important;
+        display: block;
     }
 
     #log .logout {
         padding:8px 40px;
-        margin-left: 5rem;
+        margin-left: 3rem;
     }
 
     .sidebar-dot-top-right {
@@ -1631,27 +1707,34 @@
     }
 
     #sidebar .sidebar-header {
-        margin-left: 4rem;
+        margin-left: 2rem;
     }
 
     #sidebar .sidebar-header img{
-        width: 110px;
-        height: 110px;
+        width: 100px;
+        height: 100px;
     }
 
     #sidebar .sidebar-header p {
-        font-size:16px;
+        font-size:12px;
     }
 
     #sidebar ul li a {
-        font-size: 18px;
-        margin-left: 4rem;
-        margin-right: 4rem;
+        font-size: 14px;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    #sidebar ul .page-submenu li a {
+        padding: 0;
+        font-size: 14px !important;
+        display: block;
     }
 
     #log .logout {
-        padding:8px 40px;
-        margin-left: 4rem;
+        padding:8px 30px;
+        margin-left: 2rem;
+        font-size: 14px;
     }
 
     .sidebar-dot-top-right {
@@ -1918,27 +2001,34 @@
     }
 
     #sidebar .sidebar-header {
-        margin-left: 4rem;
+        margin-left: 2rem;
     }
 
     #sidebar .sidebar-header img{
-        width: 110px;
-        height: 110px;
+        width: 100px;
+        height: 100px;
     }
 
     #sidebar .sidebar-header p {
-        font-size:16px;
+        font-size:12px;
     }
 
     #sidebar ul li a {
-        font-size: 16px;
-        margin-left: 4rem;
-        margin-right: 4rem;
+        font-size: 14px;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    #sidebar ul .page-submenu li a {
+        padding: 0;
+        font-size: 14px !important;
+        display: block;
     }
 
     #log .logout {
-        padding:8px 40px;
-        margin-left: 4rem;
+        padding:8px 30px;
+        margin-left: 2rem;
+        font-size: 14px;
     }
 
     .sidebar-dot-top-right {
@@ -2229,27 +2319,34 @@
     }
 
     #sidebar .sidebar-header {
-        margin-left: 3rem;
+        margin-left: 2rem;
     }
 
     #sidebar .sidebar-header img{
-        width: 110px;
-        height: 110px;
+        width: 90px;
+        height: 90px;
     }
 
     #sidebar .sidebar-header p {
-        font-size:16px;
+        font-size:12px;
     }
 
     #sidebar ul li a {
-        font-size: 16px;
-        margin-left: 3rem;
-        margin-right: 3rem;
+        font-size: 14px;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    #sidebar ul .page-submenu li a {
+        padding: 0;
+        font-size: 14px !important;
+        display: block;
     }
 
     #log .logout {
-        padding:8px 35px;
-        margin-left: 3rem;
+        padding:6px 30px;
+        margin-left: 2rem;
+        font-size: 14px;
     }
 
     .sidebar-dot-top-right {
@@ -2569,27 +2666,34 @@
     }
 
     #sidebar .sidebar-header {
-        margin-left: 3rem;
+        margin-left: 2rem;
     }
 
     #sidebar .sidebar-header img{
-        width: 110px;
-        height: 110px;
+        width: 80px;
+        height: 80px;
     }
 
     #sidebar .sidebar-header p {
-        font-size:16px;
+        font-size:12px;
     }
 
     #sidebar ul li a {
-        font-size: 16px;
-        margin-left: 3rem;
-        margin-right: 3rem;
+        font-size: 14px;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    #sidebar ul .page-submenu li a {
+        padding: 0;
+        font-size: 14px !important;
+        display: block;
     }
 
     #log .logout {
-        padding:8px 35px;
-        margin-left: 3rem;
+        padding:6px 25px;
+        margin-left: 2rem;
+        font-size: 14px;
     }
 
     .sidebar-dot-top-right {
@@ -2914,27 +3018,34 @@
     }
 
     #sidebar .sidebar-header {
-        margin-left: 3rem;
+        margin-left: 2rem;
     }
 
     #sidebar .sidebar-header img{
-        width: 110px;
-        height: 110px;
+        width: 75px;
+        height: 75px;
     }
 
     #sidebar .sidebar-header p {
-        font-size:16px;
+        font-size:11px;
     }
 
     #sidebar ul li a {
-        font-size: 16px;
-        margin-left: 3rem;
-        margin-right: 3rem;
+        font-size: 13px;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    #sidebar ul .page-submenu li a {
+        padding: 0;
+        font-size: 13px !important;
+        display: block;
     }
 
     #log .logout {
-        padding:8px 35px;
-        margin-left: 3rem;
+        padding:6px 25px;
+        margin-left: 2rem;
+        font-size: 13px;
     }
 
     .sidebar-dot-top-right {
@@ -3255,23 +3366,30 @@
     }
 
     #sidebar .sidebar-header img{
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 70px;
     }
 
     #sidebar .sidebar-header p {
-        font-size:16px;
+        font-size:11px;
     }
 
     #sidebar ul li a {
-        font-size: 16px;
+        font-size: 13px;
         margin-left: 2rem;
         margin-right: 2rem;
     }
 
+    #sidebar ul .page-submenu li a {
+        padding: 0;
+        font-size: 13px !important;
+        display: block;
+    }
+
     #log .logout {
-        padding:8px 35px;
+        padding:6px 25px;
         margin-left: 2rem;
+        font-size: 13px;
     }
 
     .sidebar-dot-top-right {

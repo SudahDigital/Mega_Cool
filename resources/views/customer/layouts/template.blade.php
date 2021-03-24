@@ -12,8 +12,8 @@
     <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" >
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_6.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_4.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_7.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_6.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css')}}">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -248,7 +248,7 @@
             background-color: #1A4066 !important 
         }
 
-        .close {
+        /*.close {
             float: right;
             font-size: 40px;
             font-weight: 500;
@@ -258,7 +258,7 @@
             filter: alpha(opacity=20);
             opacity: 1;
             outline:none;
-        }
+        }*/
 
         .borderless td, .borderless th {
             border: none;
@@ -959,6 +959,16 @@
                    <a href="{{ url('/') }}">Beranda</a>
                 </li>
                 <li>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Paket</a>
+                    <ul class="collapse list-unstyled page-submenu" id="pageSubmenu">
+                        @foreach($paket as $key => $value)
+                            <li>
+                                <a href="{{route('home_paket', ['paket'=>$value->id] )}}" style="">{{$value->display_name}}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
+                <li>
                    <a href="{{URL::route('profil.index')}}">Profile</a>
                 </li>
                 <li>
@@ -967,7 +977,7 @@
                 <li>
                     <a href="{{URL::route('contact')}}">Kontak Kami</a>
                 </li>
-            </ul>
+             </ul>
             @if(\Auth::user())
                 <form action="{{route('logout')}}" method="POST">
                     @csrf

@@ -20,18 +20,27 @@ class CustomerKeranjangController extends Controller
         
     }
 
-    public function index(Request $request)
+    public function index(Request $request, $cat = null)
     {   
         //$ses_id = $request->header('User-Agent');
         $id_user = \Auth::user()->id;
         //$clientIP = \Request::getClientIp(true);
         //$session_id = $ses_id.$clientIP;
+        //$category_id = $request->get('cat') ? $request->get('cat') : '';
         $banner_active = \App\Banner::orderBy('position', 'ASC')->first();
         $banner = \App\Banner::orderBy('position', 'ASC')->limit(5)->get();
         $categories = \App\Category::all();//paginate(10);
+        $paket = \App\Paket::all();//paginate(10);
         $cat_count = $categories->count();
         $top_product = product::with('categories')->where('top_product','=','1')->orderBy('top_product','ASC')->get();
-        $product = product::with('categories')->where('top_product','=','0')->get();//->paginate(6);
+        if($cat){
+            //$category_id = $request->get('cats');
+            $product = \App\product::whereHas('categories',function($q) use ($cat){
+                return $q->where('category_id','=',$cat);
+                })->get();
+        }else{
+            $product = product::with('categories')->where('top_product','=','0')->get();//->paginate(6);
+        }
         $top_count = $top_product->count();
         $count_data = $product->count();
         $keranjang = DB::select("SELECT orders.user_id, orders.status,orders.customer_id, 
@@ -66,12 +75,16 @@ class CustomerKeranjangController extends Controller
                 'item'=>$item,
                 'item_name'=>$item_name,
                 'count_data'=>$count_data,
+                'paket'=>$paket,
                 'categories'=>$categories,
                 'cat_count'=>$cat_count,
                 'banner'=>$banner,
-                'banner_active'=>$banner_active];
-       return view('customer.content_customer',$data);
-    }
+                'banner_active'=>$banner_active,
+                ];
+       
+        return view('customer.content_customer',$data);
+    }         
+    
     
     public function simpan(Request $request){ 
         /*$ses_id = $request->header('User-Agent');

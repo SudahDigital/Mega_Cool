@@ -463,17 +463,17 @@ a:focus {
 }
 
 #sidebar ul li a {
-    z-index:1;
-    margin-left: 9rem;
-    margin-right: 9rem;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    font-size: 23px;
-    font-weight: 700;
-    display: block;
+  z-index:1;
+  margin-left: 9rem;
+  margin-right: 9rem;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  font-size: 23px;
+  font-weight: 700;
+  display: block;
 }
 
-#sidebar ul.page-submenu li a {
+#sidebar ul .page-submenu li a {
   padding: 10px;
   font-size: 1.1em !important;
   display: block;
@@ -2031,12 +2031,15 @@ footer.footer .cart .count-cart-three {
 .contact-row{
   margin-top:0;
 }
-  
 
+.head_pop_prod{
+  color:#1A4066;
+  font-weight: bold;
+}
 
-
-
-
-
-
+@media (max-width: 425px){
+  .head_pop_prod{
+    font-size:4vw;
+  }
+}
 

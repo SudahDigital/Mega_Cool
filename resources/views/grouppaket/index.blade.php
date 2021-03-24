@@ -25,6 +25,7 @@
 			<tr>
 				<th>No</th>
 				<th>Name</th>
+				<th>Group Image</th>
 				<th>Display Name</th>
 				<th>Product Group</th>
 				<th>Status</th>
@@ -38,6 +39,12 @@
 			<tr>
 				<td>{{$no}}</td>
 				<td>{{$p->group_name}}</td>
+				<td>@if($p->group_image)
+					<img src="{{asset('storage/'.$p->group_image)}}" width="50px" height="50px" />
+					@else
+					N/A
+					@endif
+				</td>
 				<td>{{$p->display_name}}</td>
 				<td align="left">
 					<ul style="margin-left: -25px;">

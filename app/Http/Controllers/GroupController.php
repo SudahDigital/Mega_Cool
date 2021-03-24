@@ -27,10 +27,11 @@ class GroupController extends Controller
             {
             $groups = \App\Group::with('item_active')
             ->where('group_name','LIKE',"%$keyword%")->get();//->paginate(10);
-            $products_list = \App\product::with('groups')
-                ->doesntHave('groups')->get();
+            //$products_list = \App\product::with('groups')
+                //->doesntHave('groups')->get();
+            //dd($products_list);
             }
-        return view('grouppaket.index', ['groups'=> $groups,'products_list'=>$products_list]);
+        return view('grouppaket.index', ['groups'=> $groups]);
     }
 
     /**
@@ -54,8 +55,18 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        $group = \App\Group::create($request->all());
-
+        $group = new \App\Group;
+        $group->group_name= $request->get('group_name');
+        //$new_group->group_image = $request->file('group_image');
+        $group->display_name = $request->get('display_name');
+        $image = $request->file('group_image');
+        if($image){
+          $image_path = $image->store('groups-images', 'public');
+      
+          $group->group_image = $image_path;
+        }
+        //$group = \App\Group::create($request->all());
+        $group->save();
         $products = $request->input('product_id', []);
         for ($product=0; $product < count($products); $product++) {
             if ($products[$product] != '') {
@@ -173,6 +184,14 @@ class GroupController extends Controller
             $group = \App\Group::findOrFail($id);
             $group->group_name = $request->input('group_name');
             $group->display_name = $request->input('display_name');
+            $new_image = $request->file('group_image');
+            if($new_image){
+                if($group->group_image && file_exists(storage_path('app/public/'.$group->group_image))){
+                \Storage::delete('public/'. $group->group_image);
+                }
+            $new_image_path = $new_image->store('groups-images', 'public');
+            $group->group_image = $new_image_path;
+            }
             $group->save();
             return redirect()->route('groups.edit', [$id])->with('status_group',
             'Group successfully update');

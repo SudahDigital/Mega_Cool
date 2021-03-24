@@ -20,7 +20,8 @@ Route::group(['middleware' => ['auth','checkRole:SALES']],function(){
         $categories = \App\Category::get();	
         return view('customer.contact',['categories'=>$categories]);
         })->name('contact');        
-    Route::get('/sales_home', 'CustomerKeranjangController@index')->name('home_customer');
+    Route::get('/sales_home/{cat?}', 'CustomerKeranjangController@index')->name('home_customer');
+    Route::get('/sales_home/{paket}/paket', 'CustomerPaketController@index')->name('home_paket');
     Route::get('/ajax/city', 'AjaxCitySearch@ajax_city');
     Route::get('/ajax/store', 'AjaxCitySearch@ajax_store');
     Route::post('/session/store','SessionStore@index')->name('session.store');
@@ -38,7 +39,7 @@ Route::group(['middleware' => ['auth','checkRole:SALES']],function(){
     Route::post('/keranjang/pesan','CustomerKeranjangController@pesan')->name('customer.keranjang.pesan');
     Route::post('/keranjang/cek_order','CustomerKeranjangController@cek_order');
     Route::get('/histori','historiController@index')->name('riwayat_pemesanan');
-    Route::resource('category','filterProductController');
+    //Route::resource('category','filterProductController');
     Route::resource('search','searchController');
     Route::get('/updated-activity', 'TelegramBotController@updatedActivity')->name('update.telegram');
 

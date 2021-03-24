@@ -179,9 +179,9 @@ class productController extends Controller
         $product->slug = $request->get('slug');
         $new_image = $request->file('image');
         if($new_image){
-        if($product->image && file_exists(storage_path('app/public/'.$product->image))){
-        \Storage::delete('public/'. $product->image);
-        }
+            if($product->image && file_exists(storage_path('app/public/'.$product->image))){
+            \Storage::delete('public/'. $product->image);
+            }
         $new_image_path = $new_image->store('products-images', 'public');
         $product->image = $new_image_path;
         }
