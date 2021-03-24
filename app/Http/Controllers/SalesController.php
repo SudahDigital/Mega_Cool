@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
+Use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\SalesExport;
 
 class SalesController extends Controller
 {
@@ -137,5 +139,9 @@ class SalesController extends Controller
         $keyword = $request->get('q');
         $cities = \App\City::where('city_name','LIKE',"%$keyword%")->get();
         return $cities;
+    }
+
+    public function export() {
+        return Excel::download( new SalesExport(), 'Sales_Rep.xlsx') ;
     }
 }

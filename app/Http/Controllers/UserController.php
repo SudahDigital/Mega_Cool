@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
+
 class UserController extends Controller
 {
     
@@ -147,4 +148,6 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('users.index')->with('status','User Succsessfully Delete');
     }
+
+    
 }

@@ -176,7 +176,8 @@
 			</div>
 			-->
 			<div class="col-md-12">
-				<a href="{{route('sales.create')}}" class="btn btn-success pull-right">Create Sales</a>
+				<a href="{{route('sales.export')}}" class="btn btn-success "><i class="fas fa-file-excel fa-1x"></i> Export</a>&nbsp;
+				<a href="{{route('sales.create')}}" class="btn bg-cyan ">Create Sales</a>
 			</div>
 		</div>
 	</form>	

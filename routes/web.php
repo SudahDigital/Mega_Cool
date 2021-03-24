@@ -59,6 +59,7 @@ Route::get('/admin', function () {
     Route::post('/users/post/change_password', 'changePasswordController@changepassword')->name('post.changepass');
     Route::resource('users','UserController');
     Route::get('/ajax/cities/search', 'SalesController@ajaxSearch');
+    Route::get('/sales/export', 'SalesController@export')->name('sales.export');
     Route::resource('sales','SalesController');
     Route::post('/ajax/post-sortable','BannerController@post_sortable');
     Route::get('/banner/trash', 'BannerController@trash')->name('banner.trash');

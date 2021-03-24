@@ -22,13 +22,14 @@ class CustomerExport implements FromCollection, WithMapping, WithHeadings, WithC
         return[
                 $customer->store_code,
                 $customer->store_name,
+                $customer->email,
                 $customer->address,
                 $customer->phone,
                 $customer->phone_owner,
                 $customer->phone_store,
                 $customer->name,
                 $customer->payment_term,
-                /*$customer->user_id,*/
+                $customer->user_id,
             ];
     }
 
@@ -36,22 +37,23 @@ class CustomerExport implements FromCollection, WithMapping, WithHeadings, WithC
         return [
            'Cust_Code',
            'Name',
+           'Email',
            'Address',
            'Whatsapp',
-           'Owner Phone',
-           'Office/Shop Phone',
+           'Owner_Phone',
+           'Office_Phone',
            'Contact',
            'Payment_Term',
-           /*'Sales_Rep',*/
+           'Sales_Rep'
         ] ;
     }
 
     public function columnFormats(): array
     {
         return [
-            'D' =>'0',
             'E' =>'0',
             'F' =>'0',
+            'G' =>'0',
         ];
         
     }

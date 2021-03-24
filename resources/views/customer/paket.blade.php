@@ -59,39 +59,64 @@ Home
                     <div class="row section_content">
                     @foreach($product as $key => $value)
                         <div id="product_list"  class="col-6 col-md-4 d-flex mx-0" style="z-index: 1">
-                            
-                                <div class="card mx-auto d-flex item_product">
+                            <div class="card mx-auto d-flex item_product">
+                                <a class="" data-toggle="modal" href="#modalGroup{{$value->id}}">
+                                    <img style="" src="{{ asset('storage/'.(($value->group_image!='') ? $value->group_image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
+                                </a>
+                                <div class="card-body h-100" style="background-color:#1A4066;">
                                     <a class="" data-toggle="modal" href="#modalGroup{{$value->id}}">
-                                        <img style="" src="{{ asset('storage/'.(($value->group_image!='') ? $value->group_image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
+                                        <div class="px-auto py-2 text-center" style="width: 100%;">
+                                            <p class="product-price-header mb-0" style="float:none;">
+                                                {{$value->display_name}}
+                                            </p>
+                                        </div>
                                     </a>
-                                    <div class="card-body h-100" style="background-color:#1A4066;">
-                                        <a class="" data-toggle="modal" href="#modalGroup{{$value->id}}">
-                                            <div class="px-auto py-2 text-center" style="width: 100%;">
-                                                <p class="product-price-header mb-0" style="float:none;">
-                                                    {{$value->display_name}}
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </div>
                                 </div>
-                            
+                            </div>
                         </div>
                         <!-- Modal -->
                         <div class="modal fade" id="modalGroup{{$value->id}}" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog modal-xl" role="document">
-                            <div class="modal-content">
-                                <div class="modal-body" >
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <h4 class="head_pop_prod" style="">Paket {{$value->display_name}}</h4>
-                                    
+                                <div class="modal-content">
+                                    <div class="modal-body" >
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="head_pop_prod" style="">Paket {{$value->display_name}}</h4>
+                                        <div class="container list-product" style="">
+                                            <div class="row mt-0">
+                                                <div class="col-md-12 mt-4">
+                                                    <div class="row section_content px-3">
+                                                        @foreach($value->item_active as $p_group)
+                                                            <div id="product_list"  class="col-6 col-md-4 d-flex mx-0" style="">
+                                                                <div class="card mx-auto d-flex item_product">
+                                                                    <img style="" src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
+                                                                    <div class="card-body" style="background-color:#ffff;">
+                                                                    
+                                                                        <div class="float-left px-1 py-2" style="width: 100%;">
+                                                                            <p class="product-price-header mb-0" style="">
+                                                                                {{$p_group->Product_name}}
+                                                                            </p>
+                                                                        </div>
+                                                                            <div class="float-left px-1 py-2" style="">
+                                                                                <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$p_group->id}}" style="">Rp. {{ number_format($p_group->price, 0, ',', '.') }},-</p>
+                                                                            </div>
+                                                                        
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
                                 </div>
-                                <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
                             </div>
                         </div>
                     @endforeach

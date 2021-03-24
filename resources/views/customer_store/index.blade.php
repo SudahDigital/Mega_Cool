@@ -42,7 +42,7 @@
 		</div>
 		<div class="col-md-6">&nbsp;</div>
 		<div class="col-md-12">
-			<a href="{{route('customers.import')}}" class="btn btn-success py-auto"><i class="fas fa-file-excel fa-0x "></i> Import (<small>New</small>) </a>&nbsp;
+			<a href="{{route('customers.import')}}" class="btn btn-success py-auto"><i class="fas fa-file-excel fa-0x "></i> Import </a>&nbsp;
 			<a href="{{route('customers.export')}}" class="btn btn-success "><i class="fas fa-file-excel fa-1x"></i> Export</a>&nbsp;
 			<a href="{{route('customers.create')}}" class="btn bg-cyan">Create Customer</a>
 		</div>
