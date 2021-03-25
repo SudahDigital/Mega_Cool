@@ -36,7 +36,7 @@
 					<a href="{{route('customers.index', ['status' =>'active'])}}" >ACTIVE</a>
 				</li>
 				<li role="presentation" class="{{Request::get('status') == 'nonactive' ?'active' : '' }}">
-					<a href="{{route('customers.index', ['status' =>'nonactive'])}}">NON ACTIVE</a>
+					<a href="{{route('customers.index', ['status' =>'nonactive'])}}">INACTIVE</a>
 				</li>
 			</ul>
 		</div>

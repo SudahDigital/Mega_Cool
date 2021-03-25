@@ -76,38 +76,87 @@ Home
                         </div>
                         <!-- Modal -->
                         <div class="modal fade" id="modalGroup{{$value->id}}" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-body" >
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
-                                        <h4 class="head_pop_prod" style="">Paket {{$value->display_name}}</h4>
+                                        <div class="col-md-12 ml-5 mt-4">
+                                            <h4 class="head_pop_prod" style="">Paket {{$value->display_name}}</h4>
+                                        </div>
                                         <div class="container list-product" style="">
                                             <div class="row mt-0">
-                                                <div class="col-md-12 mt-4">
-                                                    <div class="row section_content px-3">
+                                                <div class="col-md-12 mt-4  menu-wrapper px-5">
+                                                    <div class="row section_content flex-row flex-nowrap menu" style="overflow-x:auto;overflow-y:hidden;z-index:2222; ">
                                                         @foreach($value->item_active as $p_group)
-                                                            <div id="product_list"  class="col-6 col-md-4 d-flex mx-0" style="">
-                                                                <div class="card mx-auto d-flex item_product">
-                                                                    <img style="" src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
-                                                                    <div class="card-body" style="background-color:#ffff;">
-                                                                    
+                                                            <div id="product_list"  class="col-6 col-md-4 mx-0 d-flex item" style="">
+                                                                <div class="card mx-auto  item_product_pop ">
+                                                                    <a>
+                                                                        <img style="" src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
+                                                                    </a>
+                                                                    <div class="card-body " style="">
                                                                         <div class="float-left px-1 py-2" style="width: 100%;">
-                                                                            <p class="product-price-header mb-0" style="">
+                                                                            <p class="product-price-header_pop mb-0" style="">
                                                                                 {{$p_group->Product_name}}
                                                                             </p>
                                                                         </div>
-                                                                            <div class="float-left px-1 py-2" style="">
-                                                                                <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$p_group->id}}" style="">Rp. {{ number_format($p_group->price, 0, ',', '.') }},-</p>
-                                                                            </div>
-                                                                        
-                                                                        
+                                                                        <div class="float-left px-1 pt-0 pb-2" style="">
+                                                                            <p style="line-height:1; bottom:0" class="product-price_pop mb-0 " id="productPrice{{$p_group->id}}" style="">Rp. {{ number_format($p_group->price, 0, ',', '.') }},-</p>
+                                                                        </div>
+                                                                        <div class="justify-content-center px-4">
+                                                                            <div class="input-group mb-0 mx-auto">
+                                                                                <span class="input-group-text" 
+                                                                                        style="cursor: pointer;
+                                                                                        border:none;
+                                                                                        border-top-right-radius:0;
+                                                                                        border-bottom-right-radius:0;
+                                                                                        border-right-style:none;
+                                                                                        font-weight:bold;
+                                                                                        padding-right:0;">-</span>
+                                                                                <input type="text" class="form-control" value="1" 
+                                                                                        style="background-color:#e9ecef !important;
+                                                                                        text-align:center;
+                                                                                        border:none;
+                                                                                        padding:0;
+                                                                                        none !important;
+                                                                                        font-weight:bold;">
+                                                                                <span class="input-group-text" 
+                                                                                        style="cursor: pointer;
+                                                                                        border:none;
+                                                                                        border-top-left-radius:0;
+                                                                                        border-bottom-left-radius:0;
+                                                                                        border-left-style:none;
+                                                                                        font-weight:bold;
+                                                                                        padding-left:0;">+</span> 
+                                                                            </div> 
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         @endforeach
                                                     </div>
+                                                </div>
+                                                <div class="paddles d-none d-md-block d-md-none">
+                                                    @if($count_data > 2)
+                                                    <button class="left-paddle paddle paddles_hide">
+                                                        <i class="fa fa-angle-double-left" style=""></i>
+                                                    </button>
+                                                    <button class="right-paddle paddle" style="text-decoration: none;">
+                                                        <i class="fa fa-angle-double-right" style=""></i>
+                                                    </button>
+                                                    @endif
+                                                </div>
+                            
+                                                <div class="paddles d-md-none">
+                                                    @if($count_data > 1)
+                                                    <button class="left-paddle paddle paddles_hide">
+                                                        <i class="fa fa-angle-double-left" style=""></i>
+                                                    </button>
+                                                    <button class="right-paddle paddle" style="text-decoration: none;">
+                                                        <i class="fa fa-angle-double-right" style=""></i>
+                                                    </button>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

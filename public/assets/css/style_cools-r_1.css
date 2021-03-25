@@ -966,6 +966,20 @@ a.register:hover {
   height:250px;
 }
 
+#content .item_product_pop{
+  width:100%; 
+  padding:0;
+  border:0.5px solid #bababa !important; 
+  border-radius:20px;
+  margin-bottom:8rem;
+}
+
+#content .item_product_pop img{
+  border-top-right-radius:20px;
+  border-top-left-radius:20px; 
+  height:250px;
+}
+
 #content .cara_belanja{
   width:85%;
   padding-top:40px; 
@@ -1057,6 +1071,22 @@ color: #ffffff;
   line-height: 1.36;
   font-size:16px;
   font-weight: 600;
+}
+
+#content .product-price-header_pop {
+  float: left;
+  color:#000 !important; 
+  line-height: 1.36;
+  font-size:12px;
+  font-weight: bold;
+}
+
+#content .product-price_pop {
+  float: left;
+  color:#000 !important; 
+  width: 100%; 
+  font-size: 16px; 
+  font-weight: 900;
 }
 
 /*#content .button-plus-minus {
