@@ -32,14 +32,20 @@ class CustomerKeranjangController extends Controller
         $categories = \App\Category::all();//paginate(10);
         $paket = \App\Paket::all();//paginate(10);
         $cat_count = $categories->count();
-        $top_product = product::with('categories')->where('top_product','=','1')->orderBy('top_product','ASC')->get();
+        $top_product = product::with('categories')
+        ->where('top_product','=','1')
+        ->where('status','=','PUBLISH')
+        ->orderBy('top_product','ASC')->get();
         if($cat){
             //$category_id = $request->get('cats');
             $product = \App\product::whereHas('categories',function($q) use ($cat){
-                return $q->where('category_id','=',$cat);
+                return $q->where('category_id','=',$cat)->where('status','=','PUBLISH');
                 })->get();
         }else{
-            $product = product::with('categories')->where('top_product','=','0')->get();//->paginate(6);
+            $product = product::with('categories')
+            ->where('top_product','=','0')
+            ->where('status','=','PUBLISH')
+            ->get();//->paginate(6);
         }
         $top_count = $top_product->count();
         $count_data = $product->count();
