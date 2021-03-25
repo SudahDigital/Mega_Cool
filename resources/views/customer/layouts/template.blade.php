@@ -962,7 +962,7 @@
                 <li class="">
                    <a href="{{ url('/') }}">Beranda</a>
                 </li>
-                <!--
+                
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Paket</a>
                     <ul class="collapse list-unstyled page-submenu" id="pageSubmenu">
@@ -973,7 +973,7 @@
                         @endforeach
                     </ul>
                 </li>
-                -->
+                
                 <li>
                    <a href="{{URL::route('profil.index')}}">Profile</a>
                 </li>
