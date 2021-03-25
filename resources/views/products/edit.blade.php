@@ -13,7 +13,7 @@
         <input type="hidden" name="_method" value="PUT">
         <div class="form-group form-float">
             <div class="form-line">
-                <input type="text" class="form-control" name="code" autocomplete="off" required value="{{$product->product_code}}">
+                <input type="text" class="form-control" name="code" readonly autocomplete="off" required value="{{$product->product_code}}">
                 <label class="form-label">Product Code</label>
             </div>
         </div>
