@@ -68,13 +68,21 @@
             </div>
         </div>
 
+        <h2 class="card-inside-title">Payment Term</h2>
+            <select name="payment_term"  id="payment_term" class="form-control">
+                <option value="7 Days" {{$cust->payment_term == '7 Days' ? 'selected' : '' }}>7 Days</option>
+                <option value="14 Days" {{$cust->payment_term == '14 Days' ? 'selected' : '' }}>14 Days</option>
+                <option value="30 Days" {{$cust->payment_term == '30 Days' ? 'selected' : '' }}>30 Days</option>
+            </select>
+        <br>
+        <!--
         <div class="form-group form-float">
             <div class="form-line">
                 <input type="text" class="form-control" name="payment_term" value="{{$cust->payment_term}}" autocomplete="off" required>
                 <label class="form-label">Payment Term</label>
             </div>
         </div>
-
+        -->
         <h2 class="card-inside-title">Sales Representative</h2>
             <select name="user_id"  id="user" class="form-control"></select>
         <br>
@@ -97,7 +105,7 @@
             return false;
             return true;
         }
-        
+    $('#payment_term').select2();   
     $('#user').select2({
       placeholder: 'Select an item',
       ajax: {
