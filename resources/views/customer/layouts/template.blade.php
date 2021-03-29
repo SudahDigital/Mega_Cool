@@ -291,6 +291,62 @@
             border:none;
             cursor: pointer;
         }
+
+        .paddle_pop {
+            position: absolute;
+            right: 0;
+            top:33%;
+            color: #fff;
+            transition: all 0.4s;
+            background:none;
+            border-radius: 50px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            z-index: 1;
+            outline: none;
+            border:none;
+            cursor: pointer;
+        }
+
+        .paddle_pop_bonus {
+            position: absolute;
+            right: 0;
+            bottom:9%;
+            color: #fff;
+            transition: all 0.4s;
+            background:none;
+            border-radius: 50px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            z-index: 1;
+            outline: none;
+            border:none;
+            cursor: pointer;
+        }
+
+        .paddle_pop:focus {
+            outline:0; /* I have also tried outline:none */
+            -webkit-appearance:none;
+            box-shadow: none;
+            -moz-box-shadow: none;
+            -webkit-box-shadow: none;
+        }
+
+        .paddle_pop_bonus:focus {
+            outline:0; /* I have also tried outline:none */
+            -webkit-appearance:none;
+            box-shadow: none;
+            -moz-box-shadow: none;
+            -webkit-box-shadow: none;
+        }
         
         .paddle:hover {
             background: #4b6b9e;
@@ -301,11 +357,31 @@
             left: 0;
         }
 
+        .left-paddle_pop {
+            left: 0;
+        }
+
+        .left-paddle_pop_bonus {
+            left: 0;
+        }
+
        .right-paddle {
+            right: 0;
+        }
+
+        .right-paddle_pop {
+            right: 0;
+        }
+
+        .right-paddle_pop_bonus {
             right: 0;
         }
         
         .paddles_hide {
+            display: none;
+        }
+
+        .paddles_hide_pop_bonus {
             display: none;
         }
 
@@ -1225,7 +1301,9 @@
         
         
         //$('#accordion').collapse('show').height('auto');
+        
 
+ //=======================================top product scroll horizontal============================================//
         // duration of scroll animation
         var scrollDuration = 800;
         // paddles
@@ -1295,7 +1373,154 @@
         $(leftPaddle).on("click", function () {
             $(".menu").animate({ scrollLeft: "0" }, scrollDuration);
         });
+//=======================================end scroll top product============================================//
 
+
+//=======================================scroll popup paket================================================//
+        // duration of scroll animation
+        var scrollDuration_pop = 800;
+        // paddles
+        var leftPaddle_pop = document.getElementsByClassName("left-paddle_pop");
+        var rightPaddle_pop = document.getElementsByClassName("right-paddle_pop");
+        // get items dimensions
+        var itemsLength_pop = $(".item_pop").length;
+        var itemSize_pop = $(".item_pop").outerWidth(true);
+        // get some relevant size for the paddle triggering point
+        var paddleMargin_pop = 250;
+
+        // get wrapper width
+        var getMenuWrapperSize_pop = function () {
+            return $(".menu-wrapper_pop").outerWidth()-500;
+        };
+        var menuWrapperSize_pop = getMenuWrapperSize_pop();
+        // the wrapper is responsive
+        $(window).on("resize", function () {
+            menuWrapperSize_pop = getMenuWrapperSize_pop();
+        });
+        // size of the visible part of the menu is equal as the wrapper size
+        var menuVisibleSize_pop = menuWrapperSize_pop;
+
+        // get total width of all menu items
+        var getMenuSize_pop = function () {
+            return itemsLength_pop * itemSize_pop;
+        };
+        var menuSize_pop = getMenuSize_pop();
+        // get how much of menu is invisible
+        var menuInvisibleSize_pop = menuSize_pop - menuWrapperSize_pop;
+
+        // get how much have we scrolled to the left
+        var getMenuPosition_pop = function () {
+            return $(".menu_pop").scrollLeft();
+        };
+
+        // finally, what happens when we are actually scrolling the menu
+        $(".menu_pop").on("scroll", function () {
+            // get how much of menu is invisible
+            menuInvisibleSize_pop = menuSize_pop - menuWrapperSize_pop;
+            // get how much have we scrolled so far
+            var menuPosition_pop = getMenuPosition_pop();
+
+            var menuEndOffset_pop = menuInvisibleSize_pop - paddleMargin_pop;
+
+            // show & hide the paddles
+            // depending on scroll position
+            if (menuPosition_pop <= paddleMargin_pop) {
+                $(leftPaddle_pop).addClass("paddles_hide");
+                $(rightPaddle_pop).removeClass("paddles_hide");
+            } else if (menuPosition_pop < menuEndOffset_pop) {
+                // show both paddles in the middle
+                $(leftPaddle_pop).removeClass("paddles_hide");
+                $(rightPaddle_pop).removeClass("paddles_hide");
+            } else if (menuPosition_pop >= menuEndOffset_pop) {
+                $(leftPaddle_pop).removeClass("paddles_hide");
+                $(rightPaddle_pop).addClass("paddles_hide");
+            }
+        });
+
+        // scroll to left
+        $(rightPaddle_pop).on("click", function () {
+            $(".menu_pop").animate({ scrollLeft: menuInvisibleSize_pop }, scrollDuration_pop);
+        });
+
+        // scroll to right
+        $(leftPaddle_pop).on("click", function () {
+            $(".menu_pop").animate({ scrollLeft: "0" }, scrollDuration_pop);
+        });
+//=======================================end scroll popup paket============================================//
+
+
+//=======================================scroll popup paket bonus================================================//
+        // duration of scroll animation
+        var scrollDuration_pop_bonus = 800;
+        // paddles
+        var leftPaddle_pop_bonus = document.getElementsByClassName("left-paddle_pop_bonus");
+        var rightPaddle_pop_bonus = document.getElementsByClassName("right-paddle_pop_bonus");
+        // get items dimensions
+        var itemsLength_pop_bonus = $(".item_pop_bonus").length;
+        var itemSize_pop_bonus = $(".item_pop_bonus").outerWidth(true);
+        // get some relevant size for the paddle triggering point
+        var paddleMargin_pop_bonus = 700;
+
+        // get wrapper width
+        var getMenuWrapperSize_pop_bonus = function () {
+            return $(".menu-wrapper_pop_bonus").outerWidth()-1400;
+        };
+        var menuWrapperSize_pop_bonus = getMenuWrapperSize_pop_bonus();
+        // the wrapper is responsive
+        $(window).on("resize", function () {
+            menuWrapperSize_pop_bonus = getMenuWrapperSize_pop_bonus();
+        });
+        // size of the visible part of the menu is equal as the wrapper size
+        var menuVisibleSize_pop_bonus = menuWrapperSize_pop_bonus;
+
+        // get total width of all menu items
+        var getMenuSize_pop_bonus = function () {
+            return itemsLength_pop_bonus * itemSize_pop_bonus;
+        };
+        var menuSize_pop_bonus = getMenuSize_pop_bonus();
+        // get how much of menu is invisible
+        var menuInvisibleSize_pop_bonus = menuSize_pop_bonus - menuWrapperSize_pop_bonus;
+
+        // get how much have we scrolled to the left
+        var getMenuPosition_pop_bonus = function () {
+            return $(".menu_pop_bonus").scrollLeft();
+        };
+
+        // finally, what happens when we are actually scrolling the menu
+        $(".menu_pop_bonus").on("scroll", function () {
+            // get how much of menu is invisible
+            menuInvisibleSize_pop_bonus = menuSize_pop_bonus - menuWrapperSize_pop_bonus;
+            // get how much have we scrolled so far
+            var menuPosition_pop_bonus = getMenuPosition_pop_bonus();
+
+            var menuEndOffset_pop_bonus = menuInvisibleSize_pop_bonus - paddleMargin_pop_bonus;
+
+            // show & hide the paddles
+            // depending on scroll position
+            if (menuPosition_pop_bonus <= paddleMargin_pop_bonus) {
+                $(leftPaddle_pop_bonus).addClass("paddles_hide_pop_bonus ");
+                $(rightPaddle_pop_bonus).removeClass("paddles_hide_pop_bonus");
+            } else if (menuPosition_pop_bonus < menuEndOffset_pop_bonus) {
+                // show both paddles in the middle
+                $(leftPaddle_pop_bonus).removeClass("paddles_hide_pop_bonus");
+                $(rightPaddle_pop_bonus).removeClass("paddles_hide_pop_bonus");
+            } else if (menuPosition_pop_bonus >= menuEndOffset_pop_bonus) {
+                $(leftPaddle_pop_bonus).removeClass("paddles_hide_pop_bonus");
+                $(rightPaddle_pop_bonus).addClass("paddles_hide_pop_bonus");
+            }
+        });
+
+        // scroll to left
+        $(rightPaddle_pop_bonus).on("click", function () {
+            $(".menu_pop_bonus").animate({ scrollLeft: menuInvisibleSize_pop_bonus }, scrollDuration_pop_bonus);
+        });
+
+        // scroll to right
+        $(leftPaddle_pop_bonus).on("click", function () {
+            $(".menu_pop_bonus").animate({ scrollLeft: "0" }, scrollDuration_pop_bonus);
+        });
+//=======================================end scroll popup paket bonus============================================//
+        
         //popup first page
         $(document).ready(function(){
             $("#LocationForm").modal('show');
@@ -1352,6 +1577,16 @@
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
         });
         //end sidebar
+
+        //disbaled button - paket //
+        $(document).ready(function () {
+            $('.button_minus_pkt').attr('disabled', true);
+        });
+
+         //disbaled button - bonus //
+         $(document).ready(function () {
+            $('.button_minus_bns').attr('disabled', true);
+        });
 
         function btn_code(){
             var voucher_code = document.getElementById("voucher_code").value;
@@ -1601,6 +1836,152 @@
             }
         }
         
+        function input_qty_pkt(id){
+            
+            var jumlah = $('#show_pkt'+id).val();
+            
+            if (jumlah == ""){
+                $('#button_minus_pkt'+id).attr('disabled', true);
+                var jumlah = $('#jumlah_pkt'+id).val(0);
+                var harga = $('#harga_pkt'+id).val();
+                var harga = parseInt(harga) * jumlah;
+
+                // UBAH FORMAT UANG INDONESIA
+                var	number_string = harga.toString();
+                var sisa 	= number_string.length % 3;
+                var rupiah 	= number_string.substr(0, sisa);
+                var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+                if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+                }
+
+                harga = "Rp. " + rupiah +",-";
+                $('#productPrice_pkt'+id).text(harga);
+            }else{
+                var jumlah = parseInt(jumlah);
+                // AMBIL NILAI HARGA
+                var harga = $('#harga_pkt'+id).val();
+                var harga = parseInt(harga) * jumlah;
+
+                // UBAH FORMAT UANG INDONESIA
+                var	number_string = harga.toString();
+                var sisa 	= number_string.length % 3;
+                var rupiah 	= number_string.substr(0, sisa);
+                var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+                if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+                }
+
+                harga = "Rp. " + rupiah +",-";
+                
+                // alert(jumlah)
+                if (jumlah<0) {
+                    $('#button_minus_pkt'+id).attr('disabled', true);
+                    const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-center',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                    })
+
+                    Toast.fire({
+                    icon: 'error',
+                    title: 'Jumlah tidak boleh kurang dari 0'
+                    });
+                    $('#jumlah_pkt'+id).val(0);
+                    $('#show_pkt'+id).val("");
+                } else {
+                    $('#button_minus_pkt'+id).attr('disabled', false);
+                    $('#jumlah_pkt'+id).val(jumlah)
+                    $('#show_pkt'+id).val(jumlah)
+                    $('#productPrice_pkt'+id).text(harga);
+                    
+                }
+            }
+        }
+
+        function input_qty_bns(id){
+            
+            var jumlah = $('#show_bns'+id).val();
+            
+            if (jumlah == ""){
+                $('#button_minus_bns'+id).attr('disabled', true);
+                var jumlah = $('#jumlah_bns'+id).val(0);
+                var harga = $('#harga_bns'+id).val();
+                var harga = parseInt(harga) * jumlah;
+
+                // UBAH FORMAT UANG INDONESIA
+                var	number_string = harga.toString();
+                var sisa 	= number_string.length % 3;
+                var rupiah 	= number_string.substr(0, sisa);
+                var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+                if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+                }
+
+                harga = "Rp. " + rupiah +",-";
+                $('#productPrice_bns'+id).text(harga);
+            }else{
+                var jumlah = parseInt(jumlah);
+                // AMBIL NILAI HARGA
+                var harga = $('#harga_bns'+id).val();
+                var harga = parseInt(harga) * jumlah;
+
+                // UBAH FORMAT UANG INDONESIA
+                var	number_string = harga.toString();
+                var sisa 	= number_string.length % 3;
+                var rupiah 	= number_string.substr(0, sisa);
+                var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+                if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+                }
+
+                harga = "Rp. " + rupiah +",-";
+                
+                // alert(jumlah)
+                if (jumlah<0) {
+                    $('#button_minus_bns'+id).attr('disabled', true);
+                    const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-center',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                    })
+
+                    Toast.fire({
+                    icon: 'error',
+                    title: 'Jumlah tidak boleh kurang dari 0'
+                    });
+                    $('#jumlah_bns'+id).val(0);
+                    $('#show_bns'+id).val("");
+                } else {
+                    $('#button_minus_bns'+id).attr('disabled', false);
+                    $('#jumlah_bns'+id).val(jumlah)
+                    $('#show_bns'+id).val(jumlah)
+                    $('#productPrice_bns'+id).text(harga);
+                    
+                }
+            }
+        }
+
         function button_plus(id)
         {
             var jumlah = $('#jumlah'+id).val();
@@ -1630,12 +2011,95 @@
             if (jumlah<1) {
             alert('Jumlah Tidak Boleh Kosong')
             } else {
+                $('#button_minus_pkt'+id).attr('disabled', false);
                 $('#jumlah'+id).val(jumlah)
                 $('#show_'+id).val(jumlah)
                 $('#productPrice'+id).text(harga);
                 if(hasil > 8){
                     if ($(window).width() <= 480) {
                         $('#productPrice'+id).style.fontSize = "small";
+                    } 
+                }
+            }
+        }
+
+        function button_plus_pkt(id)
+        {
+            var jumlah = $('#jumlah_pkt'+id).val();
+            var jumlah = parseInt(jumlah) + 1;
+
+            // AMBIL NILAI HARGA
+            var harga = $('#harga_pkt'+id).val();
+            var harga = parseInt(harga) * jumlah;
+
+            // UBAH FORMAT UANG INDONESIA
+            var	number_string = harga.toString();
+            var sisa 	= number_string.length % 3;
+            var rupiah 	= number_string.substr(0, sisa);
+            var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+            }
+
+            harga = "Rp. " + rupiah +",-";
+            
+            var text_harga = $('#harga_pkt'+id).val();
+            var	text_string = text_harga.toString();
+            var hasil = text_string.length;
+            // alert(jumlah)
+            if (jumlah<1) {
+            alert('Jumlah Tidak Boleh Kosong')
+            } else {
+                $('#button_minus_pkt'+id).attr('disabled', false);
+                $('#jumlah_pkt'+id).val(jumlah)
+                $('#show_pkt'+id).val(jumlah)
+                $('#productPrice_pkt'+id).text(harga);
+                if(hasil > 8){
+                    if ($(window).width() <= 480) {
+                        $('#productPrice_pkt'+id).style.fontSize = "small";
+                    } 
+                }
+            }
+        }
+
+        function button_plus_bns(id)
+        {
+            var jumlah = $('#jumlah_bns'+id).val();
+            var jumlah = parseInt(jumlah) + 1;
+
+            // AMBIL NILAI HARGA
+            var harga = $('#harga_bns'+id).val();
+            var harga = parseInt(harga) * jumlah;
+
+            // UBAH FORMAT UANG INDONESIA
+            var	number_string = harga.toString();
+            var sisa 	= number_string.length % 3;
+            var rupiah 	= number_string.substr(0, sisa);
+            var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+            }
+
+            harga = "Rp. " + rupiah +",-";
+            
+            var text_harga = $('#harga_bns'+id).val();
+            var	text_string = text_harga.toString();
+            var hasil = text_string.length;
+            // alert(jumlah)
+            if (jumlah<1) {
+            alert('Jumlah Tidak Boleh Kosong')
+            } else {
+                $('#button_minus_bns'+id).attr('disabled', false);
+                $('#jumlah_bns'+id).val(jumlah)
+                $('#show_bns'+id).val(jumlah)
+                $('#productPrice_bns'+id).text(harga);
+                if(hasil > 8){
+                    if ($(window).width() <= 480) {
+                        $('#productPrice_bns'+id).style.fontSize = "small";
                     } 
                 }
             }
@@ -1686,6 +2150,104 @@
             $('#jumlah'+id).val(jumlah);
             $('#show_'+id).val(jumlah);
             $('#productPrice'+id).text(harga);
+            }
+        }
+
+        function button_minus_pkt(id)
+        {
+            var jumlah = $('#jumlah_pkt'+id).val();
+            var jumlah = parseInt(jumlah) - 1;
+
+            // AMBIL NILAI HARGA
+            var harga = $('#harga_pkt'+id).val();;
+            var harga = parseInt(harga) * jumlah;
+
+            // UBAH FORMAT UANG INDONESIA
+            var	number_string = harga.toString();
+            var sisa 	= number_string.length % 3;
+            var rupiah 	= number_string.substr(0, sisa);
+            var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+            }
+
+            harga = "Rp. " + rupiah+ ",-";
+
+            if (jumlah<0) {
+                $('#button_minus_pkt'+id).attr('disabled', true);
+                /*const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-center',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                    })
+
+                    Toast.fire({
+                    icon: 'error',
+                    title: 'Jumlah tidak boleh kurang dari 0'
+                });*/
+            } 
+            else 
+            {
+            $('#jumlah_pkt'+id).val(jumlah);
+            $('#show_pkt'+id).val(jumlah);
+            $('#productPrice_pkt'+id).text(harga);
+            }
+        }
+
+        function button_minus_bns(id)
+        {
+            var jumlah = $('#jumlah_bns'+id).val();
+            var jumlah = parseInt(jumlah) - 1;
+
+            // AMBIL NILAI HARGA
+            var harga = $('#harga_bns'+id).val();;
+            var harga = parseInt(harga) * jumlah;
+
+            // UBAH FORMAT UANG INDONESIA
+            var	number_string = harga.toString();
+            var sisa 	= number_string.length % 3;
+            var rupiah 	= number_string.substr(0, sisa);
+            var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+            }
+
+            harga = "Rp. " + rupiah+ ",-";
+
+            if (jumlah<0) {
+                $('#button_minus_bns'+id).attr('disabled', true);
+                /*const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-center',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                    })
+
+                    Toast.fire({
+                    icon: 'error',
+                    title: 'Jumlah tidak boleh kurang dari 0'
+                });*/
+            } 
+            else 
+            {
+            $('#jumlah_bns'+id).val(jumlah);
+            $('#show_bns'+id).val(jumlah);
+            $('#productPrice_bns'+id).text(harga);
             }
         }
 

@@ -2073,3 +2073,18 @@ footer.footer .cart .count-cart-three {
   }
 }
 
+.input_item_pop{
+  padding-left: 2.8vw;
+  padding-right: 2.8vw;
+}
+
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.card-horizontal img{
+  border-radius: 20px;
+  height: auto;
+}
+
