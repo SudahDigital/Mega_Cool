@@ -53,6 +53,9 @@ Home
                 </div>
             </div>
         </div>
+        <input type="text" id="purchase_qty" value="{{$paket_id->purchase_quantity}}">
+        <input type="text" id="bonus_qty" value="{{$paket_id->bonus_quantity}}">
+        
         <div class="container list-product" style="">
             <div class="row mt-0">
                 <div class="col-md-12 mt-4">
@@ -78,7 +81,7 @@ Home
                         <div class="modal fade" id="modalGroup{{$value->id}}" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
-                                    <div class="modal-body" >
+                                    <div class="modal-body pb-0">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -87,7 +90,8 @@ Home
                                         <div class="col-md-12 ml-5 mt-4">
                                             <h5 class="head_pop_prod" style="">Paket {{$value->display_name}}</h5>
                                         </div>
-                                        <div class="container list-product" style="">
+                                        <input type="text" value="0" id="total_produk{{$value->id}}">
+                                         <div class="container list-product" style="">
                                             <div class="row mt-0">
                                                 <div class="col-md-12 mt-4  menu-wrapper_pop px-5">
                                                     <div class="row section_content flex-row flex-nowrap menu_pop" style="overflow-x:auto;overflow-y:hidden;z-index:2222; ">
@@ -110,6 +114,7 @@ Home
                                                                             <input type="hidden" id="jumlah_pkt{{$p_group->id}}" name="quantity_pkt" value="0">
                                                                             <input type="hidden" id="harga_pkt{{$p_group->id}}" name="price_pkt" value="{{$p_group->price}}">
                                                                             <input type="hidden" id="product_pkt{{$p_group->id}}" name="Product_id_pkt" value="{{$p_group->id}}">
+                                                                            
                                                                             <div class="input-group mb-0 mx-auto">
                                                                                 <button class="input-group-text button_minus_pkt" id="button_minus_pkt{{$p_group->id}}" 
                                                                                         style="cursor: pointer;
@@ -122,7 +127,7 @@ Home
                                                                                         padding-right:0;
                                                                                         height:25px" onclick="button_minus_pkt('{{$p_group->id}}')" 
                                                                                         onMouseOver="this.style.color='#495057'" >-</button>
-                                                                                <input type="number" id="show_pkt{{$p_group->id}}" onkeyup="input_qty_pkt('{{$p_group->id}}')" class="form-control show_pkt" value="0" 
+                                                                                <input type="number" id="show_pkt{{$p_group->id}}" onkeyup="input_qty_pkt('{{$p_group->id}}','{{$value->id}}')" class="form-control show_pkt" value="0" 
                                                                                         style="background-color:#e9ecef !important;
                                                                                         text-align:center;
                                                                                         border:none;

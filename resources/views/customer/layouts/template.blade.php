@@ -21,9 +21,9 @@
     <script src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     <!-- Add the slick-theme.css if you want default styling -->
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-<!-- Add the slick-theme.css if you want default styling -->
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
@@ -315,7 +315,7 @@
         .paddle_pop_bonus {
             position: absolute;
             right: 0;
-            bottom:9%;
+            bottom:10%;
             color: #fff;
             transition: all 0.4s;
             background:none;
@@ -1836,16 +1836,16 @@
             }
         }
         
-        function input_qty_pkt(id){
+        function input_qty_pkt(id,group_id){
             
             var jumlah = $('#show_pkt'+id).val();
-            
+            var total_produk = $('#total_produk'+group_id).val();
             if (jumlah == ""){
                 $('#button_minus_pkt'+id).attr('disabled', true);
                 var jumlah = $('#jumlah_pkt'+id).val(0);
                 var harga = $('#harga_pkt'+id).val();
                 var harga = parseInt(harga) * jumlah;
-
+                
                 // UBAH FORMAT UANG INDONESIA
                 var	number_string = harga.toString();
                 var sisa 	= number_string.length % 3;
@@ -1861,6 +1861,7 @@
                 $('#productPrice_pkt'+id).text(harga);
             }else{
                 var jumlah = parseInt(jumlah);
+                var total_produk = parseInt(total_produk); 
                 // AMBIL NILAI HARGA
                 var harga = $('#harga_pkt'+id).val();
                 var harga = parseInt(harga) * jumlah;
