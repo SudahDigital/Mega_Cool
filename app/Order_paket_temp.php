@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class order_product extends Model
+class Order_paket_temp extends Model
 {
-    protected $table = 'order_product';
+    protected $table = 'order_paket_tmp';
     protected $fillable = ['product_id', 
                             'order_id',
                             'group_id', 
@@ -17,5 +17,4 @@ class order_product extends Model
                             'group_id',
                             'paket_id',
                             'bonus_cat'];
-    
 }

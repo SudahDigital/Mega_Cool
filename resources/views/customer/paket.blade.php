@@ -55,7 +55,7 @@ Home
         </div>
         <input type="text" id="purchase_qty" value="{{$paket_id->purchase_quantity}}">
         <input type="text" id="bonus_qty" value="{{$paket_id->bonus_quantity}}">
-        
+        <input type="text" id="paket_id" value="{{$paket_id->id}}">
         <div class="container list-product" style="">
             <div class="row mt-0">
                 <div class="col-md-12 mt-4">
@@ -147,7 +147,8 @@ Home
                                                                                         font-weight:bold;
                                                                                         padding-left:0;
                                                                                         height:25px" onclick="button_plus_pkt('{{$p_group->id}}')">+</button> 
-                                                                            </div> 
+                                                                            </div>
+                                                                            <button class="btn btn-block button_add_to_cart respon mt-1" onclick="add_tocart_pkt('{{$p_group->id}}','{{$value->id}}')" style="font-size: 2vh">Simpan</button> 
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -195,7 +196,9 @@ Home
                                                                         <a>
                                                                             <img src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid img-responsive" alt="..." style="">
                                                                         </a>
-                                                                        <div class="card-body d-flex flex-column" style="">
+                                                                        
+                                                                        <div class="card-body d-flex flex-column ml-n4" style="">
+                                                                            
                                                                             <div class="float-left pl-0 py-0" style="width: 100%;">
                                                                                 <p class="product-price-header_pop mb-0" style="">
                                                                                     {{$p_group->Product_name}}
@@ -204,33 +207,34 @@ Home
                                                                             <div class="float-left pl-0 pt-1 pb-0" style="">
                                                                                 <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_bns{{$p_group->id}}" style="">Rp. {{ number_format($p_group->price, 0, ',', '.') }},-</p>
                                                                             </div>
-                                                                            <div class="float-left pl-0 mt-auto" style="padding-right: 5vw">
+                                                                            
+                                                                            <div class="float-left pl-0 mt-auto" >
                                                                                 <div class="input-group mb-0">
                                                                                     <input type="hidden" id="jumlah_bns{{$p_group->id}}" name="quantity_pkt" value="0">
                                                                                     <input type="hidden" id="harga_bns{{$p_group->id}}" name="price" value="{{$p_group->price}}">
                                                                                     <input type="hidden" id="product_bns{{$p_group->id}}" name="Product_id" value="{{$p_group->id}}">
-                                                                                <button class="input-group-text button_minus_bns" id="button_minus_bns{{$p_group->id}}" 
-                                                                                        style="cursor: pointer;
-                                                                                        outline:none;
-                                                                                        border:none;
-                                                                                        border-top-right-radius:0;
-                                                                                        border-bottom-right-radius:0;
-                                                                                        border-right-style:none;
-                                                                                        font-weight:bold;
-                                                                                        padding-right:0;
-                                                                                        height:25px" onclick="button_minus_bns('{{$p_group->id}}')" 
-                                                                                        onMouseOver="this.style.color='#495057'" >-</button>
-                                                                                <input type="number" id="show_bns{{$p_group->id}}" onkeyup="input_qty_bns('{{$p_group->id}}')" class="form-control show_pkt" value="0" 
-                                                                                        style="background-color:#e9ecef !important;
-                                                                                        text-align:center;
-                                                                                        border:none;
-                                                                                        padding:0;
-                                                                                        none !important;
-                                                                                        font-weight:bold;
-                                                                                        height:25px;
-                                                                                        font-size:12px;
-                                                                                        font-weight:900;">
-                                                                                <button class="input-group-text" 
+                                                                                    <button class="input-group-text button_minus_bns" id="button_minus_bns{{$p_group->id}}" 
+                                                                                            style="cursor: pointer;
+                                                                                            outline:none;
+                                                                                            border:none;
+                                                                                            border-top-right-radius:0;
+                                                                                            border-bottom-right-radius:0;
+                                                                                            border-right-style:none;
+                                                                                            font-weight:bold;
+                                                                                            padding-right:0;
+                                                                                            height:25px" onclick="button_minus_bns('{{$p_group->id}}')" 
+                                                                                            onMouseOver="this.style.color='#495057'" >-</button>
+                                                                                    <input type="number" id="show_bns{{$p_group->id}}" onkeyup="input_qty_bns('{{$p_group->id}}')" class="form-control show_pkt" value="0" 
+                                                                                            style="background-color:#e9ecef !important;
+                                                                                            text-align:center;
+                                                                                            border:none;
+                                                                                            padding:0;
+                                                                                            none !important;
+                                                                                            font-weight:bold;
+                                                                                            height:25px;
+                                                                                            font-size:12px;
+                                                                                            font-weight:900;">
+                                                                                    <button class="input-group-text" 
                                                                                         style="cursor: pointer;
                                                                                         outline:none;
                                                                                         border:none;
@@ -239,8 +243,12 @@ Home
                                                                                         border-left-style:none;
                                                                                         font-weight:bold;
                                                                                         padding-left:0;
-                                                                                        height:25px" onclick="button_plus_bns('{{$p_group->id}}')">+</button> 
+                                                                                        height:25px" onclick="button_plus_bns('{{$p_group->id}}')">+</button>
                                                                                 </div> 
+                                                                                
+                                                                            </div>
+                                                                            <div class="float-right mt-2">
+                                                                                <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart('{{$p_group->id}}')" style="font-size: 2vh">Tambah</button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -275,7 +283,8 @@ Home
                                         
                                     </div>
                                     <div class="modal-footer px-5">
-                                        <a type="button" class="btn button_add_to_cart float-right mb-2 mr-3" onclick="show_modal()" style="padding: 10px 20px; ">Tambah</a>
+                                        <div class="mr-auto"><span style="color: #000;font-weight:700;font-size:2vh;">Total Quantity:</span></div>
+                                        <a type="button" class="btn button_add_to_cart float-right mb-2 mr-3" onclick="show_modal()" style="padding: 10px 20px; font-size:2.5vh; ">Tambah</a>
                                     </div>
                                 </div>
                             </div>

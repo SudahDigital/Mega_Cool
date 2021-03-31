@@ -60,4 +60,76 @@ class CustomerPaketController extends Controller
         return view('customer.paket',$data);
              
     }
+
+    public function simpan(Request $request){ 
+        /*$ses_id = $request->header('User-Agent');
+        $clientIP = \Request::getClientIp(true);
+        $id = $ses_id.$clientIP;*/
+        $id_user = \Auth::user()->id; 
+        //$id = $request->header('User-Agent'); 
+        $id_product = $request->get('Product_id');
+        $quantity=$request->get('quantity');
+        $price=$request->get('price');
+        $group_id=$request->get('group_id');
+        $paket_id=$request->get('paket_id');
+        $cek_promo = \App\product::findOrFail($id_product);
+        $cek_order = \App\Order::where('user_id','=',"$id_user")
+        ->where('status','=','SUBMIT')->whereNull('customer_id')->first();
+        if($cek_order !== null){
+            $order_product = \App\Order_paket_temp::where('order_id','=',$cek_order->id)
+            ->where('product_id','=',$id_product)->first();
+            if($order_product!== null){
+                $order_product->price_item = $cek_promo->price;
+                $order_product->price_item_promo = $cek_promo->price_promo;
+                $order_product->discount_item = $cek_promo->discount;
+                $order_product->quantity = $quantity;
+                $order_product->group_id = $group_id;
+                $order_product->paket_id = $paket_id;
+                $order_product->save();
+                //$cek_order->total_price += $price * $quantity;
+                //$cek_order->save();
+                }else{
+                        $new_order_product = new \App\Order_paket_temp;
+                        $new_order_product->order_id =  $cek_order->id;
+                        $new_order_product->product_id = $id_product;
+                        $new_order_product->price_item = $cek_promo->price;
+                        $new_order_product->price_item_promo = $cek_promo->price_promo;
+                        $new_order_product->discount_item = $cek_promo->discount;
+                        $new_order_product->quantity = $quantity;
+                        $new_order_product->group_id = $group_id;
+                        $new_order_product->paket_id = $paket_id;
+                        $new_order_product->save();
+                        //$cek_order->total_price += $price * $quantity;
+                        //$cek_order->save();
+                }
+        }
+        else{
+
+            $order = new \App\Order;
+            $order->user_id = $id_user;
+            //$order->quantity = $quantity;
+            $order->invoice_number = date('YmdHis');
+            //$order->total_price = $price * $quantity;
+            $order->status = 'SUBMIT';
+            $order->save();
+            if($order->save()){
+                $order_product = new \App\order_product;
+                $order_product->order_id = $order->id;
+                $order_product->product_id = $request->get('Product_id');
+                $order_product->price_item = $cek_promo->price;
+                $order_product->price_item_promo = $cek_promo->price_promo;
+                $order_product->discount_item = $cek_promo->discount;
+                $order_product->quantity = $request->get('quantity');
+                $order_product->group_id = $group_id;
+                $order_product->paket_id = $paket_id;
+                $order_product->save();
+            }
+
+        }
+        //return response()->json(['return' => 'some data']);    
+        //$order->products()->attach($request->get('Product_id'));
+        
+        return redirect()->back()->with('status','Product berhasil dimasukan kekeranjang');
+    }
 }
+

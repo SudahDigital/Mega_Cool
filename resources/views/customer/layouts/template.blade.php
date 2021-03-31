@@ -1839,13 +1839,12 @@
         function input_qty_pkt(id,group_id){
             
             var jumlah = $('#show_pkt'+id).val();
-            var total_produk = $('#total_produk'+group_id).val();
             if (jumlah == ""){
                 $('#button_minus_pkt'+id).attr('disabled', true);
                 var jumlah = $('#jumlah_pkt'+id).val(0);
                 var harga = $('#harga_pkt'+id).val();
                 var harga = parseInt(harga) * jumlah;
-                
+
                 // UBAH FORMAT UANG INDONESIA
                 var	number_string = harga.toString();
                 var sisa 	= number_string.length % 3;
@@ -1861,7 +1860,6 @@
                 $('#productPrice_pkt'+id).text(harga);
             }else{
                 var jumlah = parseInt(jumlah);
-                var total_produk = parseInt(total_produk); 
                 // AMBIL NILAI HARGA
                 var harga = $('#harga_pkt'+id).val();
                 var harga = parseInt(harga) * jumlah;
@@ -2378,6 +2376,77 @@
                                 }
                             });
                         }                                
+                    },
+                    
+                    error: function (data) {
+                    console.log('Error:', data);
+                    }
+                });
+            }
+        }
+
+        function add_tocart_pkt(id,group_id)
+        {
+            var Product_id = $('#product_pkt'+id).val();
+            var quantity = $('#jumlah_pkt'+id).val();
+            var price = $('#harga_pkt'+id).val();
+            var paket_id = $('#paket_id').val();
+            var voucher_code_hide = document.getElementById("voucher_code_hide").value;
+            if (quantity <= 0 || quantity ==""){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-center',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                    })
+
+                    Toast.fire({
+                    icon: 'error',
+                    title: 'Jumlah tidak boleh kurang dari 1'
+                });
+            }
+            else{
+                $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                });
+                $.ajax({
+                    url : '{{URL::to('/keranjang/paket/simpan')}}',
+                    type:'POST',
+                    data:{
+                        Product_id : Product_id,
+                        quantity : quantity,
+                        price : price,
+                        paket_id : paket_id,
+                        group_id : group_id
+                    },
+                    success: function (data){
+                        //console.log(data);
+                        //$('#'+id).val(jumlah);
+                        //$('#show_'+id).html(jumlah);
+                        // UBAH FORMAT UANG INDONESIA
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-center',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                            })
+
+                            Toast.fire({
+                            icon: 'success',
+                            title: 'Paket berhasil disimpan'
+                        });
                     },
                     
                     error: function (data) {
