@@ -46,8 +46,8 @@ Home
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style="height: auto;max-height: 200px;overflow-x: hidden; border-bottom-left-radius:1rem;border-bottom-right-radius:1rem;">
                             <a class="dropdown-item" href="{{ url('/') }}" style="color: #1A4066;"><b>Semua Produk</b></a>
-                            @foreach($categories as $key => $value)
-                                <a class="dropdown-item" href="{{route('home_customer', ['cat'=>$value->id] )}}" style="color: #000;"><b>{{$value->name}}</b></a>
+                            @foreach($categories as $filter_product)
+                                <a class="dropdown-item" href="{{route('home_customer', ['cat'=>$filter_product->id] )}}" style="color: #000;"><b>{{$filter_product->name}}</b></a>
                             @endforeach
                         </div>
                     </div>
@@ -59,18 +59,17 @@ Home
             <div class="row mt-0">
                 <div class="col-md-12 mt-4 menu-wrapper">
                     <div class="row section_content flex-row flex-nowrap menu" style="overflow-x:auto;overflow-y:hidden;z-index:2222; ">
-                        @foreach($top_product as $key => $value_top)
+                        @foreach($top_product as $value_top)
                         <div id="product_list"  class="col-6 col-md-3 d-flex mx-0 item" style="z-index: 1">
                             <div class="card mx-auto d-flex item_product">
                                 @if($value_top->discount > 0)
                                 <div class="ribbon"><span class="span-ribbon">{{$value_top->discount}}% OFF</span></div>
                                 @endif
                                 
-                                <!--<a href="{{URL::route('product_detail', ['id'=>$value_top->id])}}">-->
                                 <a>
-                                    <img style="" src="{{ asset('storage/'.(($value_top->image!='') ? $value_top->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
+                                    <img style="" src="{{ asset('storage/'.(($value_top->image!='') ? $value_top->image : '').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
                                 </a>
-                                <div class="card-body" style="background-color:#1A4066;">
+                                <div class="card-body d-flex flex-column" style="background-color:#1A4066;">
                                     @if($value_top->stock == 0)
                                         <span class="badge badge-warning ml-1">Sisa stok 0</span>
                                     @endif
@@ -86,33 +85,33 @@ Home
                                             </div>
                                         </div>
                                         <div class="float-left px-1 py-2" style="">
-                                            <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value_top->id}}" style="">Rp. {{ number_format($value_top->price_promo, 0, ',', '.') }}'-</p>
+                                            <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice_top{{$value_top->id}}" style="">Rp. {{ number_format($value_top->price_promo, 0, ',', '.') }}'-</p>
                                         </div>
                                     @else
                                         <div class="float-left px-1 py-2" style="">
-                                            <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value_top->id}}" style="">Rp. {{ number_format($value_top->price, 0, ',', '.') }},-</p>
+                                            <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice_top{{$value_top->id}}" style="">Rp. {{ number_format($value_top->price, 0, ',', '.') }},-</p>
                                         </div>
                                     @endif
-                                    <table width="100%" class="hdr_tbl_cart">
+                                    <table width="100%" class="hdr_tbl_cart mt-auto">
                                         <tbody>
                                         <tr>
                                             <td class="tbl_cart" valign="middle" style="" rowspan="2">
-                                                <input type="hidden" id="jumlah{{$value_top->id}}" name="quantity" value="1">
-                                                <input type="hidden" id="harga{{$value_top->id}}" name="price" value="{{ $value_top->price }}">
-                                                <input type="hidden" id="{{$value_top->id}}" name="Product_id" value="{{$value_top->id}}">
-                                                <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart('{{$value_top->id}}')" {{$value_top->stock == 0 ? 'disabled' : ''}}>Tambah</button>
+                                                <input type="hidden" id="jumlah_top{{$value_top->id}}" name="quantity" value="1">
+                                                <input type="hidden" id="harga_top{{$value_top->id}}" name="price" value="{{ $value_top->price }}">
+                                                <input type="hidden" id="top{{$value_top->id}}" name="Product_id" value="{{$value_top->id}}">
+                                                <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart_top('{{$value_top->id}}')" {{$value_top->stock == 0 ? 'disabled' : ''}}>Tambah</button>
                                                 
                                             </td>
                                             <td width="30%" align="left" id="td-text-quantity" class="td-text-quantity" valign="middle" rowspan="2" >
-                                                <input type="number" id="show_{{$value_top->id}}" onkeyup="input_qty('{{$value_top->id}}')" class="form-control input-sm mr-0 px-1 font-weight-bold" value="1" style="color:#000;font-weight:300;text-align:center;">
+                                                <input type="number" id="show_top{{$value_top->id}}" onkeyup="input_qty_top('{{$value_top->id}}')" class="form-control input-sm mr-0 px-1 font-weight-bold" value="1" style="color:#000;font-weight:300;text-align:center;">
                                             </td>
                                             <td width="10%" class="td-btn-plus" align="center" valign="middle" bgcolor="#ffffff" style="border-top-left-radius:5px;border-top-right-radius:5px;">
-                                                <a class="button_plus" onclick="button_plus('{{$value_top->id}}')"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                <a class="button_plus" onclick="button_plus_top('{{$value_top->id}}')"><i class="fa fa-plus" aria-hidden="true"></i></a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td width="10%" align="center" valign="middle" bgcolor="#ffffff" style="border-bottom-left-radius:5px;border-bottom-right-radius:5px;">
-                                                <a class="button_minus" onclick="button_minus('{{$value_top->id}}')" id="btn_min" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                                <a class="button_minus" onclick="button_minus_top('{{$value_top->id}}')" id="btn_min" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -181,8 +180,8 @@ Home
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style="height: auto;max-height: 200px;overflow-x: hidden; border-bottom-left-radius:1rem;border-bottom-right-radius:1rem;">
                             <a class="dropdown-item" href="{{ url('/') }}" style="color: #1A4066;"><b>Semua Produk</b></a>
-                            @foreach($categories as $key => $value)
-                                <a class="dropdown-item" href="{{route('home_customer', ['cat'=>$value->id] )}}" style="color: #000;"><b>{{$value->name}}</b></a>
+                            @foreach($categories as $filter_product)
+                                <a class="dropdown-item" href="{{route('home_customer', ['cat'=>$filter_product->id] )}}" style="color: #000;"><b>{{$value->name}}</b></a>
                             @endforeach
                         </div>
                     </div>
@@ -194,18 +193,17 @@ Home
             <div class="row mt-0">
                 <div class="col-md-12 mt-4">
                     <div class="row section_content">
-                    @foreach($product as $key => $value)
+                    @foreach($product as $value)
                     <div id="product_list"  class="col-6 col-md-3 d-flex mx-0" style="z-index: 1">
                         <div class="card mx-auto d-flex item_product">
                             @if($value->discount > 0)
                             <div class="ribbon"><span class="span-ribbon">{{$value->discount}}% OFF</span></div>
                             @endif
                             
-                            <!--<a href="{{URL::route('product_detail', ['id'=>$value->id])}}">-->
                             <a>
                                 <img style="" src="{{ asset('storage/'.(($value->image!='') ? $value->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
                             </a>
-                            <div class="card-body" style="background-color:#1A4066;">
+                            <div class="card-body d-flex flex-column" style="background-color:#1A4066;">
                                 @if($value->stock == 0)
                                     <span class="badge badge-warning ml-1">Sisa stok 0</span>
                                 @endif
@@ -228,30 +226,32 @@ Home
                                         <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp. {{ number_format($value->price, 0, ',', '.') }},-</p>
                                     </div>
                                 @endif
-                                <table width="100%" class="hdr_tbl_cart">
-                                    <tbody>
-                                    <tr>
-                                        <td class="tbl_cart" valign="middle" style="" rowspan="2">
-                                            <input type="hidden" id="jumlah{{$value->id}}" name="quantity" value="1">
-                                            <input type="hidden" id="harga{{$value->id}}" name="price" value="{{ $value->price }}">
-                                            <input type="hidden" id="{{$value->id}}" name="Product_id" value="{{$value->id}}">
-                                            <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart('{{$value->id}}')" {{$value->stock == 0 ? 'disabled' : ''}}>Tambah</button>
-                                            
-                                        </td>
-                                        <td width="30%" align="left" id="td-text-quantity" class="td-text-quantity" valign="middle" rowspan="2" >
-                                            <input type="number" id="show_{{$value->id}}" onkeyup="input_qty('{{$value->id}}')" class="form-control input-sm mr-0 px-1 font-weight-bold" value="1" style="color:#000;font-weight:300;text-align:center;">
-                                        </td>
-                                        <td width="10%" class="td-btn-plus" align="center" valign="middle" bgcolor="#ffffff" style="border-top-left-radius:5px;border-top-right-radius:5px;">
-                                            <a class="button_plus" onclick="button_plus('{{$value->id}}')"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="10%" align="center" valign="middle" bgcolor="#ffffff" style="border-bottom-left-radius:5px;border-bottom-right-radius:5px;">
-                                            <a class="button_minus" onclick="button_minus('{{$value->id}}')" id="btn_min" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                <div class="mb-0 mt-auto" >
+                                    <table width="100%" class="hdr_tbl_cart ">
+                                        <tbody>
+                                        <tr>
+                                            <td class="tbl_cart" valign="middle" style="" rowspan="2">
+                                                <input type="hidden" id="jumlah{{$value->id}}" name="quantity" value="1">
+                                                <input type="hidden" id="harga{{$value->id}}" name="price" value="{{ $value->price }}">
+                                                <input type="hidden" id="{{$value->id}}" name="Product_id" value="{{$value->id}}">
+                                                <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart('{{$value->id}}')" {{$value->stock == 0 ? 'disabled' : ''}}>Tambah</button>
+                                                
+                                            </td>
+                                            <td width="30%" align="left" id="td-text-quantity" class="td-text-quantity" valign="middle" rowspan="2" >
+                                                <input type="number" id="show_{{$value->id}}" onkeyup="input_qty('{{$value->id}}')" class="form-control input-sm mr-0 px-1 font-weight-bold" value="1" style="color:#000;font-weight:300;text-align:center;">
+                                            </td>
+                                            <td width="10%" class="td-btn-plus" align="center" valign="middle" bgcolor="#ffffff" style="border-top-left-radius:5px;border-top-right-radius:5px;">
+                                                <a class="button_plus" onclick="button_plus('{{$value->id}}')"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="10%" align="center" valign="middle" bgcolor="#ffffff" style="border-bottom-left-radius:5px;border-bottom-right-radius:5px;">
+                                                <a class="button_minus" onclick="button_minus('{{$value->id}}')" id="btn_min" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>                                    
                             </div>
                         </div>
                     </div>

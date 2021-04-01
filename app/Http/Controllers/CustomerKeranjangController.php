@@ -39,11 +39,13 @@ class CustomerKeranjangController extends Controller
         if($cat){
             //$category_id = $request->get('cats');
             $product = \App\product::whereHas('categories',function($q) use ($cat){
-                return $q->where('category_id','=',$cat)->where('status','=','PUBLISH');
+                return $q->where('category_id','=',$cat)
+                ->where('status','=','PUBLISH');
+                //->where('top_product','=','0');
                 })->get();
         }else{
             $product = product::with('categories')
-            ->where('top_product','=','0')
+            //->where('top_product','=','0')
             ->where('status','=','PUBLISH')
             ->get();//->paginate(6);
         }
@@ -90,7 +92,6 @@ class CustomerKeranjangController extends Controller
        
         return view('customer.content_customer',$data);
     }         
-    
     
     public function simpan(Request $request){ 
         /*$ses_id = $request->header('User-Agent');

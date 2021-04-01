@@ -43,6 +43,7 @@ Route::group(['middleware' => ['auth','checkRole:SALES']],function(){
     Route::resource('search','searchController');
     Route::get('/updated-activity', 'TelegramBotController@updatedActivity')->name('update.telegram');
     Route::post('/keranjang/paket/simpan','CustomerPaketController@simpan')->name('customer.paket.simpan');
+    Route::post('/keranjang/paket/totalquantity','CustomerPaketController@get_total_qty');
 });
 
 Route::match(["GET", "POST"], "/register", function(){

@@ -88,6 +88,7 @@ class CustomerPaketController extends Controller
                 $order_product->save();
                 //$cek_order->total_price += $price * $quantity;
                 //$cek_order->save();
+                return response()->json($cek_order->id);
                 }else{
                         $new_order_product = new \App\Order_paket_temp;
                         $new_order_product->order_id =  $cek_order->id;
@@ -101,6 +102,7 @@ class CustomerPaketController extends Controller
                         $new_order_product->save();
                         //$cek_order->total_price += $price * $quantity;
                         //$cek_order->save();
+                        return response()->json($cek_order->id);
                 }
         }
         else{
@@ -123,6 +125,7 @@ class CustomerPaketController extends Controller
                 $order_product->group_id = $group_id;
                 $order_product->paket_id = $paket_id;
                 $order_product->save();
+                return response()->json($order->id);
             }
 
         }
@@ -130,6 +133,20 @@ class CustomerPaketController extends Controller
         //$order->products()->attach($request->get('Product_id'));
         
         return redirect()->back()->with('status','Product berhasil dimasukan kekeranjang');
+    }
+
+    public function get_total_qty(Request $request){
+        $order_id = $request->get('order_id');
+        $group_id = $request->get('group_id');
+        $paket_id = $request->get('paket_id');
+        $paket = \App\Order_paket_temp::where('order_id',$order_id)
+                ->where('group_id',$group_id)
+                ->where('paket_id',$paket_id)
+                ->sum('quantity');
+        
+        //return $total_quantity;
+        return response()->json($paket);
+        
     }
 }
 

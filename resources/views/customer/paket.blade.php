@@ -23,7 +23,7 @@ Home
     </div>
     @endif
     
-    <!--non product-->
+    
     <div style="background:#ffff">
         <img src="{{ asset('assets/image/dot-topproduct.png') }}" class="dot-content-top-right" style="" alt="dot-topproduct">
         <img src="{{ asset('assets/image/shape-content.jpg') }}" class="shape-content-bottom-right" style="" alt="shape-content">
@@ -53,9 +53,10 @@ Home
                 </div>
             </div>
         </div>
-        <input type="text" id="purchase_qty" value="{{$paket_id->purchase_quantity}}">
-        <input type="text" id="bonus_qty" value="{{$paket_id->bonus_quantity}}">
-        <input type="text" id="paket_id" value="{{$paket_id->id}}">
+        <input type="hidden" id="purchase_qty" value="{{$paket_id->purchase_quantity}}">
+        <input type="hidden" id="bonus_qty" value="{{$paket_id->bonus_quantity}}">
+        <input type="hidden" id="paket_id" value="{{$paket_id->id}}">
+        
         <div class="container list-product" style="">
             <div class="row mt-0">
                 <div class="col-md-12 mt-4">
@@ -90,7 +91,7 @@ Home
                                         <div class="col-md-12 ml-5 mt-4">
                                             <h5 class="head_pop_prod" style="">Paket {{$value->display_name}}</h5>
                                         </div>
-                                        <input type="text" value="0" id="total_produk{{$value->id}}">
+                                        
                                          <div class="container list-product" style="">
                                             <div class="row mt-0">
                                                 <div class="col-md-12 mt-4  menu-wrapper_pop px-5">
@@ -98,9 +99,28 @@ Home
                                                         @foreach($value->item_active as $p_group)
                                                             <div id="product_list"  class="col-6 col-md-4 mx-0 d-flex item_pop" style="">
                                                                 <div class="card mx-auto  item_product_pop ">
+                                                                    @php
+                                                                        if($item){
+                                                                            $qty_on_paket = \App\Order_paket_temp::where('order_id',$item->id)
+                                                                                        ->where('product_id',$p_group->id)
+                                                                                        ->where('paket_id',$paket_id->id)
+                                                                                        ->where('group_id',$value->id)->first();
+                                                                            if($qty_on_paket){
+                                                                                $harga_on_paket = $p_group->price * $qty_on_paket->quantity; 
+                                                                            }
+                                                                        }
+                                                                    @endphp
+                                                                    <div class="round">
+                                                                        @if(($item) && ($qty_on_paket != NULL))
+                                                                            <input type="hidden" id="id_delete_pkt{{$p_group->id}}" value="{{$qty_on_paket->id}}">
+                                                                        @endif
+                                                                        <input type="checkbox" onclick="delete_pkt('{{$p_group->id}}')" id="checkbox_pkt{{$p_group->id}}" {{($item && $qty_on_paket != NULL && $qty_on_paket->quantity > 0) ? 'checked' : 'disabled'}}/>
+                                                                        <label for="checkbox_pkt{{$p_group->id}}"></label>
+                                                                    </div>
                                                                     <a>
                                                                         <img style="" src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
                                                                     </a>
+                                                                    
                                                                     <div class="card-body d-flex flex-column" style="">
                                                                         <div class="float-left px-1 py-2" style="width: 100%;">
                                                                             <p class="product-price-header_pop mb-0" style="">
@@ -108,10 +128,12 @@ Home
                                                                             </p>
                                                                         </div>
                                                                         <div class="float-left px-1 pb-0" style="">
-                                                                            <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_pkt{{$p_group->id}}" style="">Rp. {{ number_format($p_group->price, 0, ',', '.') }},-</p>
+                                                                            
+                                                                            <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_pkt{{$p_group->id}}" style="">Rp.  {{ $item && $qty_on_paket != NULL ?  number_format($harga_on_paket, 0, ',', '.') : number_format($p_group->price, 0, ',', '.') }},-</p>
                                                                         </div>
                                                                         <div class="justify-content-center input_item_pop mt-auto">
-                                                                            <input type="hidden" id="jumlah_pkt{{$p_group->id}}" name="quantity_pkt" value="0">
+                                                                            
+                                                                            <input type="hidden" id="jumlah_pkt{{$p_group->id}}" name="quantity_pkt" value="{{$item && $qty_on_paket != NULL ? "$qty_on_paket->quantity" : '0'}}">
                                                                             <input type="hidden" id="harga_pkt{{$p_group->id}}" name="price_pkt" value="{{$p_group->price}}">
                                                                             <input type="hidden" id="product_pkt{{$p_group->id}}" name="Product_id_pkt" value="{{$p_group->id}}">
                                                                             
@@ -127,7 +149,7 @@ Home
                                                                                         padding-right:0;
                                                                                         height:25px" onclick="button_minus_pkt('{{$p_group->id}}')" 
                                                                                         onMouseOver="this.style.color='#495057'" >-</button>
-                                                                                <input type="number" id="show_pkt{{$p_group->id}}" onkeyup="input_qty_pkt('{{$p_group->id}}','{{$value->id}}')" class="form-control show_pkt" value="0" 
+                                                                                        <input type="number" id="show_pkt{{$p_group->id}}" onkeyup="input_qty_pkt('{{$p_group->id}}','{{$value->id}}')" class="form-control show_pkt" value="{{$item && $qty_on_paket !== NULL ? $qty_on_paket->quantity : '0'}}" 
                                                                                         style="background-color:#e9ecef !important;
                                                                                         text-align:center;
                                                                                         border:none;
@@ -208,7 +230,7 @@ Home
                                                                                 <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_bns{{$p_group->id}}" style="">Rp. {{ number_format($p_group->price, 0, ',', '.') }},-</p>
                                                                             </div>
                                                                             
-                                                                            <div class="float-left pl-0 mt-auto" >
+                                                                            <div class="float-left pl-0 mt-auto">
                                                                                 <div class="input-group mb-0">
                                                                                     <input type="hidden" id="jumlah_bns{{$p_group->id}}" name="quantity_pkt" value="0">
                                                                                     <input type="hidden" id="harga_bns{{$p_group->id}}" name="price" value="{{$p_group->price}}">
@@ -235,20 +257,19 @@ Home
                                                                                             font-size:12px;
                                                                                             font-weight:900;">
                                                                                     <button class="input-group-text" 
-                                                                                        style="cursor: pointer;
-                                                                                        outline:none;
-                                                                                        border:none;
-                                                                                        border-top-left-radius:0;
-                                                                                        border-bottom-left-radius:0;
-                                                                                        border-left-style:none;
-                                                                                        font-weight:bold;
-                                                                                        padding-left:0;
-                                                                                        height:25px" onclick="button_plus_bns('{{$p_group->id}}')">+</button>
+                                                                                            style="cursor: pointer;
+                                                                                            outline:none;
+                                                                                            border:none;
+                                                                                            border-top-left-radius:0;
+                                                                                            border-bottom-left-radius:0;
+                                                                                            border-left-style:none;
+                                                                                            font-weight:bold;
+                                                                                            padding-left:0;
+                                                                                            height:25px" onclick="button_plus_bns('{{$p_group->id}}')">+</button>
                                                                                 </div> 
-                                                                                
                                                                             </div>
                                                                             <div class="float-right mt-2">
-                                                                                <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart('{{$p_group->id}}')" style="font-size: 2vh">Tambah</button>
+                                                                                <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart('{{$p_group->id}}')" style="font-size: 2vh">Simpan</button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -283,7 +304,16 @@ Home
                                         
                                     </div>
                                     <div class="modal-footer px-5">
-                                        <div class="mr-auto"><span style="color: #000;font-weight:700;font-size:2vh;">Total Quantity:</span></div>
+                                        @php
+                                            if($item){
+                                            $pkt_total = \App\Order_paket_temp::where('order_id',$item->id)
+                                            ->where('group_id',$value->id)
+                                            ->where('paket_id',$paket_id->id)
+                                            ->sum('quantity');
+                                            }
+                                        @endphp
+                                        <div class="mr-auto"><span style="color: #000;font-weight:700;font-size:2vh;">Total Quantity : <a id="total_qty{{$value->id}}">{{$item ? $pkt_total : '0' }}</a></span></div>
+                                        <input type="hidden" value="0" id="total_produk{{$value->id}}">
                                         <a type="button" class="btn button_add_to_cart float-right mb-2 mr-3" onclick="show_modal()" style="padding: 10px 20px; font-size:2.5vh; ">Tambah</a>
                                     </div>
                                 </div>
