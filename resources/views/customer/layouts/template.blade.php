@@ -30,6 +30,10 @@
       integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
       crossorigin="anonymous"
     />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183852861-1"></script>
@@ -1038,7 +1042,7 @@
                 <li class="">
                    <a href="{{ url('/') }}">Beranda</a>
                 </li>
-                <!--
+                
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Paket</a>
                     <ul class="collapse list-unstyled page-submenu" id="pageSubmenu">
@@ -1049,7 +1053,7 @@
                         @endforeach
                     </ul>
                 </li>
-                -->
+                
                 <li>
                    <a href="{{URL::route('profil.index')}}">Profile</a>
                 </li>
@@ -2199,8 +2203,8 @@
             alert('Jumlah Tidak Boleh Kosong')
             } else {
                 $('#button_minus_bns'+id).attr('disabled', false);
-                $('#jumlah_bns'+id).val(jumlah)
-                $('#show_bns'+id).val(jumlah)
+                $('#jumlah_bns'+id).val(jumlah);
+                $('#show_bns'+id).val(jumlah);
                 $('#productPrice_bns'+id).text(harga);
                 if(hasil > 8){
                     if ($(window).width() <= 480) {
@@ -2677,10 +2681,15 @@
         function add_tocart_pkt(id,group_id)
         {
             var Product_id = $('#product_pkt'+id).val();
+            var jml_val = $('#jumlah_val_pkt'+id).val();
             var quantity = $('#jumlah_pkt'+id).val();
             var price = $('#harga_pkt'+id).val();
             var paket_id = $('#paket_id').val();
-            var voucher_code_hide = document.getElementById("voucher_code_hide").value;
+            var purchase_qty = $('#purchase_qty').val();
+            var bonus_qty =  $('#bonus_qty').val();
+            var bns_total = $('#bns_total'+group_id).val();
+            
+            //var voucher_code_hide = document.getElementById("voucher_code_hide").value;
             if (quantity <= 0 || quantity ==""){
                 const Toast = Swal.mixin({
                     toast: true,
@@ -2698,75 +2707,610 @@
                     icon: 'error',
                     title: 'Jumlah tidak boleh kurang dari 1'
                 });
+                var harga = $('#harga_pkt'+id).val();
+                if(jml_val <= 0){
+                    var harga = parseInt(harga);
+                }else{
+                    var harga = parseInt(harga) * parseInt(jml_val);
+                }
+                
+                // UBAH FORMAT UANG INDONESIA
+                var	number_string = harga.toString();
+                var sisa 	= number_string.length % 3;
+                var rupiah 	= number_string.substr(0, sisa);
+                var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+                if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+                }
+
+                harga = "Rp. " + rupiah +",-";
+                
+                var text_harga = $('#harga_bns'+id).val();
+                var	text_string = text_harga.toString();
+                var hasil = text_string.length;
+
+                $('#productPrice_pkt'+id).text(harga);
+                $('#jumlah_pkt'+id).val(jml_val);
+                $('#show_pkt'+id).val(jml_val);
+                if(hasil > 8){
+                    if ($(window).width() <= 480) {
+                        $('#productPrice_pkt'+id).style.fontSize = "small";
+                    } 
+                }
             }
             else{
-                $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    if(bns_total > 0){
+                        var total_val_qty = $('#total_produk'+group_id).val();
+                        var a = parseInt(bns_total) * parseInt(purchase_qty);
+                        var b = parseInt(total_val_qty) + (parseInt(quantity) - parseInt(jml_val));
+                        if( b < a){
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-center',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                                })
+
+                                Toast.fire({
+                                icon: 'error',
+                                title: 'Gagal !, Total quantity tidak boleh kurang dari '+a,
+                            });
+                            var jumlah = parseInt(jml_val);
+
+                            // AMBIL NILAI HARGA
+                            var harga = $('#harga_pkt'+id).val();
+                            var harga = parseInt(harga) * jumlah;
+
+                            // UBAH FORMAT UANG INDONESIA
+                            var	number_string = harga.toString();
+                            var sisa 	= number_string.length % 3;
+                            var rupiah 	= number_string.substr(0, sisa);
+                            var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+                            if (ribuan) {
+                            separator = sisa ? '.' : '';
+                            rupiah += separator + ribuan.join('.');
+                            }
+
+                            var text_harga = $('#harga_pkt'+id).val();
+                            var	text_string = text_harga.toString();
+                            var hasil = text_string.length;
+
+                            harga = "Rp. " + rupiah +",-";
+                            $('#jumlah_pkt'+id).val(jumlah);
+                            $('#show_pkt'+id).val(jumlah);
+                            $('#productPrice_pkt'+id).text(harga);
+                            if(hasil > 8){
+                                if ($(window).width() <= 480) {
+                                    $('#productPrice_pkt'+id).style.fontSize = "small";
+                                } 
+                            }
                         }
-                });
-                $.ajax({
-                    url : '{{URL::to('/keranjang/paket/simpan')}}',
-                    type:'POST',
-                    data:{
-                        Product_id : Product_id,
-                        quantity : quantity,
-                        price : price,
-                        paket_id : paket_id,
-                        group_id : group_id
-                    },
-                    success: function (data){
+                        else{
+                            $.ajaxSetup({
+                                    headers: {
+                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                    }
+                            });
+                            $.ajax({
+                                url : '{{URL::to('/keranjang/paket/simpan')}}',
+                                type:'POST',
+                                data:{
+                                    Product_id : Product_id,
+                                    quantity : quantity,
+                                    price : price,
+                                    paket_id : paket_id,
+                                    group_id : group_id
+                                },
+                                success: function (data){
+                                    $('#orderid_delete_pkt'+id).val(data);
+                                    $.ajaxSetup({
+                                            headers: {
+                                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                            }
+                                    });
+                                    $.ajax({
+                                        url : '{{URL::to('/keranjang/paket/totalquantity')}}',
+                                        type:'POST',
+                                        data:{
+                                            Product_id : Product_id,
+                                            quantity : quantity,
+                                            price : price,
+                                            paket_id : paket_id,
+                                            group_id : group_id,
+                                            order_id : data
+                                        },
+                                        success: function (data2) {
+                                        // We get the element having id of display_info and put the response inside it
+                                        $('#jumlah_val_pkt'+id).val(quantity);
+                                        $('#total_qty'+group_id).text(data2);
+                                        $('#total_produk'+group_id).val(data2);
+                                        $('#checkbox_pkt'+id).attr("disabled", false);
+                                        $('#checkbox_pkt'+id).prop('checked', true);
+                                        var total_qty = parseInt(data2);
+                                        var bonus_kali = total_qty / parseInt(purchase_qty);
+                                        var desimal_kali = Math.floor(bonus_kali) * parseInt(bonus_qty);
+                                        $('#bonus_max'+group_id).text(desimal_kali);
+                                        $('#max_bonus'+group_id).val(desimal_kali);
+                                        },
+                                        error: function (data2) {
+                                        console.log('Error:', data2);
+                                        }
+                                    });
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-center',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                        })
+
+                                        Toast.fire({
+                                        icon: 'success',
+                                        title: 'Paket berhasil disimpan'
+                                    });
+                                },
+                                
+                                error: function (data) {
+                                console.log('Error:', data);
+                                }
+                            });
+                        }
+                    }else{
                         $.ajaxSetup({
                                 headers: {
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                 }
                         });
                         $.ajax({
-                            url : '{{URL::to('/keranjang/paket/totalquantity')}}',
+                            url : '{{URL::to('/keranjang/paket/simpan')}}',
                             type:'POST',
                             data:{
                                 Product_id : Product_id,
                                 quantity : quantity,
                                 price : price,
                                 paket_id : paket_id,
-                                group_id : group_id,
-                                order_id : data
+                                group_id : group_id
                             },
-                                success: function (data) {
-                                // We get the element having id of display_info and put the response inside it
-                                $('#total_qty'+group_id).text(data);
-                                $('#total_produk'+group_id).val(data);
-                                $('#checkbox_pkt'+id).attr("disabled", false);
-                                $('#checkbox_pkt'+id).prop('checked', true);
-                                }
-                            });
-                        //console.log(data);
-                        //$('#'+id).val(jumlah);
-                        //$('#show_'+id).html(jumlah);
-                        // UBAH FORMAT UANG INDONESIA
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-center',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                            })
+                            success: function (data){
+                                $('#orderid_delete_pkt'+id).val(data);
+                                $.ajaxSetup({
+                                        headers: {
+                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                        }
+                                });
+                                $.ajax({
+                                    url : '{{URL::to('/keranjang/paket/totalquantity')}}',
+                                    type:'POST',
+                                    data:{
+                                        Product_id : Product_id,
+                                        quantity : quantity,
+                                        price : price,
+                                        paket_id : paket_id,
+                                        group_id : group_id,
+                                        order_id : data
+                                    },
+                                    success: function (data2) {
+                                    // We get the element having id of display_info and put the response inside it
+                                    $('#jumlah_val_pkt'+id).val(quantity);
+                                    $('#total_qty'+group_id).text(data2);
+                                    $('#total_produk'+group_id).val(data2);
+                                    $('#checkbox_pkt'+id).attr("disabled", false);
+                                    $('#checkbox_pkt'+id).prop('checked', true);
+                                    var total_qty = parseInt(data2);
+                                    var bonus_kali = total_qty / parseInt(purchase_qty);
+                                    var desimal_kali = Math.floor(bonus_kali) * parseInt(bonus_qty);
+                                    $('#bonus_max'+group_id).text(desimal_kali);
+                                    $('#max_bonus'+group_id).val(desimal_kali);
+                                    },
+                                    error: function (data2) {
+                                    console.log('Error:', data2);
+                                    }
+                                });
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-center',
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    }
+                                    })
 
-                            Toast.fire({
-                            icon: 'success',
-                            title: 'Paket berhasil disimpan'
+                                    Toast.fire({
+                                    icon: 'success',
+                                    title: 'Paket berhasil disimpan'
+                                });
+                            },
+                            
+                            error: function (data) {
+                            console.log('Error:', data);
+                            }
+                        });
+                    }
+                }
+        }
+
+        function add_tocart_bns(id,group_id)
+        {
+            var Product_id = $('#product_bns'+id).val();
+            var jml_val = $('#jumlah_val_bns'+id).val();
+            var quantity = $('#jumlah_bns'+id).val();
+            var price = $('#harga_bns'+id).val();
+            var paket_id = $('#paket_id').val();
+            var purchase_qty = $('#purchase_qty').val();
+            var bonus_qty =  $('#bonus_qty').val();
+            var bns_total =  $('#bns_total'+group_id).val();
+            var bns_max = $('#max_bonus'+group_id).val();
+            //var bns_max = parseInt(bns_max);
+            //var voucher_code_hide = document.getElementById("voucher_code_hide").value;
+            
+            if (quantity <= 0 || quantity ==""){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-center',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                    })
+
+                    Toast.fire({
+                    icon: 'error',
+                    title: 'Jumlah tidak boleh kurang dari 1'
+                });
+                var harga = $('#harga_bns'+id).val();
+                if(jml_val <= 0){
+                    var harga = parseInt(harga);
+                }
+                else{
+                    var harga = parseInt(harga) * parseInt(jml_val);
+                }
+                var harga = parseInt(harga);
+                // UBAH FORMAT UANG INDONESIA
+                var	number_string = harga.toString();
+                var sisa 	= number_string.length % 3;
+                var rupiah 	= number_string.substr(0, sisa);
+                var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+                if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+                }
+
+                harga = "Rp. " + rupiah +",-";
+                
+                var text_harga = $('#harga_bns'+id).val();
+                var	text_string = text_harga.toString();
+                var hasil = text_string.length;
+
+                $('#productPrice_bns'+id).text(harga);
+                $('#jumlah_bns'+id).val(jml_val);
+                $('#show_bns'+id).val(jml_val);
+                if(hasil > 8){
+                    if ($(window).width() <= 480) {
+                        $('#productPrice_bns'+id).style.fontSize = "small";
+                    } 
+                }
+            }
+            else{
+                    var hitung_total_bonus = (parseInt(quantity) - parseInt(jml_val))+ parseInt(bns_total);
+                    //console.log(bns_max);
+                    if(hitung_total_bonus > bns_max){
+                        const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-center',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                        })
+
+                        Toast.fire({
+                        icon: 'error',
+                        title: 'Gagal simpan!, Total quantity bonus melebihi jumlah max. bonus'
+                        });
+                        var harga = $('#harga_bns'+id).val();
+                        if(jml_val <= 0){
+                            var harga = parseInt(harga);
+                        }else{
+                            var harga = parseInt(harga) * parseInt(jml_val);
+                        }
+                        
+                        // UBAH FORMAT UANG INDONESIA
+                        var	number_string = harga.toString();
+                        var sisa 	= number_string.length % 3;
+                        var rupiah 	= number_string.substr(0, sisa);
+                        var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+                        if (ribuan) {
+                        separator = sisa ? '.' : '';
+                        rupiah += separator + ribuan.join('.');
+                        }
+
+                        harga = "Rp. " + rupiah +",-";
+                        
+                        var text_harga = $('#harga_bns'+id).val();
+                        var	text_string = text_harga.toString();
+                        var hasil = text_string.length;
+                        $('#productPrice_bns'+id).text(harga);
+                        $('#jumlah_bns'+id).val(jml_val);
+                        $('#show_bns'+id).val(jml_val);
+                        if(hasil > 8){
+                            if ($(window).width() <= 480) {
+                                $('#productPrice_bns'+id).style.fontSize = "small";
+                            } 
+                        }
+                    }
+                    else{
+                        $.ajaxSetup({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                }
+                        });
+                        $.ajax({
+                            url : '{{URL::to('/keranjang/bonus/simpan')}}',
+                            type:'POST',
+                            data:{
+                                Product_id : Product_id,
+                                quantity : quantity,
+                                price : price,
+                                paket_id : paket_id,
+                                group_id : group_id
+                            },
+                            success: function (data){
+                                $('#orderid_delete_bns'+id).val(data);
+                                $('#jumlah_val_bns'+id).val(quantity);
+                                $.ajaxSetup({
+                                        headers: {
+                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                        }
+                                });
+                                $.ajax({
+                                    url : '{{URL::to('/keranjang/bonus/totalquantity')}}',
+                                    type:'POST',
+                                    data:{
+                                        Product_id : Product_id,
+                                        quantity : quantity,
+                                        price : price,
+                                        paket_id : paket_id,
+                                        group_id : group_id,
+                                        order_id : data
+                                    },
+                                        success: function (data2) {
+                                        // We get the element having id of display_info and put the response inside it
+                                        $('#total_bns'+group_id).text(data2);
+                                        $('#bns_total'+group_id).val(data2);
+                                        $('#checkbox_bns'+id).attr("disabled", false);
+                                        $('#checkbox_bns'+id).prop('checked', true);
+                                        },
+                                        error: function (data2) {
+                                        console.log('Error:', data2);
+                                        }
+                                });
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-center',
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    }
+                                })
+
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: 'Bonus berhasil disimpan'
+                                });
+                            },
+                            
+                            error: function (data) {
+                                console.log('Error:', data);
+                            }
+                        });
+                    }
+                }
+        }
+
+        function addcart_allpaket(id)
+        {
+            var order_id = $('#orderid_addcart'+id).val();
+            var paket_id = $('#paket_id').val();
+            //var group_id = id;
+            var total_paket = $('#total_produk'+id).val();
+            var total_bonus =  $('#bns_total'+id).val();
+            var bns_max = $('#max_bonus'+id).val();
+            if (order_id == "" || total_paket <= 0){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-center',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                    })
+
+                    Toast.fire({
+                    icon: 'error',
+                    title: 'Belum ada paket yang tersimpan'
+                });
+            }else if(total_paket > 0 && bns_max <= 0){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-center',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                    })
+
+                    Toast.fire({
+                    icon: 'error',
+                    title: 'Jumlah paket belum mencapai min. pembelian paket'
+                });
+            }else if(total_bonus < bns_max){
+                Swal.fire({
+                title: 'Apakah anda yakin ?',
+                text: "Bonus anda masih tersisa...!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Simpan',
+                cancelButtonText:  '\u00A0\u00A0Batal\u00A0\u00A0',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+                }).then((result) => {
+                    if (result.isConfirmed){
+                        $.ajaxSetup({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                }
+                        });
+                        $.ajax({
+                            url : '{{URL::to('/keranjang/paket_all/simpan_cart')}}',
+                            type:'POST',
+                            data:{
+                                order_id : order_id,
+                                paket_id : paket_id,
+                                group_id : id,
+
+                            },
+                            success: function (){
+                                $.ajaxSetup({
+                                        headers: {
+                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                        }
+                                });
+                                $.ajax({
+                                    url : '{{URL::to('/keranjang/paket_all/delete_tmp')}}',
+                                    type:'POST',
+                                    data:{
+                                        order_id : order_id,
+                                        paket_id : paket_id,
+                                        group_id : id,
+
+                                    },
+                                    success: function (){
+                                        Swal.fire({
+                                        //title: 'Apakah anda yakin ?',
+                                        text: "Paket berhasil dimasukkan keranjang",
+                                        type: 'success',
+                                        showCancelButton: false,
+                                        confirmButtonColor: '#3085d6',
+                                        confirmButtonText: 'Ok',
+                                        showClass: {
+                                            popup: 'animate__animated animate__fadeInDown'
+                                        },
+                                        hideClass: {
+                                            popup: 'animate__animated animate__fadeOutUp'
+                                        }
+                                        }).then(function(){ 
+                                            location.reload();
+                                        })
+                                    },
+                                    
+                                    error: function (data) {
+                                        console.log('Error:', data);
+                                    }
+                                });
+                            },
+                            error: function (data) {
+                                console.log('Error:', data);
+                            }
+                        });
+                    }
+                })
+            }else{
+                $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                });
+                $.ajax({
+                    url : '{{URL::to('/keranjang/paket_all/simpan_cart')}}',
+                    type:'POST',
+                    data:{
+                        order_id : order_id,
+                        paket_id : paket_id,
+                        group_id : id,
+
+                    },
+                    success: function (){
+                        $.ajaxSetup({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                }
+                        });
+                        $.ajax({
+                            url : '{{URL::to('/keranjang/paket_all/delete_tmp')}}',
+                            type:'POST',
+                            data:{
+                                order_id : order_id,
+                                paket_id : paket_id,
+                                group_id : id,
+
+                            },
+                            success: function (){
+                                Swal.fire({
+                                //title: 'Apakah anda yakin ?',
+                                text: "Paket berhasil dimasukkan keranjang",
+                                type: 'success',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Ok',
+                                showClass: {
+                                    popup: 'animate__animated animate__fadeInDown'
+                                },
+                                hideClass: {
+                                    popup: 'animate__animated animate__fadeOutUp'
+                                }
+                                }).then(function(){ 
+                                    location.reload();
+                                })
+                            },
+                            
+                            error: function (data) {
+                                console.log('Error:', data);
+                            }
                         });
                     },
-                    
                     error: function (data) {
-                    console.log('Error:', data);
+                        console.log('Error:', data);
                     }
-                });
-            }
+                });    
+            }    
         }
         
         function button_minus_kr(id)
@@ -3131,38 +3675,163 @@
         //delete paket
         function delete_pkt(id,group_id)
         {   
-            var id_delete =  $('#id_delete_pkt'+id).val();
+            var orderid_delete =  $('#orderid_delete_pkt'+id).val();
+            var jml_val = $('#jumlah_val_pkt'+id).val();
+            var product_id = $('#product_pkt'+id).val();
+            var paket_id = $('#paket_id').val(); 
+            var purchase_qty = $('#purchase_qty').val();
+            var bonus_qty =  $('#bonus_qty').val();
+            var bns_total = $('#bns_total'+group_id).val();
+            // AMBIL NILAI HARGA
+            var harga = $('#harga_pkt'+id).val();
+            
+
+            // UBAH FORMAT UANG INDONESIA
+            var	number_string = harga.toString();
+            var sisa 	= number_string.length % 3;
+            var rupiah 	= number_string.substr(0, sisa);
+            var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+            }
+
+            harga = "Rp. " + rupiah +",-";
+
+            if(bns_total > 0){
+                var total_val_qty = $('#total_produk'+group_id).val();
+                var a = parseInt(total_val_qty) - parseInt(jml_val);
+                var b = parseInt(bns_total) * parseInt(purchase_qty);
+                if(a < b) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-center',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                        })
+
+                        Toast.fire({
+                        icon: 'error',
+                        title: 'Gagal !, Total quantity tidak boleh kurang dari '+b,
+                    });
+                    $('#checkbox_pkt'+id).attr("disabled", false);
+                    $('#checkbox_pkt'+id).prop('checked', true);
+                }
+                else{
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url : '{{URL::to('/keranjang/paket/delete_pkt')}}',
+                        type:'POST',
+                        data:{
+                            order_id : orderid_delete,
+                            product_id : product_id,
+                            paket_id : paket_id,
+                            group_id : group_id
+                        },
+                        success: function () {
+                            $.ajax({
+                                    url : '{{URL::to('/keranjang/paket/totalquantity')}}',
+                                    type:'POST',
+                                    data:{
+                                        product_id : product_id,
+                                        paket_id : paket_id,
+                                        group_id : group_id,
+                                        order_id : orderid_delete
+                                    },
+                                    success: function (data) {
+                                    // We get the element having id of display_info and put the response inside it
+                                    $('#total_qty'+group_id).text(data);
+                                    $('#total_produk'+group_id).val(data);
+                                    $('#checkbox_pkt'+id).attr("disabled", true);
+                                    $('#checkbox_pkt'+id).prop('checked', true);
+                                    $('#jumlah_val_pkt'+id).val(0);
+                                    $('#jumlah_pkt'+id).val(0);
+                                    $('#show_pkt'+id).val(0);
+                                    $('#productPrice_pkt'+id).text(harga);
+                                    var total_qty = parseInt(data);
+                                    var bonus_kali = total_qty / parseInt(purchase_qty);
+                                    var desimal_kali = Math.floor(bonus_kali) * parseInt(bonus_qty);
+                                    $('#bonus_max'+group_id).text(desimal_kali);
+                                    $('#max_bonus'+group_id).val(desimal_kali);
+                                    
+                                    }
+                                });
+                            
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-center',
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    }
+                                })
+
+                                Toast.fire({
+                                icon: 'success',
+                                title: 'Produk paket berhasil dihapus'
+                            });    
+                        },
+                        
+                        
+                        error: function (data) {
+                        console.log('Error:', data);
+                        }
+                    });
+                }
+            }else{
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
                 $.ajax({
-                    url : '{{URL::to('/keranjang/paket/delete')}}',
+                    url : '{{URL::to('/keranjang/paket/delete_pkt')}}',
                     type:'POST',
                     data:{
-                        id : id_delete,
+                        order_id : orderid_delete,
+                        product_id : product_id,
+                        paket_id : paket_id,
+                        group_id : group_id
                     },
-                    success: function (data) {
-                        var Product_id = $('#product_pkt'+id).val();
-                        //var quantity = $('#jumlah_pkt'+id).val();
-                        //var price = $('#harga_pkt'+id).val();
-                        var paket_id = $('#paket_id').val();
+                    success: function () {
                         $.ajax({
                                 url : '{{URL::to('/keranjang/paket/totalquantity')}}',
                                 type:'POST',
                                 data:{
-                                    Product_id : Product_id,
+                                    product_id : product_id,
                                     paket_id : paket_id,
                                     group_id : group_id,
-                                    order_id : data
+                                    order_id : orderid_delete
                                 },
                                 success: function (data) {
                                 // We get the element having id of display_info and put the response inside it
                                 $('#total_qty'+group_id).text(data);
                                 $('#total_produk'+group_id).val(data);
-                                $('#checkbox_pkt'+id).attr("disabled", false);
+                                $('#checkbox_pkt'+id).attr("disabled", true);
                                 $('#checkbox_pkt'+id).prop('checked', true);
+                                $('#jumlah_val_pkt'+id).val(0);
+                                $('#jumlah_pkt'+id).val(0);
+                                $('#show_pkt'+id).val(0);
+                                $('#productPrice_pkt'+id).text(harga);
+                                var total_qty = parseInt(data);
+                                var bonus_kali = total_qty / parseInt(purchase_qty);
+                                var desimal_kali = Math.floor(bonus_kali) * parseInt(bonus_qty);
+                                $('#bonus_max'+group_id).text(desimal_kali);
+                                $('#max_bonus'+group_id).val(desimal_kali);
+                                
                                 }
                             });
                         
@@ -3180,7 +3849,95 @@
 
                             Toast.fire({
                             icon: 'success',
-                            title: 'Paket berhasil disimpan'
+                            title: 'Produk paket berhasil dihapus'
+                        });    
+                    },
+                    
+                    
+                    error: function (data) {
+                    console.log('Error:', data);
+                    }
+                });
+            }
+        }
+
+        //delete bonus
+        function delete_bns(id,group_id)
+        {   
+            var orderid_delete =  $('#orderid_delete_bns'+id).val();
+            var product_id = $('#product_bns'+id).val();
+            var paket_id = $('#paket_id').val(); 
+            var purchase_qty = $('#purchase_qty').val();
+            var bonus_qty =  $('#bonus_qty').val();
+
+            // AMBIL NILAI HARGA
+            var harga = $('#harga_bns'+id).val();
+            
+
+            // UBAH FORMAT UANG INDONESIA
+            var	number_string = harga.toString();
+            var sisa 	= number_string.length % 3;
+            var rupiah 	= number_string.substr(0, sisa);
+            var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+            }
+
+            harga = "Rp. " + rupiah +",-";
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url : '{{URL::to('/keranjang/bonus/delete_bns')}}',
+                    type:'POST',
+                    data:{
+                        order_id : orderid_delete,
+                        product_id : product_id,
+                        paket_id : paket_id,
+                        group_id : group_id
+                    },
+                    success: function () {
+                        $.ajax({
+                                url : '{{URL::to('/keranjang/bonus/totalquantity')}}',
+                                type:'POST',
+                                data:{
+                                    product_id : product_id,
+                                    paket_id : paket_id,
+                                    group_id : group_id,
+                                    order_id : orderid_delete
+                                },
+                                success: function (data) {
+                                // We get the element having id of display_info and put the response inside it
+                                $('#total_bns'+group_id).text(data);
+                                $('#bns_total'+group_id).val(data);
+                                $('#checkbox_bns'+id).attr("disabled", true);
+                                $('#checkbox_bns'+id).prop('checked', true);
+                                $('#jumlah_val_bns'+id).val(0);
+                                $('#jumlah_bns'+id).val(0);
+                                $('#show_bns'+id).val(0);
+                                $('#productPrice_bns'+id).text(harga);
+                                }
+                            });
+                        
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-center',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                            })
+
+                            Toast.fire({
+                            icon: 'success',
+                            title: 'Produk bonus berhasil dihapus'
                         });    
                     },
                     

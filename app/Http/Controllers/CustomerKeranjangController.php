@@ -273,7 +273,10 @@ class CustomerKeranjangController extends Controller
                         if($order_product <= 1){
                         $delete = DB::table('order_product')->where('id', $id)->delete();   
                         if($delete){
-                            DB::table('orders')->where('id', $order_id)->delete();
+                            //DB::table('orders')->where('id', $order_id)->delete();
+                            $orders = Order::findOrFail($order_id);
+                            $orders->total_price = 0;
+                            $orders->save();
                             }
                         }
                         else{

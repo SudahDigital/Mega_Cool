@@ -44,6 +44,12 @@ Route::group(['middleware' => ['auth','checkRole:SALES']],function(){
     Route::get('/updated-activity', 'TelegramBotController@updatedActivity')->name('update.telegram');
     Route::post('/keranjang/paket/simpan','CustomerPaketController@simpan')->name('customer.paket.simpan');
     Route::post('/keranjang/paket/totalquantity','CustomerPaketController@get_total_qty');
+    Route::post('/keranjang/paket/delete_pkt','CustomerPaketController@delete_paket');
+    Route::post('/keranjang/bonus/simpan','CustomerPaketController@simpan_bonus');
+    Route::post('/keranjang/bonus/totalquantity','CustomerPaketController@get_total_qty_bns');
+    Route::post('/keranjang/bonus/delete_bns','CustomerPaketController@delete_bonus');
+    Route::post('/keranjang/paket_all/simpan_cart','CustomerPaketController@simpan_all_tocart');
+    Route::post('/keranjang/paket_all/delete_tmp','CustomerPaketController@delete_tmp');
 });
 
 Route::match(["GET", "POST"], "/register", function(){

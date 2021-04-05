@@ -15,6 +15,7 @@ Home
     input[type=number] {
     -moz-appearance: textfield;
     }
+
 </style>
 
     @if(session('sukses_peesan'))
@@ -92,7 +93,7 @@ Home
                                             <h5 class="head_pop_prod" style="">Paket {{$value->display_name}}</h5>
                                         </div>
                                         
-                                         <div class="container list-product" style="">
+                                        <div class="container list-product" style="">
                                             <div class="row mt-0">
                                                 <div class="col-md-12 mt-4  menu-wrapper_pop px-5">
                                                     <div class="row section_content flex-row flex-nowrap menu_pop" style="overflow-x:auto;overflow-y:hidden;z-index:2222; ">
@@ -104,24 +105,28 @@ Home
                                                                             $qty_on_paket = \App\Order_paket_temp::where('order_id',$item->id)
                                                                                         ->where('product_id',$p_group->id)
                                                                                         ->where('paket_id',$paket_id->id)
-                                                                                        ->where('group_id',$value->id)->first();
+                                                                                        ->where('group_id',$value->id)
+                                                                                        ->whereNull('bonus_cat')->first();
                                                                             if($qty_on_paket){
                                                                                 $harga_on_paket = $p_group->price * $qty_on_paket->quantity; 
                                                                             }
                                                                         }
                                                                     @endphp
+                                                                    
+                                                                    @if(($item) && ($qty_on_paket != NULL))
+                                                                        <input type="hidden" id="orderid_delete_pkt{{$p_group->id}}" value="{{$item->id}}">
+                                                                    @else
+                                                                        <input type="hidden" id="orderid_delete_pkt{{$p_group->id}}" value="">
+                                                                    @endif
                                                                     <div class="round">
-                                                                        @if(($item) && ($qty_on_paket != NULL))
-                                                                            <input type="hidden" id="id_delete_pkt{{$p_group->id}}" value="{{$qty_on_paket->id}}">
-                                                                        @endif
-                                                                        <input type="checkbox" onclick="delete_pkt('{{$p_group->id}}')" id="checkbox_pkt{{$p_group->id}}" {{($item && $qty_on_paket != NULL && $qty_on_paket->quantity > 0) ? 'checked' : 'disabled'}}/>
+                                                                        <input type="checkbox" onclick="delete_pkt('{{$p_group->id}}','{{$value->id}}')" id="checkbox_pkt{{$p_group->id}}" {{($item && $qty_on_paket != NULL && $qty_on_paket->quantity > 0) ? 'checked' : 'checked disabled'}}/>
                                                                         <label for="checkbox_pkt{{$p_group->id}}"></label>
                                                                     </div>
                                                                     <a>
                                                                         <img style="" src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
                                                                     </a>
                                                                     
-                                                                    <div class="card-body d-flex flex-column" style="">
+                                                                    <div class="card-body d-flex flex-column mt-n3" style="">
                                                                         <div class="float-left px-1 py-2" style="width: 100%;">
                                                                             <p class="product-price-header_pop mb-0" style="">
                                                                                 {{$p_group->Product_name}}
@@ -132,7 +137,7 @@ Home
                                                                             <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_pkt{{$p_group->id}}" style="">Rp.  {{ $item && $qty_on_paket != NULL ?  number_format($harga_on_paket, 0, ',', '.') : number_format($p_group->price, 0, ',', '.') }},-</p>
                                                                         </div>
                                                                         <div class="justify-content-center input_item_pop mt-auto">
-                                                                            
+                                                                            <input type="hidden" id="jumlah_val_pkt{{$p_group->id}}" name="" value="{{$item && $qty_on_paket != NULL ? "$qty_on_paket->quantity" : '0'}}">
                                                                             <input type="hidden" id="jumlah_pkt{{$p_group->id}}" name="quantity_pkt" value="{{$item && $qty_on_paket != NULL ? "$qty_on_paket->quantity" : '0'}}">
                                                                             <input type="hidden" id="harga_pkt{{$p_group->id}}" name="price_pkt" value="{{$p_group->price}}">
                                                                             <input type="hidden" id="product_pkt{{$p_group->id}}" name="Product_id_pkt" value="{{$p_group->id}}">
@@ -215,6 +220,28 @@ Home
                                                             <div class="col-12 col-md-6 d-flex item_pop_bonus pb-4" style="">
                                                                 <div class="card " style="border-radius: 20px;">
                                                                     <div class="card-horizontal py-0">
+                                                                        @php
+                                                                            if($item){
+                                                                                $qty_on_bonus = \App\Order_paket_temp::where('order_id',$item->id)
+                                                                                            ->where('product_id',$p_group->id)
+                                                                                            ->where('paket_id',$paket_id->id)
+                                                                                            ->where('group_id',$value->id)
+                                                                                            ->whereNotNull('bonus_cat')->first();
+                                                                                if($qty_on_bonus){
+                                                                                    $harga_on_bonus = $p_group->price * $qty_on_bonus->quantity; 
+                                                                                }
+                                                                            }
+                                                                        @endphp
+                                                                        
+                                                                        @if(($item) && ($qty_on_bonus != NULL))
+                                                                            <input type="hidden" id="orderid_delete_bns{{$p_group->id}}" value="{{$item->id}}">
+                                                                        @else
+                                                                            <input type="hidden" id="orderid_delete_bns{{$p_group->id}}" value="">
+                                                                        @endif
+                                                                        <div class="round_bns">
+                                                                            <input type="checkbox" onclick="delete_bns('{{$p_group->id}}','{{$value->id}}')" id="checkbox_bns{{$p_group->id}}" {{($item && $qty_on_bonus != NULL && $qty_on_bonus->quantity > 0) ? 'checked' : 'checked disabled'}} style="display:none;"/>
+                                                                            <label for="checkbox_bns{{$p_group->id}}"></label>
+                                                                        </div>
                                                                         <a>
                                                                             <img src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid img-responsive" alt="..." style="">
                                                                         </a>
@@ -227,12 +254,13 @@ Home
                                                                                 </p>
                                                                             </div>
                                                                             <div class="float-left pl-0 pt-1 pb-0" style="">
-                                                                                <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_bns{{$p_group->id}}" style="">Rp. {{ number_format($p_group->price, 0, ',', '.') }},-</p>
+                                                                                <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_bns{{$p_group->id}}" style="">Rp. {{ $item && $qty_on_bonus != NULL ?  number_format($harga_on_bonus, 0, ',', '.') : number_format($p_group->price, 0, ',', '.') }},-</p>
                                                                             </div>
                                                                             
                                                                             <div class="float-left pl-0 mt-auto">
                                                                                 <div class="input-group mb-0">
-                                                                                    <input type="hidden" id="jumlah_bns{{$p_group->id}}" name="quantity_pkt" value="0">
+                                                                                    <input type="hidden" id="jumlah_val_bns{{$p_group->id}}" name="" value="{{$item && $qty_on_bonus != NULL ? "$qty_on_bonus->quantity" : '0'}}">
+                                                                                    <input type="hidden" id="jumlah_bns{{$p_group->id}}" name="quantity_bns" value="{{$item && $qty_on_bonus != NULL ? "$qty_on_bonus->quantity" : '0'}}">
                                                                                     <input type="hidden" id="harga_bns{{$p_group->id}}" name="price" value="{{$p_group->price}}">
                                                                                     <input type="hidden" id="product_bns{{$p_group->id}}" name="Product_id" value="{{$p_group->id}}">
                                                                                     <button class="input-group-text button_minus_bns" id="button_minus_bns{{$p_group->id}}" 
@@ -246,7 +274,7 @@ Home
                                                                                             padding-right:0;
                                                                                             height:25px" onclick="button_minus_bns('{{$p_group->id}}')" 
                                                                                             onMouseOver="this.style.color='#495057'" >-</button>
-                                                                                    <input type="number" id="show_bns{{$p_group->id}}" onkeyup="input_qty_bns('{{$p_group->id}}')" class="form-control show_pkt" value="0" 
+                                                                                    <input type="number" id="show_bns{{$p_group->id}}" onkeyup="input_qty_bns('{{$p_group->id}}','{{$value->id}}')" class="form-control show_pkt" value="{{$item && $qty_on_bonus !== NULL ? $qty_on_bonus->quantity : '0'}}" 
                                                                                             style="background-color:#e9ecef !important;
                                                                                             text-align:center;
                                                                                             border:none;
@@ -269,7 +297,7 @@ Home
                                                                                 </div> 
                                                                             </div>
                                                                             <div class="float-right mt-2">
-                                                                                <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart('{{$p_group->id}}')" style="font-size: 2vh">Simpan</button>
+                                                                                <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart_bns('{{$p_group->id}}','{{$value->id}}')" style="font-size: 2vh">Simpan</button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -309,12 +337,36 @@ Home
                                             $pkt_total = \App\Order_paket_temp::where('order_id',$item->id)
                                             ->where('group_id',$value->id)
                                             ->where('paket_id',$paket_id->id)
+                                            ->whereNull('bonus_cat')
                                             ->sum('quantity');
+                                            $bns_total = \App\Order_paket_temp::where('order_id',$item->id)
+                                            ->where('group_id',$value->id)
+                                            ->where('paket_id',$paket_id->id)
+                                            ->whereNotNull('bonus_cat')
+                                            ->sum('quantity');
+                                            $purch_qty = $paket_id->purchase_quantity;
+                                            $bonus_qty = $paket_id->bonus_quantity;
+                                            $bonus_kali = $pkt_total / $purch_qty;
+                                            $desimal_kali = floor($bonus_kali) * $bonus_qty;
                                             }
                                         @endphp
-                                        <div class="mr-auto"><span style="color: #000;font-weight:700;font-size:2vh;">Total Quantity : <a id="total_qty{{$value->id}}">{{$item ? $pkt_total : '0' }}</a></span></div>
-                                        <input type="hidden" value="0" id="total_produk{{$value->id}}">
-                                        <a type="button" class="btn button_add_to_cart float-right mb-2 mr-3" onclick="show_modal()" style="padding: 10px 20px; font-size:2.5vh; ">Tambah</a>
+                                        <div class="mr-auto">
+                                            <p class="mb-n2 mt-n2">
+                                                <span style="color: #000;font-weight:700;font-size:2vh;">* Total Quantity Paket&nbsp;&nbsp;: <a id="total_qty{{$value->id}}">{{$item ? $pkt_total : '0' }}</a></span>
+                                            </p>
+                                            <p class="mb-n2">
+                                                <span style="color: #000;font-weight:700;font-size:2vh;">* Total Quantity Bonus : <a id="total_bns{{$value->id}}">{{$item ? $bns_total : '0' }}</a></span>
+                                            </p>
+                                            <p class="mt-n1 mb-n2">    
+                                                <span style="color:#1A4066;;font-weight:700;font-size:2vh;">* Jumlah Max. Bonus &nbsp;&nbsp;&nbsp;: <a id="bonus_max{{$value->id}}">{{$item ? $desimal_kali : '0' }}</a></span>
+                                            </p>
+                                            
+                                        </div>
+                                        <input type="hidden" value="{{$item ? $pkt_total : '0' }}" id="total_produk{{$value->id}}">
+                                        <input type="hidden" value="{{$item ? $bns_total : '0' }}" id="bns_total{{$value->id}}">
+                                        <input type="hidden" value="{{$item ? $desimal_kali : '0' }}" id="max_bonus{{$value->id}}">
+                                        <input type="hidden" value="{{$item ? $item->id : '' }}" id="orderid_addcart{{$value->id}}">
+                                        <a type="button" class="btn button_add_to_cart float-right mb-2 mr-3" onclick="addcart_allpaket('{{$value->id}}')" style="padding: 10px 20px; font-size:2.5vh;">Simpan Ke-Keranjang</a>
                                     </div>
                                 </div>
                             </div>
