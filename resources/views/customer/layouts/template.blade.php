@@ -1042,7 +1042,7 @@
                 <li class="">
                    <a href="{{ url('/') }}">Beranda</a>
                 </li>
-                
+                <!--
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Paket</a>
                     <ul class="collapse list-unstyled page-submenu" id="pageSubmenu">
@@ -1053,7 +1053,7 @@
                         @endforeach
                     </ul>
                 </li>
-                
+                -->
                 <li>
                    <a href="{{URL::route('profil.index')}}">Profile</a>
                 </li>
@@ -1712,6 +1712,7 @@
             //var phone = document.getElementById("phone").value;
             var order_id = $('#order_id_cek').val();
             //if (name != "" && email!="" && address !="" && phone !="" && phone.length > 9) {
+                
                 $.ajax({
                     url : '{{URL::to('/keranjang/cek_order')}}',
                     type:'POST',
@@ -1751,17 +1752,7 @@
                         }
                     }
                 });
-                /*
-                Swal.fire({
-                    title: 'Memesan',
-                    text: "Anda melakukan pesanan melalui whatsapp",
-                    icon: 'success',
-                    showCancelButton: false,
-                    confirmButtonText: "Ok",
-                    confirmButtonColor: '#4db849'
-                    }).then(function(){ 
-                        location.reload();
-                    });*/
+                
             
         }
 

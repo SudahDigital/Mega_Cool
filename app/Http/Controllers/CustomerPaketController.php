@@ -277,6 +277,21 @@ class CustomerPaketController extends Controller
                     ->where('paket_id',$paket_id)
                     ->where('group_id',$group_id)
                     ->delete();
+        if($paket_tmp){
+            $orders = \App\Order::findOrfail($order_id);
+            $order_product = \App\order_product::where('order_id',$order_id)
+                            ->where('paket_id',$paket_id)
+                            ->where('group_id',$group_id)
+                            ->whereNull('bonus_cat')->get();
+            $total_price= 0;
+            foreach($order_product as $or){
+                $price = $or->price_item;
+                $total_price += $price * $or->quantity;
+            }
+            //return $total_price;
+            $orders->total_price += $total_price;
+            $orders->save();
+        }
     }
 }
 

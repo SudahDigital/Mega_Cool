@@ -22,11 +22,7 @@ class CustomerKeranjangController extends Controller
 
     public function index(Request $request, $cat = null)
     {   
-        //$ses_id = $request->header('User-Agent');
         $id_user = \Auth::user()->id;
-        //$clientIP = \Request::getClientIp(true);
-        //$session_id = $ses_id.$clientIP;
-        //$category_id = $request->get('cat') ? $request->get('cat') : '';
         $banner_active = \App\Banner::orderBy('position', 'ASC')->first();
         $banner = \App\Banner::orderBy('position', 'ASC')->limit(5)->get();
         $categories = \App\Category::all();//paginate(10);
@@ -153,7 +149,7 @@ class CustomerKeranjangController extends Controller
         //return response()->json(['return' => 'some data']);    
         //$order->products()->attach($request->get('Product_id'));
         
-        return redirect()->back()->with('status','Product berhasil dimasukan kekeranjang');
+        //return redirect()->back()->with('status','Product berhasil dimasukan kekeranjang');
     }
 
     /*public function min_order(Request $request){ 
@@ -219,7 +215,7 @@ class CustomerKeranjangController extends Controller
             
         //$order->products()->attach($request->get('Product_id'));
         
-        return redirect()->back()->with('status','Berhasil menambah produk');
+       // return redirect()->back()->with('status','Berhasil menambah produk');
     }
 
     public function kurang(Request $request){
@@ -240,7 +236,7 @@ class CustomerKeranjangController extends Controller
                         $order->total_price -= $request->get('price');
                         $order->save();
                     }
-                return redirect()->back()->with('status','Berhasil menghapus produk dari keranjang');
+                //return redirect()->back()->with('status','Berhasil menghapus produk dari keranjang');
             }
         }
         else{
@@ -256,7 +252,7 @@ class CustomerKeranjangController extends Controller
                 $order = Order::findOrFail($order_id);
                 $order->total_price -= $request->get('price');
                 $order->save();
-                return redirect()->back()->with('status','Berhasil mengurangi produk');
+                //return redirect()->back()->with('status','Berhasil mengurangi produk');
             }
         } 
         
@@ -372,7 +368,7 @@ class CustomerKeranjangController extends Controller
                     $info_harga = '*Total Pesanan* : Rp.'.number_format(($total_pesanan), 0, ',', '.').'%0A*Pembayaran* : '.$payment_method;
                 }
                 if($request->get('notes') != ""){
-                    $notes_wa=$request->get('notes');
+                    $notes_wa=urlencode($request->get('notes'));
                 }
                 else{
                     $notes_wa = '-';
