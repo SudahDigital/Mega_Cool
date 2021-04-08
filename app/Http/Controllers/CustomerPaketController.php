@@ -251,20 +251,43 @@ class CustomerPaketController extends Controller
                     ->where('paket_id',$paket_id)
                     ->where('group_id',$group_id)
                     ->get();
+        $dateNow = date('Y-m-d H:i:s');
         foreach($paket_tmp as $tmp){
-            DB::table('order_product')->insert([
-                'order_id' => $tmp->order_id, 
-                'product_id'=>$tmp->product_id,
-                'price_item'=>$tmp->price_item,
-                'price_item_promo'=>$tmp->price_item_promo,
-                'discount_item'=>$tmp->discount_item,
-                'quantity'=>$tmp->quantity,
-                'created_at'=>$tmp->created_at,
-                'updated_at'=>$tmp->updated_at,
-                'group_id'=>$tmp->group_id,
-                'paket_id'=>$tmp->paket_id,
-                'bonus_cat'=>$tmp->bonus_cat
-                ]);
+            $cek_harga = \App\product::findOrFail($tmp->product_id);
+            $order_product = \App\order_product::where('order_id','=', $tmp->order_id)
+                ->where('product_id','=',$tmp->product_id)
+                ->where('group_id',$tmp->group_id)
+                ->where('paket_id',$tmp->paket_id)
+                ->where('bonus_cat',$tmp->bonus_cat)->first();
+                if($order_product!== null){
+                    DB::table('order_product')->where('id', $order_product->id)->update([
+                        'order_id' => $tmp->order_id, 
+                        'product_id'=>$tmp->product_id,
+                        'price_item'=>$cek_harga->price,
+                        'price_item_promo'=>$cek_harga->price_promo,
+                        'discount_item'=>$cek_harga->discount,
+                        'quantity'=>$tmp->quantity + $order_product->quantity,
+                        'created_at'=>$tmp->created_at,
+                        'updated_at'=>$dateNow,
+                        'group_id'=>$tmp->group_id,
+                        'paket_id'=>$tmp->paket_id,
+                        'bonus_cat'=>$tmp->bonus_cat
+                    ]);
+                }else{
+                    DB::table('order_product')->insert([
+                        'order_id' => $tmp->order_id, 
+                        'product_id'=>$tmp->product_id,
+                        'price_item'=>$cek_harga->price,
+                        'price_item_promo'=>$cek_harga->price_promo,
+                        'discount_item'=>$cek_harga->discount,
+                        'quantity'=>$tmp->quantity,
+                        'created_at'=>$tmp->created_at,
+                        'updated_at'=>$dateNow,
+                        'group_id'=>$tmp->group_id,
+                        'paket_id'=>$tmp->paket_id,
+                        'bonus_cat'=>$tmp->bonus_cat
+                    ]);
+                }
         }
     }
 
@@ -292,6 +315,20 @@ class CustomerPaketController extends Controller
             $orders->total_price += $total_price;
             $orders->save();
         }
+    }
+
+    public function cek_detail_pkt(Request $request){
+        $order_id = $request->get('order_id');
+        $paket_id = $request->get('paket_id');
+        $group_id = $request->get('group_id');
+        $cek_paket = DB::select("SELECT order_product.order_id, order_product.product_id, order_product.price_item, 
+                    order_product.quantity, order_product.paket_id, order_product.group_id, order_product.bonus_cat,
+                    products.Product_name FROM products,order_product WHERE order_product.product_id = products.id AND 
+                    order_product.paket_id ='$paket_id' AND order_product.group_id = '$group_id' AND 
+                    order_product.order_id = '$order_id' AND order_product.bonus_cat IS NULL");
+        $cekData['data'] = $cek_paket;
+        echo json_encode($cekData);
+        exit;
     }
 }
 

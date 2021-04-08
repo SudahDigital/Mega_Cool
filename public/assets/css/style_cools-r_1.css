@@ -1930,10 +1930,14 @@ footer.footer .cart .count-cart-three {
 #card-detail p{
   color: #0000;
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 2px;
 }
-
+@media (max-width: 600px){
+  .dtl_prd_bns{
+    font-size: 2vw;
+  }
+}
 /*
 #card-detail h2{
   color: #174C7C;

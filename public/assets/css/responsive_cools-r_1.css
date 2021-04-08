@@ -1118,6 +1118,10 @@
     .contact-row{
         margin-top:2rem;
     }
+
+    #dtl_prd_bns{
+        font-size: 2vw;
+    }
 }
 
 @media (max-width: 540px){
@@ -3635,6 +3639,6 @@
 
     .section_content{
         margin-left:5px;
-    }
+    }    
 }
 

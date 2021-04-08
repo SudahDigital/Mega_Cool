@@ -50,11 +50,16 @@ class CustomerKeranjangController extends Controller
         $keranjang = DB::select("SELECT orders.user_id, orders.status,orders.customer_id, 
                     products.Product_name, products.image, products.price, products.discount,
                     products.price_promo, order_product.id, order_product.order_id,
-                    order_product.product_id,order_product.quantity
-                    FROM order_product, products, orders WHERE 
-                    orders.id = order_product.order_id AND 
+                    order_product.product_id,order_product.quantity,order_product.group_id 
+                    FROM order_product, products, orders WHERE order_product.group_id IS NULL
+                    AND orders.id = order_product.order_id AND 
                     order_product.product_id = products.id AND orders.status = 'SUBMIT' 
                     AND orders.user_id = '$id_user' AND orders.customer_id IS NULL ");
+        $krj_paket = \App\Order::with('products_pkt')
+                    ->where('user_id',$id_user)
+                    ->where('status','=','SUBMIT')
+                    ->whereNull('customer_id')
+                    ->first();
         $item = DB::table('orders')
                     ->where('user_id','=',"$id_user")
                     ->where('orders.status','=','SUBMIT')
@@ -70,6 +75,8 @@ class CustomerKeranjangController extends Controller
                     ->join('order_product','order_product.order_id','=','orders.id')
                     ->where('user_id','=',"$id_user")
                     ->whereNull('orders.customer_id')
+                    ->distinct('order_product.product_id')
+                    /*->whereNull('order_product.group_id')*/
                     ->count();
         $data=['total_item'=> $total_item, 
                 'keranjang'=>$keranjang,
@@ -84,6 +91,7 @@ class CustomerKeranjangController extends Controller
                 'cat_count'=>$cat_count,
                 'banner'=>$banner,
                 'banner_active'=>$banner_active,
+                'krj_paket'=>$krj_paket
                 ];
        
         return view('customer.content_customer',$data);

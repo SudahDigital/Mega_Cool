@@ -12,8 +12,8 @@
     <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" >
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_2.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_6.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_1.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_1.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css')}}">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -1042,7 +1042,7 @@
                 <li class="">
                    <a href="{{ url('/') }}">Beranda</a>
                 </li>
-                <!--
+                
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Paket</a>
                     <ul class="collapse list-unstyled page-submenu" id="pageSubmenu">
@@ -1053,7 +1053,7 @@
                         @endforeach
                     </ul>
                 </li>
-                -->
+                
                 <li>
                    <a href="{{URL::route('profil.index')}}">Profile</a>
                 </li>
@@ -3989,6 +3989,62 @@
                         //$("#my_modal_content_ajax").modal('show');
                     }
                 }
+            });
+        }
+
+        function open_detail_pkt(order_id,paket_id,group_id)
+        {
+            $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                });
+            $.ajax({
+                url : '{{URL::to('/keranjang/cek_detail/paket')}}',
+                type:'POST',
+                dataType: 'json',
+                data:{
+                    order_id : order_id,
+                    paket_id : paket_id,
+                    group_id : group_id
+                },
+                success: function(response){
+                        var len = 0;
+                        $('#body_detail_pkt').empty();
+                        if(response['data'] != null){
+                            len = response['data'].length;
+                        }
+
+                        if(len > 0){
+                            
+                            for(var i=0; i<len; i++){
+                                var desc = response['data'][i].Product_name;
+                                var qty = response['data'][i].quantity;
+                                var prc = response['data'][i].price_item;
+                                var ttl = parseInt(prc) * parseInt(qty);
+                                // UBAH FORMAT UANG INDONESIA
+                                var	number_string = ttl.toString();
+                                var sisa 	= number_string.length % 3;
+                                var rupiah 	= number_string.substr(0, sisa);
+                                var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+                                if (ribuan) {
+                                separator = sisa ? '.' : '';
+                                rupiah += separator + ribuan.join('.');
+                                }
+
+                                ttl = rupiah +",-";
+                                var tr_str = "<tr>\
+                                                <td>"+desc+"</td>\
+                                                <td>"+qty+"</td>\
+                                                <td>"+ttl+"</td>\
+                                             </tr>";
+                                $("#body_detail_pkt").append(tr_str);
+                            }
+                            $("#DeatailPaket").modal('show');
+                        }
+                        
+                    }
             });
         }
 
