@@ -23,9 +23,17 @@ class CustomerPaketController extends Controller
         $keranjang = DB::select("SELECT orders.user_id, orders.status,orders.customer_id, 
                     products.Product_name, products.image, products.price, products.discount,
                     products.price_promo, order_product.id, order_product.order_id,
-                    order_product.product_id,order_product.quantity
-                    FROM order_product, products, orders WHERE 
-                    orders.id = order_product.order_id AND 
+                    order_product.product_id,order_product.quantity,order_product.group_id 
+                    FROM order_product, products, orders WHERE order_product.group_id IS NULL
+                    AND orders.id = order_product.order_id AND 
+                    order_product.product_id = products.id AND orders.status = 'SUBMIT' 
+                    AND orders.user_id = '$id_user' AND orders.customer_id IS NULL ");
+       $krj_paket = DB::select("SELECT orders.user_id, orders.status,orders.customer_id, 
+                    products.Product_name, products.image, products.price, products.discount,
+                    products.price_promo, order_product.id, order_product.order_id,
+                    order_product.product_id,order_product.quantity,order_product.group_id,order_product.bonus_cat  
+                    FROM order_product, products, orders WHERE order_product.group_id IS NOT NULL
+                    AND orders.id = order_product.order_id AND order_product.bonus_cat IS NULL AND
                     order_product.product_id = products.id AND orders.status = 'SUBMIT' 
                     AND orders.user_id = '$id_user' AND orders.customer_id IS NULL ");
         $item = DB::table('orders')
@@ -43,6 +51,8 @@ class CustomerPaketController extends Controller
                     ->join('order_product','order_product.order_id','=','orders.id')
                     ->where('user_id','=',"$id_user")
                     ->whereNull('orders.customer_id')
+                    ->distinct('order_product.product_id')
+                    /*->whereNull('order_product.group_id')*/
                     ->count();
         $data=['total_item'=> $total_item, 
                 'keranjang'=>$keranjang,
@@ -56,6 +66,7 @@ class CustomerPaketController extends Controller
                 'banner'=>$banner,
                 'banner_active'=>$banner_active,
                 'paket_id'=>$paket_id,
+                'krj_paket'=>$krj_paket
             ];
        
         return view('customer.paket',$data);
@@ -329,6 +340,35 @@ class CustomerPaketController extends Controller
         $cekData['data'] = $cek_paket;
         echo json_encode($cekData);
         exit;
+    }
+
+    public function delete_kr_pkt(Request $request){
+        
+        $id = $request->get('id');
+        $order_id = $request->get('order_id');
+        $paket_id = $request->get('paket_id');
+        $group_id = $request->get('group_id');
+        $order_product = order_product::where('order_id','=',$order_id)
+                        ->count();
+                        if($order_product <= 1){
+                        $delete = DB::table('order_product')->where('id', $id)->delete();   
+                        if($delete){
+                            //DB::table('orders')->where('id', $order_id)->delete();
+                            $orders = Order::findOrFail($order_id);
+                            $orders->total_price = 0;
+                            $orders->save();
+                            }
+                        }
+                        else{
+                             $delete2 = DB::table('order_product')->where('id', $id)->delete();
+                             if($delete2){
+                                $orders = Order::findOrFail($order_id);
+                                $total_price = $price * $quantity;
+                                $orders->total_price -= $total_price;
+                                $orders->save();
+                             }
+                        }
+                        return redirect()->back()->with('status','Product berhasil dihapus dari keranjang');
     }
 }
 

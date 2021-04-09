@@ -4072,6 +4072,62 @@
             });
         }
 
+        function delete_kr_pkt(order_id,paket_id,group_id)
+        {
+            $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                });
+            $.ajax({
+                url : '{{URL::to('/keranjang/delete_kr/paket')}}',
+                type:'POST',
+                dataType: 'json',
+                data:{
+                    order_id : order_id,
+                    paket_id : paket_id,
+                    group_id : group_id
+                },
+                success: function(response){
+                        var len = 0;
+                        $('#body_detail_pkt').empty();
+                        if(response['data'] != null){
+                            len = response['data'].length;
+                        }
+
+                        if(len > 0){
+                            
+                            for(var i=0; i<len; i++){
+                                var desc = response['data'][i].Product_name;
+                                var qty = response['data'][i].quantity;
+                                var prc = response['data'][i].price_item;
+                                var ttl = parseInt(prc) * parseInt(qty);
+                                // UBAH FORMAT UANG INDONESIA
+                                var	number_string = ttl.toString();
+                                var sisa 	= number_string.length % 3;
+                                var rupiah 	= number_string.substr(0, sisa);
+                                var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+                                if (ribuan) {
+                                separator = sisa ? '.' : '';
+                                rupiah += separator + ribuan.join('.');
+                                }
+
+                                ttl = rupiah +",-";
+                                var tr_str = "<tr>\
+                                                <td>"+desc+"</td>\
+                                                <td>"+qty+"</td>\
+                                                <td>"+ttl+"</td>\
+                                             </tr>";
+                                $("#body_detail_pkt").append(tr_str);
+                            }
+                            $("#DeatailPaket").modal('show');
+                        }
+                        
+                    }
+            });
+        }
+
         $(document).ready(function() {  
             $('#btn-yes').on('click', function(){
                 var id_modal = $("#modal-input-id").val();

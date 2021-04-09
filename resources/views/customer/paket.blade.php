@@ -126,7 +126,7 @@ Home
                                                                         <img style="" src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
                                                                     </a>
                                                                     
-                                                                    <div class="card-body d-flex flex-column mt-n3" style="">
+                                                                    <div class="card-body crd-body-pkt d-flex flex-column mt-n3" style="">
                                                                         <div class="float-left px-1 py-2" style="width: 100%;">
                                                                             <p class="product-price-header_pop mb-0" style="">
                                                                                 {{$p_group->Product_name}}
@@ -412,8 +412,98 @@ Home
             <div id="{{$total_item > 0 ? 'collapse-4' : '' }}" class="collapse" data-parent="#accordion">
                 <div id="cont-collapse" class="container">
                     <div class="card-body" id="card-detail" style="">
-                        <div class="col-md-12" style="padding-bottom:10rem;">
+                        <div class="col-md-12 mt-n4" style="padding-bottom:10rem;">
+                            @if($krj_paket != null)
+                            <p id="p-title1" class="mb-2" style="font-weight:700;color: #153651;font-family: Montserrat;">Paket</p>
                             <table class="table-detail" width="100%">
+                                <tbody>
+                                    @php
+                                        $groupby_paket = \DB::table('order_product')
+                                                        ->where('order_id',$item->id)
+                                                        ->whereNotNull('paket_id')
+                                                        ->whereNotNull('group_id')
+                                                        ->whereNull('bonus_cat')
+                                                        ->distinct()
+                                                        ->get(['paket_id','group_id']);
+                                            
+                                    @endphp
+                                    @foreach($groupby_paket as $dtl_pkt)
+
+                                            @php
+                                                $paket_name =\App\Paket::where('id',$dtl_pkt->paket_id)
+                                                            ->first();
+                                                $group_name =\App\Group::where('id',$dtl_pkt->group_id)
+                                                            ->first();           
+                                            @endphp
+                                            <tr class="pb-0">
+                                                <td width="30%" class="img-detail-cart" valign="top" style="padding-top:3%;">
+                                                    <img src="{{ asset('storage/'.$group_name->group_image)}}" 
+                                                    class="image-detail"  alt="...">
+                                                </td>
+                                                <td width="60%" class="td-desc-detail" align="left" valign="top" style="padding-top:3%;">
+                                                    <p style="color: #000">{{ $paket_name->display_name}},</p>
+                                                    <p style="color: #000">{{ $group_name->display_name}}</p>
+                                                    @php
+                                                        if($item){
+                                                        $pkt_total_krj = \App\order_product::where('order_id',$item->id)
+                                                        ->where('group_id',$dtl_pkt->group_id)
+                                                        ->where('paket_id',$dtl_pkt->paket_id)
+                                                        ->whereNull('bonus_cat')
+                                                        ->sum('quantity');
+                                                        $pkt_pirce = \App\order_product::where('order_id',$item->id)
+                                                        ->where('group_id',$dtl_pkt->group_id)
+                                                        ->where('paket_id',$dtl_pkt->paket_id)
+                                                        ->whereNull('bonus_cat')
+                                                        ->sum(\DB::raw('price_item * quantity'));
+                                                        }
+                                                    @endphp
+                                                    <h2 style="font-weight:700;color: #153651;font-family: Montserrat;">Rp. {{ number_format($pkt_pirce, 0, ',', '.') }},-</h2>
+                                                    
+                                                    <p style="color: #000"><span>Qty</span><span class="d-inline ml-2" style="color: #153651;font-weight:900;">{{$pkt_total_krj}}</span></p>
+                                                    <a onclick="open_detail_pkt('{{$item->id}}','{{$dtl_pkt->paket_id}}','{{$dtl_pkt->group_id}}')" style="cursor: pointer"><span class="badge badge-secondary">Detail Paket</span></a>
+
+                                                </td>
+                                                <td width="15%" align="right" valign="top" style="padding-top:3%;">
+                                                    <button class="btn btn-default" onclick="delete_kr_pkt('{{$item->id}}','{{$dtl_pkt->paket_id}}','{{$dtl_pkt->group_id}}')" style="">X</button>
+                                                    <input type="hidden"  id="order_id_delete_pkt" name="order_id" value="">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style="border-bottom: 1px solid #ddd;">
+                                                    <div class="row">
+                                                        <div class="col-3 pt-1">
+                                                            <p class="" style="font-weight:700;color: #153651;font-family: Montserrat;">Bonus :</p>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            @php
+                                                                $groupby_bns = \App\order_product::where('order_id',$item->id)
+                                                                                ->where('paket_id',$dtl_pkt->paket_id)
+                                                                                ->where('group_id',$dtl_pkt->group_id)
+                                                                                ->whereNotNull('bonus_cat')
+                                                                                ->get();
+                                                                                //dd($groupby_bns);
+                                                            @endphp
+                                                            @foreach($groupby_bns as $bns)
+                                                                @php
+                                                                    $prd_bns =\App\product::findOrfail($bns->product_id);
+                                                                @endphp
+                                                                <p class="d-none d-md-block d-md-none mt-2" style="color: #000;margin-left:-11rem;">* {{$prd_bns->Product_name}}&nbsp;<span style="color: #153651;">({{$bns->quantity}})</span></p>
+                                                                <p class="d-md-none mt-2 ml-n4" style="color: #000;font-size:3vw;">* {{ $prd_bns->Product_name}}&nbsp;<span style="color: #153651;">({{$bns->quantity}})</span></p>
+                                                                
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            @endif
+                            @if($krj_paket != null)
+                                <p id="p-title2" class="mt-4 mb-2" style="font-weight:700;color: #153651;font-family: Montserrat;">Produk Non-Paket</p>
+                            @endif
+                            <table class="table-detail" width="100%" >
                                 <tbody>
                                     @foreach($keranjang as $detil)
                                     <tr>
@@ -626,6 +716,34 @@ Home
             </div>
         </div>
     </div>
+
+    <!-- Modal detail paket -->
+    <div class="modal fade" id="DeatailPaket" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="border-bottom: none;">
+                    <p style="font-weight:700;color: #153651;font-family: Montserrat;">Detail Paket</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class='table small'>
+                        <thead>
+                            <tr>
+                                <th>Produk</th>
+                                <th>Jml</th>
+                                <th>Total Harga(Rp)</th>
+                            </tr>
+                        </thead>
+                        <tbody id='body_detail_pkt'>
+            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 <script>
     if ($(window).width() < 601) {
         $('#div_total').removeClass('float-left');
@@ -648,6 +766,7 @@ Home
         $('.modal-footer').addClass('px-4');
         $('.simpan-keranjang-paket').addClass('btn-block');
         $('.simpan-keranjang-paket').removeClass('mr-3');
+        $('.crd-body-pkt').removeClass('mt-n3');
         $('.input_item_pop').addClass('px-3');
         //$('.card_margin_bonus').addClass('ml-n2 mr-2');
         $('.menu_pop_bonus').addClass('mx-auto');

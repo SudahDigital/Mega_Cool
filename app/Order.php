@@ -12,6 +12,13 @@ class Order extends Model
         return $this->belongsToMany('App\product')->withPivot('id','quantity','price_item','price_item_promo','discount_item','group_id','paket_id','bonus_cat');
     }
 
+    public function products_nonpaket(){
+        return $this->belongsToMany('App\product')
+        ->withPivot('id','quantity','price_item','price_item_promo','discount_item','group_id','paket_id','bonus_cat')
+        ->wherePivot('paket_id','=',null)
+        ->wherePivot('group_id','=',null);
+    }
+
     public function products_pkt(){
         return $this->belongsToMany('App\product')
         ->withPivot('id','quantity','price_item','price_item_promo','discount_item','group_id','paket_id','bonus_cat')

@@ -55,11 +55,14 @@ class CustomerKeranjangController extends Controller
                     AND orders.id = order_product.order_id AND 
                     order_product.product_id = products.id AND orders.status = 'SUBMIT' 
                     AND orders.user_id = '$id_user' AND orders.customer_id IS NULL ");
-        $krj_paket = \App\Order::with('products_pkt')
-                    ->where('user_id',$id_user)
-                    ->where('status','=','SUBMIT')
-                    ->whereNull('customer_id')
-                    ->first();
+        $krj_paket = DB::select("SELECT orders.user_id, orders.status,orders.customer_id, 
+                    products.Product_name, products.image, products.price, products.discount,
+                    products.price_promo, order_product.id, order_product.order_id,
+                    order_product.product_id,order_product.quantity,order_product.group_id,order_product.bonus_cat  
+                    FROM order_product, products, orders WHERE order_product.group_id IS NOT NULL
+                    AND orders.id = order_product.order_id AND order_product.bonus_cat IS NULL AND
+                    order_product.product_id = products.id AND orders.status = 'SUBMIT' 
+                    AND orders.user_id = '$id_user' AND orders.customer_id IS NULL ");
         $item = DB::table('orders')
                     ->where('user_id','=',"$id_user")
                     ->where('orders.status','=','SUBMIT')
@@ -674,7 +677,14 @@ class CustomerKeranjangController extends Controller
                     ->join('order_product','order_product.order_id','=','orders.id')
                     ->where('user_id','=',"$id_user")
                     ->whereNull('orders.customer_id')
+                    ->distinct('order_product.product_id')
+                    /*->whereNull('order_product.group_id')*/
                     ->count();
+       /* $total_item = DB::table('orders')
+                    ->join('order_product','order_product.order_id','=','orders.id')
+                    ->where('user_id','=',"$id_user")
+                    ->whereNull('orders.customer_id')
+                    ->count();*/
         if ($total_item < 1){
             echo '<div id="accordion" class="fixed-bottom" style="border-radius:0;z-index:1;">
                     <div class="card" style="border-radius:0;">
@@ -711,8 +721,15 @@ class CustomerKeranjangController extends Controller
         }
         else
         {
-            //$session_id = $request->header('User-Agent');
-            $keranjang = \App\Order::with('products')
+            $krj_paket = DB::select("SELECT orders.user_id, orders.status,orders.customer_id, 
+                        products.Product_name, products.image, products.price, products.discount,
+                        products.price_promo, order_product.id, order_product.order_id,
+                        order_product.product_id,order_product.quantity,order_product.group_id,order_product.bonus_cat  
+                        FROM order_product, products, orders WHERE order_product.group_id IS NOT NULL
+                        AND orders.id = order_product.order_id AND order_product.bonus_cat IS NULL AND
+                        order_product.product_id = products.id AND orders.status = 'SUBMIT' 
+                        AND orders.user_id = '$id_user' AND orders.customer_id IS NULL ");
+            $keranjang = \App\Order::with('products_nonpaket')
                         ->where('status','=','SUBMIT')
                         ->where('user_id','=',"$id_user")
                         ->whereNull('customer_id')->get();
@@ -752,11 +769,93 @@ class CustomerKeranjangController extends Controller
                 <div id="collapse-4" class="collapse" data-parent="#accordion" style="" >
                     <div id="cont-collapse" class="container">
                         <div class="card-body" id="card-detail">
-                            <div class="col-md-12" style="padding-bottom:10rem;">
+                            <div class="col-md-12" style="padding-bottom:10rem;">';
+                            if($krj_paket != null){
+                            echo'<p id="p-title1" class="mb-2" style="font-weight:700;color: #153651;font-family: Montserrat;">Paket</p>
                                 <table class="table-detail" width="100%">
                                     <tbody>';
+                                            $groupby_paket = \DB::table('order_product')
+                                                            ->where('order_id',$item->id)
+                                                            ->whereNotNull('paket_id')
+                                                            ->whereNotNull('group_id')
+                                                            ->whereNull('bonus_cat')
+                                                            ->distinct()
+                                                            ->get(['paket_id','group_id']);
+                                                
+                                            foreach($groupby_paket as $dtl_pkt){
+                                                    $paket_name =\App\Paket::where('id',$dtl_pkt->paket_id)
+                                                                ->first();
+                                                    $group_name =\App\Group::where('id',$dtl_pkt->group_id)
+                                                                ->first();           
+                                                echo'<tr class="pb-0">
+                                                    <td width="30%" class="img-detail-cart" valign="top" style="padding-top:3%;">
+                                                        <img src="'.asset('storage/'.$group_name->group_image).'" 
+                                                        class="image-detail"  alt="...">
+                                                    </td>
+                                                    <td width="60%" class="td-desc-detail" align="left" valign="top" style="padding-top:3%;">
+                                                        <p style="color: #000">'.$paket_name->display_name.',</p>
+                                                        <p style="color: #000">'.$group_name->display_name.'</p>';
+                                                            if($item){
+                                                            $pkt_total_krj = \App\order_product::where('order_id',$item->id)
+                                                            ->where('group_id',$dtl_pkt->group_id)
+                                                            ->where('paket_id',$dtl_pkt->paket_id)
+                                                            ->whereNull('bonus_cat')
+                                                            ->sum('quantity');
+                                                            $pkt_pirce = \App\order_product::where('order_id',$item->id)
+                                                            ->where('group_id',$dtl_pkt->group_id)
+                                                            ->where('paket_id',$dtl_pkt->paket_id)
+                                                            ->whereNull('bonus_cat')
+                                                            ->sum(\DB::raw('price_item * quantity'));
+                                                            }
+                                                        
+                                                    echo'<h2 style="font-weight:700;color: #153651;font-family: Montserrat;">Rp.&nbsp;'.number_format($pkt_pirce, 0, ',', '.').',-</h2>
+                                                        
+                                                        <p style="color: #000"><span>Qty</span><span class="d-inline ml-2" style="color: #153651;font-weight:900;">'.$pkt_total_krj.'</span></p>
+                                                        <a onclick="open_detail_pkt('.$item->id.','.$dtl_pkt->paket_id.','.$dtl_pkt->group_id.')" style="cursor: pointer"><span class="badge badge-secondary">Detail Paket</span></a>
+
+                                                    </td>
+                                                    <td width="15%" align="right" valign="top" style="padding-top:3%;">
+                                                        <button class="btn btn-default" onclick="delete_kr_pkt()" style="">X</button>
+                                                        <input type="hidden"  id="order_id_delete_pkt" name="order_id" value="">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3" style="border-bottom: 1px solid #ddd;">
+                                                        <div class="row">
+                                                            <div class="col-3 pt-1">
+                                                                <p class="" style="font-weight:700;color: #153651;font-family: Montserrat;">Bonus :</p>
+                                                            </div>
+                                                            <div class="col-9">';
+                                                                $groupby_bns = \App\order_product::where('order_id',$item->id)
+                                                                                    ->where('paket_id',$dtl_pkt->paket_id)
+                                                                                    ->where('group_id',$dtl_pkt->group_id)
+                                                                                    ->whereNotNull('bonus_cat')
+                                                                                    ->get();
+                                                                                    //dd($groupby_bns);
+                                                                foreach($groupby_bns as $bns){
+                                                                    $prd_bns =\App\product::findOrfail($bns->product_id);
+                                                                    
+                                                                    echo'<p class="d-none d-md-block d-md-none mt-2" style="color: #000;margin-left:-11rem;">*' .$prd_bns->Product_name.'&nbsp;<span style="color: #153651;">('.$bns->quantity.')</span></p>
+                                                                    <p class="d-md-none mt-2 ml-n4" style="color: #000;font-size:3vw;">*'. $prd_bns->Product_name.'&nbsp;<span style="color: #153651;">('.$bns->quantity.')</span></p>';
+                                                                    
+                                                                }
+                                                            echo '</div>
+                                                        </div>
+                                                    </td>
+                                                </tr>';
+                                            }
+                                        
+                                echo'</tbody>
+                                </table>';
+                            }
+                            if($krj_paket != null){
+                                echo '<p id="p-title2" class="mt-4 mb-2" style="font-weight:700;color: #153651;font-family: Montserrat;">Produk Non-Paket</p>';
+                            }
+
+                            echo'<table class="table-detail" width="100%">
+                                    <tbody>';
                                         foreach($keranjang as $order){
-                                            foreach($order->products as $detil){
+                                            foreach($order->products_nonpaket as $detil){
                                             echo'<tr>
                                                 <td width="30%" class="img-detail-cart" valign="middle" style="border-bottom: 1px solid #ddd;padding-top:3%;">
                                                     <img src="'.asset('storage/'.$detil->image).'" 
