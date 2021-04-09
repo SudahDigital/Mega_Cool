@@ -12,8 +12,8 @@
     <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" >
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_1.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_1.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_3.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_2.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css')}}">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -389,9 +389,33 @@
             display: none;
         }
 
-        @media only screen and (max-width: 480px){
+        @media only screen and (max-width: 540px){
             .left-paddle {
              left: 10px;
+            }
+
+            .paddle_pop{
+                top:27%;
+            }
+
+            .paddle_pop_bonus{
+                bottom:13%;
+            }
+
+            .left-paddle_pop {
+                left: -1rem;
+            }
+
+            .left-paddle_pop_bonus {
+                left: -1rem;
+            }
+
+            .right-paddle_pop {
+                right: -1rem;
+            }
+
+            .right-paddle_pop_bonus {
+                right: -1rem;
             }
 
             .right-paddle {
@@ -1042,7 +1066,7 @@
                 <li class="">
                    <a href="{{ url('/') }}">Beranda</a>
                 </li>
-                
+                <!--
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Paket</a>
                     <ul class="collapse list-unstyled page-submenu" id="pageSubmenu">
@@ -1053,7 +1077,7 @@
                         @endforeach
                     </ul>
                 </li>
-                
+                -->
                 <li>
                    <a href="{{URL::route('profil.index')}}">Profile</a>
                 </li>

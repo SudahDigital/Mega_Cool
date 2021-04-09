@@ -64,6 +64,7 @@
 }
 
 @media (max-width: 1920px){
+
     .dot-top-right {
         width: 400px;
     }
@@ -197,6 +198,19 @@
 
     .contact-row{
         margin-top:8rem;
+    }
+
+    .input_item_pop{
+        padding-left: 1vw;
+        padding-right: 1vw;
+    }
+
+    .bt-add-paket{
+        font-size: 1vh
+    }
+
+    .text-qty-paket{
+        font-size: 1.2vh;
     }
 }
 
@@ -336,6 +350,10 @@
     .contact-row{
         margin-top:8rem;
     }
+
+    .text-qty-paket{
+        font-size: 1.5vh;
+      }
 }
 
 @media (max-width: 1366px){
@@ -474,6 +492,10 @@
     .contact-row{
         margin-top:8rem;
     }
+
+    .text-qty-paket{
+        font-size: 2vh;
+      }
 }
 
 @media (max-width: 1024px){

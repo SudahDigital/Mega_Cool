@@ -89,13 +89,13 @@ Home
                                         </button>
 
                                         <!--paket-->
-                                        <div class="col-md-12 ml-5 mt-4">
+                                        <div class="col-md-12 mt-4 margin_paket_pop_head px-5">
                                             <h5 class="head_pop_prod" style="">Paket {{$value->display_name}}</h5>
                                         </div>
                                         
                                         <div class="container list-product" style="">
                                             <div class="row mt-0">
-                                                <div class="col-md-12 mt-4  menu-wrapper_pop px-5">
+                                                <div class="col-md-12 mt-4 px-auto menu-wrapper_pop margin_paket_pop px-5">
                                                     <div class="row section_content flex-row flex-nowrap menu_pop" style="overflow-x:auto;overflow-y:hidden;z-index:2222; ">
                                                         @foreach($value->item_active as $p_group)
                                                             <div id="product_list"  class="col-6 col-md-4 mx-0 d-flex item_pop" style="">
@@ -136,7 +136,7 @@ Home
                                                                             
                                                                             <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_pkt{{$p_group->id}}" style="">Rp.  {{ $item && $qty_on_paket != NULL ?  number_format($harga_on_paket, 0, ',', '.') : number_format($p_group->price, 0, ',', '.') }},-</p>
                                                                         </div>
-                                                                        <div class="justify-content-center input_item_pop mt-auto">
+                                                                        <div class="justify-content-center input_item_pop mt-auto px-3">
                                                                             <input type="hidden" id="jumlah_val_pkt{{$p_group->id}}" name="" value="{{$item && $qty_on_paket != NULL ? "$qty_on_paket->quantity" : '0'}}">
                                                                             <input type="hidden" id="jumlah_pkt{{$p_group->id}}" name="quantity_pkt" value="{{$item && $qty_on_paket != NULL ? "$qty_on_paket->quantity" : '0'}}">
                                                                             <input type="hidden" id="harga_pkt{{$p_group->id}}" name="price_pkt" value="{{$p_group->price}}">
@@ -175,7 +175,7 @@ Home
                                                                                         padding-left:0;
                                                                                         height:25px" onclick="button_plus_pkt('{{$p_group->id}}')">+</button> 
                                                                             </div>
-                                                                            <button class="btn btn-block button_add_to_cart respon mt-1" onclick="add_tocart_pkt('{{$p_group->id}}','{{$value->id}}')" style="font-size: 2vh">Simpan</button> 
+                                                                            <button class="btn bt-add-paket btn-block button_add_to_cart respon mt-1" onclick="add_tocart_pkt('{{$p_group->id}}','{{$value->id}}')" style="">Simpan</button> 
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -209,16 +209,16 @@ Home
                                         </div>
 
                                         <!--bonus-->
-                                        <div class="col-md-12 ml-5 mt-4">
+                                        <div class="col-md-12 px-5 mt-4 margin_paket_pop_head">
                                             <h5 class="head_pop_prod" style="">+ Bonus</h5>
                                         </div>
                                         <div class="container" style="">
                                             <div class="row mt-0">
-                                                <div class="col-md-12 mt-4  menu-wrapper_pop_bonus px-5">
+                                                <div class="col-md-12 mt-4 margin_paket_bonus menu-wrapper_pop_bonus px-5">
                                                     <div class="row section_content flex-row flex-nowrap menu_pop_bonus" style="overflow-x:auto;overflow-y:hidden;z-index:2222; ">
                                                         @foreach($value->item_active as $p_group)
                                                             <div class="col-12 col-md-6 d-flex item_pop_bonus pb-4" style="">
-                                                                <div class="card " style="border-radius: 20px;">
+                                                                <div class="card card_margin_bonus" style="border-radius: 20px;">
                                                                     <div class="card-horizontal py-0">
                                                                         @php
                                                                             if($item){
@@ -297,7 +297,10 @@ Home
                                                                                 </div> 
                                                                             </div>
                                                                             <div class="float-right mt-2">
-                                                                                <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart_bns('{{$p_group->id}}','{{$value->id}}')" style="font-size: 2vh">Simpan</button>
+                                                                                <div id="product_list_bns">
+                                                                                    <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart_bns('{{$p_group->id}}','{{$value->id}}')" style="">Simpan</button>
+                                                                                </div>
+                                                                                
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -351,14 +354,14 @@ Home
                                             }
                                         @endphp
                                         <div class="mr-auto">
-                                            <p class="mb-n2 mt-n2">
-                                                <span style="color: #000;font-weight:700;font-size:2vh;">* Total Quantity Paket&nbsp;&nbsp;: <a id="total_qty{{$value->id}}">{{$item ? $pkt_total : '0' }}</a></span>
+                                            <p class="mb-0">
+                                                <span class="text-qty-paket" style="color: #000;font-weight:700;">* Total Quantity Paket&nbsp;&nbsp;: <a id="total_qty{{$value->id}}">{{$item ? $pkt_total : '0' }}</a></span>
                                             </p>
-                                            <p class="mb-n2">
-                                                <span style="color: #000;font-weight:700;font-size:2vh;">* Total Quantity Bonus : <a id="total_bns{{$value->id}}">{{$item ? $bns_total : '0' }}</a></span>
+                                            <p class="mb-0">
+                                                <span class="text-qty-paket" style="color: #000;font-weight:700;">* Total Quantity Bonus : <a id="total_bns{{$value->id}}">{{$item ? $bns_total : '0' }}</a></span>
                                             </p>
-                                            <p class="mt-n1 mb-n2">    
-                                                <span style="color:#1A4066;;font-weight:700;font-size:2vh;">* Jumlah Max. Bonus &nbsp;&nbsp;&nbsp;: <a id="bonus_max{{$value->id}}">{{$item ? $desimal_kali : '0' }}</a></span>
+                                            <p class="">    
+                                                <span class="text-qty-paket" style="color:#1A4066;;font-weight:700;">* Jumlah Max. Bonus &nbsp;&nbsp;&nbsp;: <a id="bonus_max{{$value->id}}">{{$item ? $desimal_kali : '0' }}</a></span>
                                             </p>
                                             
                                         </div>
@@ -366,7 +369,7 @@ Home
                                         <input type="hidden" value="{{$item ? $bns_total : '0' }}" id="bns_total{{$value->id}}">
                                         <input type="hidden" value="{{$item ? $desimal_kali : '0' }}" id="max_bonus{{$value->id}}">
                                         <input type="hidden" value="{{$item ? $item->id : '' }}" id="orderid_addcart{{$value->id}}">
-                                        <a type="button" class="btn button_add_to_cart float-right mb-2 mr-3" onclick="addcart_allpaket('{{$value->id}}')" style="padding: 10px 20px; font-size:2.5vh;">Simpan Ke-Keranjang</a>
+                                        <a type="button" class="simpan-keranjang-paket btn button_add_to_cart float-right mb-2 mr-3" onclick="addcart_allpaket('{{$value->id}}')" style="padding: 10px 20px;">Simpan Ke-Keranjang</a>
                                     </div>
                                 </div>
                             </div>
@@ -636,6 +639,22 @@ Home
         $('#chk-bl-btn').addClass('justify-content-center');
         $('#divchecktunai').addClass('mb-2');
         $('#dropfilter').removeClass('mt-3');
+        $('.margin_paket_pop').removeClass('px-5');
+        $('.margin_paket_bonus').removeClass('px-5');
+        $('.margin_paket_pop_head').removeClass('px-5');
+        $('.margin_paket_pop').addClass('px-0');
+        $('.margin_paket_bonus').addClass('px-0');
+        $('.modal-footer').removeClass('px-5');
+        $('.modal-footer').addClass('px-4');
+        $('.simpan-keranjang-paket').addClass('btn-block');
+        $('.simpan-keranjang-paket').removeClass('mr-3');
+        $('.input_item_pop').addClass('px-3');
+        //$('.card_margin_bonus').addClass('ml-n2 mr-2');
+        $('.menu_pop_bonus').addClass('mx-auto');
+        $('.margin_paket_pop_head').addClass('mx-0');
+        $('.bt-add-paket').addClass('mb-3');
+        $('.input-group').addClass('mt-n2');
+        //$('.margin_paket_pop').removeClass('col-md-12'); 
         //$('#dropfilter').addClass('mt-2');
     }
     if ($(window).width() <= 480) {

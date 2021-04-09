@@ -41,7 +41,8 @@ class OrdersExportMapping implements FromCollection, WithMapping, WithHeadings, 
                 $p->Product_name,
                 $p->pivot->quantity,
                 $p->pivot->price_item,
-                Carbon::parse($order->created_at)->toFormattedDateString()
+                $order->created_at
+                //Carbon::parse($order->created_at)->toFormattedDateString()
             ]);
         }
         return $rows;
