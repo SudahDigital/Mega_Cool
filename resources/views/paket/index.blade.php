@@ -60,9 +60,9 @@
 			<tr>
 				<th>No</th>
 				<th>Name</th>
+				<th>Display Name</th>
 				<th>Bonus Quantity</th>
 				<th>Purchase Quantity</th>
-				<th>Display Name</th>
 				<th>Status</th>
 				<th width="25%">Action</th>
 			</tr>

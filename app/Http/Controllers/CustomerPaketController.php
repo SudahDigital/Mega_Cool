@@ -28,14 +28,14 @@ class CustomerPaketController extends Controller
                     AND orders.id = order_product.order_id AND 
                     order_product.product_id = products.id AND orders.status = 'SUBMIT' 
                     AND orders.user_id = '$id_user' AND orders.customer_id IS NULL ");
-       $krj_paket = DB::select("SELECT orders.user_id, orders.status,orders.customer_id, 
+       /*$krj_paket = DB::select("SELECT orders.user_id, orders.status,orders.customer_id, 
                     products.Product_name, products.image, products.price, products.discount,
                     products.price_promo, order_product.id, order_product.order_id,
                     order_product.product_id,order_product.quantity,order_product.group_id,order_product.bonus_cat  
                     FROM order_product, products, orders WHERE order_product.group_id IS NOT NULL
                     AND orders.id = order_product.order_id AND order_product.bonus_cat IS NULL AND
                     order_product.product_id = products.id AND orders.status = 'SUBMIT' 
-                    AND orders.user_id = '$id_user' AND orders.customer_id IS NULL ");
+                    AND orders.user_id = '$id_user' AND orders.customer_id IS NULL ");*/
         $item = DB::table('orders')
                     ->where('user_id','=',"$id_user")
                     ->where('orders.status','=','SUBMIT')
@@ -66,7 +66,6 @@ class CustomerPaketController extends Controller
                 'banner'=>$banner,
                 'banner_active'=>$banner_active,
                 'paket_id'=>$paket_id,
-                'krj_paket'=>$krj_paket
             ];
        
         return view('customer.paket',$data);
@@ -344,31 +343,27 @@ class CustomerPaketController extends Controller
 
     public function delete_kr_pkt(Request $request){
         
-        $id = $request->get('id');
         $order_id = $request->get('order_id');
         $paket_id = $request->get('paket_id');
         $group_id = $request->get('group_id');
-        $order_product = order_product::where('order_id','=',$order_id)
-                        ->count();
-                        if($order_product <= 1){
-                        $delete = DB::table('order_product')->where('id', $id)->delete();   
-                        if($delete){
-                            //DB::table('orders')->where('id', $order_id)->delete();
-                            $orders = Order::findOrFail($order_id);
-                            $orders->total_price = 0;
-                            $orders->save();
-                            }
-                        }
-                        else{
-                             $delete2 = DB::table('order_product')->where('id', $id)->delete();
-                             if($delete2){
-                                $orders = Order::findOrFail($order_id);
-                                $total_price = $price * $quantity;
-                                $orders->total_price -= $total_price;
-                                $orders->save();
-                             }
-                        }
-                        return redirect()->back()->with('status','Product berhasil dihapus dari keranjang');
+        $orders = \App\Order::findOrfail($order_id);
+        $order_product = \App\order_product::where('order_id',$order_id)
+                        ->where('paket_id',$paket_id)
+                        ->where('group_id',$group_id)
+                        ->whereNull('bonus_cat')->get();
+        $total_price= 0;
+        foreach($order_product as $or){
+            $price = $or->price_item;
+            $total_price += $price * $or->quantity;
+        }
+        $orders->total_price -= $total_price;
+        $orders->save();
+        if($orders->save()){
+            $order_product = \App\order_product::where('order_id',$order_id)
+                        ->where('paket_id',$paket_id)
+                        ->where('group_id',$group_id)
+                        ->delete();
+        }
     }
 }
 

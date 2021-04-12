@@ -14,8 +14,9 @@ class ProfilController extends Controller
     public function index()
     {
         $id=\Auth::user()->id;
+        $paket = \App\Paket::all();//paginate(10);
         $user = \App\User::where('id',$id)->first();
-        return view('customer.profil',['user'=> $user]);
+        return view('customer.profil',['user'=> $user,'paket'=>$paket]);
     }
 
     /**

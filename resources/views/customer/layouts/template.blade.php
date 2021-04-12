@@ -69,7 +69,7 @@
                 top: 1rem;
             }
 
-            #dropfilter{
+            .dropfilter{
                 margin-top: 11px;
             }
         }
@@ -152,18 +152,6 @@
                 margin-bottom: 0;
             }
         }
-
-        /*.alert{
-            position:fixed;
-            top:5%; 
-            width:50%; 
-            z-index:9999; 
-            margin: 0 auto; 
-            background: rgba(0, 0, 0, 0.7); 
-            border:none; 
-            color:#ffffff; 
-            font-weight:bold;
-        }*/
 
         .select2-selection--single {
             /*height: 100% !important;*/
@@ -534,7 +522,7 @@
             transform: translateY(-3px);
             box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3); 
         }
-
+        
         @media (max-width: 2560px){
             .button_welcome {
                 font-size: 34px;
@@ -649,6 +637,12 @@
                 left: 5%;
                 top: 5%;
             }
+
+            .swal2-toast{
+                /*font-size: 10px !important;*/
+                width:420px !important;
+                max-width: 100% !important;
+            }
             
         }
 
@@ -663,6 +657,12 @@
 
             #my-welcome-message {
                 top: 2%;
+            }
+
+            .swal2-toast{
+                /*font-size: 10px !important;*/
+                width:400px !important;
+                max-width: 100% !important;
             }
         }
 
@@ -680,6 +680,12 @@
                 left: 5%;
                 top: 5%;
             }
+
+            .swal2-toast{
+                /*font-size: 10px !important;*/
+                width:380px !important;
+                max-width: 100% !important;
+            }
         }
 
         @media (max-width: 411px){
@@ -689,6 +695,12 @@
                 top: 18.5rem;
                 right: 12%;
                 font-weight: 600;
+            }
+
+            .swal2-toast{
+                font-size: 14px !important;
+                width:360px !important;
+                max-width: 100% !important;
             }
         }
 
@@ -700,6 +712,12 @@
                 right: 12%;
                 font-weight: 600;
             }
+
+            .swal2-toast{
+                font-size: 14px !important;
+                width:350px !important;
+                max-width: 100% !important;
+            }
         }
 
         @media (max-width: 375px){
@@ -709,6 +727,12 @@
                 top: 16.8rem;
                 right: 12%;
                 font-weight: 600;
+            }
+
+            .swal2-toast{
+                font-size: 14px !important;
+                width:340px !important;
+                max-width: 100% !important;
             }
         }
 
@@ -720,6 +744,12 @@
                 right: 12%;
                 font-weight: 600;
             }
+
+            .swal2-toast{
+                font-size: 14px !important;
+                width:320px !important;
+                max-width: 100% !important;
+            }
         }
 
         @media (max-width: 338px){
@@ -729,6 +759,12 @@
                 top: 15.4rem;
                 right: 12%;
                 font-weight: 600;
+            }
+
+            .swal2-toast{
+                font-size: 14px !important;
+                width:280px !important;
+                max-width: 100% !important;
             }
         }
 
@@ -1038,13 +1074,6 @@
 
     <div id="loader" class="lds-dual-ring hidden overlay_ajax"><img class="hidden" src="{{ asset('assets/image/preloader.gif') }}" width="80" alt="preloader"></div>
     
-    <!--
-    <div id="my-welcome-message" class="">
-        <img src="{{ asset('assets/image/popup-cara-belanja-lg.jpg') }}" class="d-none d-md-block d-md-none w-100" alt="popup-cara-belanja-lg" style="">
-        <img src="{{ asset('assets/image/popup-cara-belanja.jpg') }}" class="d-md-none w-100 h-100" alt="popup-cara-belanja" style="">
-    </div>
-    -->
-
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -1066,7 +1095,7 @@
                 <li class="">
                    <a href="{{ url('/') }}">Beranda</a>
                 </li>
-                <!--
+                
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Paket</a>
                     <ul class="collapse list-unstyled page-submenu" id="pageSubmenu">
@@ -1077,7 +1106,7 @@
                         @endforeach
                     </ul>
                 </li>
-                -->
+                
                 <li>
                    <a href="{{URL::route('profil.index')}}">Profile</a>
                 </li>
@@ -1309,7 +1338,7 @@
             else{
                 const Toast = Swal.mixin({
                     toast: true,
-                    position: 'top-center',
+                    position: 'center',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
@@ -1825,7 +1854,7 @@
                 if (jumlah<1) {
                     const Toast = Swal.mixin({
                     toast: true,
-                    position: 'top-center',
+                    position: 'center',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
@@ -1895,7 +1924,7 @@
                 if (jumlah<1) {
                     const Toast = Swal.mixin({
                     toast: true,
-                    position: 'top-center',
+                    position: 'center',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
@@ -1966,7 +1995,7 @@
                     $('#button_minus_pkt'+id).attr('disabled', true);
                     const Toast = Swal.mixin({
                     toast: true,
-                    position: 'top-center',
+                    position: 'center',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
@@ -2039,7 +2068,7 @@
                     $('#button_minus_bns'+id).attr('disabled', true);
                     const Toast = Swal.mixin({
                     toast: true,
-                    position: 'top-center',
+                    position: 'center',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
@@ -2254,7 +2283,7 @@
             if (jumlah<1) {
                 const Toast = Swal.mixin({
                     toast: true,
-                    position: 'top-center',
+                    position: 'center',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
@@ -2302,7 +2331,7 @@
             if (jumlah<1) {
                 const Toast = Swal.mixin({
                     toast: true,
-                    position: 'top-center',
+                    position: 'center',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
@@ -2432,7 +2461,7 @@
             if (quantity <= 0 || quantity ==""){
                 const Toast = Swal.mixin({
                     toast: true,
-                    position: 'top-center',
+                    position: 'center',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
@@ -2471,7 +2500,7 @@
                         // UBAH FORMAT UANG INDONESIA
                         const Toast = Swal.mixin({
                             toast: true,
-                            position: 'top-center',
+                            position: 'center',
                             showConfirmButton: false,
                             timer: 3000,
                             timerProgressBar: true,
@@ -2538,6 +2567,9 @@
                                     $('#chk-bl-btn').removeClass('justify-content-end');
                                     $('#chk-bl-btn').addClass('justify-content-center');
                                     $('#divchecktunai').addClass('mb-2');
+                                    $('.dropfilter').removeClass('mt-3');
+                                    $('#p-title1').addClass('ml-n3');
+                                    $('#p-title2').addClass('ml-n3');
                                     }
                                     if ($(window).width() <= 480) {
                                         $('#cont-collapse').removeClass('container');
@@ -2567,7 +2599,7 @@
             if (quantity <= 0 || quantity ==""){
                 const Toast = Swal.mixin({
                     toast: true,
-                    position: 'top-center',
+                    position: 'center',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
@@ -2606,7 +2638,7 @@
                         // UBAH FORMAT UANG INDONESIA
                         const Toast = Swal.mixin({
                             toast: true,
-                            position: 'top-center',
+                            position: 'center',
                             showConfirmButton: false,
                             timer: 3000,
                             timerProgressBar: true,
@@ -2673,6 +2705,9 @@
                                     $('#chk-bl-btn').removeClass('justify-content-end');
                                     $('#chk-bl-btn').addClass('justify-content-center');
                                     $('#divchecktunai').addClass('mb-2');
+                                    $('.dropfilter').removeClass('mt-3');
+                                    $('#p-title1').addClass('ml-n3');
+                                    $('#p-title2').addClass('ml-n3');
                                     }
                                     if ($(window).width() <= 480) {
                                         $('#cont-collapse').removeClass('container');
@@ -2708,7 +2743,7 @@
             if (quantity <= 0 || quantity ==""){
                 const Toast = Swal.mixin({
                     toast: true,
-                    position: 'top-center',
+                    position: 'center',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
@@ -2763,7 +2798,7 @@
                         if( b < a){
                             const Toast = Swal.mixin({
                                 toast: true,
-                                position: 'top-center',
+                                position: 'center',
                                 showConfirmButton: false,
                                 timer: 3000,
                                 timerProgressBar: true,
@@ -2826,6 +2861,7 @@
                                 },
                                 success: function (data){
                                     $('#orderid_delete_pkt'+id).val(data);
+                                    $('#orderid_addcart'+group_id).val(data);
                                     $.ajaxSetup({
                                             headers: {
                                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -2861,7 +2897,7 @@
                                     });
                                     const Toast = Swal.mixin({
                                         toast: true,
-                                        position: 'top-center',
+                                        position: 'center',
                                         showConfirmButton: false,
                                         timer: 3000,
                                         timerProgressBar: true,
@@ -2900,6 +2936,7 @@
                             },
                             success: function (data){
                                 $('#orderid_delete_pkt'+id).val(data);
+                                $('#orderid_addcart'+group_id).val(data);
                                 $.ajaxSetup({
                                         headers: {
                                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -2935,7 +2972,7 @@
                                 });
                                 const Toast = Swal.mixin({
                                     toast: true,
-                                    position: 'top-center',
+                                    position: 'center',
                                     showConfirmButton: false,
                                     timer: 3000,
                                     timerProgressBar: true,
@@ -2976,7 +3013,7 @@
             if (quantity <= 0 || quantity ==""){
                 const Toast = Swal.mixin({
                     toast: true,
-                    position: 'top-center',
+                    position: 'center',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
@@ -3030,7 +3067,7 @@
                     if(hitung_total_bonus > bns_max){
                         const Toast = Swal.mixin({
                         toast: true,
-                        position: 'top-center',
+                        position: 'center',
                         showConfirmButton: false,
                         timer: 3000,
                         timerProgressBar: true,
@@ -3124,7 +3161,7 @@
                                 });
                                 const Toast = Swal.mixin({
                                     toast: true,
-                                    position: 'top-center',
+                                    position: 'center',
                                     showConfirmButton: false,
                                     timer: 3000,
                                     timerProgressBar: true,
@@ -3159,7 +3196,7 @@
             if (order_id == "" || total_paket <= 0){
                 const Toast = Swal.mixin({
                     toast: true,
-                    position: 'top-center',
+                    position: 'center',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
@@ -3176,7 +3213,7 @@
             }else if(total_paket > 0 && bns_max <= 0){
                 const Toast = Swal.mixin({
                     toast: true,
-                    position: 'top-center',
+                    position: 'center',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
@@ -3356,7 +3393,7 @@
             if (jumlah<1) {
                 const Toast = Swal.mixin({
                     toast: true,
-                    position: 'top-center',
+                    position: 'center',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
@@ -3668,6 +3705,9 @@
                                     $('#chk-bl-btn').removeClass('justify-content-end');
                                     $('#chk-bl-btn').addClass('justify-content-center');
                                     $('#divchecktunai').addClass('mb-2');
+                                    $('.dropfilter').removeClass('mt-3');
+                                    $('#p-title1').addClass('ml-n3');
+                                    $('#p-title2').addClass('ml-n3');
                                     }
                                     if ($(window).width() <= 480) {
                                         $('#cont-collapse').removeClass('container');
@@ -3721,7 +3761,7 @@
                 if(a < b) {
                     const Toast = Swal.mixin({
                         toast: true,
-                        position: 'top-center',
+                        position: 'center',
                         showConfirmButton: false,
                         timer: 3000,
                         timerProgressBar: true,
@@ -3784,7 +3824,7 @@
                             
                                 const Toast = Swal.mixin({
                                     toast: true,
-                                    position: 'top-center',
+                                    position: 'center',
                                     showConfirmButton: false,
                                     timer: 3000,
                                     timerProgressBar: true,
@@ -3852,7 +3892,7 @@
                         
                             const Toast = Swal.mixin({
                                 toast: true,
-                                position: 'top-center',
+                                position: 'center',
                                 showConfirmButton: false,
                                 timer: 3000,
                                 timerProgressBar: true,
@@ -3940,7 +3980,7 @@
                         
                             const Toast = Swal.mixin({
                                 toast: true,
-                                position: 'top-center',
+                                position: 'center',
                                 showConfirmButton: false,
                                 timer: 3000,
                                 timerProgressBar: true,
@@ -4075,56 +4115,58 @@
         function delete_kr_pkt(order_id,paket_id,group_id)
         {
             $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                });
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             $.ajax({
                 url : '{{URL::to('/keranjang/delete_kr/paket')}}',
                 type:'POST',
-                dataType: 'json',
                 data:{
                     order_id : order_id,
                     paket_id : paket_id,
                     group_id : group_id
                 },
-                success: function(response){
-                        var len = 0;
-                        $('#body_detail_pkt').empty();
-                        if(response['data'] != null){
-                            len = response['data'].length;
-                        }
-
-                        if(len > 0){
-                            
-                            for(var i=0; i<len; i++){
-                                var desc = response['data'][i].Product_name;
-                                var qty = response['data'][i].quantity;
-                                var prc = response['data'][i].price_item;
-                                var ttl = parseInt(prc) * parseInt(qty);
-                                // UBAH FORMAT UANG INDONESIA
-                                var	number_string = ttl.toString();
-                                var sisa 	= number_string.length % 3;
-                                var rupiah 	= number_string.substr(0, sisa);
-                                var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
-
-                                if (ribuan) {
-                                separator = sisa ? '.' : '';
-                                rupiah += separator + ribuan.join('.');
-                                }
-
-                                ttl = rupiah +",-";
-                                var tr_str = "<tr>\
-                                                <td>"+desc+"</td>\
-                                                <td>"+qty+"</td>\
-                                                <td>"+ttl+"</td>\
-                                             </tr>";
-                                $("#body_detail_pkt").append(tr_str);
+                beforeSend: function () { // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
+                    $('#loader').removeClass('hidden')
+                },              
+                success: function (data) {
+                    $.ajax({
+                        url : '{{URL::to('/home_cart')}}',
+                        type : 'GET',
+                        success: function (response) {
+                            // We get the element having id of display_info and put the response inside it
+                            $( '#accordion' ).html(response);
+                            $('#collapse-4').addClass('show');
+                            if ($(window).width() < 601) {
+                                $('#div_total').removeClass('float-left');
+                                //$('#div_total').addClass('justify-content-center');
+                                $('#div_total').removeClass('mt-2');
+                                $('#div_total').addClass('mb-2');
+                                $('#beli_sekarang').removeClass('float-right');
+                                $('#beli_sekarang').addClass('btn-block');
+                                $('#beli_sekarang').addClass('mb-0');
+                                $('#chk-bl-btn').removeClass('justify-content-end');
+                                $('#chk-bl-btn').addClass('justify-content-center');
+                                $('#divchecktunai').addClass('mb-2');
+                                $('.dropfilter').removeClass('mt-3');
+                                $('#p-title1').addClass('ml-n3');
+                                $('#p-title2').addClass('ml-n3');
                             }
-                            $("#DeatailPaket").modal('show');
+                            if ($(window).width() <= 480) {
+                                $('#cont-collapse').removeClass('container');
+                                
+                            }
+                        },
+                        complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                            $('#loader').addClass('hidden')
                         }
-                        
-                    }
+                    });
+                },
+                
+                error: function (data) {
+                    console.log('Error:', data);
+                }
             });
         }
 

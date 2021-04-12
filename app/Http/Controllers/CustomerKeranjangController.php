@@ -55,14 +55,14 @@ class CustomerKeranjangController extends Controller
                     AND orders.id = order_product.order_id AND 
                     order_product.product_id = products.id AND orders.status = 'SUBMIT' 
                     AND orders.user_id = '$id_user' AND orders.customer_id IS NULL ");
-        $krj_paket = DB::select("SELECT orders.user_id, orders.status,orders.customer_id, 
+        /*$krj_paket = DB::select("SELECT orders.user_id, orders.status,orders.customer_id, 
                     products.Product_name, products.image, products.price, products.discount,
                     products.price_promo, order_product.id, order_product.order_id,
                     order_product.product_id,order_product.quantity,order_product.group_id,order_product.bonus_cat  
                     FROM order_product, products, orders WHERE order_product.group_id IS NOT NULL
                     AND orders.id = order_product.order_id AND order_product.bonus_cat IS NULL AND
                     order_product.product_id = products.id AND orders.status = 'SUBMIT' 
-                    AND orders.user_id = '$id_user' AND orders.customer_id IS NULL ");
+                    AND orders.user_id = '$id_user' AND orders.customer_id IS NULL ");*/
         $item = DB::table('orders')
                     ->where('user_id','=',"$id_user")
                     ->where('orders.status','=','SUBMIT')
@@ -94,7 +94,6 @@ class CustomerKeranjangController extends Controller
                 'cat_count'=>$cat_count,
                 'banner'=>$banner,
                 'banner_active'=>$banner_active,
-                'krj_paket'=>$krj_paket
                 ];
        
         return view('customer.content_customer',$data);
@@ -358,16 +357,93 @@ class CustomerKeranjangController extends Controller
             //$total_ongkir  = 15000;
             //$total_bayar  = $total_pesanan;
 
-            $href='*Hello Admin Mega Cools*,%0A%0A*Detail Sales*%0ANama : '.$user->name.',%0AEmail : '.$user->email.',%0ANo. Hp : ' .$user->phone.',%0ASales Area : ' .$user->sales_area.',%0A%0A*Detail Pelanggan*%0ANama  : '.$customer->name.',%0AEmail : '.$customer->email.',%0ANo. WA : '.$customer->phone.',%0ANo. Owner : '.$customer->phone_owner.',%0ANo. Toko : '.$customer->phone_store.',%0ANama Toko : '.$customer->store_name.',%0AAlamat : '.$customer->address.',%0A%0A*Detail Pesanan*%0A';
+$txt_descwa='*Hello Admin Mega Cools*,
+
+*Detail Sales*
+Nama : '.$user->name.',
+Email : '.$user->email.',
+No. Hp : ' .$user->phone.',
+Sales Area : ' .$user->sales_area.',
+
+*Detail Pelanggan*
+Nama  : '.$customer->name.',
+Email : '.$customer->email.',
+No. WA : '.$customer->phone.',
+No. Owner : '.$customer->phone_owner.',
+No. Toko : '.$customer->phone_store.',
+Nama Toko : '.$customer->store_name.',
+Alamat : '.$customer->address.',
+';
+
+                //$href=urlencode($txt_wa);
                 if($orders->save()){
+                $groupby_paket = DB::table('order_product')
+                                ->where('order_id',$id)
+                                ->whereNotNull('paket_id')
+                                ->whereNotNull('group_id')
+                                ->whereNull('bonus_cat')
+                                ->distinct()
+                                ->get(['paket_id','group_id']);
+                $krj_paket=count($groupby_paket);
+                if($krj_paket > 0){
+$ttle_pesan_pkt='*Detail Pesanan Paket*
+';
+$ttle_bns='*Bonus*
+';
+$no=0;
+                    foreach($groupby_paket as $key=>$dtl_pkt){
+                        $no++;
+                        $paket_name =\App\Paket::where('id',$dtl_pkt->paket_id)
+                                    ->first();
+                        $group_name =\App\Group::where('id',$dtl_pkt->group_id)
+                                    ->first();
+                        $ttle_pesan_pkt.= '*_'.$no.'. '.$paket_name->display_name.' - '.$group_name->display_name.':_*
+';
+                        $data_paket = DB::table('order_product')
+                                    ->join('products','order_product.product_id','=','products.id')
+                                    ->where('order_id','=',"$id")
+                                    ->where('group_id','=',$dtl_pkt->group_id)
+                                    ->where('paket_id','=',$dtl_pkt->paket_id)
+                                    ->whereNull('bonus_cat')
+                                    ->get();
+                        foreach($data_paket as $key=>$dp){
+                            $ttle_pesan_pkt.='* '.$dp->Product_name.' (Qty :'.$dp->quantity.')
+';
+                        }
+
+                        $data_bonus = DB::table('order_product')
+                                    ->join('orders','order_product.order_id','=','orders.id')
+                                    ->join('products','order_product.product_id','=','products.id')
+                                    ->where('orders.id','=',"$id")
+                                    ->where('group_id','=',$dtl_pkt->group_id)
+                                    ->where('paket_id','=',$dtl_pkt->paket_id)
+                                    ->whereNotNull('bonus_cat')
+                                    ->get();
+                        foreach($data_bonus as $db){
+                            $ttle_pesan_pkt.= '* '.$db->Product_name.' (Qty :'.$db->quantity.'~ *Bonus*)
+';
+                        }
+                    }
+                }
+                
+                //detil non paket
                 $pesan = DB::table('order_product')
                         ->join('orders','order_product.order_id','=','orders.id')
                         ->join('products','order_product.product_id','=','products.id')
                         ->where('orders.id','=',"$id")
+                        ->where('group_id','=',NULL)
+                        ->where('paket_id','=',NULL)
                         ->get();
-                foreach($pesan as $key=>$tele){
-                $href.='*'.$tele->Product_name.' (Qty :'.$tele->quantity.')%0A';
+                if(count($pesan) > 0){
+$ttle_nonpkt='*Detail Pesanan Non Paket*
+';
+                    foreach($pesan as $key=>$tele){
+                        $ttle_nonpkt.='* '.$tele->Product_name.' (Qty :'.$tele->quantity.')
+';
+                    }
                 }
+                
+
                 if($request->get('voucher_code_hide_modal')!= ""){
                     if ($type == 1){
                         $info_harga = '*Total Pesanan* : Rp.'.number_format(($sum_novoucher), 0, ',', '.').'%0A*Pembayaran* : '.$payment_method;
@@ -383,9 +459,20 @@ class CustomerKeranjangController extends Controller
                 }
                 else{
                     $notes_wa = '-';
+                } 
+
+                if(($krj_paket > 0) && (count($pesan) > 0)){
+                    $list_text = urlencode($txt_descwa).'%0A'.urlencode($ttle_pesan_pkt).'%0A'.urlencode($ttle_nonpkt);
                 }
+                elseif(($krj_paket > 0) && (count($pesan) <= 0)){
+                    $list_text = urlencode($txt_descwa).'%0A'.urlencode($ttle_pesan_pkt);
+                }
+                else{
+                    $list_text = urlencode($txt_descwa).'%0A'.urlencode($ttle_nonpkt);
+                }
+
                 $note_sales = '*Notes* : '.$notes_wa;
-                $text_wa=$href.'%0A'.$info_harga.'%0A'.$note_sales;
+                $text_wa=$list_text.'%0A'.$info_harga.'%0A'.$note_sales;
             
                 $url = "https://api.whatsapp.com/send?phone=6281288222777&text=$text_wa";
                 return Redirect::to($url);
@@ -721,14 +808,6 @@ class CustomerKeranjangController extends Controller
         }
         else
         {
-            $krj_paket = DB::select("SELECT orders.user_id, orders.status,orders.customer_id, 
-                        products.Product_name, products.image, products.price, products.discount,
-                        products.price_promo, order_product.id, order_product.order_id,
-                        order_product.product_id,order_product.quantity,order_product.group_id,order_product.bonus_cat  
-                        FROM order_product, products, orders WHERE order_product.group_id IS NOT NULL
-                        AND orders.id = order_product.order_id AND order_product.bonus_cat IS NULL AND
-                        order_product.product_id = products.id AND orders.status = 'SUBMIT' 
-                        AND orders.user_id = '$id_user' AND orders.customer_id IS NULL ");
             $keranjang = \App\Order::with('products_nonpaket')
                         ->where('status','=','SUBMIT')
                         ->where('user_id','=',"$id_user")
@@ -737,6 +816,10 @@ class CustomerKeranjangController extends Controller
                         ->where('user_id','=',"$id_user")
                         ->where('orders.status','=','SUBMIT')
                         ->whereNull('orders.customer_id')
+                        ->first();
+            $krj_paket = \App\order_product::where('order_id',$item->id)
+                        ->whereNotnull('paket_id')
+                        ->whereNotnull('order_id')
                         ->first();
             $item_name = DB::table('orders')
                         ->join('order_product','order_product.order_id','=','orders.id')
@@ -770,7 +853,7 @@ class CustomerKeranjangController extends Controller
                     <div id="cont-collapse" class="container">
                         <div class="card-body" id="card-detail">
                             <div class="col-md-12" style="padding-bottom:10rem;">';
-                            if($krj_paket != null){
+                            if($krj_paket !=null){
                             echo'<p id="p-title1" class="mb-2" style="font-weight:700;color: #153651;font-family: Montserrat;">Paket</p>
                                 <table class="table-detail" width="100%">
                                     <tbody>';
@@ -848,7 +931,7 @@ class CustomerKeranjangController extends Controller
                                 echo'</tbody>
                                 </table>';
                             }
-                            if($krj_paket != null){
+                            if(($krj_paket != null) && (count($keranjang) > 0 )){
                                 echo '<p id="p-title2" class="mt-4 mb-2" style="font-weight:700;color: #153651;font-family: Montserrat;">Produk Non-Paket</p>';
                             }
 

@@ -17,8 +17,9 @@ Route::get('/', 'WelcomeController@index');
 Route::get('/product/detail/', 'ProductDetailController@detail')->name('product_detail');
 Route::group(['middleware' => ['auth','checkRole:SALES']],function(){
     Route::get('/contact', function(){
-        $categories = \App\Category::get();	
-        return view('customer.contact',['categories'=>$categories]);
+        $categories = \App\Category::get();
+        $paket = \App\Paket::all();//paginate(10);	
+        return view('customer.contact',['categories'=>$categories,'paket'=>$paket]);
         })->name('contact');        
     Route::get('/sales_home/{cat?}', 'CustomerKeranjangController@index')->name('home_customer');
     Route::get('/sales_home/{paket}/paket', 'CustomerPaketController@index')->name('home_paket');
