@@ -27,11 +27,11 @@ class OrderController extends Controller
         if($status){
         $orders = \App\Order::with('products')->whereNotNull('customer_id')
         ->where('status',strtoupper($status))
-        ->orderBy('id', 'DESC')->get();//paginate(10);
+        ->orderBy('updated_at', 'DESC')->get();//paginate(10);
         }
         else{
             $orders = \App\Order::with('products')->with('customers')->whereNotNull('customer_id')
-            ->orderBy('id', 'DESC')->get();
+            ->orderBy('updated_at', 'DESC')->get();
         }
         return view('orders.index', ['orders' => $orders]);
     }
@@ -111,7 +111,17 @@ class OrderController extends Controller
     public function detail($id)
     {
         $order = \App\Order::findOrFail($id);
-        return view('orders.detail', ['order' => $order]);
+        $paket_list = \DB::table('order_product')
+                ->join('pakets','pakets.id','=','order_product.paket_id')
+                ->join('groups','groups.id','=','order_product.group_id')
+                ->where('order_id',$id)
+                ->whereNotNull('paket_id')
+                ->whereNotNull('group_id')
+                ->whereNull('bonus_cat')
+                ->distinct()
+                ->get(['paket_id','group_id']);
+                //dd($paket_list);
+        return view('orders.detail', ['order' => $order, 'paket_list'=>$paket_list]);
     }
 
     public function export_mapping() {

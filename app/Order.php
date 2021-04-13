@@ -34,6 +34,21 @@ class Order extends Model
         ->wherePivot('bonus_cat','!=',null);
     }
 
+    public function products_pktbns(){
+        return $this->belongsToMany('App\product')
+        ->withPivot('id','quantity','price_item','price_item_promo','discount_item','group_id','paket_id','bonus_cat')
+        ->wherePivot('paket_id','!=',null)
+        ->wherePivot('group_id','!=',null);
+    }
+
+    public function pakets(){
+        return $this->belongsToMany('App\Paket','order_product','order_id','paket_id');
+    }
+
+    public function groups(){
+        return $this->belongsToMany('App\Group','order_product','order_id','group_id');
+    }
+
     public function vouchers(){
         return $this->belongsTo('App\Voucher','id_voucher');
     }
