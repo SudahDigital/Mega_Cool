@@ -54,7 +54,7 @@
                 @else
                 No Image
                 @endif
-                 <input type="file" name="group_image" class="form-control" id="group_image" autocomplete="off" required>
+                 <input type="file" name="group_image" class="form-control" id="group_image" autocomplete="off">
             </div>
         </div>
         

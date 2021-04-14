@@ -41,9 +41,9 @@ class GroupController extends Controller
      */
     public function create()
     {   
-        $products = \App\product::with('groups')
-                ->doesntHave('groups')->get();
-       //$products=\App\product::all();
+        //$products = \App\product::with('groups')
+                //->doesntHave('groups')->get();
+        $products=\App\product::all();
         return view('grouppaket.create', ['products'=>$products]);
     }
 
@@ -102,8 +102,16 @@ class GroupController extends Controller
     public function edit($id)
     {
         $groups = \App\Group::with('products')->findOrfail($id);
-        $products_list = \App\product::with('groups')
-                ->doesntHave('groups')->get();
+        /*$products_list = \App\product::with('groups')
+                ->doesntHave('groups')
+                ->get();*/
+        $products_list = \DB::select("SELECT * FROM products p WHERE   NOT EXISTS
+                                        (
+                                            SELECT * FROM  group_product g
+                                            WHERE   g.product_id = p.id
+                                            AND g.group_id = '$id'
+                                        )
+                                    ");
         return view('grouppaket.edit', ['groups' => $groups,'products_list'=>$products_list]);
     }
 
@@ -168,18 +176,19 @@ class GroupController extends Controller
         {
             $active_id = $request->input('activate_id');
             $group_product = \App\group_product::findOrFail($active_id);
-            $cek = \App\group_product::where('product_id','=',$group_product->product_id)
+            /*$cek = \App\group_product::where('product_id','=',$group_product->product_id)
                     ->where('status','=','ACTIVE')->count();
             if($cek > 0){
                 return redirect()->route('groups.edit', [$id])->with('error',
-                'Can\'t delete item, this item already exist in other group');
+                'Can\'t activate item, this item already exist in other group');
             }
             else{
-                $group_product->status = 'ACTIVE';
-                $group_product->save();
-                return redirect()->route('groups.edit', [$id])->with('status',
-                'Item product successfully activate');
-            }
+            */
+            $group_product->status = 'ACTIVE';
+            $group_product->save();
+            return redirect()->route('groups.edit', [$id])->with('status',
+            'Item product successfully activate');
+            
         }else{
             $group = \App\Group::findOrFail($id);
             $group->group_name = $request->input('group_name');
