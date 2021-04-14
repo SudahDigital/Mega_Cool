@@ -29,18 +29,21 @@ class OrdersExportMapping implements FromCollection, WithMapping, WithHeadings, 
                 $diskon = 0;
                 $total= $p->pivot->price_item * $p->pivot->quantity;
             }
+            
             array_push($rows,[
                 $order->id,
                 $order->status,
+                $order->customers->store_code,
                 $order->customers->store_name,
-                $order->customers->email,
-                $order->customers->address,
-                $order->customers->phone,
-                $order->customers->store_name,
+                $order->customers->name,
                 $order->users->name,
                 $p->Product_name,
                 $p->pivot->quantity,
                 $p->pivot->price_item,
+                $p->pivot->paket_id,
+                $p->pivot->group_id,
+                $p->pivot->bonus_cat,
+                $order->notes,
                 $order->created_at
                 //Carbon::parse($order->created_at)->toFormattedDateString()
             ]);
@@ -52,15 +55,17 @@ class OrdersExportMapping implements FromCollection, WithMapping, WithHeadings, 
         return [
            'Order Id',
            'Status',
+           'Cust. Code',
            'Name',
-           'Email',
-           'Address',
-           'Phone',
            'Contact Person',
            'Sales Rep',
            'Product',
            'Quantity',
            'Price',
+           'Paket_id',
+           'Group_id',
+           'Bonus Product',
+           'Note',
            'Order Date'
         ] ;
     }

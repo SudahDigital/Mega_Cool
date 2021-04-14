@@ -37,6 +37,7 @@
 <div class="table-responsive">
 	<table class="table table-bordered table-striped table-hover dataTable js-basic-example">
 		<thead>
+			<!--
 			<tr>
 				<th width="1%">No</th>
 				<th width="2%">Status</th>
@@ -46,6 +47,17 @@
 				<th width="10%">Order date</th>
 				<th>Total price</th>
 				<th width="5%">Action</th>
+			</tr>
+			-->
+			<tr>
+				<th width="1%">No</th>
+				<th width="">Status</th>
+				<th width="">Customer</th>
+				<!--<th width="15%">Order Product</th>-->
+				<th width="">Total quantity</th>
+				<th width="">Order date</th>
+				<th>Total price</th>
+				<th width="">Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -68,9 +80,9 @@
 				<td><small><b>Name :</b> {{$order->customers->store_name}}</small>
 					@if($order->customers->status == 'NEW')<span class="badge bg-pink">New</span>@endif
 					<br>
-					<small><b>Email :</b> {{$order->customers->email}}</small><br>
+					<!--<small><b>Email :</b> {{$order->customers->email}}</small><br>
 					<small><b>Addr :</b> {{$order->customers->address}}</small><br>
-					<small><b>Phone :</b> {{$order->customers->phone}}</small><br>
+					<small><b>Phone :</b> {{$order->customers->phone}}</small><br>-->
 					<small><b>Sales Rep :</b> {{$order->users->name}} <span class="badge {{$order->user_loc == 'On Location' ? 'bg-green' : 'bg-black'}}">{{$order->user_loc}}</span></small><br>
 					<small><b>Payment Term :</b> 
 						@if($order->payment_method == 'Non Tunai')
@@ -80,6 +92,7 @@
 						@endif
 					</small>
 				</td>
+				<!--
 				<td align="left">
 					<ul style="margin-left: -25px;">
 						@foreach($order->products as $p)
@@ -87,6 +100,7 @@
 						@endforeach
 					</ul>
 				</td>
+				-->
 				<td>{{$order->totalQuantity}} pc (s)</td>
 				<td>{{$order->created_at}}</td>
 				<td>{{number_format($order->total_price)}}</td>
