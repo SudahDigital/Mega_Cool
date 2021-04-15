@@ -66,13 +66,20 @@ class GroupController extends Controller
           $group->group_image = $image_path;
         }
         //$group = \App\Group::create($request->all());
-        $group->save();
-        $products = $request->input('product_id', []);
-        for ($product=0; $product < count($products); $product++) {
-            if ($products[$product] != '') {
-                $group->products()->attach($products[$product]);
+        if($request->has('all_product')) {
+            $group->group_cat=$request->get('all_product');
+            $group->save();
+        }
+        else{
+            $group->save();
+            $products = $request->input('product_id', []);
+            for ($product=0; $product < count($products); $product++) {
+                if ($products[$product] != '') {
+                    $group->products()->attach($products[$product]);
+                }
             }
         }
+        
         
         if($request->get('save_action') == 'SAVE'){
           return redirect()
@@ -201,7 +208,21 @@ class GroupController extends Controller
             $new_image_path = $new_image->store('groups-images', 'public');
             $group->group_image = $new_image_path;
             }
-            $group->save();
+
+            if($request->has('all_product')) {
+                $group->save();
+            }
+            else{
+                $group->group_cat=NULL;
+                $group->save();
+                $products = $request->input('product_id', []);
+                for ($product=0; $product < count($products); $product++) {
+                    if ($products[$product] != '') {
+                        $group->products()->attach($products[$product]);
+                    }
+                }
+            }
+            //$group->save();
             return redirect()->route('groups.edit', [$id])->with('status_group',
             'Group successfully update');
         }

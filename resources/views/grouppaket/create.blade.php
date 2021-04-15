@@ -62,16 +62,21 @@
             </div>
         </div>
         -->
-        <label class="form-label">Produt Group</label>
-        <br>   
-        <select class="products" multiple="multiple" name="product_id[]" style="width: 100%;" required>
-            @foreach ($products as $product)
-                <option value="{{ $product->id }}">
-                    {{ $product->Product_name }}
-                </option>
-            @endforeach
-        </select>
-        
+        <label class="form-label">Product Group</label>
+        <br>
+        <br>
+        <div class="form-group">
+            <input type="checkbox" name="all_product" id="all_product" value="ALL_PRODUCT" onclick="checkstate()">
+			<label for="all_product">All Product</label>
+		   
+            <select id="list_product" class="products" multiple="multiple" name="product_id[]" style="width: 100%;" required>
+                @foreach ($products as $product)
+                    <option value="{{ $product->id }}">
+                        {{ $product->Product_name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
 
        <button class="btn btn-primary" name="save_action" id="save" value="SAVE" type="submit" style="margin-top:20px;">SAVE</button>
     </form>
@@ -130,6 +135,10 @@
             });
         });
     });
+
+    function checkstate() {
+        document.getElementById('list_product').disabled = document.getElementById('all_product').checked;
+    }
     /*
      $('.products').select2();
      $(document).ready(function(){

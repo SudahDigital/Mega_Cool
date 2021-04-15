@@ -17,8 +17,9 @@ class CustomerPaketController extends Controller
         $paket = \App\Paket::all();//paginate(10);
         $paket_id = \App\Paket::findOrfail($id);//paginate(10);
         $cat_count = $categories->count();
-        $product = \App\Group::with('item_active')
-            ->get();//->paginate(10);
+        $all_product = \App\product::where('status','=','PUBLISH')->get();
+        $product = \App\Group::with('item_active')->where('status','ACTIVE')
+                    ->get();//->paginate(10);
         $count_data = $product->count();
         $keranjang = DB::select("SELECT orders.user_id, orders.status,orders.customer_id, 
                     products.Product_name, products.image, products.price, products.discount,
@@ -56,6 +57,7 @@ class CustomerPaketController extends Controller
                     ->count();
         $data=['total_item'=> $total_item, 
                 'keranjang'=>$keranjang,
+                'all_product'=>$all_product,
                 'product'=>$product,
                 'item'=>$item,
                 'item_name'=>$item_name,

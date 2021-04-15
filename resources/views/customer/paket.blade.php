@@ -97,7 +97,94 @@ Home
                                             <div class="row mt-0">
                                                 <div class="col-md-12 mt-4 px-auto menu-wrapper_pop margin_paket_pop px-5">
                                                     <div class="row section_content flex-row flex-nowrap menu_pop" style="overflow-x:auto;overflow-y:hidden;z-index:2222; ">
-                                                        @foreach($value->item_active as $p_group)
+                                                        @if($value->group_cat == NULL)
+                                                            @foreach($value->item_active as $p_group)
+                                                                <div id="product_list"  class="col-6 col-md-4 mx-0 d-flex item_pop" style="">
+                                                                    <div class="card mx-auto  item_product_pop ">
+                                                                        @php
+                                                                            if($item){
+                                                                                $qty_on_paket = \App\Order_paket_temp::where('order_id',$item->id)
+                                                                                            ->where('product_id',$p_group->id)
+                                                                                            ->where('paket_id',$paket_id->id)
+                                                                                            ->where('group_id',$value->id)
+                                                                                            ->whereNull('bonus_cat')->first();
+                                                                                if($qty_on_paket){
+                                                                                    $harga_on_paket = $p_group->price * $qty_on_paket->quantity; 
+                                                                                }
+                                                                            }
+                                                                        @endphp
+                                                                        
+                                                                        @if(($item) && ($qty_on_paket != NULL))
+                                                                            <input type="hidden" id="orderid_delete_pkt{{$p_group->id}}" value="{{$item->id}}">
+                                                                        @else
+                                                                            <input type="hidden" id="orderid_delete_pkt{{$p_group->id}}" value="">
+                                                                        @endif
+                                                                        <div class="round">
+                                                                            <input type="checkbox" onclick="delete_pkt('{{$p_group->id}}','{{$value->id}}')" id="checkbox_pkt{{$p_group->id}}" {{($item && $qty_on_paket != NULL && $qty_on_paket->quantity > 0) ? 'checked' : 'checked disabled'}}/>
+                                                                            <label for="checkbox_pkt{{$p_group->id}}"></label>
+                                                                        </div>
+                                                                        <a>
+                                                                            <img style="" src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
+                                                                        </a>
+                                                                        
+                                                                        <div class="card-body crd-body-pkt d-flex flex-column mt-n3" style="">
+                                                                            <div class="float-left px-1 py-2" style="width: 100%;">
+                                                                                <p class="product-price-header_pop mb-0" style="">
+                                                                                    {{$p_group->Product_name}}
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="float-left px-1 pb-0" style="">
+                                                                                
+                                                                                <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_pkt{{$p_group->id}}" style="">Rp.  {{ $item && $qty_on_paket != NULL ?  number_format($harga_on_paket, 0, ',', '.') : number_format($p_group->price, 0, ',', '.') }},-</p>
+                                                                            </div>
+                                                                            <div class="justify-content-center input_item_pop mt-auto px-3">
+                                                                                <input type="hidden" id="jumlah_val_pkt{{$p_group->id}}" name="" value="{{$item && $qty_on_paket != NULL ? "$qty_on_paket->quantity" : '0'}}">
+                                                                                <input type="hidden" id="jumlah_pkt{{$p_group->id}}" name="quantity_pkt" value="{{$item && $qty_on_paket != NULL ? "$qty_on_paket->quantity" : '0'}}">
+                                                                                <input type="hidden" id="harga_pkt{{$p_group->id}}" name="price_pkt" value="{{$p_group->price}}">
+                                                                                <input type="hidden" id="product_pkt{{$p_group->id}}" name="Product_id_pkt" value="{{$p_group->id}}">
+                                                                                
+                                                                                <div class="input-group mb-0 mx-auto">
+                                                                                    <button class="input-group-text button_minus_pkt" id="button_minus_pkt{{$p_group->id}}" 
+                                                                                            style="cursor: pointer;
+                                                                                            outline:none;
+                                                                                            border:none;
+                                                                                            border-top-right-radius:0;
+                                                                                            border-bottom-right-radius:0;
+                                                                                            border-right-style:none;
+                                                                                            font-weight:bold;
+                                                                                            padding-right:0;
+                                                                                            height:25px" onclick="button_minus_pkt('{{$p_group->id}}')" 
+                                                                                            onMouseOver="this.style.color='#495057'" >-</button>
+                                                                                            <input type="number" id="show_pkt{{$p_group->id}}" onkeyup="input_qty_pkt('{{$p_group->id}}','{{$value->id}}')" class="form-control show_pkt" value="{{$item && $qty_on_paket !== NULL ? $qty_on_paket->quantity : '0'}}" 
+                                                                                            style="background-color:#e9ecef !important;
+                                                                                            text-align:center;
+                                                                                            border:none;
+                                                                                            padding:0;
+                                                                                            none !important;
+                                                                                            font-weight:bold;
+                                                                                            height:25px;
+                                                                                            font-size:12px;
+                                                                                            font-weight:900;">
+                                                                                    <button class="input-group-text" 
+                                                                                            style="cursor: pointer;
+                                                                                            outline:none;
+                                                                                            border:none;
+                                                                                            border-top-left-radius:0;
+                                                                                            border-bottom-left-radius:0;
+                                                                                            border-left-style:none;
+                                                                                            font-weight:bold;
+                                                                                            padding-left:0;
+                                                                                            height:25px" onclick="button_plus_pkt('{{$p_group->id}}')">+</button> 
+                                                                                </div>
+                                                                                <button class="btn bt-add-paket btn-block button_add_to_cart respon mt-1" onclick="add_tocart_pkt('{{$p_group->id}}','{{$value->id}}')" style="">Simpan</button> 
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            @endforeach
+                                                        @else
+                                                        @foreach($all_product as $p_group)
                                                             <div id="product_list"  class="col-6 col-md-4 mx-0 d-flex item_pop" style="">
                                                                 <div class="card mx-auto  item_product_pop ">
                                                                     @php
@@ -182,27 +269,50 @@ Home
                                                                 
                                                             </div>
                                                         @endforeach
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="paddles d-none d-md-block d-md-none">
-                                                    @if($value->item_active->count() > 3)
-                                                    <button class="left-paddle_pop paddle_pop paddles_hide">
-                                                        <i class="fa fa-angle-double-left" style="color:#878787;"></i>
-                                                    </button>
-                                                    <button class="right-paddle_pop paddle_pop" style="text-decoration: none;">
-                                                        <i class="fa fa-angle-double-right" style="color:#878787;"></i>
-                                                    </button>
+                                                    @if($value->group_cat == NULL)
+                                                        @if($value->item_active->count() > 3)
+                                                        <button class="left-paddle_pop paddle_pop paddles_hide">
+                                                            <i class="fa fa-angle-double-left" style="color:#878787;"></i>
+                                                        </button>
+                                                        <button class="right-paddle_pop paddle_pop" style="text-decoration: none;">
+                                                            <i class="fa fa-angle-double-right" style="color:#878787;"></i>
+                                                        </button>
+                                                        @endif
+                                                    @else
+                                                        @if(count($all_product) > 3)
+                                                        <button class="left-paddle_pop paddle_pop paddles_hide">
+                                                            <i class="fa fa-angle-double-left" style="color:#878787;"></i>
+                                                        </button>
+                                                        <button class="right-paddle_pop paddle_pop" style="text-decoration: none;">
+                                                            <i class="fa fa-angle-double-right" style="color:#878787;"></i>
+                                                        </button>
+                                                        @endif
                                                     @endif
                                                 </div>
                             
                                                 <div class="paddles d-md-none">
-                                                    @if($value->item_active->count() > 2)
-                                                    <button class="left-paddle_pop paddle_pop paddles_hide">
-                                                        <i class="fa fa-angle-double-left" style="color:#878787;"></i>
-                                                    </button>
-                                                    <button class="right-paddle_pop paddle_pop" style="text-decoration: none;">
-                                                        <i class="fa fa-angle-double-right" style="color:#878787;"></i>
-                                                    </button>
+                                                    @if($value->group_cat == NULL)
+                                                        @if($value->item_active->count() > 2)
+                                                        <button class="left-paddle_pop paddle_pop paddles_hide">
+                                                            <i class="fa fa-angle-double-left" style="color:#878787;"></i>
+                                                        </button>
+                                                        <button class="right-paddle_pop paddle_pop" style="text-decoration: none;">
+                                                            <i class="fa fa-angle-double-right" style="color:#878787;"></i>
+                                                        </button>
+                                                        @endif
+                                                    @else
+                                                        @if(count($all_product) > 2)
+                                                        <button class="left-paddle_pop paddle_pop paddles_hide">
+                                                            <i class="fa fa-angle-double-left" style="color:#878787;"></i>
+                                                        </button>
+                                                        <button class="right-paddle_pop paddle_pop" style="text-decoration: none;">
+                                                            <i class="fa fa-angle-double-right" style="color:#878787;"></i>
+                                                        </button>
+                                                        @endif
                                                     @endif
                                                 </div>
                                             </div>
@@ -216,118 +326,235 @@ Home
                                             <div class="row mt-0">
                                                 <div class="col-md-12 mt-4 margin_paket_bonus menu-wrapper_pop_bonus px-5">
                                                     <div class="row section_content flex-row flex-nowrap menu_pop_bonus" style="overflow-x:auto;overflow-y:hidden;z-index:2222; ">
-                                                        @foreach($value->item_active as $p_group)
-                                                            <div class="col-12 col-md-6 d-flex item_pop_bonus pb-4" style="">
-                                                                <div class="card card_margin_bonus" style="border-radius: 20px;">
-                                                                    <div class="card-horizontal py-0">
-                                                                        @php
-                                                                            if($item){
-                                                                                $qty_on_bonus = \App\Order_paket_temp::where('order_id',$item->id)
-                                                                                            ->where('product_id',$p_group->id)
-                                                                                            ->where('paket_id',$paket_id->id)
-                                                                                            ->where('group_id',$value->id)
-                                                                                            ->whereNotNull('bonus_cat')->first();
-                                                                                if($qty_on_bonus){
-                                                                                    $harga_on_bonus = $p_group->price * $qty_on_bonus->quantity; 
+                                                        @if($value->group_cat == NULL)
+                                                            @foreach($value->item_active as $p_group)
+                                                                <div class="col-12 col-md-6 d-flex item_pop_bonus pb-4" style="">
+                                                                    <div class="card card_margin_bonus" style="border-radius: 20px;">
+                                                                        <div class="card-horizontal py-0">
+                                                                            @php
+                                                                                if($item){
+                                                                                    $qty_on_bonus = \App\Order_paket_temp::where('order_id',$item->id)
+                                                                                                ->where('product_id',$p_group->id)
+                                                                                                ->where('paket_id',$paket_id->id)
+                                                                                                ->where('group_id',$value->id)
+                                                                                                ->whereNotNull('bonus_cat')->first();
+                                                                                    if($qty_on_bonus){
+                                                                                        $harga_on_bonus = $p_group->price * $qty_on_bonus->quantity; 
+                                                                                    }
                                                                                 }
-                                                                            }
-                                                                        @endphp
-                                                                        
-                                                                        @if(($item) && ($qty_on_bonus != NULL))
-                                                                            <input type="hidden" id="orderid_delete_bns{{$p_group->id}}" value="{{$item->id}}">
-                                                                        @else
-                                                                            <input type="hidden" id="orderid_delete_bns{{$p_group->id}}" value="">
-                                                                        @endif
-                                                                        <div class="round_bns">
-                                                                            <input type="checkbox" onclick="delete_bns('{{$p_group->id}}','{{$value->id}}')" id="checkbox_bns{{$p_group->id}}" {{($item && $qty_on_bonus != NULL && $qty_on_bonus->quantity > 0) ? 'checked' : 'checked disabled'}} style="display:none;"/>
-                                                                            <label for="checkbox_bns{{$p_group->id}}"></label>
-                                                                        </div>
-                                                                        <a>
-                                                                            <img src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid img-responsive" alt="..." style="">
-                                                                        </a>
-                                                                        
-                                                                        <div class="card-body d-flex flex-column ml-n4" style="">
+                                                                            @endphp
                                                                             
-                                                                            <div class="float-left pl-0 py-0" style="width: 100%;">
-                                                                                <p class="product-price-header_pop mb-0" style="">
-                                                                                    {{$p_group->Product_name}}
-                                                                                </p>
+                                                                            @if(($item) && ($qty_on_bonus != NULL))
+                                                                                <input type="hidden" id="orderid_delete_bns{{$p_group->id}}" value="{{$item->id}}">
+                                                                            @else
+                                                                                <input type="hidden" id="orderid_delete_bns{{$p_group->id}}" value="">
+                                                                            @endif
+                                                                            <div class="round_bns">
+                                                                                <input type="checkbox" onclick="delete_bns('{{$p_group->id}}','{{$value->id}}')" id="checkbox_bns{{$p_group->id}}" {{($item && $qty_on_bonus != NULL && $qty_on_bonus->quantity > 0) ? 'checked' : 'checked disabled'}} style="display:none;"/>
+                                                                                <label for="checkbox_bns{{$p_group->id}}"></label>
                                                                             </div>
-                                                                            <div class="float-left pl-0 pt-1 pb-0" style="">
-                                                                                <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_bns{{$p_group->id}}" style="">Rp. {{ $item && $qty_on_bonus != NULL ?  number_format($harga_on_bonus, 0, ',', '.') : number_format($p_group->price, 0, ',', '.') }},-</p>
-                                                                            </div>
+                                                                            <a>
+                                                                                <img src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid img-responsive" alt="..." style="">
+                                                                            </a>
                                                                             
-                                                                            <div class="float-left pl-0 mt-auto">
-                                                                                <div class="input-group mb-0">
-                                                                                    <input type="hidden" id="jumlah_val_bns{{$p_group->id}}" name="" value="{{$item && $qty_on_bonus != NULL ? "$qty_on_bonus->quantity" : '0'}}">
-                                                                                    <input type="hidden" id="jumlah_bns{{$p_group->id}}" name="quantity_bns" value="{{$item && $qty_on_bonus != NULL ? "$qty_on_bonus->quantity" : '0'}}">
-                                                                                    <input type="hidden" id="harga_bns{{$p_group->id}}" name="price" value="{{$p_group->price}}">
-                                                                                    <input type="hidden" id="product_bns{{$p_group->id}}" name="Product_id" value="{{$p_group->id}}">
-                                                                                    <button class="input-group-text button_minus_bns" id="button_minus_bns{{$p_group->id}}" 
-                                                                                            style="cursor: pointer;
-                                                                                            outline:none;
-                                                                                            border:none;
-                                                                                            border-top-right-radius:0;
-                                                                                            border-bottom-right-radius:0;
-                                                                                            border-right-style:none;
-                                                                                            font-weight:bold;
-                                                                                            padding-right:0;
-                                                                                            height:25px" onclick="button_minus_bns('{{$p_group->id}}')" 
-                                                                                            onMouseOver="this.style.color='#495057'" >-</button>
-                                                                                    <input type="number" id="show_bns{{$p_group->id}}" onkeyup="input_qty_bns('{{$p_group->id}}','{{$value->id}}')" class="form-control show_pkt" value="{{$item && $qty_on_bonus !== NULL ? $qty_on_bonus->quantity : '0'}}" 
-                                                                                            style="background-color:#e9ecef !important;
-                                                                                            text-align:center;
-                                                                                            border:none;
-                                                                                            padding:0;
-                                                                                            none !important;
-                                                                                            font-weight:bold;
-                                                                                            height:25px;
-                                                                                            font-size:12px;
-                                                                                            font-weight:900;">
-                                                                                    <button class="input-group-text" 
-                                                                                            style="cursor: pointer;
-                                                                                            outline:none;
-                                                                                            border:none;
-                                                                                            border-top-left-radius:0;
-                                                                                            border-bottom-left-radius:0;
-                                                                                            border-left-style:none;
-                                                                                            font-weight:bold;
-                                                                                            padding-left:0;
-                                                                                            height:25px" onclick="button_plus_bns('{{$p_group->id}}')">+</button>
-                                                                                </div> 
-                                                                            </div>
-                                                                            <div class="float-right mt-2">
-                                                                                <div id="product_list_bns">
-                                                                                    <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart_bns('{{$p_group->id}}','{{$value->id}}')" style="">Simpan</button>
+                                                                            <div class="card-body d-flex flex-column ml-n4" style="">
+                                                                                
+                                                                                <div class="float-left pl-0 py-0" style="width: 100%;">
+                                                                                    <p class="product-price-header_pop mb-0" style="">
+                                                                                        {{$p_group->Product_name}}
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="float-left pl-0 pt-1 pb-0" style="">
+                                                                                    <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_bns{{$p_group->id}}" style="">Rp. {{ $item && $qty_on_bonus != NULL ?  number_format($harga_on_bonus, 0, ',', '.') : number_format($p_group->price, 0, ',', '.') }},-</p>
                                                                                 </div>
                                                                                 
+                                                                                <div class="float-left pl-0 mt-auto">
+                                                                                    <div class="input-group mb-0">
+                                                                                        <input type="hidden" id="jumlah_val_bns{{$p_group->id}}" name="" value="{{$item && $qty_on_bonus != NULL ? "$qty_on_bonus->quantity" : '0'}}">
+                                                                                        <input type="hidden" id="jumlah_bns{{$p_group->id}}" name="quantity_bns" value="{{$item && $qty_on_bonus != NULL ? "$qty_on_bonus->quantity" : '0'}}">
+                                                                                        <input type="hidden" id="harga_bns{{$p_group->id}}" name="price" value="{{$p_group->price}}">
+                                                                                        <input type="hidden" id="product_bns{{$p_group->id}}" name="Product_id" value="{{$p_group->id}}">
+                                                                                        <button class="input-group-text button_minus_bns" id="button_minus_bns{{$p_group->id}}" 
+                                                                                                style="cursor: pointer;
+                                                                                                outline:none;
+                                                                                                border:none;
+                                                                                                border-top-right-radius:0;
+                                                                                                border-bottom-right-radius:0;
+                                                                                                border-right-style:none;
+                                                                                                font-weight:bold;
+                                                                                                padding-right:0;
+                                                                                                height:25px" onclick="button_minus_bns('{{$p_group->id}}')" 
+                                                                                                onMouseOver="this.style.color='#495057'" >-</button>
+                                                                                        <input type="number" id="show_bns{{$p_group->id}}" onkeyup="input_qty_bns('{{$p_group->id}}','{{$value->id}}')" class="form-control show_pkt" value="{{$item && $qty_on_bonus !== NULL ? $qty_on_bonus->quantity : '0'}}" 
+                                                                                                style="background-color:#e9ecef !important;
+                                                                                                text-align:center;
+                                                                                                border:none;
+                                                                                                padding:0;
+                                                                                                none !important;
+                                                                                                font-weight:bold;
+                                                                                                height:25px;
+                                                                                                font-size:12px;
+                                                                                                font-weight:900;">
+                                                                                        <button class="input-group-text" 
+                                                                                                style="cursor: pointer;
+                                                                                                outline:none;
+                                                                                                border:none;
+                                                                                                border-top-left-radius:0;
+                                                                                                border-bottom-left-radius:0;
+                                                                                                border-left-style:none;
+                                                                                                font-weight:bold;
+                                                                                                padding-left:0;
+                                                                                                height:25px" onclick="button_plus_bns('{{$p_group->id}}')">+</button>
+                                                                                    </div> 
+                                                                                </div>
+                                                                                <div class="float-right mt-2">
+                                                                                    <div id="product_list_bns">
+                                                                                        <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart_bns('{{$p_group->id}}','{{$value->id}}')" style="">Simpan</button>
+                                                                                    </div>
+                                                                                    
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        @endforeach
+                                                            @endforeach
+                                                        @else
+                                                            @foreach($all_product as $p_group)
+                                                                <div class="col-12 col-md-6 d-flex item_pop_bonus pb-4" style="">
+                                                                    <div class="card card_margin_bonus" style="border-radius: 20px;">
+                                                                        <div class="card-horizontal py-0">
+                                                                            @php
+                                                                                if($item){
+                                                                                    $qty_on_bonus = \App\Order_paket_temp::where('order_id',$item->id)
+                                                                                                ->where('product_id',$p_group->id)
+                                                                                                ->where('paket_id',$paket_id->id)
+                                                                                                ->where('group_id',$value->id)
+                                                                                                ->whereNotNull('bonus_cat')->first();
+                                                                                    if($qty_on_bonus){
+                                                                                        $harga_on_bonus = $p_group->price * $qty_on_bonus->quantity; 
+                                                                                    }
+                                                                                }
+                                                                            @endphp
+                                                                            
+                                                                            @if(($item) && ($qty_on_bonus != NULL))
+                                                                                <input type="hidden" id="orderid_delete_bns{{$p_group->id}}" value="{{$item->id}}">
+                                                                            @else
+                                                                                <input type="hidden" id="orderid_delete_bns{{$p_group->id}}" value="">
+                                                                            @endif
+                                                                            <div class="round_bns">
+                                                                                <input type="checkbox" onclick="delete_bns('{{$p_group->id}}','{{$value->id}}')" id="checkbox_bns{{$p_group->id}}" {{($item && $qty_on_bonus != NULL && $qty_on_bonus->quantity > 0) ? 'checked' : 'checked disabled'}} style="display:none;"/>
+                                                                                <label for="checkbox_bns{{$p_group->id}}"></label>
+                                                                            </div>
+                                                                            <a>
+                                                                                <img src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid img-responsive" alt="..." style="">
+                                                                            </a>
+                                                                            
+                                                                            <div class="card-body d-flex flex-column ml-n4" style="">
+                                                                                
+                                                                                <div class="float-left pl-0 py-0" style="width: 100%;">
+                                                                                    <p class="product-price-header_pop mb-0" style="">
+                                                                                        {{$p_group->Product_name}}
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="float-left pl-0 pt-1 pb-0" style="">
+                                                                                    <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_bns{{$p_group->id}}" style="">Rp. {{ $item && $qty_on_bonus != NULL ?  number_format($harga_on_bonus, 0, ',', '.') : number_format($p_group->price, 0, ',', '.') }},-</p>
+                                                                                </div>
+                                                                                
+                                                                                <div class="float-left pl-0 mt-auto">
+                                                                                    <div class="input-group mb-0">
+                                                                                        <input type="hidden" id="jumlah_val_bns{{$p_group->id}}" name="" value="{{$item && $qty_on_bonus != NULL ? "$qty_on_bonus->quantity" : '0'}}">
+                                                                                        <input type="hidden" id="jumlah_bns{{$p_group->id}}" name="quantity_bns" value="{{$item && $qty_on_bonus != NULL ? "$qty_on_bonus->quantity" : '0'}}">
+                                                                                        <input type="hidden" id="harga_bns{{$p_group->id}}" name="price" value="{{$p_group->price}}">
+                                                                                        <input type="hidden" id="product_bns{{$p_group->id}}" name="Product_id" value="{{$p_group->id}}">
+                                                                                        <button class="input-group-text button_minus_bns" id="button_minus_bns{{$p_group->id}}" 
+                                                                                                style="cursor: pointer;
+                                                                                                outline:none;
+                                                                                                border:none;
+                                                                                                border-top-right-radius:0;
+                                                                                                border-bottom-right-radius:0;
+                                                                                                border-right-style:none;
+                                                                                                font-weight:bold;
+                                                                                                padding-right:0;
+                                                                                                height:25px" onclick="button_minus_bns('{{$p_group->id}}')" 
+                                                                                                onMouseOver="this.style.color='#495057'" >-</button>
+                                                                                        <input type="number" id="show_bns{{$p_group->id}}" onkeyup="input_qty_bns('{{$p_group->id}}','{{$value->id}}')" class="form-control show_pkt" value="{{$item && $qty_on_bonus !== NULL ? $qty_on_bonus->quantity : '0'}}" 
+                                                                                                style="background-color:#e9ecef !important;
+                                                                                                text-align:center;
+                                                                                                border:none;
+                                                                                                padding:0;
+                                                                                                none !important;
+                                                                                                font-weight:bold;
+                                                                                                height:25px;
+                                                                                                font-size:12px;
+                                                                                                font-weight:900;">
+                                                                                        <button class="input-group-text" 
+                                                                                                style="cursor: pointer;
+                                                                                                outline:none;
+                                                                                                border:none;
+                                                                                                border-top-left-radius:0;
+                                                                                                border-bottom-left-radius:0;
+                                                                                                border-left-style:none;
+                                                                                                font-weight:bold;
+                                                                                                padding-left:0;
+                                                                                                height:25px" onclick="button_plus_bns('{{$p_group->id}}')">+</button>
+                                                                                    </div> 
+                                                                                </div>
+                                                                                <div class="float-right mt-2">
+                                                                                    <div id="product_list_bns">
+                                                                                        <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart_bns('{{$p_group->id}}','{{$value->id}}')" style="">Simpan</button>
+                                                                                    </div>
+                                                                                    
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            @endforeach
+                                                        @endif
                                                     </div>
                                                 </div>
+
                                                 <div class="paddles d-none d-md-block d-md-none">
-                                                    @if($value->item_active->count() > 2)
-                                                    <button class="left-paddle_pop_bonus paddle_pop_bonus paddles_hide_pop_bonus">
-                                                        <i class="fa fa-angle-double-left" style="color:#878787;"></i>
-                                                    </button>
-                                                    <button class="right-paddle_pop_bonus paddle_pop_bonus" style="text-decoration: none;">
-                                                        <i class="fa fa-angle-double-right" style="color:#878787;"></i>
-                                                    </button>
+                                                    @if($value->group_cat == NULL)
+                                                        @if($value->item_active->count() > 2)
+                                                        <button class="left-paddle_pop_bonus paddle_pop_bonus paddles_hide_pop_bonus">
+                                                            <i class="fa fa-angle-double-left" style="color:#878787;"></i>
+                                                        </button>
+                                                        <button class="right-paddle_pop_bonus paddle_pop_bonus" style="text-decoration: none;">
+                                                            <i class="fa fa-angle-double-right" style="color:#878787;"></i>
+                                                        </button>
+                                                        @endif
+                                                    @else
+                                                        @if(count($all_product) > 2)
+                                                        <button class="left-paddle_pop_bonus paddle_pop_bonus paddles_hide_pop_bonus">
+                                                            <i class="fa fa-angle-double-left" style="color:#878787;"></i>
+                                                        </button>
+                                                        <button class="right-paddle_pop_bonus paddle_pop_bonus" style="text-decoration: none;">
+                                                            <i class="fa fa-angle-double-right" style="color:#878787;"></i>
+                                                        </button>   
+                                                        @endif
                                                     @endif
                                                 </div>
                             
                                                 <div class="paddles d-md-none">
-                                                    @if($value->item_active->count() > 1)
-                                                    <button class="left-paddle_pop_bonus paddle_pop_bonus paddles_hide_pop_bonus">
-                                                        <i class="fa fa-angle-double-left" style="color:#878787;"></i>
-                                                    </button>
-                                                    <button class="right-paddle_pop_bonus paddle_pop_bonus" style="text-decoration: none;">
-                                                        <i class="fa fa-angle-double-right" style="color:#878787;"></i>
-                                                    </button>
+                                                    @if($value->group_cat == NULL)
+                                                        @if($value->item_active->count() > 1)
+                                                        <button class="left-paddle_pop_bonus paddle_pop_bonus paddles_hide_pop_bonus">
+                                                            <i class="fa fa-angle-double-left" style="color:#878787;"></i>
+                                                        </button>
+                                                        <button class="right-paddle_pop_bonus paddle_pop_bonus" style="text-decoration: none;">
+                                                            <i class="fa fa-angle-double-right" style="color:#878787;"></i>
+                                                        </button>
+                                                        @endif
+                                                    @else
+                                                        @if(count($all_product) > 1)
+                                                        <button class="left-paddle_pop_bonus paddle_pop_bonus paddles_hide_pop_bonus">
+                                                            <i class="fa fa-angle-double-left" style="color:#878787;"></i>
+                                                        </button>
+                                                        <button class="right-paddle_pop_bonus paddle_pop_bonus" style="text-decoration: none;">
+                                                            <i class="fa fa-angle-double-right" style="color:#878787;"></i>
+                                                        </button>
+                                                        @endif
                                                     @endif
                                                 </div>
                                             </div>
