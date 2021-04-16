@@ -373,6 +373,10 @@
             display: none;
         }
 
+        .paddles_hide_pop {
+            display: none;
+        }
+
         .paddles_hide_pop_bonus {
             display: none;
         }
@@ -1435,7 +1439,7 @@
 
 //=======================================scroll popup paket================================================//
         // duration of scroll animation
-        var scrollDuration_pop = 800;
+        var scrollDuration_pop = 5000;
         // paddles
         var leftPaddle_pop = document.getElementsByClassName("left-paddle_pop");
         var rightPaddle_pop = document.getElementsByClassName("right-paddle_pop");
@@ -1443,11 +1447,11 @@
         var itemsLength_pop = $(".item_pop").length;
         var itemSize_pop = $(".item_pop").outerWidth(true);
         // get some relevant size for the paddle triggering point
-        var paddleMargin_pop = 250;
+        var paddleMargin_pop = 2600;
 
         // get wrapper width
         var getMenuWrapperSize_pop = function () {
-            return $(".menu-wrapper_pop").outerWidth()-500;
+            return $(".menu-wrapper_pop").outerWidth()-5200;
         };
         var menuWrapperSize_pop = getMenuWrapperSize_pop();
         // the wrapper is responsive
@@ -1482,15 +1486,15 @@
             // show & hide the paddles
             // depending on scroll position
             if (menuPosition_pop <= paddleMargin_pop) {
-                $(leftPaddle_pop).addClass("paddles_hide");
-                $(rightPaddle_pop).removeClass("paddles_hide");
+                $(leftPaddle_pop).addClass("paddles_hide_pop");
+                $(rightPaddle_pop).removeClass("paddles_hide_pop");
             } else if (menuPosition_pop < menuEndOffset_pop) {
                 // show both paddles in the middle
-                $(leftPaddle_pop).removeClass("paddles_hide");
-                $(rightPaddle_pop).removeClass("paddles_hide");
+                $(leftPaddle_pop).removeClass("paddles_hide_pop");
+                $(rightPaddle_pop).removeClass("paddles_hide_pop");
             } else if (menuPosition_pop >= menuEndOffset_pop) {
-                $(leftPaddle_pop).removeClass("paddles_hide");
-                $(rightPaddle_pop).addClass("paddles_hide");
+                $(leftPaddle_pop).removeClass("paddles_hide_pop");
+                $(rightPaddle_pop).addClass("paddles_hide_pop");
             }
         });
 
@@ -1508,7 +1512,7 @@
 
 //=======================================scroll popup paket bonus================================================//
         // duration of scroll animation
-        var scrollDuration_pop_bonus = 800;
+        var scrollDuration_pop_bonus = 5000;
         // paddles
         var leftPaddle_pop_bonus = document.getElementsByClassName("left-paddle_pop_bonus");
         var rightPaddle_pop_bonus = document.getElementsByClassName("right-paddle_pop_bonus");
@@ -1516,11 +1520,11 @@
         var itemsLength_pop_bonus = $(".item_pop_bonus").length;
         var itemSize_pop_bonus = $(".item_pop_bonus").outerWidth(true);
         // get some relevant size for the paddle triggering point
-        var paddleMargin_pop_bonus = 700;
+        var paddleMargin_pop_bonus = 4800;
 
         // get wrapper width
         var getMenuWrapperSize_pop_bonus = function () {
-            return $(".menu-wrapper_pop_bonus").outerWidth()-1400;
+            return $(".menu-wrapper_pop_bonus").outerWidth()-9600;
         };
         var menuWrapperSize_pop_bonus = getMenuWrapperSize_pop_bonus();
         // the wrapper is responsive
@@ -2176,13 +2180,13 @@
             }
         }
 
-        function button_plus_pkt(id)
+        function button_plus_pkt(id,group_id)
         {
-            var jumlah = $('#jumlah_pkt'+id).val();
+            var jumlah = $('#jumlah_pkt'+id+'_'+group_id).val();
             var jumlah = parseInt(jumlah) + 1;
 
             // AMBIL NILAI HARGA
-            var harga = $('#harga_pkt'+id).val();
+            var harga = $('#harga_pkt'+id+'_'+group_id).val();
             var harga = parseInt(harga) * jumlah;
 
             // UBAH FORMAT UANG INDONESIA
@@ -2198,20 +2202,20 @@
 
             harga = "Rp. " + rupiah +",-";
             
-            var text_harga = $('#harga_pkt'+id).val();
+            var text_harga = $('#harga_pkt'+id+'_'+group_id).val();
             var	text_string = text_harga.toString();
             var hasil = text_string.length;
             // alert(jumlah)
             if (jumlah<1) {
             alert('Jumlah Tidak Boleh Kosong')
             } else {
-                $('#button_minus_pkt'+id).attr('disabled', false);
-                $('#jumlah_pkt'+id).val(jumlah)
-                $('#show_pkt'+id).val(jumlah)
-                $('#productPrice_pkt'+id).text(harga);
+                $('#button_minus_pkt'+id+'_'+group_id).attr('disabled', false);
+                $('#jumlah_pkt'+id+'_'+group_id).val(jumlah)
+                $('#show_pkt'+id+'_'+group_id).val(jumlah)
+                $('#productPrice_pkt'+id+'_'+group_id).text(harga);
                 if(hasil > 8){
                     if ($(window).width() <= 480) {
-                        $('#productPrice_pkt'+id).style.fontSize = "small";
+                        $('#productPrice_pkt'+id+'_'+group_id).style.fontSize = "small";
                     } 
                 }
             }
@@ -2354,13 +2358,13 @@
             }
         }
 
-        function button_minus_pkt(id)
+        function button_minus_pkt(id,group_id)
         {
-            var jumlah = $('#jumlah_pkt'+id).val();
+            var jumlah = $('#jumlah_pkt'+id+'_'+group_id).val();
             var jumlah = parseInt(jumlah) - 1;
 
             // AMBIL NILAI HARGA
-            var harga = $('#harga_pkt'+id).val();;
+            var harga = $('#harga_pkt'+id+'_'+group_id).val();;
             var harga = parseInt(harga) * jumlah;
 
             // UBAH FORMAT UANG INDONESIA
@@ -2377,7 +2381,7 @@
             harga = "Rp. " + rupiah+ ",-";
 
             if (jumlah<0) {
-                $('#button_minus_pkt'+id).attr('disabled', true);
+                $('#button_minus_pkt'+id+'_'+group_id).attr('disabled', true);
                 /*const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-center',
@@ -2397,9 +2401,9 @@
             } 
             else 
             {
-            $('#jumlah_pkt'+id).val(jumlah);
-            $('#show_pkt'+id).val(jumlah);
-            $('#productPrice_pkt'+id).text(harga);
+            $('#jumlah_pkt'+id+'_'+group_id).val(jumlah);
+            $('#show_pkt'+id+'_'+group_id).val(jumlah);
+            $('#productPrice_pkt'+id+'_'+group_id).text(harga);
             }
         }
 
@@ -3881,6 +3885,195 @@
                                 $('#jumlah_pkt'+id).val(0);
                                 $('#show_pkt'+id).val(0);
                                 $('#productPrice_pkt'+id).text(harga);
+                                var total_qty = parseInt(data);
+                                var bonus_kali = total_qty / parseInt(purchase_qty);
+                                var desimal_kali = Math.floor(bonus_kali) * parseInt(bonus_qty);
+                                $('#bonus_max'+group_id).text(desimal_kali);
+                                $('#max_bonus'+group_id).val(desimal_kali);
+                                
+                                }
+                            });
+                        
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'center',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                            })
+
+                            Toast.fire({
+                            icon: 'success',
+                            title: 'Produk paket berhasil dihapus'
+                        });    
+                    },
+                    
+                    
+                    error: function (data) {
+                    console.log('Error:', data);
+                    }
+                });
+            }
+        }
+
+        //delete paket
+        function delete_pktall(id,group_id)
+        {   
+            var orderid_delete =  $('#orderid_delete_pkt'+id).val();
+            var jml_val = $('#jumlah_val_pktall'+id).val();
+            var product_id = $('#product_pktall'+id).val();
+            var paket_id = $('#paket_id').val(); 
+            var purchase_qty = $('#purchase_qty').val();
+            var bonus_qty =  $('#bonus_qty').val();
+            var bns_total = $('#bns_total'+group_id).val();
+            // AMBIL NILAI HARGA
+            var harga = $('#harga_pktall'+id).val();
+            
+
+            // UBAH FORMAT UANG INDONESIA
+            var	number_string = harga.toString();
+            var sisa 	= number_string.length % 3;
+            var rupiah 	= number_string.substr(0, sisa);
+            var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+            }
+
+            harga = "Rp. " + rupiah +",-";
+
+            if(bns_total > 0){
+                var total_val_qty = $('#total_produk'+group_id).val();
+                var a = parseInt(total_val_qty) - parseInt(jml_val);
+                var b = parseInt(bns_total) * parseInt(purchase_qty);
+                if(a < b) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                        })
+
+                        Toast.fire({
+                        icon: 'error',
+                        title: 'Gagal !, Total quantity tidak boleh kurang dari '+b,
+                    });
+                    $('#checkbox_pktall'+id).attr("disabled", false);
+                    $('#checkbox_pktall'+id).prop('checked', true);
+                }
+                else{
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url : '{{URL::to('/keranjang/paket/delete_pkt')}}',
+                        type:'POST',
+                        data:{
+                            order_id : orderid_delete,
+                            product_id : product_id,
+                            paket_id : paket_id,
+                            group_id : group_id
+                        },
+                        success: function () {
+                            $.ajax({
+                                    url : '{{URL::to('/keranjang/paket/totalquantity')}}',
+                                    type:'POST',
+                                    data:{
+                                        product_id : product_id,
+                                        paket_id : paket_id,
+                                        group_id : group_id,
+                                        order_id : orderid_delete
+                                    },
+                                    success: function (data) {
+                                    // We get the element having id of display_info and put the response inside it
+                                    $('#total_qty'+group_id).text(data);
+                                    $('#total_produk'+group_id).val(data);
+                                    $('#checkbox_pktall'+id).attr("disabled", true);
+                                    $('#checkbox_pktall'+id).prop('checked', true);
+                                    $('#jumlah_val_pktall'+id).val(0);
+                                    $('#jumlah_pktall'+id).val(0);
+                                    $('#show_pktall'+id).val(0);
+                                    $('#productPrice_pktall'+id).text(harga);
+                                    var total_qty = parseInt(data);
+                                    var bonus_kali = total_qty / parseInt(purchase_qty);
+                                    var desimal_kali = Math.floor(bonus_kali) * parseInt(bonus_qty);
+                                    $('#bonus_max'+group_id).text(desimal_kali);
+                                    $('#max_bonus'+group_id).val(desimal_kali);
+                                    
+                                    }
+                                });
+                            
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'center',
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    }
+                                })
+
+                                Toast.fire({
+                                icon: 'success',
+                                title: 'Produk paket berhasil dihapus'
+                            });    
+                        },
+                        
+                        
+                        error: function (data) {
+                        console.log('Error:', data);
+                        }
+                    });
+                }
+            }else{
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url : '{{URL::to('/keranjang/paket/delete_pkt')}}',
+                    type:'POST',
+                    data:{
+                        order_id : orderid_delete,
+                        product_id : product_id,
+                        paket_id : paket_id,
+                        group_id : group_id
+                    },
+                    success: function () {
+                        $.ajax({
+                                url : '{{URL::to('/keranjang/paket/totalquantity')}}',
+                                type:'POST',
+                                data:{
+                                    product_id : product_id,
+                                    paket_id : paket_id,
+                                    group_id : group_id,
+                                    order_id : orderid_delete
+                                },
+                                success: function (data) {
+                                // We get the element having id of display_info and put the response inside it
+                                $('#total_qty'+group_id).text(data);
+                                $('#total_produk'+group_id).val(data);
+                                $('#checkbox_pktall'+id).attr("disabled", true);
+                                $('#checkbox_pktall'+id).prop('checked', true);
+                                $('#jumlah_val_pktall'+id).val(0);
+                                $('#jumlah_pktall'+id).val(0);
+                                $('#show_pktall'+id).val(0);
+                                $('#productPrice_pktall'+id).text(harga);
                                 var total_qty = parseInt(data);
                                 var bonus_kali = total_qty / parseInt(purchase_qty);
                                 var desimal_kali = Math.floor(bonus_kali) * parseInt(bonus_qty);
