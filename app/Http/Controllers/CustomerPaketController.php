@@ -84,7 +84,7 @@ class CustomerPaketController extends Controller
         $quantity=$request->get('quantity');
         $price=$request->get('price');
         $group_id=$request->get('group_id');
-        $paket_id=$request->get('paket_id');
+        //$paket_id=$request->get('paket_id');
         $cek_promo = \App\product::findOrFail($id_product);
         $cek_order = \App\Order::where('user_id','=',"$id_user")
         ->where('status','=','SUBMIT')->whereNull('customer_id')->first();
@@ -98,7 +98,7 @@ class CustomerPaketController extends Controller
                 $order_product->discount_item = $cek_promo->discount;
                 $order_product->quantity = $quantity;
                 $order_product->group_id = $group_id;
-                $order_product->paket_id = $paket_id;
+                //$order_product->paket_id = $paket_id;
                 $order_product->save();
                 //$cek_order->total_price += $price * $quantity;
                 //$cek_order->save();
@@ -112,7 +112,7 @@ class CustomerPaketController extends Controller
                         $new_order_product->discount_item = $cek_promo->discount;
                         $new_order_product->quantity = $quantity;
                         $new_order_product->group_id = $group_id;
-                        $new_order_product->paket_id = $paket_id;
+                        //$new_order_product->paket_id = $paket_id;
                         $new_order_product->save();
                         //$cek_order->total_price += $price * $quantity;
                         //$cek_order->save();
@@ -137,7 +137,7 @@ class CustomerPaketController extends Controller
                 $order_product->discount_item = $cek_promo->discount;
                 $order_product->quantity = $request->get('quantity');
                 $order_product->group_id = $group_id;
-                $order_product->paket_id = $paket_id;
+                //$order_product->paket_id = $paket_id;
                 $order_product->save();
                 return response()->json($order->id);
             }
@@ -201,10 +201,10 @@ class CustomerPaketController extends Controller
     public function get_total_qty(Request $request){
         $order_id = $request->get('order_id');
         $group_id = $request->get('group_id');
-        $paket_id = $request->get('paket_id');
+        //$paket_id = $request->get('paket_id');
         $paket = \App\Order_paket_temp::where('order_id',$order_id)
                 ->where('group_id',$group_id)
-                ->where('paket_id',$paket_id)
+                //->where('paket_id',$paket_id)
                 ->whereNull('bonus_cat')
                 ->sum('quantity');
         

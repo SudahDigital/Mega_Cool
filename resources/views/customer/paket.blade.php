@@ -115,9 +115,9 @@ Home
                                                                         @endphp
                                                                         
                                                                         @if(($item) && ($qty_on_paket != NULL))
-                                                                            <input type="hidden" id="orderid_delete_pkt{{$p_group->id}}" value="{{$item->id}}">
+                                                                            <input type="hidden" id="orderid_delete_pkt{{$p_group->id}}_{{$value->id}}" value="{{$item->id}}">
                                                                         @else
-                                                                            <input type="hidden" id="orderid_delete_pkt{{$p_group->id}}" value="">
+                                                                            <input type="hidden" id="orderid_delete_pkt{{$p_group->id}}_{{$value->id}}" value="">
                                                                         @endif
                                                                         <div class="round">
                                                                             <input type="checkbox" onclick="delete_pkt('{{$p_group->id}}','{{$value->id}}')" id="checkbox_pkt{{$p_group->id}}_{{$value->id}}" {{($item && $qty_on_paket != NULL && $qty_on_paket->quantity > 0) ? 'checked' : 'checked disabled'}}/>
@@ -201,9 +201,9 @@ Home
                                                                     @endphp
                                                                     
                                                                     @if(($item) && ($qty_on_paket != NULL))
-                                                                        <input type="hidden" id="orderid_delete_pkt{{$p_group->id}}" value="{{$item->id}}">
+                                                                        <input type="hidden" id="orderid_delete_pkt{{$p_group->id}}_{{$value->id}}" value="{{$item->id}}">
                                                                     @else
-                                                                        <input type="hidden" id="orderid_delete_pkt{{$p_group->id}}" value="">
+                                                                        <input type="hidden" id="orderid_delete_pkt{{$p_group->id}}_{{$value->id}}" value="">
                                                                     @endif
                                                                     <div class="round">
                                                                         <input type="checkbox" onclick="delete_pkt('{{$p_group->id}}','{{$value->id}}')" id="checkbox_pkt{{$p_group->id}}_{{$value->id}}" {{($item && $qty_on_paket != NULL && $qty_on_paket->quantity > 0) ? 'checked' : 'checked disabled'}}/>
@@ -345,13 +345,13 @@ Home
                                                                             @endphp
                                                                             
                                                                             @if(($item) && ($qty_on_bonus != NULL))
-                                                                                <input type="hidden" id="orderid_delete_bns{{$p_group->id}}" value="{{$item->id}}">
+                                                                                <input type="hidden" id="orderid_delete_bns{{$p_group->id}}_{{$value->id}}" value="{{$item->id}}">
                                                                             @else
-                                                                                <input type="hidden" id="orderid_delete_bns{{$p_group->id}}" value="">
+                                                                                <input type="hidden" id="orderid_delete_bns{{$p_group->id}}_{{$value->id}}" value="">
                                                                             @endif
                                                                             <div class="round_bns">
-                                                                                <input type="checkbox" onclick="delete_bns('{{$p_group->id}}','{{$value->id}}')" id="checkbox_bns{{$p_group->id}}" {{($item && $qty_on_bonus != NULL && $qty_on_bonus->quantity > 0) ? 'checked' : 'checked disabled'}} style="display:none;"/>
-                                                                                <label for="checkbox_bns{{$p_group->id}}"></label>
+                                                                                <input type="checkbox" onclick="delete_bns('{{$p_group->id}}','{{$value->id}}')" id="checkbox_bns{{$p_group->id}}_{{$value->id}}" {{($item && $qty_on_bonus != NULL && $qty_on_bonus->quantity > 0) ? 'checked' : 'checked disabled'}} style="display:none;"/>
+                                                                                <label for="checkbox_bns{{$p_group->id}}_{{$value->id}}"></label>
                                                                             </div>
                                                                             <a>
                                                                                 <img src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid img-responsive" alt="..." style="">
@@ -365,16 +365,16 @@ Home
                                                                                     </p>
                                                                                 </div>
                                                                                 <div class="float-left pl-0 pt-1 pb-0" style="">
-                                                                                    <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_bns{{$p_group->id}}" style="">Rp. {{ $item && $qty_on_bonus != NULL ?  number_format($harga_on_bonus, 0, ',', '.') : number_format($p_group->price, 0, ',', '.') }},-</p>
+                                                                                    <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_bns{{$p_group->id}}_{{$value->id}}" style="">Rp. {{ $item && $qty_on_bonus != NULL ?  number_format($harga_on_bonus, 0, ',', '.') : number_format($p_group->price, 0, ',', '.') }},-</p>
                                                                                 </div>
                                                                                 
                                                                                 <div class="float-left pl-0 mt-auto">
                                                                                     <div class="input-group mb-0">
-                                                                                        <input type="hidden" id="jumlah_val_bns{{$p_group->id}}" name="" value="{{$item && $qty_on_bonus != NULL ? "$qty_on_bonus->quantity" : '0'}}">
-                                                                                        <input type="hidden" id="jumlah_bns{{$p_group->id}}" name="quantity_bns" value="{{$item && $qty_on_bonus != NULL ? "$qty_on_bonus->quantity" : '0'}}">
-                                                                                        <input type="hidden" id="harga_bns{{$p_group->id}}" name="price" value="{{$p_group->price}}">
-                                                                                        <input type="hidden" id="product_bns{{$p_group->id}}" name="Product_id" value="{{$p_group->id}}">
-                                                                                        <button class="input-group-text button_minus_bns" id="button_minus_bns{{$p_group->id}}" 
+                                                                                        <input type="hidden" id="jumlah_val_bns{{$p_group->id}}_{{$value->id}}" name="" value="{{$item && $qty_on_bonus != NULL ? "$qty_on_bonus->quantity" : '0'}}">
+                                                                                        <input type="hidden" id="jumlah_bns{{$p_group->id}}_{{$value->id}}" name="quantity_bns" value="{{$item && $qty_on_bonus != NULL ? "$qty_on_bonus->quantity" : '0'}}">
+                                                                                        <input type="hidden" id="harga_bns{{$p_group->id}}_{{$value->id}}" name="price" value="{{$p_group->price}}">
+                                                                                        <input type="hidden" id="product_bns{{$p_group->id}}_{{$value->id}}" name="Product_id" value="{{$p_group->id}}">
+                                                                                        <button class="input-group-text button_minus_bns" id="button_minus_bns{{$p_group->id}}_{{$value->id}}" 
                                                                                                 style="cursor: pointer;
                                                                                                 outline:none;
                                                                                                 border:none;
@@ -383,9 +383,9 @@ Home
                                                                                                 border-right-style:none;
                                                                                                 font-weight:bold;
                                                                                                 padding-right:0;
-                                                                                                height:25px" onclick="button_minus_bns('{{$p_group->id}}')" 
+                                                                                                height:25px" onclick="button_minus_bns('{{$p_group->id}}','{{$value->id}}')" 
                                                                                                 onMouseOver="this.style.color='#495057'" >-</button>
-                                                                                        <input type="number" id="show_bns{{$p_group->id}}" onkeyup="input_qty_bns('{{$p_group->id}}','{{$value->id}}')" class="form-control show_pkt" value="{{$item && $qty_on_bonus !== NULL ? $qty_on_bonus->quantity : '0'}}" 
+                                                                                        <input type="number" id="show_bns{{$p_group->id}}_{{$value->id}}" onkeyup="input_qty_bns('{{$p_group->id}}','{{$value->id}}')" class="form-control show_pkt" value="{{$item && $qty_on_bonus !== NULL ? $qty_on_bonus->quantity : '0'}}" 
                                                                                                 style="background-color:#e9ecef !important;
                                                                                                 text-align:center;
                                                                                                 border:none;
@@ -404,7 +404,7 @@ Home
                                                                                                 border-left-style:none;
                                                                                                 font-weight:bold;
                                                                                                 padding-left:0;
-                                                                                                height:25px" onclick="button_plus_bns('{{$p_group->id}}')">+</button>
+                                                                                                height:25px" onclick="button_plus_bns('{{$p_group->id}}','{{$value->id}}')">+</button>
                                                                                     </div> 
                                                                                 </div>
                                                                                 <div class="float-right mt-2">
@@ -437,13 +437,13 @@ Home
                                                                             @endphp
                                                                             
                                                                             @if(($item) && ($qty_on_bonus != NULL))
-                                                                                <input type="hidden" id="orderid_delete_bns{{$p_group->id}}" value="{{$item->id}}">
+                                                                                <input type="hidden" id="orderid_delete_bns{{$p_group->id}}_{{$value->id}}" value="{{$item->id}}">
                                                                             @else
-                                                                                <input type="hidden" id="orderid_delete_bns{{$p_group->id}}" value="">
+                                                                                <input type="hidden" id="orderid_delete_bns{{$p_group->id}}_{{$value->id}}" value="">
                                                                             @endif
                                                                             <div class="round_bns">
-                                                                                <input type="checkbox" onclick="delete_bns('{{$p_group->id}}','{{$value->id}}')" id="checkbox_bns{{$p_group->id}}" {{($item && $qty_on_bonus != NULL && $qty_on_bonus->quantity > 0) ? 'checked' : 'checked disabled'}} style="display:none;"/>
-                                                                                <label for="checkbox_bns{{$p_group->id}}"></label>
+                                                                                <input type="checkbox" onclick="delete_bns('{{$p_group->id}}','{{$value->id}}')" id="checkbox_bns{{$p_group->id}}_{{$value->id}}" {{($item && $qty_on_bonus != NULL && $qty_on_bonus->quantity > 0) ? 'checked' : 'checked disabled'}} style="display:none;"/>
+                                                                                <label for="checkbox_bns{{$p_group->id}}_{{$value->id}}"></label>
                                                                             </div>
                                                                             <a>
                                                                                 <img src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid img-responsive" alt="..." style="">
@@ -457,16 +457,16 @@ Home
                                                                                     </p>
                                                                                 </div>
                                                                                 <div class="float-left pl-0 pt-1 pb-0" style="">
-                                                                                    <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_bns{{$p_group->id}}" style="">Rp. {{ $item && $qty_on_bonus != NULL ?  number_format($harga_on_bonus, 0, ',', '.') : number_format($p_group->price, 0, ',', '.') }},-</p>
+                                                                                    <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_bns{{$p_group->id}}_{{$value->id}}" style="">Rp. {{ $item && $qty_on_bonus != NULL ?  number_format($harga_on_bonus, 0, ',', '.') : number_format($p_group->price, 0, ',', '.') }},-</p>
                                                                                 </div>
                                                                                 
                                                                                 <div class="float-left pl-0 mt-auto">
                                                                                     <div class="input-group mb-0">
-                                                                                        <input type="hidden" id="jumlah_val_bns{{$p_group->id}}" name="" value="{{$item && $qty_on_bonus != NULL ? "$qty_on_bonus->quantity" : '0'}}">
-                                                                                        <input type="hidden" id="jumlah_bns{{$p_group->id}}" name="quantity_bns" value="{{$item && $qty_on_bonus != NULL ? "$qty_on_bonus->quantity" : '0'}}">
-                                                                                        <input type="hidden" id="harga_bns{{$p_group->id}}" name="price" value="{{$p_group->price}}">
-                                                                                        <input type="hidden" id="product_bns{{$p_group->id}}" name="Product_id" value="{{$p_group->id}}">
-                                                                                        <button class="input-group-text button_minus_bns" id="button_minus_bns{{$p_group->id}}" 
+                                                                                        <input type="hidden" id="jumlah_val_bns{{$p_group->id}}_{{$value->id}}" name="" value="{{$item && $qty_on_bonus != NULL ? "$qty_on_bonus->quantity" : '0'}}">
+                                                                                        <input type="hidden" id="jumlah_bns{{$p_group->id}}_{{$value->id}}" name="quantity_bns" value="{{$item && $qty_on_bonus != NULL ? "$qty_on_bonus->quantity" : '0'}}">
+                                                                                        <input type="hidden" id="harga_bns{{$p_group->id}}_{{$value->id}}" name="price" value="{{$p_group->price}}">
+                                                                                        <input type="hidden" id="product_bns{{$p_group->id}}_{{$value->id}}" name="Product_id" value="{{$p_group->id}}">
+                                                                                        <button class="input-group-text button_minus_bns" id="button_minus_bns{{$p_group->id}}_{{$value->id}}" 
                                                                                                 style="cursor: pointer;
                                                                                                 outline:none;
                                                                                                 border:none;
@@ -475,9 +475,9 @@ Home
                                                                                                 border-right-style:none;
                                                                                                 font-weight:bold;
                                                                                                 padding-right:0;
-                                                                                                height:25px" onclick="button_minus_bns('{{$p_group->id}}')" 
+                                                                                                height:25px" onclick="button_minus_bns('{{$p_group->id}}','{{$value->id}}')" 
                                                                                                 onMouseOver="this.style.color='#495057'" >-</button>
-                                                                                        <input type="number" id="show_bns{{$p_group->id}}" onkeyup="input_qty_bns('{{$p_group->id}}','{{$value->id}}')" class="form-control show_pkt" value="{{$item && $qty_on_bonus !== NULL ? $qty_on_bonus->quantity : '0'}}" 
+                                                                                        <input type="number" id="show_bns{{$p_group->id}}_{{$value->id}}" onkeyup="input_qty_bns('{{$p_group->id}}','{{$value->id}}')" class="form-control show_pkt" value="{{$item && $qty_on_bonus !== NULL ? $qty_on_bonus->quantity : '0'}}" 
                                                                                                 style="background-color:#e9ecef !important;
                                                                                                 text-align:center;
                                                                                                 border:none;
@@ -496,7 +496,7 @@ Home
                                                                                                 border-left-style:none;
                                                                                                 font-weight:bold;
                                                                                                 padding-left:0;
-                                                                                                height:25px" onclick="button_plus_bns('{{$p_group->id}}')">+</button>
+                                                                                                height:25px" onclick="button_plus_bns('{{$p_group->id}}','{{$value->id}}')">+</button>
                                                                                     </div> 
                                                                                 </div>
                                                                                 <div class="float-right mt-2">
