@@ -26,7 +26,7 @@ class CustomerKeranjangController extends Controller
         $banner_active = \App\Banner::orderBy('position', 'ASC')->first();
         $banner = \App\Banner::orderBy('position', 'ASC')->limit(5)->get();
         $categories = \App\Category::all();//paginate(10);
-        $paket = \App\Paket::all();//paginate(10);
+        $paket = \App\Paket::all()->first();//paginate(10);
         $cat_count = $categories->count();
         $top_product = product::with('categories')
         ->where('top_product','=','1')

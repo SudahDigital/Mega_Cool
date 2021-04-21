@@ -586,15 +586,20 @@
                 <li class="">
                    <a href="{{ url('/') }}">Beranda</a>
                 </li>
+                <!--
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Paket</a>
                     <ul class="collapse list-unstyled page-submenu" id="pageSubmenu">
-                        @foreach($paket as $paket_menu)
+                        foreach($paket as $paket_menu)
                             <li>
-                                <a href="{{route('home_paket', ['paket'=>$paket_menu->id] )}}" style="">{{$paket_menu->display_name}}</a>
+                                <a href="route('home_paket', ['paket'=>$paket_menu->id] )}}" style="">$paket_menu->display_name}}</a>
                             </li>
-                        @endforeach
+                        endforeach
                     </ul>
+                </li>
+                -->
+                <li>
+                    <a href="{{$paket != null ? URL::route('home_paket', ['paket'=>strtolower($paket->status)]) : '' }}">Paket</a>
                 </li>
                 <li>
                    <a href="{{URL::route('profil.index')}}">Profile</a>

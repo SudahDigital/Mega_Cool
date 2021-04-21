@@ -18,11 +18,12 @@ Route::get('/product/detail/', 'ProductDetailController@detail')->name('product_
 Route::group(['middleware' => ['auth','checkRole:SALES']],function(){
     Route::get('/contact', function(){
         $categories = \App\Category::get();
-        $paket = \App\Paket::all();//paginate(10);	
+        $paket = \App\Paket::all()->first();//paginate(10);	
         return view('customer.contact',['categories'=>$categories,'paket'=>$paket]);
         })->name('contact');        
     Route::get('/sales_home/{cat?}', 'CustomerKeranjangController@index')->name('home_customer');
     Route::get('/sales_home/{paket}/paket', 'CustomerPaketController@index')->name('home_paket');
+    //Route::get('/sales_home/paket_group', 'CustomerPaketController@index')->name('home_paket');
     Route::get('/ajax/city', 'AjaxCitySearch@ajax_city');
     Route::get('/ajax/store', 'AjaxCitySearch@ajax_store');
     Route::post('/session/store','SessionStore@index')->name('session.store');

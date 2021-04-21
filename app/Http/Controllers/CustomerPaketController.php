@@ -14,7 +14,7 @@ class CustomerPaketController extends Controller
         $banner_active = \App\Banner::orderBy('position', 'ASC')->first();
         $banner = \App\Banner::orderBy('position', 'ASC')->limit(5)->get();
         $categories = \App\Category::all();//paginate(10);
-        $paket = \App\Paket::all();//paginate(10);
+        $paket = \App\Paket::all()->first();//paginate(10);
         //$paket_id = \App\Paket::findOrfail($id);//paginate(10);
         $cat_count = $categories->count();
         $all_product = \App\product::where('status','=','PUBLISH')->get();
