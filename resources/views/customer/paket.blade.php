@@ -54,9 +54,7 @@ Home
                 </div>
             </div>
         </div>
-        <input type="hidden" id="purchase_qty" value="{{$paket_id->purchase_quantity}}">
-        <input type="hidden" id="bonus_qty" value="{{$paket_id->bonus_quantity}}">
-        <input type="hidden" id="paket_id" value="{{$paket_id->id}}">
+        
         
         <div class="container list-product" style="">
             <div class="row mt-0">
@@ -105,7 +103,7 @@ Home
                                                                             if($item){
                                                                                 $qty_on_paket = \App\Order_paket_temp::where('order_id',$item->id)
                                                                                             ->where('product_id',$p_group->id)
-                                                                                            ->where('paket_id',$paket_id->id)
+                                                                                            //->where('paket_id',$paket_id->id)
                                                                                             ->where('group_id',$value->id)
                                                                                             ->whereNull('bonus_cat')->first();
                                                                                 if($qty_on_paket){
@@ -191,7 +189,7 @@ Home
                                                                         if($item){
                                                                             $qty_on_paket = \App\Order_paket_temp::where('order_id',$item->id)
                                                                                         ->where('product_id',$p_group->id)
-                                                                                        ->where('paket_id',$paket_id->id)
+                                                                                        //->where('paket_id',$paket_id->id)
                                                                                         ->where('group_id',$value->id)
                                                                                         ->whereNull('bonus_cat')->first();
                                                                             if($qty_on_paket){
@@ -335,7 +333,7 @@ Home
                                                                                 if($item){
                                                                                     $qty_on_bonus = \App\Order_paket_temp::where('order_id',$item->id)
                                                                                                 ->where('product_id',$p_group->id)
-                                                                                                ->where('paket_id',$paket_id->id)
+                                                                                               //->where('paket_id',$paket_id->id)
                                                                                                 ->where('group_id',$value->id)
                                                                                                 ->whereNotNull('bonus_cat')->first();
                                                                                     if($qty_on_bonus){
@@ -427,7 +425,7 @@ Home
                                                                                 if($item){
                                                                                     $qty_on_bonus = \App\Order_paket_temp::where('order_id',$item->id)
                                                                                                 ->where('product_id',$p_group->id)
-                                                                                                ->where('paket_id',$paket_id->id)
+                                                                                                //->where('paket_id',$paket_id->id)
                                                                                                 ->where('group_id',$value->id)
                                                                                                 ->whereNotNull('bonus_cat')->first();
                                                                                     if($qty_on_bonus){
@@ -566,35 +564,44 @@ Home
                                             if($item){
                                             $pkt_total = \App\Order_paket_temp::where('order_id',$item->id)
                                             ->where('group_id',$value->id)
-                                            ->where('paket_id',$paket_id->id)
+                                            //->where('paket_id',$paket_id->id)
                                             ->whereNull('bonus_cat')
                                             ->sum('quantity');
                                             $bns_total = \App\Order_paket_temp::where('order_id',$item->id)
                                             ->where('group_id',$value->id)
-                                            ->where('paket_id',$paket_id->id)
+                                            //->where('paket_id',$paket_id->id)
                                             ->whereNotNull('bonus_cat')
                                             ->sum('quantity');
-                                            $purch_qty = $paket_id->purchase_quantity;
-                                            $bonus_qty = $paket_id->bonus_quantity;
-                                            $bonus_kali = $pkt_total / $purch_qty;
-                                            $desimal_kali = floor($bonus_kali) * $bonus_qty;
+                                            $max_tmp = \App\Paket::where('status','=','ACTIVE')
+                                                    ->whereRaw("purchase_quantity = (select max(purchase_quantity) FROM pakets WHERE purchase_quantity <= '$pkt_total')")
+                                                    ->orderBy('updated_at','DESC')
+                                                    ->first();
+                                            if($max_tmp != NULL){
+                                                    $purch_qty = $max_tmp->purchase_quantity;
+                                                    $bonus_qty = $max_tmp->bonus_quantity;
+                                                    $bonus_kali = $pkt_total / $purch_qty;
+                                                    $desimal_kali = floor($bonus_kali) * $bonus_qty;
+                                                }
                                             }
                                         @endphp
+                                        <input type="hidden" id="purchase_qty{{$value->id}}" value="{{$item && $max_tmp != NULL ? $max_tmp->purchase_quantity : '' }}">
+                                        <input type="hidden" id="bonus_qty{{$value->id}}" value="{{$item && $max_tmp != NULL ? $max_tmp->bonus_quantity : '' }}">
+                                        <input type="hidden" id="paket_id{{$value->id}}" value="{{$item && $max_tmp != NULL ? $max_tmp->id : '' }}">
                                         <div class="mr-auto">
                                             <p class="mb-0">
                                                 <span class="text-qty-paket" style="color: #000;font-weight:700;">* Total Quantity Paket&nbsp;&nbsp;: <a id="total_qty{{$value->id}}">{{$item ? $pkt_total : '0' }}</a></span>
                                             </p>
                                             <p class="mb-0">
-                                                <span class="text-qty-paket" style="color: #000;font-weight:700;">* Total Quantity Bonus : <a id="total_bns{{$value->id}}">{{$item ? $bns_total : '0' }}</a></span>
+                                                <span class="text-qty-paket" style="color: #000;font-weight:700;">* Total Quantity Bonus : <a id="total_bns{{$value->id}}">{{$item && $max_tmp != NULL ? $bns_total : '0' }}</a></span>
                                             </p>
                                             <p class="">    
-                                                <span class="text-qty-paket" style="color:#1A4066;;font-weight:700;">* Jumlah Max. Bonus &nbsp;&nbsp;&nbsp;: <a id="bonus_max{{$value->id}}">{{$item ? $desimal_kali : '0' }}</a></span>
+                                                <span class="text-qty-paket" style="color:#1A4066;;font-weight:700;">* Jumlah Max. Bonus &nbsp;&nbsp;&nbsp;: <a id="bonus_max{{$value->id}}">{{$item && $max_tmp != NULL ? $desimal_kali : '0' }}</a></span>
                                             </p>
                                             
                                         </div>
                                         <input type="hidden" value="{{$item ? $pkt_total : '0' }}" id="total_produk{{$value->id}}">
                                         <input type="hidden" value="{{$item ? $bns_total : '0' }}" id="bns_total{{$value->id}}">
-                                        <input type="hidden" value="{{$item ? $desimal_kali : '0' }}" id="max_bonus{{$value->id}}">
+                                        <input type="hidden" value="{{$item && $max_tmp != NULL ? $desimal_kali : '0' }}" id="max_bonus{{$value->id}}">
                                         <input type="hidden" value="{{$item ? $item->id : '' }}" id="orderid_addcart{{$value->id}}">
                                         <a type="button" class="simpan-keranjang-paket btn button_add_to_cart float-right mb-2 mr-3" onclick="addcart_allpaket('{{$value->id}}')" style="padding: 10px 20px;">Simpan Ke-Keranjang</a>
                                     </div>

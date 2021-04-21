@@ -15,7 +15,7 @@ class CustomerPaketController extends Controller
         $banner = \App\Banner::orderBy('position', 'ASC')->limit(5)->get();
         $categories = \App\Category::all();//paginate(10);
         $paket = \App\Paket::all();//paginate(10);
-        $paket_id = \App\Paket::findOrfail($id);//paginate(10);
+        //$paket_id = \App\Paket::findOrfail($id);//paginate(10);
         $cat_count = $categories->count();
         $all_product = \App\product::where('status','=','PUBLISH')->get();
         $product = \App\Group::with('item_active')->where('status','ACTIVE')
@@ -67,7 +67,7 @@ class CustomerPaketController extends Controller
                 'cat_count'=>$cat_count,
                 'banner'=>$banner,
                 'banner_active'=>$banner_active,
-                'paket_id'=>$paket_id,
+                //'paket_id'=>$paket_id,
             ];
        
         return view('customer.paket',$data);
@@ -213,6 +213,17 @@ class CustomerPaketController extends Controller
         
     }
 
+    public function cek_max_qty(Request $request){
+        $total_qty = $request->get('total_qty');
+        $max_tmp = \App\Paket::where('status','=','ACTIVE')
+                 ->whereRaw("purchase_quantity = (select max(purchase_quantity) FROM pakets WHERE purchase_quantity <= '$total_qty')")
+                 ->orderBy('updated_at','DESC')
+                 ->first();
+        $cekData['data'] = $max_tmp;
+        echo json_encode($cekData);
+        exit;
+    }
+
     public function get_total_qty_bns(Request $request){
         $order_id = $request->get('order_id');
         $group_id = $request->get('group_id');
@@ -232,11 +243,11 @@ class CustomerPaketController extends Controller
         
         $order_id = $request->get('order_id');
         $product_id = $request->get('product_id');
-        $paket_id = $request->get('paket_id');
+        //$paket_id = $request->get('paket_id');
         $group_id = $request->get('group_id');
         $order_paket = \App\Order_paket_temp::where('order_id','=',$order_id)
                         ->where('product_id','=',$product_id)
-                        ->where('paket_id','=',$paket_id)
+                        //->where('paket_id','=',$paket_id)
                         ->where('group_id','=',$group_id)
                         ->whereNull('bonus_cat')->delete();
     }
@@ -260,7 +271,7 @@ class CustomerPaketController extends Controller
         $group_id = $request->get('group_id');
         //$inserts[];
         $paket_tmp = \App\Order_paket_temp::where('order_id',$order_id)
-                    ->where('paket_id',$paket_id)
+                    //->where('paket_id',$paket_id)
                     ->where('group_id',$group_id)
                     ->get();
         $dateNow = date('Y-m-d H:i:s');
@@ -269,7 +280,7 @@ class CustomerPaketController extends Controller
             $order_product = \App\order_product::where('order_id','=', $tmp->order_id)
                 ->where('product_id','=',$tmp->product_id)
                 ->where('group_id',$tmp->group_id)
-                ->where('paket_id',$tmp->paket_id)
+                ->where('paket_id',$paket_id)
                 ->where('bonus_cat',$tmp->bonus_cat)->first();
                 if($order_product!== null){
                     DB::table('order_product')->where('id', $order_product->id)->update([
@@ -282,7 +293,7 @@ class CustomerPaketController extends Controller
                         'created_at'=>$tmp->created_at,
                         'updated_at'=>$dateNow,
                         'group_id'=>$tmp->group_id,
-                        'paket_id'=>$tmp->paket_id,
+                        'paket_id'=>$paket_id,
                         'bonus_cat'=>$tmp->bonus_cat
                     ]);
                 }else{
@@ -296,7 +307,7 @@ class CustomerPaketController extends Controller
                         'created_at'=>$tmp->created_at,
                         'updated_at'=>$dateNow,
                         'group_id'=>$tmp->group_id,
-                        'paket_id'=>$tmp->paket_id,
+                        'paket_id'=>$paket_id,
                         'bonus_cat'=>$tmp->bonus_cat
                     ]);
                 }
@@ -309,7 +320,7 @@ class CustomerPaketController extends Controller
         $group_id = $request->get('group_id');
         //$inserts[];
         $paket_tmp = \App\Order_paket_temp::where('order_id',$order_id)
-                    ->where('paket_id',$paket_id)
+                    //->where('paket_id',$paket_id)
                     ->where('group_id',$group_id)
                     ->delete();
         if($paket_tmp){
