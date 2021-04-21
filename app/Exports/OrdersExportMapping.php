@@ -37,6 +37,7 @@ class OrdersExportMapping implements FromCollection, WithMapping, WithHeadings, 
                 $order->customers->store_name,
                 $order->customers->name,
                 $order->users->name,
+                $order->user_loc,
                 $p->Product_name,
                 $p->pivot->quantity,
                 $p->pivot->price_item,
@@ -44,7 +45,10 @@ class OrdersExportMapping implements FromCollection, WithMapping, WithHeadings, 
                 $p->pivot->group_id,
                 $p->pivot->bonus_cat,
                 $order->notes,
-                $order->created_at
+                $order->created_at,
+                $order->process_time,
+                $order->finish_time,
+                $order->cancel_time,
                 //Carbon::parse($order->created_at)->toFormattedDateString()
             ]);
         }
@@ -59,6 +63,7 @@ class OrdersExportMapping implements FromCollection, WithMapping, WithHeadings, 
            'Name',
            'Contact Person',
            'Sales Rep',
+           'On/Off Loc.',
            'Product',
            'Quantity',
            'Price',
@@ -66,7 +71,10 @@ class OrdersExportMapping implements FromCollection, WithMapping, WithHeadings, 
            'Group_id',
            'Bonus Product',
            'Note',
-           'Order Date'
+           'Order Date',
+           'Process Date',
+           'Finish Date',
+           'Cancel Date'
         ] ;
     }
 

@@ -89,11 +89,24 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         $order = \App\Order::findOrFail($id);
-      
-        $order->status = $request->get('status');
-
+        $dateNow = date('Y-m-d H:i:s');
+        $status = $request->get('status');
+        if($status == 'PROCESS'){
+            $order->status = $status;
+            $order->process_time = $dateNow;
+            //$order->save();
+        }else if($status == 'FINISH'){
+            $order->status = $status;
+            $order->finish_time = $dateNow;
+            //$order->save();
+        }else if($status == 'CANCEL'){
+            $order->status = $status;
+            $order->cancel_time = $dateNow;
+        }else{
+            $order->status = $status;
+        }
         $order->save();
-      
+        
         return redirect()->route('orders.detail', [$order->id])->with('status', 'Order status succesfully updated');
     }
 
