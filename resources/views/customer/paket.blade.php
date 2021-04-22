@@ -708,10 +708,10 @@ Home
                                                 <tr>
                                                     <td colspan="3" style="border-bottom: 1px solid #ddd;">
                                                         <div class="row">
-                                                            <div class="col-3 pt-1">
+                                                            <div class="col-3 pt-1 row-bonus-text">
                                                                 <p class="" style="font-weight:700;color: #153651;font-family: Montserrat;">Bonus :</p>
                                                             </div>
-                                                            <div class="col-9">
+                                                            <div class="col-9 row-bonus-detail">
                                                                 @php
                                                                     $groupby_bns = \App\order_product::where('order_id',$item->id)
                                                                                     ->where('paket_id',$dtl_pkt->paket_id)
@@ -724,8 +724,8 @@ Home
                                                                     @php
                                                                         $prd_bns =\App\product::findOrfail($bns->product_id);
                                                                     @endphp
-                                                                    <p class="d-none d-md-block d-md-none mt-2" style="color: #000;margin-left:-11rem;">* {{$prd_bns->Product_name}}&nbsp;<span style="color: #153651;">({{$bns->quantity}})</span></p>
-                                                                    <p class="d-md-none mt-2 ml-n4" style="color: #000;font-size:3vw;">* {{ $prd_bns->Product_name}}&nbsp;<span style="color: #153651;">({{$bns->quantity}})</span></p>
+                                                                    <p class="d-none d-md-block d-md-none mt-2 row-bonus-detail-p" style="color: #000;margin-left:-11rem;">* {{$prd_bns->Product_name}}&nbsp;<span style="color: #153651;">({{$bns->quantity}})</span></p>
+                                                                    <p class="d-md-none mt-2 ml-n5" style="color: #000;font-size:3vw;">* {{ $prd_bns->Product_name}}&nbsp;<span style="color: #153651;">({{$bns->quantity}})</span></p>
                                                                     
                                                                 @endforeach
                                                             </div>
@@ -988,6 +988,9 @@ Home
         </div>
     </div>
 <script>
+    if ($(window).width() < 1220) {
+        $('.row-bonus-detail-p').addClass('ml-n4');
+    }
     if ($(window).width() < 601) {
         $('#div_total').removeClass('float-left');
         //$('#div_total').addClass('justify-content-center');
@@ -1018,6 +1021,10 @@ Home
         $('.margin_paket_pop_head').addClass('mx-0');
         $('.bt-add-paket').addClass('mb-3');
         $('.input-group').addClass('mt-n2');
+        $('.row-bonus-text').removeClass('col-3');
+        $('.row-bonus-text').addClass('col-4');
+        $('.row-bonus-detail').removeClass('col-9');
+        $('.row-bonus-detail').addClass('col-8');
         //$('.margin_paket_pop').removeClass('col-md-12'); 
         //$('#dropfilter').addClass('mt-2');
     }

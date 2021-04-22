@@ -1442,7 +1442,7 @@
 
 //=======================================scroll popup paket================================================//
         // duration of scroll animation
-        var scrollDuration_pop = 5000;
+        var scrollDuration_pop = 800;
         // paddles
         var leftPaddle_pop = document.getElementsByClassName("left-paddle_pop");
         var rightPaddle_pop = document.getElementsByClassName("right-paddle_pop");
@@ -1454,7 +1454,7 @@
 
         // get wrapper width
         var getMenuWrapperSize_pop = function () {
-            return $(".menu-wrapper_pop").outerWidth()-5200;
+            return $(".menu-wrapper_pop").outerWidth()-2610;
         };
         var menuWrapperSize_pop = getMenuWrapperSize_pop();
         // the wrapper is responsive
