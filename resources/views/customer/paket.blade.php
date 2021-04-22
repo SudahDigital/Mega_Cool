@@ -908,8 +908,12 @@ Home
                                 <div class="col-md-7 p-0 ">
                                     <select name="check_tunai_value"  id="check_tunai" style="width:100%;" class="form-control" required>
                                         <option data-icon="fa-check-circle" value="Cash">&nbsp;&nbsp;Cash</option>
+                                        <option data-icon="fa-check-circle" value="TOP">&nbsp;&nbsp;TOP</option>
+                                        <!--
                                         <option data-icon="fa-check-circle" value="TOP 7 Days">&nbsp;&nbsp;TOP 7 Days</option>
+                                        <option data-icon="fa-check-circle" value="TOP 14 Days">&nbsp;&nbsp;TOP 14 Days</option>
                                         <option data-icon="fa-check-circle" value="TOP 30 Days">&nbsp;&nbsp;TOP 30 Days</option>
+                                        -->
                                     </select>
                                 </div>
                                 <div class="col-md-12 px-0 mt-4">

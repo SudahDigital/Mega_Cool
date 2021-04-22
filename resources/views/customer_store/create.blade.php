@@ -71,8 +71,8 @@
         <h2 class="card-inside-title">Payment Term</h2>
             <select name="payment_term"  id="payment_term" class="form-control">
                 <option value="7 Days">7 Days</option>
-                <option value="14 Days">14 Days</option>
-                <option value="30 Days">30 Days</option>
+                <option value="45 Days">45 Days</option>
+                <option value="60 Days">60 Days</option>
             </select>
         <br>
         <!--

@@ -71,8 +71,8 @@
         <h2 class="card-inside-title">Payment Term</h2>
             <select name="payment_term"  id="payment_term" class="form-control">
                 <option value="7 Days" {{$cust->payment_term == '7 Days' ? 'selected' : '' }}>7 Days</option>
-                <option value="14 Days" {{$cust->payment_term == '14 Days' ? 'selected' : '' }}>14 Days</option>
-                <option value="30 Days" {{$cust->payment_term == '30 Days' ? 'selected' : '' }}>30 Days</option>
+                <option value="45 Days" {{$cust->payment_term == '45 Days' ? 'selected' : '' }}>45 Days</option>
+                <option value="60 Days" {{$cust->payment_term == '60 Days' ? 'selected' : '' }}>60 Days</option>
             </select>
         <br>
         <!--
