@@ -1110,10 +1110,11 @@
                         endforeach
                     </ul>
                 </li>
-                -->
+                
                 <li>
                     <a href="{{$paket != null ? URL::route('home_paket', ['paket'=>strtolower($paket->status)]) : '' }}">Paket</a>
                 </li>
+                -->
                 <li>
                    <a href="{{URL::route('profil.index')}}">Profile</a>
                 </li>
