@@ -83,7 +83,7 @@
 					<!--<small><b>Email :</b> {{$order->customers->email}}</small><br>
 					<small><b>Addr :</b> {{$order->customers->address}}</small><br>
 					<small><b>Phone :</b> {{$order->customers->phone}}</small><br>-->
-					<small><b>Sales Rep :</b> {{$order->users->name}} <span class="badge {{$order->user_loc == 'On Location' ? 'bg-green' : 'bg-black'}}">{{$order->user_loc}}</span></small><br>
+					<small><b>Sales Rep :</b> {{$order->users['name']}} <span class="badge {{$order->user_loc == 'On Location' ? 'bg-green' : 'bg-black'}}">{{$order->user_loc}}</span></small><br>
 					<small><b>Payment Term :</b> 
 						@if($order->payment_method == 'Non Tunai')
 						{{$order->customers->payment_term}}
