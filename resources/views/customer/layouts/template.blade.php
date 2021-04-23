@@ -1451,11 +1451,11 @@
         var itemsLength_pop = $(".item_pop").length;
         var itemSize_pop = $(".item_pop").outerWidth(true);
         // get some relevant size for the paddle triggering point
-        var paddleMargin_pop = 2600;
+        var paddleMargin_pop = 20;
 
         // get wrapper width
         var getMenuWrapperSize_pop = function () {
-            return $(".menu-wrapper_pop").outerWidth()-2610;
+            return $(".menu-wrapper_pop").outerWidth();
         };
         var menuWrapperSize_pop = getMenuWrapperSize_pop();
         // the wrapper is responsive
@@ -1489,7 +1489,7 @@
 
             // show & hide the paddles
             // depending on scroll position
-            if (menuPosition_pop <= paddleMargin_pop) {
+            /*if (menuPosition_pop <= paddleMargin_pop) {
                 $(leftPaddle_pop).addClass("paddles_hide_pop");
                 $(rightPaddle_pop).removeClass("paddles_hide_pop");
             } else if (menuPosition_pop < menuEndOffset_pop) {
@@ -1499,24 +1499,25 @@
             } else if (menuPosition_pop >= menuEndOffset_pop) {
                 $(leftPaddle_pop).removeClass("paddles_hide_pop");
                 $(rightPaddle_pop).addClass("paddles_hide_pop");
-            }
+            }*/
         });
 
+        var scrollAmount = 0;
         // scroll to left
         $(rightPaddle_pop).on("click", function () {
-            $(".menu_pop").animate({ scrollLeft: menuInvisibleSize_pop }, scrollDuration_pop);
+            $(".menu_pop").animate({ scrollLeft: scrollAmount += 300  }, scrollDuration_pop);
         });
 
         // scroll to right
         $(leftPaddle_pop).on("click", function () {
-            $(".menu_pop").animate({ scrollLeft: "0" }, scrollDuration_pop);
+            $(".menu_pop").animate({ scrollLeft: scrollAmount -= 300 }, scrollDuration_pop);
         });
 //=======================================end scroll popup paket============================================//
 
 
 //=======================================scroll popup paket bonus================================================//
         // duration of scroll animation
-        var scrollDuration_pop_bonus = 5000;
+        var scrollDuration_pop_bonus = 800;
         // paddles
         var leftPaddle_pop_bonus = document.getElementsByClassName("left-paddle_pop_bonus");
         var rightPaddle_pop_bonus = document.getElementsByClassName("right-paddle_pop_bonus");
@@ -1524,11 +1525,11 @@
         var itemsLength_pop_bonus = $(".item_pop_bonus").length;
         var itemSize_pop_bonus = $(".item_pop_bonus").outerWidth(true);
         // get some relevant size for the paddle triggering point
-        var paddleMargin_pop_bonus = 4800;
+        var paddleMargin_pop_bonus = 20;
 
         // get wrapper width
         var getMenuWrapperSize_pop_bonus = function () {
-            return $(".menu-wrapper_pop_bonus").outerWidth()-9600;
+            return $(".menu-wrapper_pop_bonus").outerWidth();
         };
         var menuWrapperSize_pop_bonus = getMenuWrapperSize_pop_bonus();
         // the wrapper is responsive
@@ -1562,7 +1563,7 @@
 
             // show & hide the paddles
             // depending on scroll position
-            if (menuPosition_pop_bonus <= paddleMargin_pop_bonus) {
+            /*if (menuPosition_pop_bonus <= paddleMargin_pop_bonus) {
                 $(leftPaddle_pop_bonus).addClass("paddles_hide_pop_bonus ");
                 $(rightPaddle_pop_bonus).removeClass("paddles_hide_pop_bonus");
             } else if (menuPosition_pop_bonus < menuEndOffset_pop_bonus) {
@@ -1572,17 +1573,17 @@
             } else if (menuPosition_pop_bonus >= menuEndOffset_pop_bonus) {
                 $(leftPaddle_pop_bonus).removeClass("paddles_hide_pop_bonus");
                 $(rightPaddle_pop_bonus).addClass("paddles_hide_pop_bonus");
-            }
+            }*/
         });
-
+        var scrollAmount_bonus = 0;
         // scroll to left
         $(rightPaddle_pop_bonus).on("click", function () {
-            $(".menu_pop_bonus").animate({ scrollLeft: menuInvisibleSize_pop_bonus }, scrollDuration_pop_bonus);
+            $(".menu_pop_bonus").animate({ scrollLeft: scrollAmount_bonus += 330 }, scrollDuration_pop_bonus);
         });
 
         // scroll to right
         $(leftPaddle_pop_bonus).on("click", function () {
-            $(".menu_pop_bonus").animate({ scrollLeft: "0" }, scrollDuration_pop_bonus);
+            $(".menu_pop_bonus").animate({ scrollLeft: scrollAmount_bonus -= 330 }, scrollDuration_pop_bonus);
         });
 //=======================================end scroll popup paket bonus============================================//
         

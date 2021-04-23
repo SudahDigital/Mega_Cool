@@ -273,20 +273,20 @@ Home
                                                 <div class="paddles d-none d-md-block d-md-none">
                                                     @if($value->group_cat == NULL)
                                                         @if($value->item_active->count() > 3)
-                                                        <button class="left-paddle_pop paddle_pop paddles_hide_pop">
-                                                            <i class="fa fa-angle-double-left" style="color:#878787;"></i>
+                                                        <button class="left-paddle_pop paddle_pop">
+                                                            <i class="fa fa-angle-left" style="color:#878787;"></i>
                                                         </button>
                                                         <button class="right-paddle_pop paddle_pop" style="text-decoration: none;">
-                                                            <i class="fa fa-angle-double-right" style="color:#878787;"></i>
+                                                            <i class="fa fa-angle-right" style="color:#878787;"></i>
                                                         </button>
                                                         @endif
                                                     @else
                                                         @if(count($all_product) > 3)
-                                                        <button class="left-paddle_pop paddle_pop paddles_hide_pop">
-                                                            <i class="fa fa-angle-double-left" style="color:#878787;"></i>
+                                                        <button class="left-paddle_pop paddle_pop">
+                                                            <i class="fa fa-angle-left" style="color:#878787;"></i>
                                                         </button>
                                                         <button class="right-paddle_pop paddle_pop" style="text-decoration: none;">
-                                                            <i class="fa fa-angle-double-right" style="color:#878787;"></i>
+                                                            <i class="fa fa-angle-right" style="color:#878787;"></i>
                                                         </button>
                                                         @endif
                                                     @endif
@@ -295,20 +295,20 @@ Home
                                                 <div class="paddles d-md-none">
                                                     @if($value->group_cat == NULL)
                                                         @if($value->item_active->count() > 2)
-                                                        <button class="left-paddle_pop paddle_pop paddles_hide">
-                                                            <i class="fa fa-angle-double-left" style="color:#878787;"></i>
+                                                        <button class="left-paddle_pop paddle_pop">
+                                                            <i class="fa fa-angle-left" style="color:#878787;"></i>
                                                         </button>
                                                         <button class="right-paddle_pop paddle_pop" style="text-decoration: none;">
-                                                            <i class="fa fa-angle-double-right" style="color:#878787;"></i>
+                                                            <i class="fa fa-angle-right" style="color:#878787;"></i>
                                                         </button>
                                                         @endif
                                                     @else
                                                         @if(count($all_product) > 2)
-                                                        <button class="left-paddle_pop paddle_pop paddles_hide">
-                                                            <i class="fa fa-angle-double-left" style="color:#878787;"></i>
+                                                        <button class="left-paddle_pop paddle_pop">
+                                                            <i class="fa fa-angle-left" style="color:#878787;"></i>
                                                         </button>
                                                         <button class="right-paddle_pop paddle_pop" style="text-decoration: none;">
-                                                            <i class="fa fa-angle-double-right" style="color:#878787;"></i>
+                                                            <i class="fa fa-angle-right" style="color:#878787;"></i>
                                                         </button>
                                                         @endif
                                                     @endif
@@ -515,20 +515,20 @@ Home
                                                 <div class="paddles d-none d-md-block d-md-none">
                                                     @if($value->group_cat == NULL)
                                                         @if($value->item_active->count() > 2)
-                                                        <button class="left-paddle_pop_bonus paddle_pop_bonus paddles_hide_pop_bonus">
-                                                            <i class="fa fa-angle-double-left" style="color:#878787;"></i>
+                                                        <button class="left-paddle_pop_bonus paddle_pop_bonus">
+                                                            <i class="fa fa-angle-left" style="color:#878787;"></i>
                                                         </button>
                                                         <button class="right-paddle_pop_bonus paddle_pop_bonus" style="text-decoration: none;">
-                                                            <i class="fa fa-angle-double-right" style="color:#878787;"></i>
+                                                            <i class="fa fa-angle-right" style="color:#878787;"></i>
                                                         </button>
                                                         @endif
                                                     @else
                                                         @if(count($all_product) > 2)
-                                                        <button class="left-paddle_pop_bonus paddle_pop_bonus paddles_hide_pop_bonus">
-                                                            <i class="fa fa-angle-double-left" style="color:#878787;"></i>
+                                                        <button class="left-paddle_pop_bonus paddle_pop_bonus">
+                                                            <i class="fa fa-angle-left" style="color:#878787;"></i>
                                                         </button>
                                                         <button class="right-paddle_pop_bonus paddle_pop_bonus" style="text-decoration: none;">
-                                                            <i class="fa fa-angle-double-right" style="color:#878787;"></i>
+                                                            <i class="fa fa-angle-right" style="color:#878787;"></i>
                                                         </button>   
                                                         @endif
                                                     @endif
@@ -537,20 +537,20 @@ Home
                                                 <div class="paddles d-md-none">
                                                     @if($value->group_cat == NULL)
                                                         @if($value->item_active->count() > 1)
-                                                        <button class="left-paddle_pop_bonus paddle_pop_bonus paddles_hide_pop_bonus">
-                                                            <i class="fa fa-angle-double-left" style="color:#878787;"></i>
+                                                        <button class="left-paddle_pop_bonus paddle_pop_bonus ">
+                                                            <i class="fa fa-angle-left" style="color:#878787;"></i>
                                                         </button>
                                                         <button class="right-paddle_pop_bonus paddle_pop_bonus" style="text-decoration: none;">
-                                                            <i class="fa fa-angle-double-right" style="color:#878787;"></i>
+                                                            <i class="fa fa-angle-right" style="color:#878787;"></i>
                                                         </button>
                                                         @endif
                                                     @else
                                                         @if(count($all_product) > 1)
-                                                        <button class="left-paddle_pop_bonus paddle_pop_bonus paddles_hide_pop_bonus">
-                                                            <i class="fa fa-angle-double-left" style="color:#878787;"></i>
+                                                        <button class="left-paddle_pop_bonus paddle_pop_bonus ">
+                                                            <i class="fa fa-angle-left" style="color:#878787;"></i>
                                                         </button>
                                                         <button class="right-paddle_pop_bonus paddle_pop_bonus" style="text-decoration: none;">
-                                                            <i class="fa fa-angle-double-right" style="color:#878787;"></i>
+                                                            <i class="fa fa-angle-right" style="color:#878787;"></i>
                                                         </button>
                                                         @endif
                                                     @endif
