@@ -694,6 +694,8 @@
 }
 
 @media (max-width: 768px){
+    
+    
     .dot-top-right {
         width: 200px;
     }
@@ -797,7 +799,7 @@
     }
 
     #product_list .button_add_to_cart{
-        font-size: 10px;
+        font-size: 16px;
     }
 
     #content .product-price-header {

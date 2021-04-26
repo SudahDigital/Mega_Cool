@@ -4,6 +4,21 @@ Home
 @endsection
 @section('content')
 <style>
+    .modal-dialog-full-width {
+        position:absolute;
+        right:0;
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width:none !important;
+    }
+
+    .modal-content-full-width  {
+        height: auto !important;
+        min-height: 100% !important;
+        border-radius: 0 !important;
+    }
     /* Chrome, Safari, Edge, Opera */
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
@@ -15,7 +30,6 @@ Home
     input[type=number] {
     -moz-appearance: textfield;
     }
-
 </style>
 
     @if(session('sukses_peesan'))
@@ -78,17 +92,30 @@ Home
                             </div>
                         </div>
                         <!-- Modal -->
-                        <div class="modal fade" id="modalGroup{{$value->id}}" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content">
+                        <div class="modal fade modal-paket" id="modalGroup{{$value->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-paket modal-lg" role="document">
+                                <div class="modal-content modal-content-paket">
                                     <div class="modal-body pb-0">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
 
                                         <!--paket-->
-                                        <div class="col-md-12 mt-4 margin_paket_pop_head px-5">
-                                            <h5 class="head_pop_prod" style="">Paket {{$value->display_name}}</h5>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-sm mt-4 margin_paket_pop_head-1 pl-5">
+                                                    <h5 class="head_pop_prod mb-3" style="">Paket {{$value->display_name}}</h5>
+                                                </div>
+                                                <div class="col-sm mt-4 pr-5 margin_paket_pop_head-2">
+                                                    <div class="input-group mb-n2 justify-content-end">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text" style="height:30px"><i class="fa fa-search"></i></div>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="src_pkt{{$value->id}}" onkeyup="search_paket('{{$value->id}}')" placeholder="Cari produk paket" style="height:30px;outline:none;"/>
+                                                        <input type="hidden" class="form-control" id="src_groupcat{{$value->id}}" value="{{$value->group_cat}}" />
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         
                                         <div class="container list-product" style="">
@@ -317,9 +344,22 @@ Home
                                         </div>
 
                                         <!--bonus-->
-                                        <div class="col-md-12 px-5 mt-4 margin_paket_pop_head">
-                                            <h5 class="head_pop_prod" style="">+ Bonus</h5>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-sm mt-4 margin_paket_pop_head-1 pl-5">
+                                                    <h5 class="head_pop_prod mb-3" style="">+ Bonus</h5>
+                                                </div>
+                                                <div class="col-sm mt-4 pr-5 margin_paket_pop_head-2">
+                                                    <div class="input-group mb-n2 justify-content-end">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text" style="height:30px"><i class="fa fa-search"></i></div>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Cari produk bonus" style="height:30px;outline:none;"/>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+                                        
                                         <div class="container" style="">
                                             <div class="row mt-0">
                                                 <div class="col-md-12 mt-4 margin_paket_bonus menu-wrapper_pop_bonus px-5">
@@ -989,7 +1029,13 @@ Home
     </div>
 <script>
     if ($(window).width() < 1220) {
-        $('.row-bonus-detail-p').addClass('ml-n4');
+        $('.row-bonus-detail-p').addClass('ml-n4'); 
+    }
+    if ($(window).width() < 769) {
+        $('.modal-dialog-paket').removeClass('modal-lg');
+        $('.modal-dialog-paket').addClass('modal-dialog-full-width');
+        $('.modal-content-paket').addClass('modal-content-full-width');
+        $('.input_item_pop').addClass('mb-2');
     }
     if ($(window).width() < 601) {
         $('#div_total').removeClass('float-left');
@@ -1007,7 +1053,8 @@ Home
         $('#p-title2').addClass('ml-n3');
         $('.margin_paket_pop').removeClass('px-5');
         $('.margin_paket_bonus').removeClass('px-5');
-        $('.margin_paket_pop_head').removeClass('px-5');
+        $('.margin_paket_pop_head-1').removeClass('pl-5').addClass('px-2');
+        $('.margin_paket_pop_head-2').removeClass('pr-5').removeClass('mt-4').addClass('px-2');
         $('.margin_paket_pop').addClass('px-0');
         $('.margin_paket_bonus').addClass('px-0');
         $('.modal-footer').removeClass('px-5');
@@ -1016,15 +1063,17 @@ Home
         $('.simpan-keranjang-paket').removeClass('mr-3');
         $('.crd-body-pkt').removeClass('mt-n3');
         $('.input_item_pop').addClass('px-3');
+        $('.input_item_pop').removeClass('mb-2');
         //$('.card_margin_bonus').addClass('ml-n2 mr-2');
         $('.menu_pop_bonus').addClass('mx-auto');
-        $('.margin_paket_pop_head').addClass('mx-0');
+        //$('.margin_paket_pop_head').addClass('mx-0');
         $('.bt-add-paket').addClass('mb-3');
         $('.input-group').addClass('mt-n2');
         $('.row-bonus-text').removeClass('col-3');
         $('.row-bonus-text').addClass('col-4');
         $('.row-bonus-detail').removeClass('col-9');
         $('.row-bonus-detail').addClass('col-8');
+        
         //$('.margin_paket_pop').removeClass('col-md-12'); 
         //$('#dropfilter').addClass('mt-2');
     }

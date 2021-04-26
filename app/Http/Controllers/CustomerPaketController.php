@@ -378,5 +378,41 @@ class CustomerPaketController extends Controller
                         ->delete();
         }
     }
+
+    public function search_paket(Request $request){
+        if($request->ajax()){
+            $output = '';
+            $group_id = $request->get('group_id');
+            $gr_cat = $request->get('gr_cat');
+            $query = $request->get('query');
+            if($query != '' ){
+                if($gr_cat != ''){
+                    $product = \App\product::where('status','=','PUBLISH')
+                    ->where('Product_name','LIKE',"%$query%")
+                    //->orWhere('product_','LIKE',"%$query%")
+                    ->get();
+                }
+                else{
+                    $product = DB::select("SELECT * FROM products WHERE Product_name LIKE '%$query%' AND 
+                                EXISTS (SELECT group_id,status,product_id FROM group_product WHERE 
+                                group_product.product_id = products.id AND status='ACTIVE' AND group_id='$group_id')");
+                }
+            }
+            else{
+                if($gr_cat != ''){
+                    $product = \App\product::where('status','=','PUBLISH')->get();
+                }else{
+                    $product = \App\Group::with('item_active')
+                            ->where('status','ACTIVE')
+                            ->where('group_id',$group_id)
+                            ->get();
+                }
+            }
+            $total_row = $product->count();
+            if($total_row > 0){
+                foreach($data as $row)
+            }
+        }
+    }
 }
 

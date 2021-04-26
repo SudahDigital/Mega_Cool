@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" >
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_3.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_2.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_3.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css')}}">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -244,6 +244,7 @@
             background-color: #1A4066 !important 
         }
 
+        
         /*.close {
             float: right;
             font-size: 40px;
@@ -4016,7 +4017,7 @@
                                 $('#jumlah_val_pkt'+id+'_'+group_id).val(0);
                                 $('#jumlah_pkt'+id+'_'+group_id).val(0);
                                 $('#show_pkt'+id+'_'+group_id).val(0);
-                                $('#productPrice_pkt'+id).text(harga);
+                                $('#productPrice_pkt'+id+'_'+group_id).text(harga);
                                     $.ajaxSetup({
                                         headers: {
                                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -4340,7 +4341,26 @@
                 Swal.fire('Yes!');
             });
         });
-    
+        
+        function search_paket(group_id){
+            var query = $('#src_pkt'+group_id).val();
+            var gr_cat = $('#src_groupcat'+group_id).val();
+            $.ajax({
+                url:'{{URL::to('/paket/product_search')}}',
+                method:'GET',
+                data:{
+                        query:query,
+                        group_id:group_id,
+                        gr_cat:gr_cat
+                     },
+                dataType:'json',
+                success:function(data)
+                {
+                    $('tbody').html(data.table_data);
+                    $('#total_records').text(data.total_data);
+                }
+            });
+        }
     /*
         window.setTimeout(function() {
         $(".alert").fadeTo(500, 0).slideUp(500, function(){

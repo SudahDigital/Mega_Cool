@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth','checkRole:SALES']],function(){
     Route::post('/keranjang/paket_all/delete_tmp','CustomerPaketController@delete_tmp');
     Route::post('/keranjang/cek_detail/paket','CustomerPaketController@cek_detail_pkt');
     Route::post('/keranjang/delete_kr/paket','CustomerPaketController@delete_kr_pkt');
+    Route::get('/paket/product_search','CustomerPaketController@search_paket');
 });
 
 Route::match(["GET", "POST"], "/register", function(){
