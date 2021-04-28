@@ -22,6 +22,6 @@ class Group extends Model
     }
 
     public function item_active(){
-        return $this->belongsToMany('App\product')->wherePivot('status', 'ACTIVE');
+        return $this->belongsToMany('App\product')->wherePivot('status', 'ACTIVE')->orderby('product_id','ASC');
     }
 }

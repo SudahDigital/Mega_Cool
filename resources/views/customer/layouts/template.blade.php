@@ -12,7 +12,7 @@
     <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" >
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_3.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_2.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_3.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css')}}">
     <!-- Scrollbar Custom CSS -->
@@ -4345,19 +4345,53 @@
         function search_paket(group_id){
             var query = $('#src_pkt'+group_id).val();
             var gr_cat = $('#src_groupcat'+group_id).val();
+            var order_id = $('#orderid_addcart'+group_id).val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             $.ajax({
                 url:'{{URL::to('/paket/product_search')}}',
-                method:'GET',
+                method:'POST',
                 data:{
                         query:query,
                         group_id:group_id,
-                        gr_cat:gr_cat
+                        gr_cat:gr_cat,
+                        order_id:order_id
                      },
                 dataType:'json',
                 success:function(data)
                 {
-                    $('tbody').html(data.table_data);
-                    $('#total_records').text(data.total_data);
+                    $('#paket_cari'+group_id).html(data.table_data);
+                    //$('#total_records').text(data.total_data);
+                }
+            });
+        }
+
+        function search_bonus(group_id){
+            var query = $('#src_bns'+group_id).val();
+            var gr_cat = $('#src_groupcatbns'+group_id).val();
+            var order_id = $('#orderid_addcart'+group_id).val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url:'{{URL::to('/bonus/product_search')}}',
+                method:'POST',
+                data:{
+                        query:query,
+                        group_id:group_id,
+                        gr_cat:gr_cat,
+                        order_id:order_id
+                     },
+                dataType:'json',
+                success:function(data)
+                {
+                    $('#bonus_cari'+group_id).html(data.table_data);
+                    //$('#total_records').text(data.total_data);
                 }
             });
         }

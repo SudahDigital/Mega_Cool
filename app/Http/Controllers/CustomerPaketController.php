@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class CustomerPaketController extends Controller
 {
-    public function index($id)
-    {   
+    public function index($id){   
         $id_user = \Auth::user()->id;
         $banner_active = \App\Banner::orderBy('position', 'ASC')->first();
         $banner = \App\Banner::orderBy('position', 'ASC')->limit(5)->get();
@@ -380,10 +379,16 @@ class CustomerPaketController extends Controller
     }
 
     public function search_paket(Request $request){
-        if($request->ajax()){
+        
             $output = '';
             $group_id = $request->get('group_id');
-            $gr_cat = $request->get('gr_cat');
+            if($request->get('gr_cat') != ''){
+                $gr_cat = $request->get('gr_cat');
+            }else{
+                $gr_cat = '';
+            }
+            
+            $order_id = $request->get('order_id');
             $query = $request->get('query');
             if($query != '' ){
                 if($gr_cat != ''){
@@ -402,17 +407,273 @@ class CustomerPaketController extends Controller
                 if($gr_cat != ''){
                     $product = \App\product::where('status','=','PUBLISH')->get();
                 }else{
-                    $product = \App\Group::with('item_active')
-                            ->where('status','ACTIVE')
-                            ->where('group_id',$group_id)
-                            ->get();
+                    $product = DB::select("SELECT * FROM products WHERE EXISTS 
+                                (SELECT group_id,status,product_id FROM group_product WHERE 
+                                group_product.product_id = products.id AND status='ACTIVE' AND group_id='$group_id')");
                 }
             }
-            $total_row = $product->count();
+            if($product !== null ){
+                $total_row = count($product);
+            }
+            else{
+                $total_row = 0;
+            }
             if($total_row > 0){
-                foreach($data as $row)
+                foreach($product as $p_group){
+                    if($order_id != ''){
+                        $qty_on_paket = \App\Order_paket_temp::where('order_id',$order_id)
+                                    ->where('product_id',$p_group->id)
+                                    //->where('paket_id',$paket_id->id)
+                                    ->where('group_id',$group_id)
+                                    ->whereNull('bonus_cat')->first();
+                        if($qty_on_paket){
+                            $harga_on_paket = $p_group->price * $qty_on_paket->quantity; 
+                        }
+                    }
+                    if(($order_id != '') && ($qty_on_paket != NULL)){
+                        $c_orderid_delete =  $order_id;
+                        $c_check = 'checked';
+                        $c_price = $harga_on_paket;
+                        $c_jml_val = $qty_on_paket->quantity;
+                    }else{
+                        $c_orderid_delete = '';
+                        $c_check = 'checked disabled';
+                        $c_price = $p_group->price;
+                        $c_jml_val = 0;
+                    }
+                    $output.= '<div id="product_list"  class="col-6 col-md-4 mx-0 d-flex item_pop" style="">
+                        <div class="card mx-auto  item_product_pop ">                        
+                            <input type="hidden" id="orderid_delete_pkt'.$p_group->id.'_'.$group_id.'" value="'.$c_orderid_delete.'">
+                                <div class="round">
+                                <input type="checkbox" onclick="delete_pkt('.$p_group->id.','.$group_id.')" id="checkbox_pkt'.$p_group->id.'_'.$group_id.'" '.$c_check.'/>
+                                <label for="checkbox_pkt'.$p_group->id.'_'.$group_id.'"></label>
+                            </div>
+                            <a>
+                                <img style="" src="'.asset('storage/'.$p_group->image).'" class="img-fluid h-100 w-100 img-responsive" alt="...">
+                            </a>
+                            
+                            <div class="card-body crd-body-pkt d-flex flex-column mt-n3" style="">
+                                <div class="float-left px-1 py-2" style="width: 100%;">
+                                    <p class="product-price-header_pop mb-0" style="">
+                                        '.$p_group->Product_name.'
+                                    </p>
+                                </div>
+                                <div class="float-left px-1 pb-0" style="">
+                                    <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_pkt'.$p_group->id.'_'.$group_id.'" style="">Rp.  '.number_format($c_price, 0, ',', '.') .',-</p> 
+                                </div>
+                                <div class="justify-content-center input_item_pop mt-auto px-3">
+                                    <input type="hidden" id="jumlah_val_pkt'.$p_group->id.'_'.$group_id.'" name="" value="'.$c_jml_val.'">
+                                    <input type="hidden" id="jumlah_pkt'.$p_group->id.'_'.$group_id.'" name="quantity_pkt" value="'.$c_jml_val.'">
+                                    <input type="hidden" id="harga_pkt'.$p_group->id.'_'.$group_id.'" name="price_pkt" value="'.$p_group->price.'">
+                                    <input type="hidden" id="product_pkt'.$p_group->id.'_'.$group_id.'" name="Product_id_pkt" value="'.$p_group->id.'">
+                                    <div class="input-group mb-0 mx-auto">
+                                        <button class="input-group-text button_minus_pkt" id="button_minus_pkt'.$p_group->id.'_'.$group_id.'" 
+                                                style="cursor: pointer;
+                                                outline:none;
+                                                border:none;
+                                                border-top-right-radius:0;
+                                                border-bottom-right-radius:0;
+                                                border-right-style:none;
+                                                font-weight:bold;
+                                                padding-right:0;
+                                                height:25px" onclick="button_minus_pkt('.$p_group->id.','.$group_id.')" 
+                                                onMouseOver="this.style.color=#495057" >-</button>
+                                        <input type="number" id="show_pkt'.$p_group->id.'_'.$group_id.'" onkeyup="input_qty_pkt('.$p_group->id.','.$group_id.')" class="form-control show_pkt" value="'.$c_jml_val.'" 
+                                                style="background-color:#e9ecef !important;
+                                                text-align:center;
+                                                border:none;
+                                                padding:0;
+                                                none !important;
+                                                font-weight:bold;
+                                                height:25px;
+                                                font-size:12px;
+                                                font-weight:900;">
+                                        <button class="input-group-text" 
+                                                style="cursor: pointer;
+                                                outline:none;
+                                                border:none;
+                                                border-top-left-radius:0;
+                                                border-bottom-left-radius:0;
+                                                border-left-style:none;
+                                                font-weight:bold;
+                                                padding-left:0;
+                                                height:25px" onclick="button_plus_pkt('.$p_group->id.','.$group_id.')">+</button> 
+                                    </div>
+                                    <button class="btn bt-add-paket btn-block button_add_to_cart respon mt-1" onclick="add_tocart_pkt('.$p_group->id.','.$group_id.')" style="">Simpan</button> 
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>';
+                }
+                
+            }
+            else{
+                $output = '<div id="product_list"  class="col-12  mx-0 d-flex item_pop mt-4" style="">
+                                <div class="card mx-auto  item_product_pop py-5">
+                                    <h5 class="head_pop_prod mb-3 mx-auto" style="">Data tidak ditemukan...</h5>
+                                </div>
+                            </div>';
+            }
+            $product = array(
+            'table_data'  => $output
+            );
+         
+            echo json_encode($product);
+        
+    }
+
+    public function search_bonus(Request $request){
+        
+        $output = '';
+        $group_id = $request->get('group_id');
+        if($request->get('gr_cat') != ''){
+            $gr_cat = $request->get('gr_cat');
+        }else{
+            $gr_cat = '';
+        }
+        
+        $order_id = $request->get('order_id');
+        $query = $request->get('query');
+        if($query != '' ){
+            if($gr_cat != ''){
+                $product = \App\product::where('status','=','PUBLISH')
+                ->where('Product_name','LIKE',"%$query%")
+                //->orWhere('product_','LIKE',"%$query%")
+                ->get();
+            }
+            else{
+                $product = DB::select("SELECT * FROM products WHERE Product_name LIKE '%$query%' AND 
+                            EXISTS (SELECT group_id,status,product_id FROM group_product WHERE 
+                            group_product.product_id = products.id AND status='ACTIVE' AND group_id='$group_id')");
             }
         }
+        else{
+            if($gr_cat != ''){
+                $product = \App\product::where('status','=','PUBLISH')->get();
+            }else{
+                $product = DB::select("SELECT * FROM products WHERE EXISTS 
+                            (SELECT group_id,status,product_id FROM group_product WHERE 
+                            group_product.product_id = products.id AND status='ACTIVE' AND group_id='$group_id')");
+            }
+        }
+        if($product !== null ){
+            $total_row = count($product);
+        }
+        else{
+            $total_row = 0;
+        }
+        if($total_row > 0){
+            foreach($product as $p_group){
+                if($order_id != ''){
+                    $qty_on_bonus = \App\Order_paket_temp::where('order_id',$order_id)
+                                    ->where('product_id',$p_group->id)
+                                   //->where('paket_id',$paket_id->id)
+                                    ->where('group_id',$group_id)
+                                    ->whereNotNull('bonus_cat')->first();
+                        if($qty_on_bonus){
+                            $harga_on_bonus = $p_group->price * $qty_on_bonus->quantity; 
+                        }
+                }
+                if(($order_id != '') && ($qty_on_bonus != NULL)){
+                    $c_orderid_delete =  $order_id;
+                    $c_check = 'checked';
+                    $c_price = $harga_on_bonus;
+                    $c_jml_val = $qty_on_bonus->quantity;
+                }else{
+                    $c_orderid_delete = '';
+                    $c_check = 'checked disabled';
+                    $c_price = $p_group->price;
+                    $c_jml_val = 0;
+                }
+                $output.= '<div class="col-12 col-md-6 d-flex item_pop_bonus pb-4" style="">
+                <div class="card card_margin_bonus" style="border-radius: 20px;">
+                    <div class="card-horizontal py-0">
+                        
+                       <input type="hidden" id="orderid_delete_bns'.$p_group->id.'_'.$group_id.' value="'.$c_orderid_delete.'">
+                        <div class="round_bns">
+                            <input type="checkbox" onclick="delete_bns('.$p_group->id.','.$group_id.')" id="checkbox_bns'.$p_group->id.'_'.$group_id.'" '.$c_check.' style="display:none;"/>
+                            <label for="checkbox_bns'.$p_group->id.'_'.$group_id.'"></label>
+                        </div>
+                        <a>
+                            <img src="'.asset('storage/'.$p_group->image).'" class="img-fluid img-responsive" alt="..." style="">
+                        </a>
+                        
+                        <div class="card-body d-flex flex-column ml-n4" style="">
+                            
+                            <div class="float-left pl-0 py-0" style="width: 100%;">
+                                <p class="product-price-header_pop mb-0" style="">
+                                    '.$p_group->Product_name.'
+                                </p>
+                            </div>
+                            <div class="float-left pl-0 pt-1 pb-0" style="">
+                                <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_bns'.$p_group->id.'_'.$group_id.'" style="">Rp. '.number_format($c_price, 0, ',', '.') .',-</p>
+                            </div>
+                            
+                            <div class="float-left pl-0 mt-auto">
+                                <div class="input-group mb-0">
+                                    <input type="hidden" id="jumlah_val_bns'.$p_group->id.'_'.$group_id.'" name="" value="'.$c_jml_val.'">
+                                    <input type="hidden" id="jumlah_bns'.$p_group->id.'_'.$group_id.'" name="quantity_bns" value="'.$c_jml_val.'">
+                                    <input type="hidden" id="harga_bns'.$p_group->id.'_'.$group_id.'" name="price" value="'.$p_group->price.'">
+                                    <input type="hidden" id="product_bns'.$p_group->id.'_'.$group_id.'" name="Product_id" value="'.$p_group->id.'">
+                                    <button class="input-group-text button_minus_bns" id="button_minus_bns'.$p_group->id.'_'.$group_id.'" 
+                                            style="cursor: pointer;
+                                            outline:none;
+                                            border:none;
+                                            border-top-right-radius:0;
+                                            border-bottom-right-radius:0;
+                                            border-right-style:none;
+                                            font-weight:bold;
+                                            padding-right:0;
+                                            height:25px" onclick="button_minus_bns('.$p_group->id.','.$group_id.')" 
+                                            onMouseOver="this.style.color=#495057" >-</button>
+                                    <input type="number" id="show_bns'.$p_group->id.'_'.$group_id.'" onkeyup="input_qty_bns('.$p_group->id.','.$group_id.')" class="form-control show_pkt" value="'.$c_jml_val.'" 
+                                            style="background-color:#e9ecef !important;
+                                            text-align:center;
+                                            border:none;
+                                            padding:0;
+                                            none !important;
+                                            font-weight:bold;
+                                            height:25px;
+                                            font-size:12px;
+                                            font-weight:900;">
+                                    <button class="input-group-text" 
+                                            style="cursor: pointer;
+                                            outline:none;
+                                            border:none;
+                                            border-top-left-radius:0;
+                                            border-bottom-left-radius:0;
+                                            border-left-style:none;
+                                            font-weight:bold;
+                                            padding-left:0;
+                                            height:25px" onclick="button_plus_bns('.$p_group->id.','.$group_id.')">+</button>
+                                </div> 
+                            </div>
+                            <div class="float-right mt-2">
+                                <div id="product_list_bns">
+                                    <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart_bns('.$p_group->id.','.$group_id.')" style="">Simpan</button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>';
+            }
+            
+        }
+        else{
+            $output = '<div id="product_list"  class="col-12  mx-0 d-flex item_pop mt-4" style="">
+                            <div class="card mx-auto  item_product_pop py-5">
+                                <h5 class="head_pop_prod mb-3 mx-auto" style="">Data tidak ditemukan...</h5>
+                            </div>
+                        </div>';
+        }
+        $product = array(
+        'table_data'  => $output
+        );
+     
+        echo json_encode($product);
+    
     }
 }
-

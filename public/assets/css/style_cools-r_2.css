@@ -2083,9 +2083,14 @@ footer.footer .cart .count-cart-three {
 }
 
 .bt-add-paket{
-  font-size: 2vh
+  font-size: 2vh;
 }
 
+@media (max-width: 600px){
+  .bt-add-paket{
+  margin-bottom: 15px;
+  }
+}
 
 .text-qty-paket{
   font-size: 2vh;

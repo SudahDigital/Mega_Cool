@@ -121,7 +121,7 @@ Home
                                         <div class="container list-product" style="">
                                             <div class="row mt-0">
                                                 <div class="col-md-12 mt-4 px-auto menu-wrapper_pop margin_paket_pop px-5">
-                                                    <div class="row section_content flex-row flex-nowrap menu_pop" style="overflow-x:auto;overflow-y:hidden;z-index:2222; ">
+                                                    <div id="paket_cari{{$value->id}}" class="row section_content flex-row flex-nowrap menu_pop" style="overflow-x:auto;overflow-y:hidden;z-index:2222; ">
                                                         @if($value->group_cat == NULL)
                                                             @foreach($value->item_active as $p_group)
                                                                 <div id="product_list"  class="col-6 col-md-4 mx-0 d-flex item_pop" style="">
@@ -354,7 +354,8 @@ Home
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text" style="height:30px"><i class="fa fa-search"></i></div>
                                                         </div>
-                                                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Cari produk bonus" style="height:30px;outline:none;"/>
+                                                        <input type="text" class="form-control" id="src_bns{{$value->id}}" onkeyup="search_bonus('{{$value->id}}')" placeholder="Cari produk bonus" style="height:30px;outline:none;"/>
+                                                        <input type="hidden" class="form-control" id="src_groupcatbns{{$value->id}}" value="{{$value->group_cat}}" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -363,7 +364,7 @@ Home
                                         <div class="container" style="">
                                             <div class="row mt-0">
                                                 <div class="col-md-12 mt-4 margin_paket_bonus menu-wrapper_pop_bonus px-5">
-                                                    <div class="row section_content flex-row flex-nowrap menu_pop_bonus" style="overflow-x:auto;overflow-y:hidden;z-index:2222; ">
+                                                    <div id="bonus_cari{{$value->id}}" class="row section_content flex-row flex-nowrap menu_pop_bonus" style="overflow-x:auto;overflow-y:hidden;z-index:2222; ">
                                                         @if($value->group_cat == NULL)
                                                             @foreach($value->item_active as $p_group)
                                                                 <div class="col-12 col-md-6 d-flex item_pop_bonus pb-4" style="">
