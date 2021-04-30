@@ -189,6 +189,104 @@
     @endsection
 @endif
 
+@if(Route::is('spv.create'))
+    @section('title') Create Supervisor @endsection
+    @section('content')
+
+        @if(session('status'))
+            <div class="alert alert-success">
+                {{session('status')}}
+            </div>
+        @endif
+        @if(session('error'))
+            <div class="alert alert-success">
+                {{session('error')}}
+            </div>
+        @endif
+        <!-- Form Create -->
+        <form id="form_validation" method="POST" enctype="multipart/form-data" action="{{route('spv.store')}}">
+            @csrf
+            <div class="form-group form-float">
+                <div class="form-line">
+                    <input type="text" class="form-control" name="name" autocomplete="off" required>
+                    <label class="form-label">Name</label>
+                </div>
+            </div>
+            <input class="form-control {{$errors->first('roles') ? "is-invalid" : "" }}" type="hidden" name="roles" id="SUPERVISOR" value="SUPERVISOR" required>
+            
+            <div class="form-group form-float">
+                <div class="form-line">
+                    <input type="text" class="form-control" name="phone" minlength="10" maxlength="13" autocomplete="off" required>
+                    <label class="form-label">Phone Number</label>
+                </div>
+                <div class="help-info">Min.10, Max. 13 Characters</div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-line">
+                    <textarea name="address" rows="4" class="form-control no-resize" placeholder="Address" autocomplete="off" required></textarea>
+                </div>
+            </div>
+
+            <h2 class="card-inside-title">Avatar Image</h2>
+            <div class="form-group">
+                <div class="form-line">
+                    <input type="file" name="avatar" class="form-control" id="avatar" autocomplete="off">
+                </div>
+                <label id="name-error" class="error" for="avatar">{{ $errors->first('avatar') }}</label>
+            </div>
+
+            <div class="form-group">
+                <h2 class="card-inside-title">Sales Team Member</h2>
+                <select id="list_user" class="users" multiple="multiple" name="sls_id[]" style="width: 100%;" required>
+                    @foreach ($users as $u)
+                        <option value="{{ $u->id }}">
+                            {{ $u->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            
+            <div class="form-group form-float">
+                <div class="form-line">
+                    <input type="email" class="form-control" name="email" autocomplete="off" required>
+                    <label class="form-label">Email</label>
+                </div>
+            </div>
+
+            <!--
+            <h2 class="card-inside-title">Sales Area</h2>
+            <select name="city_id"  id="city_id" class="form-control"></select>
+            <br>
+            <br>
+            -->
+            <div class="form-group form-float">
+                <div class="form-line">
+                    <input type="password" class="form-control {{$errors->first('password') ? "is-invalid" : ""}}" name="password" id="password" required>
+                    <label for="password" class="form-label">Password</label>
+                    <div class="invalid-feedback">
+                        {{$errors->first('password')}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group form-float">
+                <div class="form-line">
+                    <input type="password" class="form-control {{$errors->first('password_confirmation') ? "is-invalid" : ""}}" name="password_confirmation" id="password_confirmation" required>
+                    <label for="password_confirmation" class="form-label">Password Confirmation</label>
+                    <div class="invalid-feedback">
+                        {{$errors->first('password_confirmation')}}
+                    </div>
+                </div>
+            </div>
+                            
+            <button id="btnSubmit" class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+        </form>
+        <!-- #END#  -->		
+
+    @endsection
+@endif
+
 
 @section('footer-scripts')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
@@ -209,6 +307,9 @@
     </script>
 
     <script>
+        $(".users").select2({
+            width: 'resolve' // need to override the changed default
+        });
         $('#city_id').select2({
         placeholder: 'Select an item',
         ajax: {

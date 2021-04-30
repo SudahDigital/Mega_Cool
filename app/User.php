@@ -39,6 +39,14 @@ class User extends Authenticatable
     public function customers(){
         return $this->belongsTo('App\customer','user_id');
     }
+
+    public function spv(){
+        return $this->hasMany('App\Spv_sales','spv_id');
+    }
+
+    public function sls(){
+        return $this->hasMany('App\Spv_sales','sls_id');
+    }
     /**
      * The attributes that should be cast to native types.
      *

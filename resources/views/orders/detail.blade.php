@@ -202,7 +202,7 @@
             <label for="CANCEL">CANCEL</label>
         </div>
 
-        <input type="submit" class="btn btn-primary waves-effect" value="UPDATE">
+        <input type="submit" class="btn btn-primary waves-effect" value="UPDATE" {{\Auth::user()->roles == 'SUPERVISOR' ? 'disabled' : ''}}>
         
     </form>
     <!-- #END#  -->		

@@ -39,6 +39,11 @@ class AppServiceProvider extends ServiceProvider
             //return in_array("SALES", json_decode($user->roles));
             return $user->roles == 'SALES';
         });
+
+        Gate::define('isSpv', function($user) {
+            //return in_array("SALES", json_decode($user->roles));
+            return $user->roles == 'SUPERVISOR';
+        });
         
         config(['app.locale' => 'id']);
         Carbon::setLocale('id');

@@ -13,6 +13,8 @@
         <span class="badge bg-green">Superadmin</span>
     @elsecan('isAdmin')
         <span class="badge bg-green">Admin</span>
+    @elsecan('isSpv')
+        <span class="badge bg-green">Supervisor</span>
     @endcan
     
 @endsection

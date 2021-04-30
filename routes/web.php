@@ -75,6 +75,7 @@ Route::get('/admin', function () {
     Route::get('/ajax/cities/search', 'SalesController@ajaxSearch');
     Route::get('/sales/export', 'SalesController@export')->name('sales.export');
     Route::resource('sales','SalesController');
+    Route::resource('spv','SpvController');
     Route::post('/ajax/post-sortable','BannerController@post_sortable');
     Route::get('/banner/trash', 'BannerController@trash')->name('banner.trash');
     Route::get('/banner/{id}/restore', 'BannerController@restore')->name('banner.restore');

@@ -1,12 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\Null_;
 
 class GroupController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware(function($request, $next){
+            
+            if(Gate::allows('manage-group')) return $next($request);
+
+            abort(403, 'Anda tidak memiliki cukup hak akses');
+        });
+
+    }
     /**
      * Display a listing of the resource.
      *

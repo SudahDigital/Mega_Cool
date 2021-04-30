@@ -23,16 +23,38 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        $status = $request->get('status');
-        if($status){
-        $orders = \App\Order::with('products')->whereNotNull('customer_id')
-        ->where('status',strtoupper($status))
-        ->orderBy('updated_at', 'DESC')->get();//paginate(10);
+        $user =\Auth::user()->roles;
+        $id_user =\Auth::user()->id;
+        //dd($user);
+        if($user == 'SUPERVISOR'){
+            $status = $request->get('status');
+            if($status){
+            $stts = strtoupper($status);
+            $orders = \DB::select("SELECT * FROM orders WHERE customer_id IS NOT NULL AND status='$stts' AND EXISTS 
+                    (SELECT spv_id,sls_id FROM spv_sales WHERE 
+                    spv_sales.sls_id = orders.user_id AND spv_id='$id_user') ORDER BY updated_at DESC");
+            }
+            else{
+                $orders = \DB::select("SELECT * FROM orders WHERE customer_id IS NOT NULL AND EXISTS 
+                (SELECT spv_id,sls_id FROM spv_sales WHERE 
+                spv_sales.sls_id = orders.user_id AND spv_id='$id_user') ORDER BY updated_at DESC");
+                //dd($orders);
+            }
         }
         else{
-            $orders = \App\Order::with('products')->with('customers')->whereNotNull('customer_id')
-            ->orderBy('updated_at', 'DESC')->get();
+            $status = $request->get('status');
+            if($status){
+            $orders = \App\Order::with('products')->whereNotNull('customer_id')
+            ->where('status',strtoupper($status))
+            ->orderBy('updated_at', 'DESC')->get();//paginate(10);
+            }
+            else{
+                $orders = \App\Order::with('products')->with('customers')->whereNotNull('customer_id')
+                ->orderBy('updated_at', 'DESC')->get();
+            dd($orders);
+            }
         }
+        
         return view('orders.index', ['orders' => $orders]);
     }
 

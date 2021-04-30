@@ -55,6 +55,9 @@
                 No Image
                 @endif
                  <input type="file" name="group_image" class="form-control" id="group_image" autocomplete="off">
+                 <small
+                    class="text-muted">Leave it blank if you don't want to change your group image
+                 </small>
             </div>
         </div>
         

@@ -157,9 +157,8 @@
                             <span>Home</span>
                         </a>
                     </li>
-                    
-                    
-                    <li class="{{request()->routeIs('users.index') || request()->routeIs('sales.index') ? 'active' : '' }}">
+                    @if(Gate::check('isSuperadmin') || Gate::check('isAdmin'))
+                    <li class="{{request()->routeIs('users.index') || request()->routeIs('sales.index') || request()->routeIs('spv.index') ? 'active' : '' }}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">people</i>
                             <span>Manage Users</span>
@@ -173,6 +172,9 @@
                              @endcan
                             <li class="{{request()->routeIs('sales.index') ? 'active' : '' }}">
                                 <a href="{{route('sales.index')}}">List Sales</a>
+                            </li>
+                            <li class="{{request()->routeIs('spv.index') ? 'active' : '' }}">
+                                <a href="{{route('spv.index')}}">List SPV</a>
                             </li>
                         </ul>
                     </li>
@@ -230,7 +232,8 @@
                             </li>
                         </ul>
                     </li>
-                    
+                    @endif
+
                     <li class="{{request()->routeIs('orders.index') ? 'active' : ''}}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">shopping_cart</i>
