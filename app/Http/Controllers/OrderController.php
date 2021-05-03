@@ -51,7 +51,7 @@ class OrderController extends Controller
             else{
                 $orders = \App\Order::with('products')->with('customers')->whereNotNull('customer_id')
                 ->orderBy('updated_at', 'DESC')->get();
-            dd($orders);
+            //dd($orders);
             }
         }
         

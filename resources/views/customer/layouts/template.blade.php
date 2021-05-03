@@ -1125,6 +1125,11 @@
                 <li>
                     <a href="{{URL::route('contact')}}">Kontak Kami</a>
                 </li>
+                <!--
+                <li>
+                    <a href="{{URL::route('pesanan')}}">Pesanan</a>
+                </li>
+                -->
              </ul>
             @if(\Auth::user())
                 <form action="{{route('logout')}}" method="POST">
