@@ -32,12 +32,12 @@ class OrderController extends Controller
             $stts = strtoupper($status);
             $orders = \DB::select("SELECT * FROM orders WHERE customer_id IS NOT NULL AND status='$stts' AND EXISTS 
                     (SELECT spv_id,sls_id FROM spv_sales WHERE 
-                    spv_sales.sls_id = orders.user_id AND spv_id='$id_user') ORDER BY updated_at DESC");
+                    spv_sales.sls_id = orders.user_id AND spv_id='$id_user') ORDER BY created_at DESC");
             }
             else{
                 $orders = \DB::select("SELECT * FROM orders WHERE customer_id IS NOT NULL AND EXISTS 
                 (SELECT spv_id,sls_id FROM spv_sales WHERE 
-                spv_sales.sls_id = orders.user_id AND spv_id='$id_user') ORDER BY updated_at DESC");
+                spv_sales.sls_id = orders.user_id AND spv_id='$id_user') ORDER BY created_at DESC");
                 //dd($orders);
             }
         }
@@ -46,11 +46,11 @@ class OrderController extends Controller
             if($status){
             $orders = \App\Order::with('products')->whereNotNull('customer_id')
             ->where('status',strtoupper($status))
-            ->orderBy('updated_at', 'DESC')->get();//paginate(10);
+            ->orderBy('created_at', 'DESC')->get();//paginate(10);
             }
             else{
                 $orders = \App\Order::with('products')->with('customers')->whereNotNull('customer_id')
-                ->orderBy('updated_at', 'DESC')->get();
+                ->orderBy('created_at', 'DESC')->get();
             //dd($orders);
             }
         }
