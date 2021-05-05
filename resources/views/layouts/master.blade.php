@@ -173,9 +173,11 @@
                             <li class="{{request()->routeIs('sales.index') ? 'active' : '' }}">
                                 <a href="{{route('sales.index')}}">List Sales</a>
                             </li>
+                            <!--
                             <li class="{{request()->routeIs('spv.index') ? 'active' : '' }}">
                                 <a href="{{route('spv.index')}}">List SPV</a>
                             </li>
+                            -->
                         </ul>
                     </li>
                     

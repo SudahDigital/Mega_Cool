@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" >
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_2.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_3.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_2.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css')}}">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -597,11 +597,11 @@
                         endforeach
                     </ul>
                 </li>
-                -->
+                
                 <li>
                     <a href="{{$paket != null ? URL::route('home_paket', ['paket'=>strtolower($paket->status)]) : '' }}">Paket</a>
                 </li>
-                
+                -->
                 <li>
                    <a href="{{URL::route('profil.index')}}">Profile</a>
                 </li>
@@ -611,6 +611,11 @@
                 <li>
                     <a href="{{URL::route('contact')}}">Kontak Kami</a>
                 </li>
+                <!--
+                <li>
+                    <a href="{{URL::route('pesanan')}}">Pesanan</a>
+                </li>
+                -->
             </ul>
             @if(\Auth::user())
                 <form action="{{route('logout')}}" method="POST">
@@ -626,16 +631,28 @@
              style="" alt="sp-sidebar-bottom"> 
         </nav>
         <div class="overlay"></div>
+
+        <nav class="navbar navbar-expand-lg fixed-top" style="z-index: 1.5;">
+            <div class="container">
+                <button type="button" id="sidebarCollapse" class="btn button-burger-menu ">
+                    <i class="fas fa-bars fa-2x d-none d-md-block d-md-none" style="color:#1A4066;"></i>
+                    <i class="fas fa-bars fa-1x d-md-none" style="color:#1A4066;"></i>
+                </button>
+                
+            </div>
+        </nav>
         
         <!--content-->
         <div id="content">
             <div role="main">
-                <div class="container">
+                <!--
+                <div class="container button-burger-menu-nocart">
                     <button type="button" id="sidebarCollapse" class="btn button-burger-menu-nocart">
                         <i class="fas fa-bars fa-2x d-none d-md-block d-md-none" style="color:#1A4066;"></i>
                         <i class="fas fa-bars fa-1x d-md-none" style="color:#1A4066;"></i>
                     </button>
                 </div>
+                -->
                 @yield('content')
             </div>
         </div>
@@ -645,9 +662,9 @@
     <div id="message" class="row justify-content-center"></div>
     <img src="{{ asset('assets/image/dot-top-right-profil.jpg') }}" class="dot-top-right-nocart"  
     style="" alt="dot-top-right-profil">
-    <img src="{{ asset('assets/image/dot-bottom-left-profil.jpg') }}" class="dot-bottom-left"  
+    <img src="{{ asset('assets/image/dot-bottom-left-profil.jpg') }}" class="dot-bottom-left-nocart"  
     style="" alt="dot-bottom-left-profil">
-    <img src="{{ asset('assets/image/shape-profil-bottom.jpg') }}" class="shape-bottom-right"  
+    <img src="{{ asset('assets/image/shape-profil-bottom.jpg') }}" class="shape-bottom-right-nocart"  
     style="" alt="shape-profil-bottom">
     
     <!-- jQuery CDN - Slim version (=without AJAX) -->
@@ -667,6 +684,23 @@
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>-->
     
     <script type="text/javascript">
+
+        $(document).ready(function(){
+            $(window).scroll(function(){
+                var scroll = $(window).scrollTop();
+                if (scroll > 200) {
+                    $(".navbar").css("background" , "#1A4066");
+                    $(".fa-bars").css("color" , "#fff");
+                    $(".navbar").css("opacity" , "0.9");
+                    
+                }
+
+                else{
+                    $(".navbar").css("background" , "transparent");
+                    $(".fa-bars").css("color" , "#1A4066");  	
+                }
+            })
+        });
 
         //Select2
         $('#city_id').select2({
@@ -1648,7 +1682,58 @@
                 Swal.fire('Yes!');
             });
         });
-    
+        
+        function search_order(){
+            var query = $('#src_order').val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url:'{{URL::to('/sales/order_search')}}',
+                method:'POST',
+                data:{
+                        query:query,
+                     },
+                dataType:'json',
+                success:function(data)
+                {
+                    $('tbody').html(data.table_data);
+                    //$('#total_records').text(data.total_data);
+                }
+            });
+        }
+
+        function open_detail_list(order_id){
+            $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+            });
+            $.ajax({
+                url : '{{URL::to('/pesanan/detail')}}',
+                type:'POST',
+                data:{
+                    order_id : order_id,
+                },
+                beforeSend: function () { // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
+                    $('#loader').removeClass('hidden')
+                },              
+                success: function (response){
+                    $("#modalDetilList").modal('show');
+                    $('#DataListOrder' ).html(response);
+                },
+                complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                    $('#loader').addClass('hidden');
+                },
+                
+                error: function (response) {
+                console.log('Error:', response);
+                }
+            });
+        }
+
     /*
         window.setTimeout(function() {
         $(".alert").fadeTo(500, 0).slideUp(500, function(){

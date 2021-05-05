@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" >
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_2.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_3.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_2.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css')}}">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -1111,11 +1111,11 @@
                         endforeach
                     </ul>
                 </li>
-                -->
+                
                 <li>
                     <a href="{{$paket != null ? URL::route('home_paket', ['paket'=>strtolower($paket->status)]) : '' }}">Paket</a>
                 </li>
-                
+                -->
                 <li>
                    <a href="{{URL::route('profil.index')}}">Profile</a>
                 </li>
@@ -1130,7 +1130,7 @@
                     <a href="{{URL::route('pesanan')}}">Pesanan</a>
                 </li>
                 -->
-             </ul>
+            </ul>
             @if(\Auth::user())
                 <form action="{{route('logout')}}" method="POST">
                     @csrf

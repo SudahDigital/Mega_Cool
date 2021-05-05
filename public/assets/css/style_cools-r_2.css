@@ -135,6 +135,23 @@ body {
   font-weight: bold; 
 }
 
+.breadcrumb-pesan-item {
+  font-size:16px;
+  z-index: 2;
+}
+
+.breadcrumb-pesan-item + .breadcrumb-pesan-item::before {
+  content: "|  ";
+  font-size: 20px;
+  color:#000 ;
+}
+
+.breadcrumb-pesan-item.active {
+  color: #000000;
+  font-size: 16px;
+  font-weight: bold; 
+}
+
 .breadcrumb-profil-name {
   font-size:18px;
   font-weight: bold;
@@ -783,11 +800,12 @@ a.register:hover {
   width: 200px;
   height: auto;
   background:transparent;
-  position:absolute;
+  position:fixed;
   top:0;
   right:0;
   border:none;
   z-index: 1;
+  opacity:0.5;
 }
 
  .sidebar-dot-top-right {
@@ -850,6 +868,30 @@ a.register:hover {
   left:0;
   border:none;
   z-index: 1;
+}
+
+.dot-bottom-left-nocart {
+  width: 200px;
+  height: auto;
+  background:transparent;
+  position:fixed;
+  bottom:0;
+  left:0;
+  border:none;
+  z-index: 1;
+  opacity:0.5;
+}
+
+.shape-bottom-right-nocart {
+  position:fixed;
+  bottom:0;
+  right:0;
+  border:none;
+  z-index: 1;
+  width: 240px;
+  height: auto;
+  background:transparent;
+  opacity:0.5;
 }
 
 .shape-bottom-right {

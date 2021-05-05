@@ -116,7 +116,7 @@
     </div>
     <script>
         if ($(window).width() < 601) {
-            $('#prf-brd').removeClass('mt-1');
+            //$('#prf-brd').removeClass('mt-1');
             $('#col-hdn-prf').removeClass('col-6');
             $('#col-hdn-prf').addClass('pr-n2');
         } 

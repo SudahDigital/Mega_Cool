@@ -59,7 +59,7 @@
     </div>
     <script>
         if ($(window).width() <= 600) {
-            $('#prf-brd').removeClass('mt-1');
+            //$('#prf-brd').removeClass('mt-1');
             //$('#prf-brd').addClass('mt-2');
         } 
         if ($(window).width() <= 411) {

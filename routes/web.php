@@ -57,7 +57,9 @@ Route::group(['middleware' => ['auth','checkRole:SALES']],function(){
     Route::post('/keranjang/delete_kr/paket','CustomerPaketController@delete_kr_pkt');
     Route::post('/paket/product_search','CustomerPaketController@search_paket');
     Route::post('/bonus/product_search','CustomerPaketController@search_bonus');
-    Route::get('/pesanan','TransaksiSalesController@index')->name('pesanan');
+    Route::get('/pesanan/{status?}','TransaksiSalesController@index')->name('pesanan');
+    Route::post('/pesanan/detail','TransaksiSalesController@detail');
+    Route::post('/sales/order_search','TransaksiSalesController@search_order');
 });
 
 Route::match(["GET", "POST"], "/register", function(){
