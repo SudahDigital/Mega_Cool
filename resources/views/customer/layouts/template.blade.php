@@ -1112,11 +1112,11 @@
                         endforeach
                     </ul>
                 </li>
-                
+                -->
                 <li>
                     <a href="{{$paket != null ? URL::route('home_paket', ['paket'=>strtolower($paket->status)]) : '' }}">Paket</a>
                 </li>
-                -->
+                
                 <li>
                    <a href="{{URL::route('profil.index')}}">Profile</a>
                 </li>
@@ -1126,11 +1126,11 @@
                 <li>
                     <a href="{{URL::route('contact')}}">Kontak Kami</a>
                 </li>
-                <!--
+                
                 <li>
                     <a href="{{URL::route('pesanan')}}">Pesanan</a>
                 </li>
-                -->
+                
             </ul>
             @if(\Auth::user())
                 <form action="{{route('logout')}}" method="POST">
