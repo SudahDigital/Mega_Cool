@@ -75,9 +75,10 @@
         }
 
         .btn-warning {
-            background-color: #fff;
+            background-color: #1A4066;
             opacity: 0.7;
             border-color: #fff;
+            color:#fff;
         }
 
         .btn-warning:hover{
@@ -241,7 +242,7 @@
             height: auto !important;
             min-height: 100% !important;
             border-radius: 0 !important;
-            background-color: #1A4066 !important 
+            background-color: #fff !important 
         }
 
         
@@ -1111,11 +1112,11 @@
                         endforeach
                     </ul>
                 </li>
-                -->
+                
                 <li>
                     <a href="{{$paket != null ? URL::route('home_paket', ['paket'=>strtolower($paket->status)]) : '' }}">Paket</a>
                 </li>
-                
+                -->
                 <li>
                    <a href="{{URL::route('profil.index')}}">Profile</a>
                 </li>
@@ -1125,11 +1126,11 @@
                 <li>
                     <a href="{{URL::route('contact')}}">Kontak Kami</a>
                 </li>
-                
+                <!--
                 <li>
                     <a href="{{URL::route('pesanan')}}">Pesanan</a>
                 </li>
-                
+                -->
             </ul>
             @if(\Auth::user())
                 <form action="{{route('logout')}}" method="POST">

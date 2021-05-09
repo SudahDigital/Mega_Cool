@@ -62,14 +62,14 @@
 
         <div class="form-group form-float">
             <div class="form-line">
-                <input type="number" class="form-control" name="stock" min="0" value="0" autocomplete="off" required>
+                <input type="number" onKeyUp="test_fn(this.value)" class="form-control" id="stock" name="stock" min="0" value="0" autocomplete="off" maxlength="9" required>
                 <label class="form-label">Product Stock (Box)</label>
             </div>
         </div>
 
         <div class="form-group form-float">
             <div class="form-line">
-                <input type="number" class="form-control" name="low_stock_treshold" min="0" value="0" autocomplete="off" required>
+                <input type="number" id="low_stock" onKeyUp="test_fn_1(this.value)" class="form-control" name="low_stock_treshold" min="0" value="0" autocomplete="off" required maxlength="9">
                 <label class="form-label">Low Stock Treshold</label>
             </div>
         </div>
@@ -159,6 +159,20 @@
         
       }
     });
+
+
+    
+    function test_fn(test_value){
+        var test_value = test_value.replace(/[^0-9]+/g, "");
+        document.getElementById("stock").value = "";
+        document.getElementById("stock").value = test_value;
+    }
+
+    function test_fn_1(test_value){
+        var test_value = test_value.replace(/[^0-9]+/g, "");
+        document.getElementById("low_stock").value = "";
+        document.getElementById("low_stock").value = test_value;
+    }
     </script>
 
 @endsection

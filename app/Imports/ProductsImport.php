@@ -23,7 +23,9 @@ class ProductsImport implements ToModel, WithHeadingRow, WithValidation
     public function rules(): array
     {
         return [
-            'product_code' => 'required'
+            'product_code' => 'required',
+            'stock' => 'min:0|max:9|numeric',
+            'low_stock_treshold' => 'min:0|max:9|numeric'
         ];
 
     }
@@ -32,6 +34,8 @@ class ProductsImport implements ToModel, WithHeadingRow, WithValidation
     {
         return [
             'product_code.required' => 'Product_code is required.',
+            'stock' => 'stock is max 9 digits.',
+            'low_stock_treshold' => 'low_stock_treshold is max 9 digits.'
         ];
     }
 
