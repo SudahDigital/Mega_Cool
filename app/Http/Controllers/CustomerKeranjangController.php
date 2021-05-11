@@ -1077,4 +1077,227 @@ $ttle_nonpkt='*Detail Pesanan Non Paket*
         exit;
     }
 
+    public function preview_order(Request $request)
+    {
+        $id = $request->get('order_id');
+        $ses_order = $request->session()->get('ses_order');
+        $customer = Customer::findOrfail($ses_order->customer_id);
+        $order = \App\Order::findOrFail($id);
+        $paket_list = \DB::table('order_product')
+                ->join('pakets','pakets.id','=','order_product.paket_id')
+                ->join('groups','groups.id','=','order_product.group_id')
+                ->where('order_id',$id)
+                ->whereNotNull('paket_id')
+                ->whereNotNull('group_id')
+                ->whereNull('bonus_cat')
+                ->distinct()
+                ->get(['paket_id','group_id']);
+                //dd($paket_list);
+        //return view('orders.detail', ['order' => $order, 'paket_list'=>$paket_list]);
+        echo'
+        <div id="PreviewToko_Produk" style="overflow: hidden;">
+            <div class="row px-3">
+                <div class="col-md-3 px-0 py-0">
+                    <p class="text-left mb-1" style="color: #1A4066 !important;">Nama Toko</p>
+                </div>
+                <div class="col-md-9 p-0">
+                    <input type="text" readonly class="form-control" style="border-top-right-radius: 20px; border-top-left-radius:20px;outline:none;"
+                    value="'.$customer->store_name.'">
+                </div>
+            </div>
+            
+            <div class="mb-0 mt-4">
+                <p class="text-left" style="color: #1A4066 !important;">Detail Pesanan</p>
+            </div>';
+            
+            if(count($order->products_nonpaket) > 0){
+                echo'
+                <table width="100%" class="table table-hover ">
+                    <thead style="background: #f0f1f2 !important;text-align:left;">
+                        <th class="" width="50%" style="">
+                            <small>
+                                <small><p style="line-height:1.2;color:#000;text-align:left;font-weight:400;"><b>Produk (NonPaket)</b></p></small>
+                            </small>
+                        </th>
+                        <th width="10%" style="">
+                            <div class="d-none d-md-block d-md-none">
+                                <small>
+                                    <small><p style="line-height:1.2;color:#000;text-align:left;font-weight:400;"><b>Jumlah</b></p></small>
+                                </small>
+                            </div>
+                            <div class="d-md-none">
+                                <small>
+                                    <small><p style="line-height:1.2;color:#000;text-align:left;font-weight:400;"><b>Jml</b></p></small>
+                                </small>
+                            </div> 
+                        </th>
+                        <th width="50%" style="text-align:right" class="text-right pl-0">
+                            <small>
+                                <small><p style="line-height:1.2;color:#000;text-align:right;font-weight:400;"><b>Sub Total</b></p></small>
+                            </small> 
+                        </th>
+                    </thead>
+                    <tbody>';
+                        foreach($order->products_nonpaket as $p){
+                        echo'<tr>
+                            <td width="50%" style="">
+                                <small>
+                                    <small><p style="line-height:1.3;color:#000;font-weight:400;text-align:left">'.$p->Product_name.'</p></small>
+                                </small>
+                            </td>
+                            <td style="padding-bottom:0;">
+                                <small>
+                                    <p style="line-height:1.3;color:#000;font-weight:400;text-align:left">'.$p->pivot->quantity.'</p>
+                                </small>
+                            </td>
+                            <td width="40%" align="right" style="padding-bottom:0;" class="pl-0">';
+                                if(($p->pivot->discount_item != NULL) && ($p->pivot->discount_item > 0)){
+                                echo '<small><p style="line-height:1.3;color:#000;font-weight:400;text-align:left">Rp. '.number_format($p->pivot->price_item_promo * $p->pivot->quantity, 0, ',', '.').'</p></small>';
+                                }else{
+                                echo '<p style="line-height:1.3;color:#000;font-weight:400;text-align:right">Rp. '.number_format($p->pivot->price_item * $p->pivot->quantity, 0, ',', '.').'</p></>';
+                                }
+                            echo'</td>
+                        </tr>';
+                        }
+                        echo '<tr>
+                            
+                        </tr>
+                        <tr>';
+                            $pirce_r = \App\order_product::where('order_id',$order->id)
+                                ->whereNull('group_id')
+                                ->whereNull('paket_id')
+                                ->whereNull('bonus_cat')
+                                ->sum(\DB::raw('price_item * quantity'));
+                            
+                            echo'<td colspan="2" align="right">
+                                <small>
+                                    <small><p style="line-height:1.2;color:#000;text-align:right;font-weight:400;"><b>Total Harga :</b></p></small>
+                                </small>
+                            </td>
+                            <td align="right">
+                                <small>
+                                    <small><p style="line-height:1.2;color:#000;text-align:right;font-weight:400;"><b>Rp. '.number_format($pirce_r, 0, ',', '.').'</b></p></small>
+                                </small>
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>';
+            }
+            
+            if(count( $paket_list) > 0){
+                foreach($paket_list as $paket){
+                    $paket_name =\App\Paket::where('id',$paket->paket_id)
+                                    ->first();
+                        $group_name =\App\Group::where('id',$paket->group_id)
+                                    ->first();           
+                    echo '<table width="100%" class="table table-hover">
+                        <thead style="background: #f0f1f2 !important;">
+                            <th class="" width="50%" style="">
+                                <small>
+                                    <small><p style="line-height:1.2;color:#000;text-align:left;font-weight:400;"><b>'.$paket_name->display_name.' - '.$group_name->display_name.'</b></p></small>
+                                </small>
+                            </th>
+                            <th width="10%" style="">
+                                <div class="d-none d-md-block d-md-none">
+                                    <small>
+                                        <small><p style="line-height:1.2;color:#000;text-align:left;font-weight:400;"><b>Jumlah</b></p></small>
+                                    </small>
+                                </div>
+                                <div class="d-md-none">
+                                    <small>
+                                        <small><p style="line-height:1.2;color:#000;text-align:left;font-weight:400;"><b>Jml</b></p></small>
+                                    </small>
+                                </div> 
+                            </th>
+                            <th width="50%" style="text-align:right" class="text-right pl-0">
+                                <small>
+                                    <small><p style="line-height:1.2;color:#000;text-align:right;font-weight:400;"><b>Sub Total</b></p></small>
+                                </small> 
+                            </th>
+                        </thead>
+                        <tbody>';
+                                $cek_paket=\DB::table('order_product')
+                                            ->join('products','products.id','=','order_product.product_id')
+                                            ->where('order_id',$order->id)
+                                            ->where('paket_id',$paket->paket_id)
+                                            ->where('group_id',$paket->group_id)
+                                            ->orderBy('bonus_cat','ASC')
+                                            ->get();
+                            foreach($cek_paket as $p){
+                            echo'<tr>
+                                <td width="50%" style="padding-bottom:0;">';
+                                    if($p->bonus_cat == NULL){
+                                        echo '
+                                            <small><p style="line-height:1.3;color:#000;font-weight:400;text-align:left">'.$p->Product_name.'</p></small>
+                                       ';
+                                    }else{
+                                        echo '
+                                            <small><p style="line-height:1.3;color:#000;font-weight:400;text-align:left">'.$p->Product_name.'&nbsp;(<small><b>BONUS</b></small>)</p></small>
+                                        ';
+                                    }
+                                echo '</td>
+                                <td style="padding-bottom:0;">
+                                    
+                                        <small><p style="line-height:1.3;color:#000;font-weight:400;text-align:left">'.$p->quantity.'</p></small>
+                                    
+                                </td>
+                                <td align="right" width="50%" style="padding-bottom:0;">';
+                                    if($p->bonus_cat == NULL){
+                                        if(($p->discount_item != NULL) && ($p->discount_item > 0)){
+                                            echo '
+                                                <small><p style="line-height:1.3;color:#000;font-weight:400;text-align:left">Rp. '.number_format($p->price_item_promo * $p->quantity, 0, ',', '.').'</p></small>
+                                            ';
+                                        }else{
+                                            echo '<small>
+                                                <p style="line-height:1.3;color:#000;font-weight:400;text-align:right">Rp. '.number_format($p->price_item * $p->quantity, 0, ',', '.').'</p>
+                                            </small>';
+                                        }
+                                    }
+                                echo '</td>
+                            </tr>';
+                            }
+                            
+                            echo '<tr>
+                            <td colspan="2" align="right">
+                                <small>
+                                    <small><p style="line-height:1.2;color:#000;text-align:right;font-weight:400;"><b>Total Harga :</b></p></small>
+                                </small>
+                            </td>';
+                                    $pkt_pirce = \App\order_product::where('order_id',$order->id)
+                                    ->where('group_id',$paket->group_id)
+                                    ->where('paket_id',$paket->paket_id)
+                                    ->whereNull('bonus_cat')
+                                    ->sum(\DB::raw('price_item * quantity'));
+                            echo'<td width="40%" align="right" class="pl-0">
+                                    <small>
+                                        <small><p style="line-height:1.2;color:#000;text-align:right;font-weight:400;"><b>Rp. '.number_format($pkt_pirce, 0, ',', '.').'</b></p></small>
+                                    </small>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>';
+                }
+            }
+            echo '<div style="margin-top:-20px;">
+                <table width="100%" class="table table-hover">
+                    <thead >
+                        <th style="border-bottom:none;" width="62%" class="text-right">
+                            <small>
+                                <small><p style="line-height:1.2;color:#000;text-align:right;font-weight:400;"><b>Grand Total :</b></p></small>
+                            </small>
+                        </th>
+                        <th style="border-bottom:none;" width="" class="text-right pl-0">
+                            <small>
+                                <small><p style="line-height:1.2;color:#000;text-align:right;font-weight:400;"><b>Rp. '.number_format($order->total_price, 0, ',', '.').'</b></p></small>
+                            </small>
+                        </th>
+                    </thead>
+                </table>
+            </div>
+        </div>';
+
+        
+    }
+
 }

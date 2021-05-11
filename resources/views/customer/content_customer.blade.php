@@ -15,6 +15,29 @@ Home
     input[type=number] {
     -moz-appearance: textfield;
     }
+
+    @media only screen and (max-width:768px){
+        .image-logo-login img{
+            width:50px;
+            height:auto;
+        }
+
+        .btn_preview{
+            font-size:3vw;
+        }
+    }
+
+    @media only screen and (max-width:600px){
+        .image-logo-login img{
+            width:43px;
+            height:auto;
+            margin-left:-1.3rem;
+        }
+
+        .login-label h3{
+            font-size:20px;
+        }
+    }
 </style>
 
     @if(session('sukses_peesan'))
@@ -535,25 +558,30 @@ Home
                     <img src="{{ asset('assets/image/shape-bottom-right.png') }}" class="shape-bottom-right"  
                     style="" alt="shape-bottom-right">
                     <button type="button" class="btn btn-warning btn-circle" data-dismiss="modal" style="position:absolute;z-index:99999;"><i class="fa fa-times"></i></button>
-                    
-                    <div class="container">
-                        <div class="d-flex justify-content-center mx-auto">
-                            <div class="col-md-2 image-logo-login" style="z-index: 2">
-                            <img src="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png') }}" class="img-thumbnail pt-4" style="background-color:transparent; border:none;" alt="LOGO MEGACOOLS_DEFAULT">  
+                    -->
+                    <div class="container image-logo-login">
+                        <div class="d-flex justify-content-start mx-auto">
+                            <div class="col-md-1" style="z-index: 2">
+                                <img src="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png') }}" class="img-thumbnail" style="background-color:transparent; border:none;position:absolute;" alt="LOGO MEGACOOLS_DEFAULT">  
                             </div>
                         </div>
                     </div>
-                    -->
-                    <div class="col-md-12 login-label py-3" style="z-index: 2">
+                    
+
+                    <div class="col-md-12 login-label py-3" style="z-index: 4">
                         <h3 style="color: #1A4066 !important;">Konfirmasi Pesanan</h3>
                     </div>
                     
                     <div class="row justify-content-center">
-                        <div class="col-md-5 login-label" style="z-index: 2">
+                        <div class="col-md-5 login-label" style="z-index: 4">
+                            <div id="PreviewToko_Produk" style="overflow: hidden;">
+                                
+                            </div>
+                            
                             <form class="form-inline" method="POST" id="ga_pesan_form" target="_BLANK" action="{{ route('customer.keranjang.pesan') }}">
                                 @csrf
                                 <div class="col-md-5 px-0 pt-3">
-                                    <p class="text-left" style="color: #1A4066 !important;">Pilih Metode Pembayaran</p>
+                                    <p class="text-left mb-1" style="color: #1A4066 !important;">Pilih Metode Pembayaran</p>
                                 </div>
                                 @if($item!==null)
                                 <input type="hidden" name ="voucher_code_hide_modal" id="voucher_code_hide_modal">
@@ -585,7 +613,14 @@ Home
                                         border-bottom-left-radius:0;"></textarea>
                                     </div>
                                 </div>
-                                <div class="mx-auto text-center">
+                                <div class="col-md-6 pl-0">
+                                    <input type="hidden" id="order_id_pesan" name="id" value="{{$item !==null ? $item->id : ''}}"/>
+                                    <button type="submit" id="ga_pesan" onclick="pesan_wa()" class="btn btn_login_form btn_preview"
+                                        style="font-size:1vw;">
+                                        <i class="fab fa-whatsapp fa-1x" aria-hidden="true" style="color: #ffffff !important; font-weight:900;">
+                                        </i>&nbsp;{{__('Pesan Sekarang') }}</button>
+                                </div>
+                                <div class="col-md-6 pr-0">
                                     <input type="hidden" id="order_id_pesan" name="id" value="{{$item !==null ? $item->id : ''}}"/>
                                     <button type="submit" id="ga_pesan" onclick="pesan_wa()" class="btn btn_login_form"><i class="fab fa-whatsapp fa-1x" aria-hidden="true" style="color: #ffffff !important; font-weight:900;"></i>&nbsp;{{__('Pesan Sekarang') }}</button>
                                 </div>
@@ -672,6 +707,7 @@ Home
         $('.row-bonus-text').addClass('col-4');
         $('.row-bonus-detail').removeClass('col-9');
         $('.row-bonus-detail').addClass('col-8');
+        $('.image-logo-login').removeClass('container');
     }
     if ($(window).width() <= 480) {
         $('#cont-collapse').removeClass('container');

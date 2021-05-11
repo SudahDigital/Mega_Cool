@@ -4217,9 +4217,35 @@
                         else{
                             $('#check_tunai_value').val('');
                         }*/
-                        $("#my_modal_content").modal('show');
-                        $('#total_pesan_val').val(total_pesan_val_hide);
-                        $('#order_id_pesan').val(order_id);
+                        $.ajaxSetup({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                }
+                        });
+                        $.ajax({
+                            url : '{{URL::to('/preview_order')}}',
+                            type:'POST',
+                            data:{
+                                order_id : order_id,
+                            },
+                            beforeSend: function () { // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
+                                $('#loader').removeClass('hidden')
+                            },              
+                            success: function (response){
+                                //$("#modalDetilList").modal('show');
+                                $("#my_modal_content").modal('show');
+                                $('#PreviewToko_Produk' ).html(response);
+                                $('#total_pesan_val').val(total_pesan_val_hide);
+                                $('#order_id_pesan').val(order_id);
+                            },
+                            complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                $('#loader').addClass('hidden');
+                            },
+                            
+                            error: function (response) {
+                            console.log('Error:', response);
+                            }
+                        });
                         //$("#my_modal_content_ajax").modal('show');
                         //$("#my_modal_content_ajax").modal('show');
                     }
@@ -4398,6 +4424,35 @@
                 {
                     $('#bonus_cari'+group_id).html(data.table_data);
                     //$('#total_records').text(data.total_data);
+                }
+            });
+        }
+
+        function open_preview(order_id){
+            $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+            });
+            $.ajax({
+                url : '{{URL::to('/pesanan/detail')}}',
+                type:'POST',
+                data:{
+                    order_id : order_id,
+                },
+                beforeSend: function () { // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
+                    $('#loader').removeClass('hidden')
+                },              
+                success: function (response){
+                    $("#modalDetilList").modal('show');
+                    $('#DataListOrder' ).html(response);
+                },
+                complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                    $('#loader').addClass('hidden');
+                },
+                
+                error: function (response) {
+                console.log('Error:', response);
                 }
             });
         }
