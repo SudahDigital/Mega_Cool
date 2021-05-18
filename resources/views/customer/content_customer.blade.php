@@ -16,19 +16,38 @@ Home
     -moz-appearance: textfield;
     }
 
+    .image-logo-confirm img{
+            width:100px;
+            height:auto;
+    }
+
+    @media only screen and (max-width:1920px){
+        .image-logo-confirm img{
+            width:90px;
+            height:auto;
+            margin-left:9.5rem;
+            top:-2rem;
+        }
+    }
+
+    @media only screen and (max-width:1366px){
+        .image-logo-confirm img{
+            width:70px;
+            height:auto;
+            margin-left:10rem;
+            top:0;
+        }
+    }
+    
     @media only screen and (max-width:768px){
-        .image-logo-login img{
+        .image-logo-confirm img{
             width:50px;
             height:auto;
-        }
-
-        .btn_preview{
-            font-size:3vw;
         }
     }
 
     @media only screen and (max-width:600px){
-        .image-logo-login img{
+        .image-logo-confirm img{
             width:43px;
             height:auto;
             margin-left:-1.3rem;
@@ -559,7 +578,7 @@ Home
                     style="" alt="shape-bottom-right">
                     <button type="button" class="btn btn-warning btn-circle" data-dismiss="modal" style="position:absolute;z-index:99999;"><i class="fa fa-times"></i></button>
                     -->
-                    <div class="container image-logo-login">
+                    <div class="container image-logo-confirm">
                         <div class="d-flex justify-content-start mx-auto">
                             <div class="col-md-1" style="z-index: 2">
                                 <img src="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png') }}" class="img-thumbnail" style="background-color:transparent; border:none;position:absolute;" alt="LOGO MEGACOOLS_DEFAULT">  
@@ -568,12 +587,12 @@ Home
                     </div>
                     
 
-                    <div class="col-md-12 login-label py-3" style="z-index: 4">
+                    <div class="col-md-12 login-label py-3 label-confirm" style="z-index: 4">
                         <h3 style="color: #1A4066 !important;">Konfirmasi Pesanan</h3>
                     </div>
                     
                     <div class="row justify-content-center">
-                        <div class="col-md-5 login-label" style="z-index: 4">
+                        <div class="col-md-5 login-label label-confirm" style="z-index: 4">
                             <div id="PreviewToko_Produk" style="overflow: hidden;">
                                 
                             </div>
@@ -613,18 +632,18 @@ Home
                                         border-bottom-left-radius:0;"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-md-6 pl-0">
+                                <div class="col-md-12 px-0 mt-2">
+                                    
+                                
                                     <input type="hidden" id="order_id_pesan" name="id" value="{{$item !==null ? $item->id : ''}}"/>
-                                    <button type="submit" id="ga_pesan" onclick="pesan_wa()" class="btn btn_login_form btn_preview"
-                                        style="font-size:1vw;">
-                                        <i class="fab fa-whatsapp fa-1x" aria-hidden="true" style="color: #ffffff !important; font-weight:900;">
-                                        </i>&nbsp;{{__('Pesan Sekarang') }}</button>
-                                </div>
-                                <div class="col-md-6 pr-0">
-                                    <input type="hidden" id="order_id_pesan" name="id" value="{{$item !==null ? $item->id : ''}}"/>
-                                    <button type="submit" id="ga_pesan" onclick="pesan_wa()" class="btn btn_login_form"><i class="fab fa-whatsapp fa-1x" aria-hidden="true" style="color: #ffffff !important; font-weight:900;"></i>&nbsp;{{__('Pesan Sekarang') }}</button>
+                                    <button type="submit" id="ga_pesan" onclick="pesan_wa()" class="btn btn-success float-right btn-preview-order"><i class="fab fa-whatsapp fa-1x" aria-hidden="true" style="color: #ffffff !important; font-weight:900;"></i>&nbsp;{{__('Pesan Sekarang') }}</button>
                                 </div>
                             </form>
+                            <button type="submit" onclick="cancel_wa()" class="btn btn-danger btn-preview-cancel"
+                                style="">
+                                <i class="fa fa-times fa-1x" aria-hidden="true" style="color:#fff;font-weight:900;">
+                                </i>&nbsp;{{__('Batalkan Pesanan') }}
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -684,9 +703,18 @@ Home
 
    
 <script>
+    if($(window).width() <1450){
+        $('.label-confirm').removeClass('col-md-5').addClass('col-md-7').addClass('px-4');
+    }
+
     if ($(window).width() < 1220) {
         $('.row-bonus-detail-p').addClass('ml-n4');
     }
+
+    if($(window).width() < 769){
+        $('.label-confirm').removeClass('col-md-5').addClass('col-md-11').addClass('px-4');
+    }
+
     if ($(window).width() < 601) {
         $('#div_total').removeClass('float-left');
         //$('#div_total').addClass('justify-content-center');
@@ -712,6 +740,11 @@ Home
     if ($(window).width() <= 480) {
         $('#cont-collapse').removeClass('container');
         //$('.card-cart').removeClass('container');
+    }
+
+    if($(window).width()<= 411){
+        $('.btn-preview-cancel').addClass('btn-block');
+        $('.btn-preview-order').addClass('btn-block').addClass('mt-5')
     }
      
 </script>

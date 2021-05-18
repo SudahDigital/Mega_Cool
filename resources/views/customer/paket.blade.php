@@ -30,6 +30,48 @@ Home
     input[type=number] {
     -moz-appearance: textfield;
     }
+
+    .image-logo-confirm img{
+            width:100px;
+            height:auto;
+    }
+
+    @media only screen and (max-width:1920px){
+        .image-logo-confirm img{
+            width:90px;
+            height:auto;
+            margin-left:9.5rem;
+            top:-2rem;
+        }
+    }
+
+    @media only screen and (max-width:1366px){
+        .image-logo-confirm img{
+            width:70px;
+            height:auto;
+            margin-left:10rem;
+            top:0;
+        }
+    }
+    
+    @media only screen and (max-width:768px){
+        .image-logo-confirm img{
+            width:50px;
+            height:auto;
+        }
+    }
+
+    @media only screen and (max-width:600px){
+        .image-logo-confirm img{
+            width:43px;
+            height:auto;
+            margin-left:-1.3rem;
+        }
+
+        .login-label h3{
+            font-size:20px;
+        }
+    }
 </style>
 
     @if(session('sukses_peesan'))
@@ -907,11 +949,21 @@ Home
             </div>
         </div>
     </div>
+
     <!-- Modal pesan wa--> 
     <div class="modal fade right ml-0" id="my_modal_content" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
             <div class="modal-content-full-width modal-content ">
                 <div class="modal-body">
+                    <div id="message" class="row justify-content-center"></div>
+                    <img src="{{ asset('assets/image/dot-top-right-profil.jpg') }}" class="dot-top-right-nocart"  
+                    style="" alt="dot-top-right-profil">
+                    <img src="{{ asset('assets/image/dot-bottom-left-profil.jpg') }}" class="dot-bottom-left-nocart"  
+                    style="" alt="dot-bottom-left-profil">
+                    <img src="{{ asset('assets/image/shape-profil-bottom.jpg') }}" class="shape-bottom-right-nocart"  
+                    style="" alt="shape-profil-bottom">
+                    <button type="button" class="btn btn-warning btn-circle" data-dismiss="modal" style="position:absolute;z-index:99999;"><i class="fa fa-times"></i></button>
+                    <!--
                     <img src="{{ asset('assets/image/dot-top-right.png') }}" class="dot-top-right"  
                     style="" alt="dot-top-right">
                     <img src="{{ asset('assets/image/dot-bottom-left.png') }}" class="dot-bottom-left"  
@@ -919,23 +971,30 @@ Home
                     <img src="{{ asset('assets/image/shape-bottom-right.png') }}" class="shape-bottom-right"  
                     style="" alt="shape-bottom-right">
                     <button type="button" class="btn btn-warning btn-circle" data-dismiss="modal" style="position:absolute;z-index:99999;"><i class="fa fa-times"></i></button>
-                    <div class="container">
-                        <div class="d-flex justify-content-center mx-auto">
-                            <div class="col-md-2 image-logo-login" style="z-index: 2">
-                            <img src="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png') }}" class="img-thumbnail pt-4" style="background-color:transparent; border:none;" alt="LOGO MEGACOOLS_DEFAULT">  
+                    -->
+                    <div class="container image-logo-confirm">
+                        <div class="d-flex justify-content-start mx-auto">
+                            <div class="col-md-1" style="z-index: 2">
+                                <img src="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png') }}" class="img-thumbnail" style="background-color:transparent; border:none;position:absolute;" alt="LOGO MEGACOOLS_DEFAULT">  
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 login-label py-3" style="z-index: 2">
-                        <h3 >Konfirmasi Pesanan</h3>
+                    
+
+                    <div class="col-md-12 login-label py-3 label-confirm" style="z-index: 4">
+                        <h3 style="color: #1A4066 !important;">Konfirmasi Pesanan</h3>
                     </div>
                     
                     <div class="row justify-content-center">
-                        <div class="col-md-5 login-label" style="z-index: 2">
+                        <div class="col-md-5 login-label label-confirm" style="z-index: 4">
+                            <div id="PreviewToko_Produk" style="overflow: hidden;">
+                                
+                            </div>
+                            
                             <form class="form-inline" method="POST" id="ga_pesan_form" target="_BLANK" action="{{ route('customer.keranjang.pesan') }}">
                                 @csrf
                                 <div class="col-md-5 px-0 pt-3">
-                                    <p class="text-left">Pilih Metode Pembayaran</p>
+                                    <p class="text-left mb-1" style="color: #1A4066 !important;">Pilih Metode Pembayaran</p>
                                 </div>
                                 @if($item!==null)
                                 <input type="hidden" name ="voucher_code_hide_modal" id="voucher_code_hide_modal">
@@ -967,11 +1026,18 @@ Home
                                         border-bottom-left-radius:0;"></textarea>
                                     </div>
                                 </div>
-                                <div class="mx-auto text-center">
+                                <div class="col-md-12 px-0 mt-2">
+                                    
+                                
                                     <input type="hidden" id="order_id_pesan" name="id" value="{{$item !==null ? $item->id : ''}}"/>
-                                    <button type="submit" id="ga_pesan" onclick="pesan_wa()" class="btn btn_login_form"><i class="fab fa-whatsapp fa-1x" aria-hidden="true" style="color: #ffffff !important; font-weight:900;"></i>&nbsp;{{__('Pesan Sekarang') }}</button>
+                                    <button type="submit" id="ga_pesan" onclick="pesan_wa()" class="btn btn-success float-right btn-preview-order"><i class="fab fa-whatsapp fa-1x" aria-hidden="true" style="color: #ffffff !important; font-weight:900;"></i>&nbsp;{{__('Pesan Sekarang') }}</button>
                                 </div>
                             </form>
+                            <button type="submit" onclick="cancel_wa()" class="btn btn-danger btn-preview-cancel"
+                                style="">
+                                <i class="fa fa-times fa-1x" aria-hidden="true" style="color:#fff;font-weight:900;">
+                                </i>&nbsp;{{__('Batalkan Pesanan') }}
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1029,14 +1095,20 @@ Home
         </div>
     </div>
 <script>
+    if($(window).width() <1450){
+        $('.label-confirm').removeClass('col-md-5').addClass('col-md-7').addClass('px-4');
+    }
+
     if ($(window).width() < 1220) {
         $('.row-bonus-detail-p').addClass('ml-n4'); 
     }
+
     if ($(window).width() < 769) {
         $('.modal-dialog-paket').removeClass('modal-lg');
         $('.modal-dialog-paket').addClass('modal-dialog-full-width');
         $('.modal-content-paket').addClass('modal-content-full-width');
         $('.input_item_pop').addClass('mb-2');
+        $('.label-confirm').removeClass('col-md-5').addClass('col-md-11').addClass('px-4');
     }
     if ($(window).width() < 601) {
         $('#div_total').removeClass('float-left');
@@ -1081,6 +1153,11 @@ Home
     if ($(window).width() <= 480) {
         $('#cont-collapse').removeClass('container');
         //$('.card-cart').removeClass('container');
+    }
+
+    if($(window).width()<= 411){
+        $('.btn-preview-cancel').addClass('btn-block');
+        $('.btn-preview-order').addClass('btn-block').addClass('mt-5')
     }
      
 </script>

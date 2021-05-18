@@ -12,7 +12,7 @@
     <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" >
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_4.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style_cools-r_1.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive_cools-r_4.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css')}}">
     <!-- Scrollbar Custom CSS -->
@@ -152,6 +152,15 @@
             #beli_sekarang{
                 margin-bottom: 0;
             }
+        }
+
+        .panel-custom>.panel-body {
+            border-top-right-radius: 20px;
+            border-top-left-radius: 20px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-color: #ddd;
+            color:#000;
         }
 
         .select2-selection--single {
@@ -1121,7 +1130,7 @@
                    <a href="{{URL::route('profil.index')}}">Profile</a>
                 </li>
                 <li>
-                    <a href="{{URL::route('session.clear')}}">Ubah Lokasi</a>
+                    <a href="{{URL::route('session.clear')}}">Ubah Lokasi / Toko</a>
                  </li>
                 <li>
                     <a href="{{URL::route('contact')}}">Kontak Kami</a>
@@ -1823,6 +1832,63 @@
                 });
                 
             
+        }
+
+        function cancel_wa()
+        {
+            var order_id = $('#order_id_cek').val();
+            Swal.fire({
+                title: 'Apakah anda yakin ?',
+                text: "Membatalkan pesanan akan menghapus semua produk yang sudah dimasukkan kedalam keranjang",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '\u00A0\u00A0\u00A0\u00A0Ya\u00A0\u00A0\u00A0\u00A0',
+                cancelButtonText:  '\u00A0Tidak\u00A0',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            }).then((result) => {
+                    if (result.isConfirmed){
+                        $.ajaxSetup({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                }
+                        });
+                        $.ajax({
+                            url : '{{URL::to('/keranjang/delete_allcart')}}',
+                            type:'POST',
+                            data:{
+                                order_id : order_id,
+                            },
+                            success: function (){
+                                Swal.fire({
+                                        //title: 'Apakah anda yakin ?',
+                                        text: "Pesanan berhasil dibatalkan",
+                                        type: 'success',
+                                        showCancelButton: false,
+                                        confirmButtonColor: '#3085d6',
+                                        confirmButtonText: 'Ok',
+                                        showClass: {
+                                            popup: 'animate__animated animate__fadeInDown'
+                                        },
+                                        hideClass: {
+                                            popup: 'animate__animated animate__fadeOutUp'
+                                        }
+                                        }).then(function(){ 
+                                            location.reload();
+                                        })
+                            },
+                            error: function (data) {
+                                console.log('Error:', data);
+                            }
+                        });
+                    }
+                })
         }
 
         function input_qty_top(id){

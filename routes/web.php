@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth','checkRole:SALES']],function(){
     Route::post('/keranjang/delete','CustomerKeranjangController@delete')->name('customer.keranjang.delete');
     Route::post('/keranjang/search_vcode','CustomerKeranjangController@voucher_code')->name('customer.keranjang.vcode');
     Route::post('/keranjang/pesan','CustomerKeranjangController@pesan')->name('customer.keranjang.pesan');
+    Route::post('/keranjang/delete_allcart','CustomerKeranjangController@delete_allcart');
     Route::post('/keranjang/cek_order','CustomerKeranjangController@cek_order');
     Route::post('/preview_order','CustomerKeranjangController@preview_order');
     //Route::get('/histori','historiController@index')->name('riwayat_pemesanan');

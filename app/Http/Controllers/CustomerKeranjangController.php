@@ -1101,8 +1101,17 @@ $ttle_nonpkt='*Detail Pesanan Non Paket*
                     <p class="text-left mb-1" style="color: #1A4066 !important;">Nama Toko</p>
                 </div>
                 <div class="col-md-9 p-0">
-                    <input type="text" readonly class="form-control" style="border-top-right-radius: 20px; border-top-left-radius:20px;outline:none;"
-                    value="'.$customer->store_name.'">
+                    <div class="panel panel-custom panel-default">
+                        <div class="panel-body px-2">
+                            <small>
+                                <small>
+                                <p class="my-2" style="line-height:1.3;color:#000;font-weight:400;text-align:left">
+                                    '.$customer->store_name.'
+                                </p>
+                                </small>
+                            </small>
+                         </div>
+                    </div>
                 </div>
             </div>
             
@@ -1298,6 +1307,14 @@ $ttle_nonpkt='*Detail Pesanan Non Paket*
         </div>';
 
         
+    }
+
+    public function delete_allcart(Request $request)
+    {
+        $id = $request->get('order_id');
+        $order = Order::findorfail($id);
+        $order->products()->detach();
+        $order->forceDelete();
     }
 
 }
