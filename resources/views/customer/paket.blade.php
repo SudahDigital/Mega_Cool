@@ -41,7 +41,7 @@ Home
             width:90px;
             height:auto;
             margin-left:9.5rem;
-            top:-2rem;
+            top:0;
         }
     }
 
@@ -53,11 +53,21 @@ Home
             top:0;
         }
     }
+
+    @media only screen and (max-width:1024px){
+        .image-logo-confirm img{
+            width:60px;
+            height:auto;
+            margin-left:11rem;
+            top:0;
+        }
+    }
     
     @media only screen and (max-width:768px){
         .image-logo-confirm img{
             width:50px;
             height:auto;
+            margin-left:0rem;
         }
     }
 
@@ -981,12 +991,12 @@ Home
                     </div>
                     
 
-                    <div class="col-md-12 login-label py-3 label-confirm" style="z-index: 4">
+                    <div class="col-md-12 login-label py-3 label-confirm mb-4 mt-4" style="z-index: 4">
                         <h3 style="color: #1A4066 !important;">Konfirmasi Pesanan</h3>
                     </div>
                     
                     <div class="row justify-content-center">
-                        <div class="col-md-5 login-label label-confirm" style="z-index: 4">
+                        <div class="col-md-5 login-label label-confirm mt-4" style="z-index: 4">
                             <div id="PreviewToko_Produk" style="overflow: hidden;">
                                 
                             </div>
@@ -1100,7 +1110,8 @@ Home
     }
 
     if ($(window).width() < 1220) {
-        $('.row-bonus-detail-p').addClass('ml-n4'); 
+        $('.row-bonus-detail-p').addClass('ml-n4');
+        $('.label-confirm').removeClass('mb-4').removeClass('mt-4');
     }
 
     if ($(window).width() < 769) {
