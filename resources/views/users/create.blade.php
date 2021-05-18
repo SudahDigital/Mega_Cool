@@ -204,11 +204,11 @@
             </div>
         @endif
         <!-- Form Create -->
-        <form id="form_validation" method="POST" enctype="multipart/form-data" action="{{route('spv.store')}}">
+        <form id="form_validation" class="form_spv" method="POST" enctype="multipart/form-data" action="{{route('spv.store')}}">
             @csrf
             <div class="form-group form-float">
                 <div class="form-line">
-                    <input type="text" class="form-control" name="name" autocomplete="off" required>
+                    <input type="text" class="form-control" name="name" autocomplete="off" required value="{{old('name') }}">
                     <label class="form-label">Name</label>
                 </div>
             </div>
@@ -216,7 +216,7 @@
             
             <div class="form-group form-float">
                 <div class="form-line">
-                    <input type="text" class="form-control" name="phone" minlength="10" maxlength="13" autocomplete="off" required>
+                    <input type="text" class="form-control" name="phone" minlength="10" maxlength="13" autocomplete="off" required value="{{old('phone') }}">
                     <label class="form-label">Phone Number</label>
                 </div>
                 <div class="help-info">Min.10, Max. 13 Characters</div>
@@ -224,14 +224,14 @@
 
             <div class="form-group">
                 <div class="form-line">
-                    <textarea name="address" rows="4" class="form-control no-resize" placeholder="Address" autocomplete="off" required></textarea>
+                    <textarea id="address" name="address" rows="4" class="form-control no-resize" placeholder="Address" autocomplete="off" required>{{old('address') }}</textarea>
                 </div>
             </div>
 
             <h2 class="card-inside-title">Avatar Image</h2>
             <div class="form-group">
                 <div class="form-line">
-                    <input type="file" name="avatar" class="form-control" id="avatar" autocomplete="off">
+                    <input type="file" name="avatar" class="form-control" id="avatar" autocomplete="off" required accept="image/x-png,image/jpg,image/jpeg" >
                 </div>
                 <label id="name-error" class="error" for="avatar">{{ $errors->first('avatar') }}</label>
             </div>
@@ -240,16 +240,18 @@
                 <h2 class="card-inside-title">Sales Team Member</h2>
                 <select id="list_user" class="users" multiple="multiple" name="sls_id[]" style="width: 100%;" required>
                     @foreach ($users as $u)
-                        <option value="{{ $u->id }}">
-                            {{ $u->name }}
-                        </option>
+                        @if (old('sls_id'))
+                            <option value="{{ $u->id }}" {{ in_array($u->id, old('sls_id')) ? 'selected' : '' }}>{{ $u->name }}</option>   
+                        @else
+                            <option value="{{ $u->id }}" >{{  $u->name }}</option>
+                        @endif 
                     @endforeach
                 </select>
             </div>
             
             <div class="form-group form-float">
                 <div class="form-line">
-                    <input type="email" class="form-control" name="email" autocomplete="off" required>
+                    <input type="email" class="form-control" name="email" autocomplete="off" required value="{{old('email') }}">
                     <label class="form-label">Email</label>
                 </div>
             </div>
@@ -262,7 +264,7 @@
             -->
             <div class="form-group form-float">
                 <div class="form-line">
-                    <input type="password" class="form-control {{$errors->first('password') ? "is-invalid" : ""}}" name="password" id="password" required>
+                    <input type="password" class="form-control {{$errors->first('password') ? "is-invalid" : ""}}" name="password" id="password" required {{old('password') }}>
                     <label for="password" class="form-label">Password</label>
                     <div class="invalid-feedback">
                         {{$errors->first('password')}}
@@ -272,7 +274,7 @@
 
             <div class="form-group form-float">
                 <div class="form-line">
-                    <input type="password" class="form-control {{$errors->first('password_confirmation') ? "is-invalid" : ""}}" name="password_confirmation" id="password_confirmation" required>
+                    <input type="password" class="form-control {{$errors->first('password_confirmation') ? "is-invalid" : ""}}" name="password_confirmation" id="password_confirmation" required {{old('password_confirmation') }}>
                     <label for="password_confirmation" class="form-label">Password Confirmation</label>
                     <div class="invalid-feedback">
                         {{$errors->first('password_confirmation')}}
@@ -289,11 +291,25 @@
 
 
 @section('footer-scripts')
+
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script type="text/javascript">
-        $(function () {
+        
+        /*$( ".form_spv" ).validate({
+            rules: {
+                avatar: {
+                    required: true,
+                    extension: "jpg|jpeg|png"
+                }
+            }
+        });
+        */
+        
+       $(function () {
             $("#btnSubmit").click(function () {
                 var password = $("#password").val();
                 var confirmPassword = $("#password_confirmation").val();
@@ -304,9 +320,7 @@
                 return true;
             });
         });
-    </script>
-
-    <script>
+    
         $(".users").select2({
             width: 'resolve' // need to override the changed default
         });
