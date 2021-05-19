@@ -30,6 +30,7 @@ class AllProductExport implements FromCollection, WithMapping, WithHeadings
                     $product->stock,
                     $product->low_stock_treshold,
                     $product->status,
+                    $product->updated_at,
                 ]);
             }
         
@@ -46,6 +47,7 @@ class AllProductExport implements FromCollection, WithMapping, WithHeadings
            'Stock',
            'Low_stock_treshold',
            'Status',
+           'Updated At',
         ] ;
     }
 }
