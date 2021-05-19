@@ -984,7 +984,7 @@
     <!-- Modal new store form-->
     <div class="modal fade right" id="storeForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
-            <div class="modal-content-full-width modal-content ">
+            <div class="modal-content-full-width modal-content">
                 <div class="modal-body">
                     <img src="{{ asset('assets/image/dot-top-right.png') }}" class="dot-top-right"  
                     style="" alt="dot-top-right">
@@ -992,8 +992,10 @@
                     style="" alt="dot-bottom-left">
                     <img src="{{ asset('assets/image/shape-bottom-right.png') }}" class="shape-bottom-right"  
                     style="" alt="shape-bottom-right">
+                    <!--
                     <button type="button" class="btn btn-warning btn-circle" onClick="window.location.reload();" data-dismiss="modal" style="position:absolute;z-index:99999;"><i class="fa fa-times"></i></button>
-                    <div class="container">
+                    -->
+                    <div class="container content-new-toko">
                         <div class="d-flex justify-content-center mx-auto">
                             <div class="col-md-2 image-logo-login" style="z-index: 2">
                             <img src="{{ asset('assets/image/LOGO MEGACOOLS_DEFAULT.png') }}" class="img-thumbnail pt-4" style="background-color:transparent; border:none;" alt="LOGO MEGACOOLS_DEFAULT">  
@@ -1005,7 +1007,7 @@
                     </div>
                     
                     <div class="row justify-content-center">
-                        <div class="col-md-5 login-label" style="z-index: 2">
+                        <div class="col-md-5 login-label col-new-toko" style="z-index: 2">
                             
                                 <div class="card mx-auto contact_card" 
                                 style="border-top-left-radius:25px;
@@ -1068,8 +1070,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12 mx-auto text-center">
-                                    <button type="submit" id="btn_new_toko" class="btn btn_login_form">{{ __('Simpan') }}</button>
+                                <div class="col-md-12 mx-auto text-center px-0">
+                                    <button type="button" class="btn btn_login_form float-left btn-new-toko" onClick="window.location.reload();" data-dismiss="modal">{{__('Batal')}}</button>
+                                    <button type="submit" id="btn_new_toko" class="btn btn_login_form float-right btn-new-toko" style="background-color: green !important;">{{ __('Simpan') }}</button>
                                 </div>
                             
                         </div>
@@ -1247,6 +1250,16 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <script type="text/javascript">
+        //style column new toko form
+        if($(window).width()< 769 ){
+            $('.col-new-toko').removeClass('col-md-5').addClass('col-md-10');
+        }
+        if($(window).width() < 426 ){
+            $('.btn-new-toko').addClass('btn-block').addClass('mb-2');
+            $('.content-new-toko').addClass('mt-n3');
+        }
+
+
         //nav bar behavior
         $(document).ready(function(){
             $(window).scroll(function(){
