@@ -233,7 +233,7 @@ Home
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style="height: auto;max-height: 200px;overflow-x: hidden; border-bottom-left-radius:1rem;border-bottom-right-radius:1rem;">
                             <a class="dropdown-item" href="{{ url('/') }}" style="color: #1A4066;"><b>Semua Produk</b></a>
                             @foreach($categories as $filter_product)
-                                <a class="dropdown-item" href="{{route('home_customer', ['cat'=>$filter_product->id] )}}" style="color: #000;"><b>{{$value->name}}</b></a>
+                                <a class="dropdown-item" href="{{route('home_customer', ['cat'=>$filter_product->id] )}}" style="color: #000;"><b>{{$filter_product->name}}</b></a>
                             @endforeach
                         </div>
                     </div>
