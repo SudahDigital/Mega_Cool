@@ -8,7 +8,11 @@ class AjaxCitySearch extends Controller
 {
     public function ajax_city(Request $request){
         $keyword = $request->get('q');
-        $cities = \App\City::where('city_name','LIKE',"%$keyword%")->get();
+        $cities = \App\City::where('type','=','Kota')
+                ->where('city_name','LIKE',"%$keyword%")
+                ->orderBy('display_order','ASC')
+                ->orderBy('postal_code','ASC')
+                ->get();
         return $cities;
     }
 
