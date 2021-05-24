@@ -23,7 +23,7 @@ class CustomersImport implements ToModel,  WithHeadingRow, WithValidation
         return [
             'cust_code' => 'required',
             'name' => 'required',
-            'city_id'=>'required',
+            //'city_id'=>'required',
             'payment_term' => 'required'
         ];
 
@@ -34,7 +34,7 @@ class CustomersImport implements ToModel,  WithHeadingRow, WithValidation
         return [
             'cust_code.required' => 'cust_code is required.',
             'name.required' => 'name is required.',
-            'city_id.required'=> 'City ID is required.',
+            //'city_id.required'=> 'City ID is required.',
             'payment_term.required' => 'payment_term is required.'
         ];
     }
