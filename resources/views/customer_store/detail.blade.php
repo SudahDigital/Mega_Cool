@@ -25,6 +25,13 @@
     <hr style="margin-top:0; margin-bottom:10px;">
     <ul>
         <li>
+            <label class="form-label">City</label>
+        </li>
+        <small class="text-muted">{{$customer->city_id ? $customer->cities->city_name : '-'}}</small>
+    </ul>
+    <hr style="margin-top:0; margin-bottom:10px;">
+    <ul>
+        <li>
             <label class="form-label">Address</label>
         </li>
         <small class="text-muted">{{$customer->address ? "$customer->address" : 'No Address'}}</small>

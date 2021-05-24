@@ -931,7 +931,7 @@
                                             </td>
                                             <td class="px-2" width="80%">
                                                 <div class="form-group">
-                                                    <select name="city_id"  id="city_id" class="form-control" style="width:100%;" required></select>
+                                                    <select onchange="getval(this);" name="city_id"  id="city_id" class="form-control" style="width:100%;" required></select>
                                                 </div>
                                             </td>
                                         </tr>
@@ -944,7 +944,7 @@
                                                     <select name="customer_id"  id="customer_id" class="form-control" style="width:100%;" required>
                                                     </select>
                                                 </div>
-                                                
+                                                <input id="city_id_select" type="hidden" value=""/>
                                                 <input id="nm-toko-hide" name="nm_toko_hide" type="hidden" />
                                                 <input id="nm-cust-hide" name="nm_cust_hide" type="hidden" />
                                                 <input id="no-telp-hide" name="no_telp_hide" type="hidden" />
@@ -1314,8 +1314,50 @@
             }
         }
         });
+        
+        //onchange select city
+        function getval(sel)
+        {
+            $( '#city_id_select' ).val(sel.value);
+        }
+
         //select2 customer
-        $('#customer_id').select2({
+        $('#customer_id').each(function(){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            //var city_id = $( '#city_id_select' ).val();//$('#city_id option:selected');//.find(":selected").val();
+            $(this).select2({
+                placeholder: 'Pilih Toko',
+                language: {
+                noResults: function() {
+                    return '&nbsp;Data Tidak Ditemukan<br><button id="no-results-btn" onclick="noResultsButtonClicked()">Tambah Toko Baru...</button>';
+                    },
+                },
+                escapeMarkup: function(markup) {
+                    return markup;
+                },
+                ajax: {
+                        url: '{{URL::to('/ajax/store')}}',
+                        type: "post",
+                        dataType: 'json',
+                        data: function (params){
+                            return {
+                            _token: CSRF_TOKEN,
+                            search: params.term, // search term
+                            city_id:$( '#city_id_select' ).val()
+                            };
+                        },
+                        processResults: function (response) {
+                        return {
+                            results: response
+                            };
+                        },
+                        cache: true
+                }
+
+            });
+        });
+        
+        /*$('#customer_id').select2({
         placeholder: 'Pilih Toko',
         language: {
         noResults: function() {
@@ -1325,6 +1367,7 @@
         escapeMarkup: function(markup) {
             return markup;
         },
+       
         ajax: {
                 url: '{{URL::to('/ajax/store')}}',
                 processResults: function (data) {
@@ -1339,9 +1382,9 @@
                 };
                 
             }
-            }
+        }
             
-        });
+        });*/
 
         //onclick no-result-customer
         function noResultsButtonClicked()

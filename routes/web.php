@@ -25,7 +25,7 @@ Route::group(['middleware' => ['auth','checkRole:SALES']],function(){
     Route::get('/sales_home/{paket}/paket', 'CustomerPaketController@index')->name('home_paket');
     //Route::get('/sales_home/paket_group', 'CustomerPaketController@index')->name('home_paket');
     Route::get('/ajax/city', 'AjaxCitySearch@ajax_city');
-    Route::get('/ajax/store', 'AjaxCitySearch@ajax_store');
+    Route::post('/ajax/store', 'AjaxCitySearch@ajax_store');
     Route::post('/session/store','SessionStore@index')->name('session.store');
     Route::post('/session/new/store','SessionStore@new_store')->name('session.new_store');
     Route::get('/session/clear','SessionStore@clear')->name('session.clear');
@@ -117,10 +117,12 @@ Route::get('/admin', function () {
     Route::delete('/customers/{customers}/delete-permanent','CustomerController@deletePermanent')->name('customers.delete-permanent');
     Route::get('/customers/{id}/detail', 'CustomerController@detail')->name('customers.detail');
     Route::get('/customers/export', 'CustomerController@export')->name('customers.export');
+    Route::get('/customers/export_city', 'CustomerController@exportCity')->name('cities.export');
     Route::get('/customers/import', 'CustomerController@import')->name('customers.import');
     Route::post('/customers/import_data', 'CustomerController@import_data')->name('customers.import_data');
     Route::get('/ajax/code_cust/search', 'CustomerController@ajaxSearch');
     Route::get('/ajax/users/search', 'CustomerController@ajaxUserSearch');
+    Route::get('/customer/ajax/city_search', 'CustomerController@ajaxCitySearch');
     Route::resource('customers','CustomerController');
     //Route::get('/ajax/groups/search', 'GroupController@ajaxSearch');
     Route::get('/ajax/groups/search', 'GroupController@GroupNameSearch');

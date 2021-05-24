@@ -32,7 +32,10 @@
                 <label class="form-label">Email</label>
             </div>
         </div>
-        
+        <h2 class="card-inside-title" >City</h2>
+            <select name="city_id"  id="city_id" class="form-control" required></select>
+        <br>
+        <br>
         <div class="form-group">
             <div class="form-line">
                 <textarea name="address" rows="4" class="form-control no-resize" placeholder="Address" autocomplete="off" required>{{$cust->address}}</textarea>
@@ -69,7 +72,7 @@
         </div>
 
         <h2 class="card-inside-title">Payment Term</h2>
-            <select name="payment_term"  id="payment_term" class="form-control">
+            <select name="payment_term"  id="payment_term" class="form-control" required>
                 <option value="7 Days" {{$cust->payment_term == '7 Days' ? 'selected' : '' }}>7 Days</option>
                 <option value="45 Days" {{$cust->payment_term == '45 Days' ? 'selected' : '' }}>45 Days</option>
                 <option value="60 Days" {{$cust->payment_term == '60 Days' ? 'selected' : '' }}>60 Days</option>
@@ -84,7 +87,7 @@
         </div>
         -->
         <h2 class="card-inside-title">Sales Representative</h2>
-            <select name="user_id"  id="user" class="form-control"></select>
+            <select name="user_id"  id="user" class="form-control" required></select>
         <br>
         
         <button class="btn btn-primary waves-effect" name="save_action" value="SAVE" type="submit" style="margin-top: 20px;">SAVE</button>
@@ -105,7 +108,8 @@
             return false;
             return true;
         }
-    $('#payment_term').select2();   
+    $('#payment_term').select2(); 
+
     $('#user').select2({
       placeholder: 'Select an item',
       ajax: {
@@ -130,6 +134,33 @@
     users.forEach(function(cust){
     var option = new Option(cust.name, cust.id, true, true);
     $('#user').append(option).trigger('change');
+    });
+
+    //city
+    $('#city_id').select2({
+        placeholder: 'Select a City',
+        ajax: {
+            url: '{{URL::to('/customer/ajax/city_search')}}',
+            processResults: function (data) {
+            return {
+                results:  $.map(data, function (item) {
+                    return {
+                            id: item.id,
+                            text: item.city_name,
+                            
+                    }
+                })
+            };
+            }
+            
+        }
+    });
+
+    var cities = JSON.stringify([{!! $cust->cities !!}]);
+    cities = JSON.parse(cities);
+    cities.forEach(function(cust_city){
+    var option_city = new Option(cust_city.city_name, cust_city.id, true, true);
+    $('#city_id').append(option_city).trigger('change');
     });
 </script>
 

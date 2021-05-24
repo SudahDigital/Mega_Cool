@@ -23,6 +23,7 @@ class CustomerExport implements FromCollection, WithMapping, WithHeadings, WithC
                 $customer->store_code,
                 $customer->store_name,
                 $customer->email,
+                $customer->city_id,
                 $customer->address,
                 $customer->phone,
                 $customer->phone_owner,
@@ -38,6 +39,7 @@ class CustomerExport implements FromCollection, WithMapping, WithHeadings, WithC
            'Cust_Code',
            'Name',
            'Email',
+           'City_ID',
            'Address',
            'Whatsapp',
            'Owner_Phone',
@@ -51,9 +53,9 @@ class CustomerExport implements FromCollection, WithMapping, WithHeadings, WithC
     public function columnFormats(): array
     {
         return [
-            'E' =>'0',
             'F' =>'0',
             'G' =>'0',
+            'H' =>'0',
         ];
         
     }

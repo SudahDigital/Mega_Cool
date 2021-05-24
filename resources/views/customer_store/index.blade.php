@@ -44,6 +44,7 @@
 		<div class="col-md-12">
 			<a href="{{route('customers.import')}}" class="btn btn-success py-auto"><i class="fas fa-file-excel fa-0x "></i> Import </a>&nbsp;
 			<a href="{{route('customers.export')}}" class="btn btn-success "><i class="fas fa-file-excel fa-1x"></i> Export</a>&nbsp;
+			<a href="{{route('cities.export')}}" class="btn btn-primary "><i class="fas fa-file-excel fa-1x"></i> City List </a>&nbsp;
 			<a href="{{route('customers.create')}}" class="btn bg-cyan">Create Customer</a>
 		</div>
 	</div>
@@ -56,9 +57,9 @@
 				<th>No</th>
 				<th>Search Key</th>
 				<th>Name/Email</th>
+				<th>City</th>
 				<th>Address</th>
 				<th >Phone</th>
-				<th>Contact Person</th>
 				<th>Payment Term</th>
 				<th>Sales Rep</th>
 				<th>Status</th>
@@ -80,15 +81,16 @@
 				</td>
 				<td>
 					<small class="text-primary"><b> Name : </b>{{$c->store_name ? "$c->store_name" : '-'}}</small><br>
-					<small class="text-secondary"><b> Email : </b>{{$c->email ? "$c->email" : '-'}}</small>
+					<small class="text-secondary"><b> Email : </b>{{$c->email ? "$c->email" : '-'}}</small><br>
+					<small class="text-success"><b> Contact Person : </b>{{$c->name ? $c->name : '-'}}</small>
 				</td>
+				<td>{{$c->city_id ? $c->cities->city_name :''}}</td>
 				<td>{{$c->address}}</td>
 				<td>
 					<small class="text-primary"><b> Wa : </b>{{$c->phone != NULL ? "$c->phone" : '-'}}</small><br>
 					<small class="text-warning"><b> Owner : </b>{{$c->phone_owner != NULL ? "$c->phone_owner" : '-'}}</small><br>
 					<small class="text-danger"><b> Office : </b>{{$c->phone_store != NULL ? "$c->phone_store" : '-'}}</small>
 				</td>
-				<td>{{$c->name}}</td>
 				<td>{{$c->payment_term}}</td>
 				<td>@if($c->user_id > 0)
 					{{$c->users->name}}

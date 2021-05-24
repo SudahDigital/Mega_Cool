@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class CustomersImport implements ToModel,  WithHeadingRow
+class CustomersImport implements ToModel,  WithHeadingRow, WithValidation
 {
     use Importable;
     /**
@@ -18,12 +18,13 @@ class CustomersImport implements ToModel,  WithHeadingRow
     * @return \Illuminate\Database\Eloquent\Model|null
     */
 
-    /*public function rules(): array
+    public function rules(): array
     {
         return [
-            'Cust_Code' => 'required',
-            'Name' => 'required',
-            'Payment_Term' => 'required'
+            'cust_code' => 'required',
+            'name' => 'required',
+            'city_id'=>'required',
+            'payment_term' => 'required'
         ];
 
     }
@@ -31,11 +32,12 @@ class CustomersImport implements ToModel,  WithHeadingRow
     public function customValidationMessages()
     {
         return [
-            'Cust_Code.required' => 'cust_code is required.',
-            'Name.required' => 'name is required.',
-            'Payment_Term.required' => 'payment_term is required.'
+            'cust_code.required' => 'cust_code is required.',
+            'name.required' => 'name is required.',
+            'city_id.required'=> 'City ID is required.',
+            'payment_term.required' => 'payment_term is required.'
         ];
-    }*/
+    }
 
     public function model(array $rows)
     {
@@ -46,6 +48,9 @@ class CustomersImport implements ToModel,  WithHeadingRow
             $customer->store_name = $rows['name'];
             if(!empty( $rows['email'])){
                 $customer->email = $rows['email'];
+            }
+            if(!empty( $rows['city_id'])){
+                $customer->city_id = $rows['city_id'];
             }
             $customer->address = $rows['address'];
             if(!empty( $rows['whatsapp'])){
@@ -71,6 +76,9 @@ class CustomersImport implements ToModel,  WithHeadingRow
             $customer->store_name = $rows['name'];
             if(!empty( $rows['email'])){
                 $customer->email = $rows['email'];
+            }
+            if(!empty( $rows['city_id'])){
+                $customer->city_id = $rows['city_id'];
             }
             $customer->address = $rows['address'];
             if(!empty( $rows['whatsapp'])){
