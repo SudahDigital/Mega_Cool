@@ -20,8 +20,10 @@ class AllProductExport implements FromCollection, WithMapping, WithHeadings
 
     public function map($product) : array {
         $rows = [];
-        foreach ($product->categories as $p) {
-            array_push($rows,[
+        $stock_status= \DB::table('product_stock_status')->first();
+        if($stock_status->stock_status == 'ON'){
+            foreach ($product->categories as $p) {
+                array_push($rows,[
                     $product->product_code,
                     $product->Product_name,
                     $product->description,
@@ -33,21 +35,50 @@ class AllProductExport implements FromCollection, WithMapping, WithHeadings
                     $product->updated_at,
                 ]);
             }
+        }
+        else{
+            foreach ($product->categories as $p) {
+                array_push($rows,[
+                    $product->product_code,
+                    $product->Product_name,
+                    $product->description,
+                    $p->pivot->category_id,
+                    $product->price,
+                    $product->status,
+                    $product->updated_at,
+                ]);
+            }
+        }
+        
         
         return $rows;
     }
 
     public function headings() : array {
-        return [
-           'Product_Code',
-           'Product_Name',
-           'Description',
-           'category_id',
-           'Price',
-           'Stock',
-           'Low_stock_treshold',
-           'Status',
-           'Updated At',
-        ] ;
+        $stock_status= \DB::table('product_stock_status')->first();
+        if($stock_status->stock_status == 'ON'){
+            return [
+                'Product_Code',
+                'Product_Name',
+                'Description',
+                'category_id',
+                'Price',
+                'Stock',
+                'Low_stock_treshold',
+                'Status',
+                'Updated At',
+            ] ; 
+        }else{
+            return [
+                'Product_Code',
+                'Product_Name',
+                'Description',
+                'category_id',
+                'Price',
+                'Status',
+                'Updated At',
+            ] ;
+        }
+        
     }
 }

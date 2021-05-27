@@ -35,14 +35,16 @@ class productController extends Controller
         $products = \App\product::with('categories')
         ->where('Product_name','LIKE',"%$keyword%")
         ->where('status',strtoupper($status))->get();//->paginate(10);
+        $stock_status= DB::table('product_stock_status')->first();
         }
         else
             {
             $products = \App\product::with('categories')
             ->where('Product_name','LIKE',"%$keyword%")->get();
             //->paginate(10);
+            $stock_status= DB::table('product_stock_status')->first();
             }
-        return view('products.index', ['products'=> $products]);
+        return view('products.index', ['products'=> $products, 'stock_status'=>$stock_status]);
     }
 
     /**
@@ -52,7 +54,8 @@ class productController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $stock_status= DB::table('product_stock_status')->first();
+        return view('products.create',['stock_status'=>$stock_status]);
     }
 
     /**
@@ -115,7 +118,7 @@ class productController extends Controller
                 ->with('status', 'Product successfully saved and published');
         } else {
           return redirect()
-                ->route('Products.create')
+                ->route('products.create')
                 ->with('status', 'Product saved as draft');
         }
     }
@@ -140,7 +143,8 @@ class productController extends Controller
     public function edit($id)
     {
         $product = \App\product::findOrFail($id);
-        return view('products.edit', ['product' => $product]);
+        $stock_status= DB::table('product_stock_status')->first();
+        return view('products.edit', ['product' => $product, 'stock_status'=>$stock_status]);
     }
 
     /**
@@ -235,6 +239,11 @@ class productController extends Controller
         return redirect()->route('products.trash')->with('status', 'Product permanently deleted!');
         }
 
+    }
+
+    public function OnOff_stock(Request $request){
+        $status = $request->get('status');
+        $product = DB::table('product_stock_status')->update(array('stock_status'=>$status));
     }
 
     public function low_stock(){

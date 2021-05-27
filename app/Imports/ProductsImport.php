@@ -22,26 +22,43 @@ class ProductsImport implements ToModel, WithHeadingRow, WithValidation
     */
     public function rules(): array
     {
-        return [
-            'product_code' => 'required',
-            'stock' => 'max:999999999|numeric',
-            
-        ];
-
+        $stock_status= \DB::table('product_stock_status')->first();
+        if($stock_status->stock_status == 'ON'){
+            return [
+                'product_code' => 'required',
+                'stock' => 'max:999999999|numeric',
+                
+            ];
+        }else{
+            return [
+                'product_code' => 'required',
+                //'stock' => 'max:999999999|numeric',
+                
+            ];
+        }
     }
 
     public function customValidationMessages()
     {
-        return [
-            'product_code.required' => 'Product_code is required.',
-            'stock' => 'stock is max 9 digits.',
-        ];
+        $stock_status= \DB::table('product_stock_status')->first();
+        if($stock_status->stock_status == 'ON'){
+            return [
+                'product_code.required' => 'Product_code is required.',
+                'stock' => 'stock is max 9 digits.',
+            ];
+        }else{
+            return [
+                'product_code.required' => 'Product_code is required.',
+                //'stock' => 'stock is max 9 digits.',
+            ];
+        }
     }
 
     public function model(array $rows)
     {
             //dd($rows);
             $cek = product::where('product_code','=',$rows['product_code'])->count();
+            $stock_status= \DB::table('product_stock_status')->first();
             //dd($cek);
             
             if($cek > 0){
@@ -54,11 +71,13 @@ class ProductsImport implements ToModel, WithHeadingRow, WithValidation
                 $product->price_promo = $rows['price'];
                 $product->discount = 0.00;
                 $product->updated_by = \Auth::user()->id;
-                if(!empty( $rows['stock'])){
-                $product->stock = $rows['stock'];
-                }
-                if(!empty( $rows['low_stock_treshold'])){
-                    $product->low_stock_treshold = $rows['low_stock_treshold'];
+                if($stock_status->stock_status == 'ON'){
+                    if(!empty( $rows['stock'])){
+                        $product->stock = $rows['stock'];
+                    }
+                    if(!empty( $rows['low_stock_treshold'])){
+                        $product->low_stock_treshold = $rows['low_stock_treshold'];
+                    }
                 }
                 //$product->low_stock_treshold = $rows['low_stock_treshold']== NULL ? null : $rows['low_stock_treshold'];
                 $product->status = $rows['status'];
@@ -74,13 +93,14 @@ class ProductsImport implements ToModel, WithHeadingRow, WithValidation
                 $product->price_promo = $rows['price'];
                 $product->discount = 0.00;
                 $product->created_by = \Auth::user()->id;
-                if(!empty( $rows['stock'])){
-                    $product->stock = $rows['stock'];
+                if($stock_status->stock_status == 'ON'){
+                    if(!empty( $rows['stock'])){
+                        $product->stock = $rows['stock'];
+                    }
+                    if(!empty( $rows['low_stock_treshold'])){
+                        $product->low_stock_treshold = $rows['low_stock_treshold'];
+                    }
                 }
-                if(!empty( $rows['low_stock_treshold'])){
-                    $product->low_stock_treshold = $rows['low_stock_treshold'];
-                }
-                
                 //$product->low_stock_treshold = $rows['low_stock_treshold']== NULL ? null : $rows['low_stock_treshold'];
                 $product->status = $rows['status'];
                 $product->save();

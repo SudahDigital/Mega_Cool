@@ -76,7 +76,8 @@
             </div>
         </div>
         -->
-        <input type="hidden" class="form-control" name="discount" autocomplete="off" value="{{$product->discount}}" required/>    
+        <input type="hidden" class="form-control" name="discount" autocomplete="off" value="{{$product->discount}}" required/>
+        @if($stock_status->stock_status == 'ON')    
         <div class="form-group form-float">
             <div class="form-line">
                 <input type="number" class="form-control" name="stock" min="0" autocomplete="off" value="{{$product->stock}}" required>
@@ -90,6 +91,10 @@
                 <label class="form-label">Low Stock Treshold</label>
             </div>
         </div>
+        @else
+        <input type="hidden" class="form-control" name="stock"  value="{{$product->stock}}" required/>
+        <input type="hidden" class="form-control" name="low_stock_treshold"  value="{{$product->low_stock_treshold}}" required/>
+        @endif
         
         <h2 class="card-inside-title">Make Top Product</h2>
         <div class="form-group">

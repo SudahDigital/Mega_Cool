@@ -93,6 +93,7 @@ Route::get('/admin', function () {
     Route::resource('categories','CategoryController');
     Route::get('/ajax/categories/search', 'CategoryController@ajaxSearch');
     Route::get('/ajax/products/code/search', 'productController@codeSearch');
+    Route::get('/products/change_status_stock', 'productController@OnOff_stock');
     Route::get('/products/export_all', 'productController@export_all')->name('products.export_all');
     Route::get('/products/export_lowstock', 'productController@export_low_stock')->name('products.export_lowstock');
     Route::post('/products/update_lowstock', 'productController@update_low_stock')->name('products.update_lowstock');

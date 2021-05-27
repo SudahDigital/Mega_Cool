@@ -45,7 +45,7 @@
 		</div>
 		<div class="col-md-12">
 			<a href="{{route('products.import_products')}}" class="btn btn-success ">Import Excel (<small>Update Stock</small>) </a>&nbsp;
-			<a href="{{route('products.export_lowstock')}}" class="btn btn-success ">Export Excel (<small>Products Stock</small>)</a>&nbsp;
+			<a href="{{route('products.export_lowstock')}}" class="btn btn-success ">Export Excel (<small>Products Low Stock</small>)</a>&nbsp;
 			<a href="{{route('products.edit_stock')}}" class="btn bg-cyan">Update Stock</a>
 		</div>
 	</div>
