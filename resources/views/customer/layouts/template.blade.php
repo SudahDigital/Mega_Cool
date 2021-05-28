@@ -3055,13 +3055,24 @@
                                                         },
                                                         success: function(response){
                                                             var total_qty = parseInt(data2);
-                                                            var bonus_kali = total_qty / parseInt(response['data'].purchase_quantity);
-                                                            var desimal_kali = Math.floor(bonus_kali) * parseInt(response['data'].bonus_quantity);
-                                                            $('#bonus_max'+group_id).text(desimal_kali);
-                                                            $('#max_bonus'+group_id).val(desimal_kali);
-                                                            $('#paket_id'+group_id).val(response['data'].id);
-                                                            $('#purchase_qty'+group_id).val(response['data'].purchase_quantity);
-                                                            $('#bonus_qty'+group_id).val(response['data'].bonus_quantity);
+                                                            if(response['data'] != null){
+                                                                var bonus_kali = total_qty / parseInt(response['data'].purchase_quantity);
+                                                                var desimal_kali = Math.floor(bonus_kali) * parseInt(response['data'].bonus_quantity);
+                                                                $('#paket_id'+group_id).val(response['data'].id);
+                                                                $('#purchase_qty'+group_id).val(response['data'].purchase_quantity);
+                                                                $('#bonus_qty'+group_id).val(response['data'].bonus_quantity);
+                                                                $('#bonus_max'+group_id).text(desimal_kali);
+                                                                $('#max_bonus'+group_id).val(desimal_kali);
+                                                            }
+                                                            else{
+                                                                var bonus_kali = 0;
+                                                                var desimal_kali = 0;
+                                                                $('#paket_id'+group_id).val('');
+                                                                $('#purchase_qty'+group_id).val('');
+                                                                $('#bonus_qty'+group_id).val('');
+                                                                $('#bonus_max'+group_id).text(desimal_kali);
+                                                                $('#max_bonus'+group_id).val(desimal_kali);
+                                                            }
                                                         },
                                                         error: function (response) {
                                                         console.log('Error:', response);
@@ -3156,13 +3167,24 @@
                                             },
                                             success: function(response){
                                                 var total_qty = parseInt(data2);
-                                                var bonus_kali = total_qty / parseInt(response['data'].purchase_quantity);
-                                                var desimal_kali = Math.floor(bonus_kali) * parseInt(response['data'].bonus_quantity);
-                                                $('#bonus_max'+group_id).text(desimal_kali);
-                                                $('#max_bonus'+group_id).val(desimal_kali);
-                                                $('#paket_id'+group_id).val(response['data'].id);
-                                                $('#purchase_qty'+group_id).val(response['data'].purchase_quantity);
-                                                $('#bonus_qty'+group_id).val(response['data'].bonus_quantity);
+                                                if(response['data'] != null){
+                                                    var bonus_kali = total_qty / parseInt(response['data'].purchase_quantity);
+                                                    var desimal_kali = Math.floor(bonus_kali) * parseInt(response['data'].bonus_quantity);
+                                                    $('#paket_id'+group_id).val(response['data'].id);
+                                                    $('#purchase_qty'+group_id).val(response['data'].purchase_quantity);
+                                                    $('#bonus_qty'+group_id).val(response['data'].bonus_quantity);
+                                                    $('#bonus_max'+group_id).text(desimal_kali);
+                                                    $('#max_bonus'+group_id).val(desimal_kali);
+                                                }
+                                                else{
+                                                    var bonus_kali = 0;
+                                                    var desimal_kali = 0;
+                                                    $('#paket_id'+group_id).val('');
+                                                    $('#purchase_qty'+group_id).val('');
+                                                    $('#bonus_qty'+group_id).val('');
+                                                    $('#bonus_max'+group_id).text(desimal_kali);
+                                                    $('#max_bonus'+group_id).val(desimal_kali);
+                                                }
                                             },
                                             error: function (response) {
                                             console.log('Error:', response);
@@ -4324,9 +4346,9 @@
                     if(len > 0){
                         
                         for(var i=0; i<len; i++){
-                            var desc = response['data'][i].description;
+                            var desc = response['data'][i].Product_name;
                             
-                            var tr_str = "<li class='text-center'><small>"+desc+"</small></li>";
+                            var tr_str = "<li class='text-left' style='color:#7a7a7a;'><small>"+desc+"</small></li>";
                             $("#body_alert").append(tr_str);
                         }
                         $("#modal_validasi").modal('show');

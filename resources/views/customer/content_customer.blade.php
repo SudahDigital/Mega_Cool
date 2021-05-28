@@ -117,13 +117,14 @@ Home
                                 @if($value_top->discount > 0)
                                 <div class="ribbon"><span class="span-ribbon">{{$value_top->discount}}% OFF</span></div>
                                 @endif
-                                
                                 <a>
-                                    <img style="" src="{{ asset('storage/'.(($value_top->image!='') ? $value_top->image : '').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
+                                    <img style="" src="{{ asset('storage/'.(($value_top->image!='') ? $value_top->image : 'no_image_availabl.png').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
                                 </a>
                                 <div class="card-body d-flex flex-column" style="background-color:#1A4066;">
-                                    @if($value_top->stock == 0)
-                                        <span class="badge badge-warning ml-1">Sisa stok 0</span>
+                                    @if($stock_status->stock_status == 'ON')
+                                        @if($value_top->stock == 0)
+                                            <span class="badge badge-warning ml-1">Sisa stok 0</span>
+                                        @endif
                                     @endif
                                     <div class="float-left px-1 py-2" style="width: 100%;">
                                         <p class="product-price-header mb-0" style="">
@@ -151,7 +152,7 @@ Home
                                                 <input type="hidden" id="jumlah_top{{$value_top->id}}" name="quantity" value="1">
                                                 <input type="hidden" id="harga_top{{$value_top->id}}" name="price" value="{{ $value_top->price }}">
                                                 <input type="hidden" id="top{{$value_top->id}}" name="Product_id" value="{{$value_top->id}}">
-                                                <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart_top('{{$value_top->id}}')" {{$value_top->stock == 0 ? 'disabled' : ''}}>Tambah</button>
+                                                <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart_top('{{$value_top->id}}')" {{($value_top->stock == 0) && ($stock_status->stock_status == 'ON') ? 'disabled' : ''}}>Tambah</button>
                                                 
                                             </td>
                                             <td width="30%" align="left" id="td-text-quantity" class="td-text-quantity" valign="middle" rowspan="2" >
@@ -253,11 +254,13 @@ Home
                             @endif
                             
                             <a>
-                                <img style="" src="{{ asset('storage/'.(($value->image!='') ? $value->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
+                                <img style="" src="{{ asset('storage/'.(($value->image!='') ? $value->image : 'no_image_availabl.png').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
                             </a>
                             <div class="card-body d-flex flex-column" style="background-color:#1A4066;">
-                                @if($value->stock == 0)
-                                    <span class="badge badge-warning ml-1">Sisa stok 0</span>
+                                @if($stock_status->stock_status == 'ON')
+                                    @if($value->stock == 0)
+                                        <span class="badge badge-warning ml-1">Sisa stok 0</span>
+                                    @endif
                                 @endif
                                 <div class="float-left px-1 py-2" style="width: 100%;">
                                     <p class="product-price-header mb-0" style="">
@@ -286,7 +289,7 @@ Home
                                                 <input type="hidden" id="jumlah{{$value->id}}" name="quantity" value="1">
                                                 <input type="hidden" id="harga{{$value->id}}" name="price" value="{{ $value->price }}">
                                                 <input type="hidden" id="{{$value->id}}" name="Product_id" value="{{$value->id}}">
-                                                <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart('{{$value->id}}')" {{$value->stock == 0 ? 'disabled' : ''}}>Tambah</button>
+                                                <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart('{{$value->id}}')" {{($stock_status->stock_status == 'ON')&&($value->stock == 0) ? 'disabled' : ''}}>Tambah</button>
                                                 
                                             </td>
                                             <td width="30%" align="left" id="td-text-quantity" class="td-text-quantity" valign="middle" rowspan="2" >
@@ -373,7 +376,7 @@ Home
                                                 @endphp
                                                 <tr class="pb-0">
                                                     <td width="30%" class="img-detail-cart" valign="top" style="padding-top:3%;">
-                                                        <img src="{{ asset('storage/'.$group_name->group_image)}}" 
+                                                        <img src="{{ asset('storage/'.(($group_name->group_image!='') ? $group_name->group_image : 'no_image_availabl.png').'') }}" 
                                                         class="image-detail"  alt="...">
                                                     </td>
                                                     <td width="60%" class="td-desc-detail" align="left" valign="top" style="padding-top:3%;">
@@ -446,7 +449,7 @@ Home
                                     @foreach($keranjang as $detil)
                                     <tr>
                                         <td width="30%" class="img-detail-cart" valign="middle" style="border-bottom: 1px solid #ddd;padding-top:3%;">
-                                            <img src="{{ asset('storage/'.$detil->image)}}" 
+                                            <img src="{{ asset('storage/'.(($detil->image!='') ? $detil->image : 'no_image_availabl.png').'') }}" 
                                             class="image-detail"  alt="...">   
                                         </td>
                                         <td width="60%" class="td-desc-detail" align="left" valign="top" style="border-bottom: 1px solid #ddd;padding-top:3%;">
@@ -662,22 +665,23 @@ Home
     </div>
     
     <!-- Modal validasi stok -->
-    <div class="modal fade ml-1" id="modal_validasi" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modal_validasi" role="dialog" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content" style="">
                 <div class="modal-body">
                     <div class="row justify-content-center">
                         <div class="col-sm-12">
-                        <div class="text-center mb-3">Mohon maaf...</div> 
+                        <div class="text-center mb-3" style="color:#1A4066;font-weight:500">Mohon maaf...</div>
+                        <hr> 
                             <div id="body_alert">
                             </div>
-                            <div class="text-center mt-3">Stok tidak mencukupi.</div>
+                            <div class="text-left mt-2 " style="color:#1A4066;font-weight:400"><small>Stok tidak mencukupi.</small></div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <button type="button" class="btn " data-dismiss="modal" style="color:#fff; background-color:#6a3137; ">Tutup</button>
+                    <button type="button" class="btn btn-block button_add_to_cart" data-dismiss="modal" style="">Tutup</button>
                 </div>
             </div>
         </div>

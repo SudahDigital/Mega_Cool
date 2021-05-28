@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Ice-Gentong @yield('title')</title>
+    <title>Mega Cools @yield('title')</title>
     <!-- Favicon-->
     <link rel="icon" href="{{ asset('assets/image/logo-gentong-nav.png')}}" type="image/x-icon">
 

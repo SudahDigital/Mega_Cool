@@ -16,6 +16,7 @@ class CustomerPaketController extends Controller
         $paket = \App\Paket::all()->first();//paginate(10);
         //$paket_id = \App\Paket::findOrfail($id);//paginate(10);
         $cat_count = $categories->count();
+        $stock_status= DB::table('product_stock_status')->first();
         $all_product = \App\product::where('status','=','PUBLISH')->get();
         $product = \App\Group::with('item_active')->where('status','ACTIVE')
                     ->get();//->paginate(10);
@@ -67,6 +68,7 @@ class CustomerPaketController extends Controller
                 'banner'=>$banner,
                 'banner_active'=>$banner_active,
                 //'paket_id'=>$paket_id,
+                'stock_status'=>$stock_status
             ];
        
         return view('customer.paket',$data);
@@ -218,6 +220,7 @@ class CustomerPaketController extends Controller
                  ->whereRaw("purchase_quantity = (select max(purchase_quantity) FROM pakets WHERE purchase_quantity <= '$total_qty')")
                  ->orderBy('updated_at','DESC')
                  ->first();
+        
         $cekData['data'] = $max_tmp;
         echo json_encode($cekData);
         exit;
@@ -381,6 +384,9 @@ class CustomerPaketController extends Controller
     public function search_paket(Request $request){
         
             $output = '';
+            $stock_status= DB::table('product_stock_status')->first();
+            $info_stock='';
+            $dsbld_btn ='';
             $group_id = $request->get('group_id');
             if($request->get('gr_cat') != ''){
                 $gr_cat = $request->get('gr_cat');
@@ -441,6 +447,11 @@ class CustomerPaketController extends Controller
                         $c_price = $p_group->price;
                         $c_jml_val = 0;
                     }
+                    
+                    if(($stock_status->stock_status == 'ON')&&($p_group->stock == 0)){
+                        $dsbld_btn .= 'disabled';
+                        $info_stock.= '<span class="badge badge-warning ">Sisa stok 0</span>';
+                    }
                     $output.= '<div id="product_list"  class="col-6 col-md-4 mx-0 d-flex item_pop" style="">
                         <div class="card mx-auto  item_product_pop ">                        
                             <input type="hidden" id="orderid_delete_pkt'.$p_group->id.'_'.$group_id.'" value="'.$c_orderid_delete.'">
@@ -449,10 +460,11 @@ class CustomerPaketController extends Controller
                                 <label for="checkbox_pkt'.$p_group->id.'_'.$group_id.'"></label>
                             </div>
                             <a>
-                                <img style="" src="'.asset('storage/'.$p_group->image).'" class="img-fluid h-100 w-100 img-responsive" alt="...">
+                                <img style="" src="'.asset('storage/'.(($p_group->image!='') ? $p_group->image : 'no_image_availabl.png').'').'" class="img-fluid h-100 w-100 img-responsive" alt="...">
                             </a>
                             
                             <div class="card-body crd-body-pkt d-flex flex-column mt-n3" style="">
+                            '.$info_stock.'
                                 <div class="float-left px-1 py-2" style="width: 100%;">
                                     <p class="product-price-header_pop mb-0" style="">
                                         '.$p_group->Product_name.'
@@ -499,7 +511,7 @@ class CustomerPaketController extends Controller
                                                 padding-left:0;
                                                 height:25px" onclick="button_plus_pkt('.$p_group->id.','.$group_id.')">+</button> 
                                     </div>
-                                    <button class="btn bt-add-paket btn-block button_add_to_cart respon mt-1" onclick="add_tocart_pkt('.$p_group->id.','.$group_id.')" style="">Simpan</button> 
+                                    <button class="btn bt-add-paket btn-block button_add_to_cart respon mt-1" onclick="add_tocart_pkt('.$p_group->id.','.$group_id.')" style="" '.$dsbld_btn.'>Simpan</button> 
                                 </div>
                             </div>
                         </div>
@@ -526,6 +538,9 @@ class CustomerPaketController extends Controller
     public function search_bonus(Request $request){
         
         $output = '';
+        $stock_status= DB::table('product_stock_status')->first();
+        $info_stock='';
+        $dsbld_btn ='';
         $group_id = $request->get('group_id');
         if($request->get('gr_cat') != ''){
             $gr_cat = $request->get('gr_cat');
@@ -586,6 +601,10 @@ class CustomerPaketController extends Controller
                     $c_price = $p_group->price;
                     $c_jml_val = 0;
                 }
+                if(($stock_status->stock_status == 'ON')&&($p_group->stock == 0)){
+                    $dsbld_btn .= 'disabled';
+                    $info_stock.= '<span class="badge badge-warning ">Sisa stok 0</span>';
+                }
                 $output.= '<div class="col-12 col-md-6 d-flex item_pop_bonus pb-4" style="">
                 <div class="card card_margin_bonus" style="border-radius: 20px;">
                     <div class="card-horizontal py-0">
@@ -596,7 +615,7 @@ class CustomerPaketController extends Controller
                             <label for="checkbox_bns'.$p_group->id.'_'.$group_id.'"></label>
                         </div>
                         <a>
-                            <img src="'.asset('storage/'.$p_group->image).'" class="img-fluid img-responsive" alt="..." style="">
+                            <img src="'.asset('storage/'.(($p_group->image!='') ? $p_group->image : 'no_image_availabl.png').'').'" class="img-fluid img-responsive" alt="..." style="">
                         </a>
                         
                         <div class="card-body d-flex flex-column ml-n4" style="">
@@ -609,7 +628,7 @@ class CustomerPaketController extends Controller
                             <div class="float-left pl-0 pt-1 pb-0" style="">
                                 <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_bns'.$p_group->id.'_'.$group_id.'" style="">Rp. '.number_format($c_price, 0, ',', '.') .',-</p>
                             </div>
-                            
+                            '.$info_stock.'
                             <div class="float-left pl-0 mt-auto">
                                 <div class="input-group mb-0">
                                     <input type="hidden" id="jumlah_val_bns'.$p_group->id.'_'.$group_id.'" name="" value="'.$c_jml_val.'">
@@ -651,7 +670,7 @@ class CustomerPaketController extends Controller
                             </div>
                             <div class="float-right mt-2">
                                 <div id="product_list_bns">
-                                    <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart_bns('.$p_group->id.','.$group_id.')" style="">Simpan</button>
+                                    <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart_bns('.$p_group->id.','.$group_id.')" style="" '.$dsbld_btn.'>Simpan</button>
                                 </div>
                                 
                             </div>

@@ -28,6 +28,7 @@ class CustomerKeranjangController extends Controller
         $categories = \App\Category::all();//paginate(10);
         $paket = \App\Paket::all()->first();//paginate(10);
         $cat_count = $categories->count();
+        $stock_status= DB::table('product_stock_status')->first();
         $top_product = product::with('categories')
         ->where('top_product','=','1')
         ->where('status','=','PUBLISH')
@@ -94,6 +95,7 @@ class CustomerKeranjangController extends Controller
                 'cat_count'=>$cat_count,
                 'banner'=>$banner,
                 'banner_active'=>$banner_active,
+                'stock_status'=>$stock_status
                 ];
        
         return view('customer.content_customer',$data);
@@ -300,21 +302,25 @@ class CustomerKeranjangController extends Controller
     public function pesan(Request $request){
         $user_id = \Auth::user()->id;
         $id = $request->get('id');
-        $cek_order = DB::select("SELECT order_product.order_id, order_product.product_id,order_product.quantity, 
-                    products.stock, products.description FROM products,order_product WHERE order_product.product_id = products.id AND 
-                    order_product.quantity > products.stock AND order_product.order_id = '$id'");
+        $cek_order = DB::select("SELECT order_product.order_id, order_product.product_id,
+                    sum(order_product.quantity), products.stock, products.Product_name FROM products,order_product 
+                    WHERE order_product.product_id = products.id AND order_product.order_id = '$id' 
+                    GROUP BY order_product.product_id HAVING SUM(order_product.quantity) > products.stock");
         $count_cek = count($cek_order);
-        if($count_cek > 0){
+        $stock_status= DB::table('product_stock_status')->first();
+        if(($count_cek > 0) && ($stock_status->stock_status == 'ON')){
             return view('errors/error_wa');
         }else{
-            $cek_quantity = Order::with('products')->where('id',$id)->get();
-            foreach($cek_quantity as $q){
-                foreach($q->products as $p){
-                    $up_product = product::findOrfail($p->pivot->product_id);
-                    $up_product->stock -= $p->pivot->quantity;
-                    $up_product->save();
+            if($stock_status->stock_status == 'ON'){
+                $cek_quantity = Order::with('products')->where('id',$id)->get();
+                foreach($cek_quantity as $q){
+                    foreach($q->products as $p){
+                        $up_product = product::findOrfail($p->pivot->product_id);
+                        $up_product->stock -= $p->pivot->quantity;
+                        $up_product->save();
+                        }
                     }
-                }
+            }
             $user = User::findOrfail($user_id);
             $ses_order = $request->session()->get('ses_order');
             $payment_method=$request->get('check_tunai_value');
@@ -639,7 +645,7 @@ $ttle_nonpkt='*Detail Pesanan Non Paket*
                                         foreach($order->products as $detil){
                                         echo'<tr>
                                             <td width="25%" valign="middle">
-                                                <img src="'.asset('storage/'.$detil->image).'" 
+                                                <img src="'.asset('storage/'.(($detil->image!='') ? $detil->image : 'no_image_availabl.png').'').'" 
                                                 class="image-detail"  alt="...">   
                                             </td>
                                             <td width="60%" align="left" valign="top">
@@ -872,7 +878,7 @@ $ttle_nonpkt='*Detail Pesanan Non Paket*
                                                                 ->first();           
                                                 echo'<tr class="pb-0">
                                                     <td width="30%" class="img-detail-cart" valign="top" style="padding-top:3%;">
-                                                        <img src="'.asset('storage/'.$group_name->group_image).'" 
+                                                        <img src="'.asset('storage/'.(($group_name->group_image!='') ? $group_name->group_image : 'no_image_availabl.png').'').'" 
                                                         class="image-detail"  alt="...">
                                                     </td>
                                                     <td width="60%" class="td-desc-detail" align="left" valign="top" style="padding-top:3%;">
@@ -898,7 +904,7 @@ $ttle_nonpkt='*Detail Pesanan Non Paket*
 
                                                     </td>
                                                     <td width="15%" align="right" valign="top" style="padding-top:3%;">
-                                                        <button class="btn btn-default" onclick="delete_kr_pkt()" style="">X</button>
+                                                    <button class="btn btn-default" onclick="delete_kr_pkt('.$item->id.','.$dtl_pkt->paket_id.','.$dtl_pkt->group_id.')" style="">X</button>
                                                         <input type="hidden"  id="order_id_delete_pkt" name="order_id" value="">
                                                     </td>
                                                 </tr>
@@ -941,7 +947,7 @@ $ttle_nonpkt='*Detail Pesanan Non Paket*
                                             foreach($order->products_nonpaket as $detil){
                                             echo'<tr>
                                                 <td width="30%" class="img-detail-cart" valign="middle" style="border-bottom: 1px solid #ddd;padding-top:3%;">
-                                                    <img src="'.asset('storage/'.$detil->image).'" 
+                                                    <img src="'.asset('storage/'.(($detil->image!='') ? $detil->image : 'no_image_availabl.png').'').'" 
                                                     class="image-detail"  alt="...">   
                                                 </td>
                                                 <td width="60%" class="td-desc-detail" align="left" valign="top" style="border-bottom: 1px solid #ddd;padding-top:3%;">
@@ -1065,10 +1071,18 @@ $ttle_nonpkt='*Detail Pesanan Non Paket*
     }
 
     public function cek_order(Request $request){
+        $stock_status= DB::table('product_stock_status')->first();
         $order_id = $request->get('order_id');
-        $cek_order = DB::select("SELECT order_product.order_id, order_product.product_id,order_product.quantity, 
-                    products.stock, products.Product_name FROM products,order_product WHERE order_product.product_id = products.id AND 
-                    order_product.quantity > products.stock AND order_product.order_id = '$order_id'");
+        if($stock_status->stock_status == 'ON'){
+            $cek_order = DB::select("SELECT order_product.order_id, order_product.product_id,
+            sum(order_product.quantity), products.stock, products.Product_name FROM products,order_product 
+            WHERE order_product.product_id = products.id AND order_product.order_id = '$order_id' 
+            GROUP BY order_product.product_id HAVING SUM(order_product.quantity) > products.stock");
+        }
+        else{
+            $cek_order = NULL;
+        }
+        
         //$count_cek = count($cek_order);
         //return $cek_order;
         // Fetch all records

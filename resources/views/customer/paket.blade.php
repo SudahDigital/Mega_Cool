@@ -130,7 +130,7 @@ Home
                         <div id="product_list"  class="col-6 col-md-4 d-flex mx-0" style="z-index: 1">
                             <div class="card mx-auto d-flex item_product">
                                 <a class="" data-toggle="modal" href="#modalGroup{{$value->id}}">
-                                    <img style="" src="{{ asset('storage/'.(($value->group_image!='') ? $value->group_image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
+                                    <img style="" src="{{ asset('storage/'.(($value->group_image!='') ? $value->group_image : 'no_image_availabl.png').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
                                 </a>
                                 <div class="card-body h-100" style="background-color:#1A4066;">
                                     <a class="" data-toggle="modal" href="#modalGroup{{$value->id}}">
@@ -201,10 +201,15 @@ Home
                                                                             <label for="checkbox_pkt{{$p_group->id}}_{{$value->id}}"></label>
                                                                         </div>
                                                                         <a>
-                                                                            <img style="" src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
+                                                                            <img style="" src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : 'no_image_availabl.png').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
                                                                         </a>
                                                                         
                                                                         <div class="card-body crd-body-pkt d-flex flex-column mt-n3" style="">
+                                                                            @if($stock_status->stock_status == 'ON')
+                                                                                @if($p_group->stock == 0)
+                                                                                    <span class="badge badge-warning">Sisa stok 0</span>
+                                                                                @endif
+                                                                            @endif
                                                                             <div class="float-left px-1 py-2" style="width: 100%;">
                                                                                 <p class="product-price-header_pop mb-0" style="">
                                                                                     {{$p_group->Product_name}}
@@ -253,7 +258,7 @@ Home
                                                                                             padding-left:0;
                                                                                             height:25px" onclick="button_plus_pkt('{{$p_group->id}}','{{$value->id}}')">+</button> 
                                                                                 </div>
-                                                                                <button class="btn bt-add-paket btn-block button_add_to_cart respon mt-1" onclick="add_tocart_pkt('{{$p_group->id}}','{{$value->id}}')" style="">Simpan</button> 
+                                                                                <button class="btn bt-add-paket btn-block button_add_to_cart respon mt-1" onclick="add_tocart_pkt('{{$p_group->id}}','{{$value->id}}')" {{($stock_status->stock_status == 'ON')&&($p_group->stock == 0) ? 'disabled' : ''}}>Simpan</button> 
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -287,10 +292,15 @@ Home
                                                                         <label for="checkbox_pkt{{$p_group->id}}_{{$value->id}}"></label>
                                                                     </div>
                                                                     <a>
-                                                                        <img style="" src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
+                                                                        <img style="" src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : 'no_image_availabl.png').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
                                                                     </a>
                                                                     
                                                                     <div class="card-body crd-body-pkt d-flex flex-column mt-n3" style="">
+                                                                        @if($stock_status->stock_status == 'ON')
+                                                                            @if($p_group->stock == 0)
+                                                                                <span class="badge badge-warning">Sisa stok 0</span>
+                                                                            @endif
+                                                                        @endif
                                                                         <div class="float-left px-1 py-2" style="width: 100%;">
                                                                             <p class="product-price-header_pop mb-0" style="">
                                                                                 {{$p_group->Product_name}}
@@ -339,7 +349,7 @@ Home
                                                                                         padding-left:0;
                                                                                         height:25px" onclick="button_plus_pkt('{{$p_group->id}}','{{$value->id}}')">+</button> 
                                                                             </div>
-                                                                            <button class="btn bt-add-paket btn-block button_add_to_cart respon mt-1" onclick="add_tocart_pkt('{{$p_group->id}}','{{$value->id}}')" style="">Simpan</button> 
+                                                                            <button class="btn bt-add-paket btn-block button_add_to_cart respon mt-1" onclick="add_tocart_pkt('{{$p_group->id}}','{{$value->id}}')" {{($stock_status->stock_status == 'ON')&&($p_group->stock == 0) ? 'disabled' : ''}}>Simpan</button> 
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -445,7 +455,7 @@ Home
                                                                                 <label for="checkbox_bns{{$p_group->id}}_{{$value->id}}"></label>
                                                                             </div>
                                                                             <a>
-                                                                                <img src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid img-responsive" alt="..." style="">
+                                                                                <img src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : 'no_image_availabl.png').'') }}" class="img-fluid img-responsive" alt="..." style="">
                                                                             </a>
                                                                             
                                                                             <div class="card-body d-flex flex-column ml-n4" style="">
@@ -458,7 +468,11 @@ Home
                                                                                 <div class="float-left pl-0 pt-1 pb-0" style="">
                                                                                     <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_bns{{$p_group->id}}_{{$value->id}}" style="">Rp. {{ $item && $qty_on_bonus != NULL ?  number_format($harga_on_bonus, 0, ',', '.') : number_format($p_group->price, 0, ',', '.') }},-</p>
                                                                                 </div>
-                                                                                
+                                                                                @if($stock_status->stock_status == 'ON')
+                                                                                    @if($p_group->stock == 0)
+                                                                                        <span class="badge badge-warning ">Sisa stok 0</span>
+                                                                                    @endif
+                                                                                @endif
                                                                                 <div class="float-left pl-0 mt-auto">
                                                                                     <div class="input-group mb-0">
                                                                                         <input type="hidden" id="jumlah_val_bns{{$p_group->id}}_{{$value->id}}" name="" value="{{$item && $qty_on_bonus != NULL ? "$qty_on_bonus->quantity" : '0'}}">
@@ -500,7 +514,7 @@ Home
                                                                                 </div>
                                                                                 <div class="float-right mt-2">
                                                                                     <div id="product_list_bns">
-                                                                                        <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart_bns('{{$p_group->id}}','{{$value->id}}')" style="">Simpan</button>
+                                                                                        <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart_bns('{{$p_group->id}}','{{$value->id}}')" {{($stock_status->stock_status == 'ON')&&($p_group->stock == 0) ? 'disabled' : ''}}>Simpan</button>
                                                                                     </div>
                                                                                     
                                                                                 </div>
@@ -537,7 +551,7 @@ Home
                                                                                 <label for="checkbox_bns{{$p_group->id}}_{{$value->id}}"></label>
                                                                             </div>
                                                                             <a>
-                                                                                <img src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid img-responsive" alt="..." style="">
+                                                                                <img src="{{ asset('storage/'.(($p_group->image!='') ? $p_group->image : 'no_image_availabl.png').'') }}" class="img-fluid img-responsive" alt="..." style="">
                                                                             </a>
                                                                             
                                                                             <div class="card-body d-flex flex-column ml-n4" style="">
@@ -550,7 +564,11 @@ Home
                                                                                 <div class="float-left pl-0 pt-1 pb-0" style="">
                                                                                     <p style="line-height:1; bottom:0" class="product-price_pop mt-auto" id="productPrice_bns{{$p_group->id}}_{{$value->id}}" style="">Rp. {{ $item && $qty_on_bonus != NULL ?  number_format($harga_on_bonus, 0, ',', '.') : number_format($p_group->price, 0, ',', '.') }},-</p>
                                                                                 </div>
-                                                                                
+                                                                                @if($stock_status->stock_status == 'ON')
+                                                                                    @if($p_group->stock == 0)
+                                                                                        <span class="badge badge-warning ">Sisa stok 0</span>
+                                                                                    @endif
+                                                                                @endif
                                                                                 <div class="float-left pl-0 mt-auto">
                                                                                     <div class="input-group mb-0">
                                                                                         <input type="hidden" id="jumlah_val_bns{{$p_group->id}}_{{$value->id}}" name="" value="{{$item && $qty_on_bonus != NULL ? "$qty_on_bonus->quantity" : '0'}}">
@@ -592,7 +610,7 @@ Home
                                                                                 </div>
                                                                                 <div class="float-right mt-2">
                                                                                     <div id="product_list_bns">
-                                                                                        <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart_bns('{{$p_group->id}}','{{$value->id}}')" style="">Simpan</button>
+                                                                                        <button class="btn btn-block button_add_to_cart respon" onclick="add_tocart_bns('{{$p_group->id}}','{{$value->id}}')" {{($stock_status->stock_status == 'ON')&&($p_group->stock == 0) ? 'disabled' : ''}}>Simpan</button>
                                                                                     </div>
                                                                                     
                                                                                 </div>
@@ -767,7 +785,7 @@ Home
                                                 @endphp
                                                 <tr class="pb-0">
                                                     <td width="30%" class="img-detail-cart" valign="top" style="padding-top:3%;">
-                                                        <img src="{{ asset('storage/'.$group_name->group_image)}}" 
+                                                        <img src="{{ asset('storage/'.(($group_name->group_image!='') ? $group_name->group_image : 'no_image_availabl.png').'') }}" 
                                                         class="image-detail"  alt="...">
                                                     </td>
                                                     <td width="60%" class="td-desc-detail" align="left" valign="top" style="padding-top:3%;">
@@ -840,7 +858,7 @@ Home
                                     @foreach($keranjang as $detil)
                                     <tr>
                                         <td width="30%" class="img-detail-cart" valign="middle" style="border-bottom: 1px solid #ddd;padding-top:3%;">
-                                            <img src="{{ asset('storage/'.$detil->image)}}" 
+                                            <img src="{{ asset('storage/'.(($detil->image!='') ? $detil->image : 'no_image_availabl.png').'') }}" 
                                             class="image-detail"  alt="...">   
                                         </td>
                                         <td width="60%" class="td-desc-detail" align="left" valign="top" style="border-bottom: 1px solid #ddd;padding-top:3%;">
@@ -1056,22 +1074,23 @@ Home
     </div>
     
     <!-- Modal validasi stok -->
-    <div class="modal fade ml-1" id="modal_validasi" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modal_validasi" role="dialog" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content" style="">
                 <div class="modal-body">
                     <div class="row justify-content-center">
                         <div class="col-sm-12">
-                        <div class="text-center mb-3">Mohon maaf...</div> 
+                        <div class="text-center mb-3" style="color:#1A4066;font-weight:500">Mohon maaf...</div>
+                        <hr> 
                             <div id="body_alert">
                             </div>
-                            <div class="text-center mt-3">Stok tidak mencukupi.</div>
+                            <div class="text-left mt-2 " style="color:#1A4066;font-weight:400"><small>Stok tidak mencukupi.</small></div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <button type="button" class="btn " data-dismiss="modal" style="color:#fff; background-color:#6a3137; ">Tutup</button>
+                    <button type="button" class="btn btn-block button_add_to_cart" data-dismiss="modal" style="">Tutup</button>
                 </div>
             </div>
         </div>
